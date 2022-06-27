@@ -8,6 +8,7 @@ public class VwsBackEndApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VwsBackEndApplication.class, args);
+		System.out.println("Hello,Running Successfully!");
 	}
 
 }
