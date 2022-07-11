@@ -1,6 +1,5 @@
 import './App.css';
 import './Utilities/TestComponent'
-import Table from './Utilities/Table/Table';
 import Sidebar from './Utilities/Sidebar/Sidebar';
 import TestComponent from './Utilities/TestComponent';
 
@@ -9,9 +8,10 @@ function App() {
     <div className="App">
       <h3>Hello World</h3>
       <div class="container">
-        <Table/>
+        
+        <TestComponent/>
       </div>
-      <TestComponent/>
+      
     </div>
   );
 }

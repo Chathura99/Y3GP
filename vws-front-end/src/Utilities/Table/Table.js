@@ -329,7 +329,7 @@ export default function EnhancedTable() {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <div className={classes.root}>
+    <div class="container">
       {/* heading */}
       <EnhancedTableToolbar numSelected={selected.length} />
       <TableContainer>
