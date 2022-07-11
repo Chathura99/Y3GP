@@ -2,6 +2,7 @@ import './App.css';
 import './Utilities/TestComponent'
 import Table from './Utilities/Table/Table';
 import Sidebar from './Utilities/Sidebar/Sidebar';
+import TestComponent from './Utilities/TestComponent';
 
 function App() {
   return (
@@ -10,9 +11,20 @@ function App() {
       <div class="container">
         <Table/>
       </div>
-      <h3>Hello shan!</h3>
+      <TestComponent/>
     </div>
   );
 }
 
 export default App;
+
+
+// 2596BE light blue
+// 96BE25 dark green
+// BE4D25 dark orange
+// 145369 dark blue
+// 6C25BE purple
+// BE2596 pink
+// 49BE25 light green
+// BEA925 brown
+// A6A6A6 gray
