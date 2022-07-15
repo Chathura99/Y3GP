@@ -1,7 +1,7 @@
 import './App.css';
-import './Utilities/TestComponent'
-import Sidebar from './Utilities/Sidebar/Sidebar';
-import TestComponent from './Utilities/TestComponent';
+import './utilities/TestComponent'
+import Sidebar from './utilities/Sidebar/Sidebar';
+import TestComponent from './utilities/TestComponent';
 
 function App() {
   return (
