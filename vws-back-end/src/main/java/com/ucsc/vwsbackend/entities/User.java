@@ -69,8 +69,6 @@ public class User implements UserDetails {
         return authorities;
     }
 
-
-
     @Override
     public String getUsername() {
         return this.userName;

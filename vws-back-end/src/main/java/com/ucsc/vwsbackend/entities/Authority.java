@@ -13,7 +13,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Table(name = "authority")
 @Entity
-@Data
 public class Authority implements GrantedAuthority {
 
     @Id
@@ -33,6 +32,27 @@ public class Authority implements GrantedAuthority {
         return roleCode;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    public String getRoleDescription() {
+        return roleDescription;
+    }
+
+    public void setRoleDescription(String roleDescription) {
+        this.roleDescription = roleDescription;
+    }
 }
