@@ -1,15 +1,18 @@
 import './App.css';
-import './utilities/TestComponent'
-import Sidebar from './utilities/Sidebar/Sidebar';
-import TestComponent from './utilities/TestComponent';
+// import Sidebar from './Utilities/Sidebar/Sidebar';
+import TestComponent from './Utilities/TestComponent'
+import Sidebar from './pages/admin/Sidebar/Sidebar';
+
 
 function App() {
   return (
     <div className="App">
-      <h3>Hello World</h3>
+      <Sidebar/>
+
+      
+      
       <div class="container">
-        
-        <TestComponent/>
+       
       </div>
       
     </div>
