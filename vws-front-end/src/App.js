@@ -1,19 +1,10 @@
 import './App.css';
-// import Sidebar from './Utilities/Sidebar/Sidebar';
-import TestComponent from './Utilities/TestComponent'
 import Sidebar from './pages/admin/Sidebar/Sidebar';
-
 
 function App() {
   return (
     <div className="App">
       <Sidebar/>
-
-      
-      
-      <div class="container">
-       
-      </div>
       
     </div>
   );
