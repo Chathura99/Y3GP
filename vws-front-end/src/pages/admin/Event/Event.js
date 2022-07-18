@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react'
 
-export default function ViewAnnouncement() {
+export default function Event() {
   return (
     <div className="container-fluid">
       <div className="row gutters">
         <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
           <div className="card h-100">
             <div className="card-body">
-              <div className="row gutters">Right</div>
+              <div className="row gutters">Left</div>
               <div className="row gutters ">line 1</div>
               <div className="row gutters">line 2</div>
             </div>
@@ -17,11 +17,10 @@ export default function ViewAnnouncement() {
         <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ">
           <div className="card h-100">
             <div className="card-body">
-            <div className="row gutters ">left</div>
+            <div className="row gutters ">Right</div>
             <div className="row gutters ">line 1</div>
             <div className="row gutters">line 2</div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -34,5 +33,5 @@ export default function ViewAnnouncement() {
         </div>
       </div>
     </div>
-  );
+  )
 }
