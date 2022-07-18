@@ -21,12 +21,13 @@ public class VwsBackEndApplication {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	public static final LocalDateTime GLOBAL_TIME = LocalDateTime.now();
 	public static void main(String[] args) {
 		SpringApplication.run(VwsBackEndApplication.class, args);
 		System.out.println("Hello,Running Successfully!");
 
-		LocalDateTime datetime = LocalDateTime.now();
-		System.out.println("Today: " + datetime);
+		System.out.println("Today: " + GLOBAL_TIME);
 	}
 
 
