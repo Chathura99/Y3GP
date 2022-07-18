@@ -59,6 +59,8 @@ public class User implements UserDetails {
     @Column(name = "enabled")
     private boolean enabled=true;
 
+    @Column(name = "profile_pic")
+    private String profilePic;
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "user_authority", joinColumns = @JoinColumn(referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(referencedColumnName ="id"))
@@ -68,8 +70,6 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
     }
-
-
 
     @Override
     public String getUsername() {

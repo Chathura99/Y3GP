@@ -1,4 +1,4 @@
-package com.ucsc.vwsbackend.repository;
+package com.ucsc.vwsbackend.repository.userDao;
 
 import com.ucsc.vwsbackend.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
