@@ -1,18 +1,12 @@
 package com.ucsc.vwsbackend;
 
-import com.ucsc.vwsbackend.entities.Authority;
-import com.ucsc.vwsbackend.entities.User;
-import com.ucsc.vwsbackend.repository.UserRepository;
+import com.ucsc.vwsbackend.repository.userDao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class VwsBackEndApplication {

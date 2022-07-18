@@ -2,8 +2,8 @@ package com.ucsc.vwsbackend.services;
 
 
 import com.ucsc.vwsbackend.entities.Announcement;
-import com.ucsc.vwsbackend.repository.announcement.AnnouncementRepository;
-import com.ucsc.vwsbackend.repository.announcement.AnnouncementJdbcRepository;
+import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementRepository;
+import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;

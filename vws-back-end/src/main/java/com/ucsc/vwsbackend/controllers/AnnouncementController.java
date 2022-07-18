@@ -1,7 +1,7 @@
 package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.entities.Announcement;
-import com.ucsc.vwsbackend.repository.announcement.AnnouncementRepository;
+import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementRepository;
 import com.ucsc.vwsbackend.services.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

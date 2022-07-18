@@ -1,4 +1,4 @@
-package com.ucsc.vwsbackend.repository.announcement;
+package com.ucsc.vwsbackend.repository.announcementDao;
 
 import com.ucsc.vwsbackend.entities.Announcement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import static com.ucsc.vwsbackend.VwsBackEndApplication.GLOBAL_TIME;
 
 @Repository
 public class AnnouncementJdbcRepository {

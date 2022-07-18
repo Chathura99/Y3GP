@@ -1,7 +1,7 @@
 package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.entities.User;
-import com.ucsc.vwsbackend.repository.UserRepository;
+import com.ucsc.vwsbackend.repository.userDao.UserRepository;
 import com.ucsc.vwsbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
