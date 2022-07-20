@@ -36,15 +36,15 @@ public class VwsBackEndApplication {
 //
 //	List<Authority> authorityList=new ArrayList<>();
 //
-//	authorityList.add(createAuthority("PROJECT_COORDINATOR","Project coordinator role"));
+//	authorityList.add(createAuthority("VOLUNTEER","Volunteer role"));
 //
 //	User user=new User();
 //
-//	user.setUserName("Yashodha");
-//		user.setFirstName("Yashodha");
-//		user.setLastName("Subhasinghe");
-//		user.setEmail("yash@gmail.com");
-//		user.setPhoneNumber("+94757894521");
+//	user.setUserName("Shan");
+//		user.setFirstName("Shan");
+//		user.setLastName("Dilranga");
+//		user.setEmail("sd@gmail.com");
+//		user.setPhoneNumber("+94757894777");
 //		user.setPassword(passwordEncoder.encode("123456789"));
 //		user.setEnabled(true);
 //		user.setAuthorities(authorityList);
@@ -60,11 +60,6 @@ public class VwsBackEndApplication {
 //	authority.setRoleDescription(roleDescription);
 //		return authority;
 //	}
-
-//Chathura-Admin
-//Malik-P_Coordinator
-//Ravindu-Member
-//pw-123456789
 
 }
 

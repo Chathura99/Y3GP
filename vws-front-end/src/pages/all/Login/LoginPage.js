@@ -71,7 +71,7 @@ const LoginPage = ({ loading, error, ...props }) => {
                         id="username"
                         type="text"
                         className="form-control"
-                        minLength={5}
+                        minLength={4}
                         value={values.userName}
                         onChange={handleChange}
                         name="userName"
