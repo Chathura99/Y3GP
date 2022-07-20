@@ -28,7 +28,7 @@ export default function Event() {
       <div className="row gutters mt-3">
         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div className="card h-100">
-            <div className="card-body">Announcements</div>
+            <div className="card-body">Events</div>
           </div>
         </div>
       </div>
