@@ -10,7 +10,7 @@ export default function Sidebar(page) {
   const [userrole, setUserRoles] = useState([]);
 
   useEffect(() => {
-    // checkValidate();
+    checkValidate();
     userData();
   }, []);
 
