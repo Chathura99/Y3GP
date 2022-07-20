@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function HomePage() {
+export default function ForgotPassword() {
   return (
     <div>
-        <h3>Landing Page</h3>
+        <h3>Forgot Password</h3>
     <Link to="/login">Login</Link>
     </div>
   )

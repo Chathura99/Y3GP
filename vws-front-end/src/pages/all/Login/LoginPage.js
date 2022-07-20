@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { authenticate, authFailure, authSuccess } from "../redux/authActions";
+import { authenticate, authFailure, authSuccess } from "../../../redux/authActions";
 // import "./loginpage.css";
-import { userLogin } from "../services/authenticationService";
+import { userLogin } from "../../../services/authenticationService";
 import { Alert, Spinner } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const LoginPage = ({ loading, error, ...props }) => {
   const [values, setValues] = useState({
@@ -56,6 +57,7 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   return (
                 <div className="card-body ">
+                  <Link to="/">Home</Link>
                   <h4 className="card-title">Login</h4>
                   {/* onsubmit then, call to {handleSubmit}*/}
                   <form
@@ -91,9 +93,9 @@ const LoginPage = ({ loading, error, ...props }) => {
                         name="password"
                         required
                       />
-                      <a href="forgot.html" className="float-right">
-                        Forgot Password?
-                      </a>
+                        
+                 
+                      <Link to="/forgotpassword">Forgot Password?</Link>
                       <div className="invalid-feedback">
                         Password is required
                       </div>

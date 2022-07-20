@@ -156,7 +156,7 @@ h5,
 }
 
 #sidebar ul li a {
-  padding: 10px 0;
+  padding: 8px 0;
   display: block;
   color: #898787;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -167,7 +167,6 @@ h5,
 }
 
 #sidebar ul li.active > a {
-  padding: 5px;
   border-radius: 135px;
   background: #2596ba;
   color: #ffffff;
@@ -256,3 +255,7 @@ a[data-toggle="collapse"] {
 /* #contentcard {
   z-index: -5;
 } */
+
+.linkdark{
+  color: #000!important;
+}
