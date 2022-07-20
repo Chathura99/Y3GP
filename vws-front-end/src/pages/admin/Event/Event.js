@@ -1,16 +1,24 @@
-import React from 'react'
-import Sidebar from "../Sidebar/Sidebar";
+import React, { useEffect } from 'react'
 
 export default function Event() {
+  useEffect(() => {
+    checkValidate();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
   return (
     <>
-      <Sidebar />
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
         <div className="row gutters mt-10">
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <div className="row gutters">Home</div>
+                <div className="row gutters">Events</div>
                 <div className="row gutters ">line 1</div>
                 <div className="row gutters">line 2</div>
               </div>
