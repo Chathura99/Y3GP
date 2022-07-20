@@ -1,10 +1,8 @@
 import React from 'react'
-import Sidebar from "../Sidebar/Sidebar";
 
 export default function OnGoingProject() {
   return (
     <>
-    <Sidebar />
     <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
       <div className="row gutters mt-10">
         <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">

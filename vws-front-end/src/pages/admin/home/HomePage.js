@@ -1,12 +1,10 @@
 import React from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
-import Sidebar from "../Sidebar/Sidebar";
 
 export default function HomePage() {
   return (
     <>
-      <Sidebar />
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
         <div className="row gutters mt-10">
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">

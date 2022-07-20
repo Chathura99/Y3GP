@@ -4,7 +4,7 @@ import {
   Routes, // instead of "Switch"
   Route,
 } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/all/Login/LoginPage";
 import HomePage from "./pages/admin/Home/HomePage";
 import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
@@ -17,13 +17,30 @@ import ProjectSummary from "./pages/admin/Summary/ProjectSummary";
 import MemberSummary from "./pages/admin/Summary/MemberSummary";
 import CurrentUser from "./pages/admin/User/CurrentUser";
 import NewUser from "./pages/admin/User/NewUser";
+import Sidebar from "./pages/admin/Sidebar/Sidebar";
+import Guestpage from "./pages/guestUser/home/HomePage";
+import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
+import Profile from "./pages/all/Profile/Profile";
 
 function App() {
+
+  function sidebar(){
+    if(localStorage.getItem("USER_KEY")){
+      return <Sidebar />
+    }
+  }
+  
   return (
     <div className="App">
       <BrowserRouter>
+      {sidebar()}
         <Routes>
-          <Route exact path="/" element={<LoginPage />}></Route>
+          <Route exact path="/" element={<Guestpage />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/forgotpassword" element={<ForgotPassword/>}></Route>
+          <Route path="/viewprofile" element={<Profile/>}></Route>
+
+          {/* admin part */}
           <Route path="/adminhome" element={<HomePage />}></Route>
           <Route
             path="/adminviewannouncement"
@@ -48,7 +65,15 @@ function App() {
           <Route path="/adminmembersummary" element={<MemberSummary />}></Route>
           <Route path="/admincurrentuser" element={<CurrentUser />}></Route>
           <Route path="/adminnewuser" element={<NewUser />}></Route>
+
+
+          {/* project coordinator part */}
+
+
+
+          {/* volunteer part */}
         </Routes>
+
       </BrowserRouter>
     </div>
   );
