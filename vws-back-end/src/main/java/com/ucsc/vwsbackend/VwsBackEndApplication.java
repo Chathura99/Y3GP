@@ -1,12 +1,17 @@
 package com.ucsc.vwsbackend;
 
+import com.ucsc.vwsbackend.entities.Authority;
+import com.ucsc.vwsbackend.entities.User;
 import com.ucsc.vwsbackend.repository.userDao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class VwsBackEndApplication {
@@ -31,14 +36,14 @@ public class VwsBackEndApplication {
 //
 //	List<Authority> authorityList=new ArrayList<>();
 //
-//	authorityList.add(createAuthority("Volunteer","Volunteer role"));
+//	authorityList.add(createAuthority("PROJECT_COORDINATOR","Project coordinator role"));
 //
 //	User user=new User();
 //
-//	user.setUserName("Ravindu");
-//		user.setFirstName("Ravindu");
-//		user.setLastName("Medagama");
-//		user.setEmail("ravi@gmail.com");
+//	user.setUserName("Yashodha");
+//		user.setFirstName("Yashodha");
+//		user.setLastName("Subhasinghe");
+//		user.setEmail("yash@gmail.com");
 //		user.setPhoneNumber("+94757894521");
 //		user.setPassword(passwordEncoder.encode("123456789"));
 //		user.setEnabled(true);

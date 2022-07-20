@@ -20,8 +20,8 @@ public class AnnouncementService {
     AnnouncementJdbcRepository announcementJdbcRepository;
 
     public List<Announcement> getAllAnnouncement() {
-        List<Announcement> announcement = announcementRepository.findAll();
-//          List<Announcement> announcement = announcementJdbcRepository.getAllWithAuthor();
+//        List<Announcement> announcement = announcementRepository.findAll();
+          List<Announcement> announcement = announcementJdbcRepository.getAllWithAuthor();
         return announcement;
     }
 //  get announcement by view category

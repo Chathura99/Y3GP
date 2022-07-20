@@ -26,9 +26,10 @@ public class ProjectCoordinator {
     @Column(name = "requested_date")
     private Date date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     User user;
+
 
     public long getCoordinatorId() {
         return coordinatorId;

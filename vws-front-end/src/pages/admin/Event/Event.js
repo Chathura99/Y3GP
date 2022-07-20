@@ -1,30 +1,25 @@
-import React from "react";
-import Table from "../../../utilities/Table/Table";
-import DonutChart from "../../../utilities/Charts/DonutChart";
+import React from 'react'
 
-export default function HomePage() {
+export default function Event() {
   return (
     <div className="container-fluid">
       <div className="row gutters">
-        <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+        <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
           <div className="card h-100">
             <div className="card-body">
-              <div className="row gutters">Home</div>
+              <div className="row gutters">Left</div>
               <div className="row gutters ">line 1</div>
               <div className="row gutters">line 2</div>
             </div>
           </div>
         </div>
 
-        <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+        <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 ">
           <div className="card h-100">
             <div className="card-body">
-              <div className="row gutters ">
-                <h3 className="ml-3">Title</h3>
-              </div>
-              <div className="row gutters ">
-                <DonutChart />
-              </div>
+            <div className="row gutters ">Right</div>
+            <div className="row gutters ">line 1</div>
+            <div className="row gutters">line 2</div>
             </div>
           </div>
         </div>
@@ -33,12 +28,10 @@ export default function HomePage() {
       <div className="row gutters mt-3">
         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div className="card h-100">
-            <div className="card-body ">
-              <Table />
-            </div>
+            <div className="card-body">Announcements</div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
