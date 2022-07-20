@@ -1,7 +1,10 @@
 import React from 'react'
+import Sidebar from "../Sidebar/Sidebar";
 
 export default function Poll() {
   return (
-    <div>Poll</div>
+    <>
+      <Sidebar />
+    </>
   )
 }
