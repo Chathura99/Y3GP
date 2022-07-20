@@ -1,6 +1,6 @@
 import './App.css';
 // import Sidebar from './Utilities/Sidebar/Sidebar';
-import TestComponent from './Utilities/TestComponent'
+import TestComponent from './utilities/TestComponent'
 import Sidebar from './pages/admin/Sidebar/Sidebar';
 
 
