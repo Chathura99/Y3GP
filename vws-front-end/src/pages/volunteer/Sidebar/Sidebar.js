@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './sidebar.css'
-import Table from '../../../Utilities/Table/Table';
+import Table from '../../../utilities/Table/Table';
 
 export default function Sidebar() {
   const [isActive, setIsActive] = useState("");

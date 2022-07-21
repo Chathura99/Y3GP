@@ -4,6 +4,7 @@ import {
   Routes, // instead of "Switch"
   Route,
 } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/all/Login/LoginPage";
 import HomePage from "./pages/admin/Home/HomePage";
 import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
@@ -17,17 +18,44 @@ import ProjectSummary from "./pages/admin/Summary/ProjectSummary";
 import MemberSummary from "./pages/admin/Summary/MemberSummary";
 import CurrentUser from "./pages/admin/User/CurrentUser";
 import NewUser from "./pages/admin/User/NewUser";
-import Sidebar from "./pages/admin/Sidebar/Sidebar";
+import AdminSidebar from "./pages/admin/Sidebar/Sidebar";
+import PcSidebar from "./pages/projectCoordinator/Sidebar/Sidebar"
+import VolunteerSidebar from "./pages/volunteer/Sidebar/Sidebar";
 import Guestpage from "./pages/guestUser/home/HomePage";
 import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
+import { fetchUserData } from "./services/authenticationService";
 
 
 function App() {
 
+  const [userrole, setUserRole] = useState([]);
+  const [userId, setUserId] = useState(null)
+  useEffect(() => {
+    user();
+  },[]);
+
+  const user= async () => {
+    setUserRole("admin")
+    // setUserRole("project coordinator")
+    // setUserRole("volunteer")
+    
+    // const res = await fetchUserData();
+    // setUserId(res);
+    // setUserRoles(res);
+  };
+
+
   function sidebar(){
     if(localStorage.getItem("USER_KEY")){
-      return <Sidebar />
+      if(userrole === "project coordinator")
+          return <PcSidebar />
+      else if(userrole === "admin")
+        return <AdminSidebar />
+      else if(userrole === "volunteer")
+        return <VolunteerSidebar />
+      else
+        return null
     }
   }
   
@@ -35,6 +63,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       {sidebar()}
+      
         <Routes>
           <Route exact path="/" element={<Guestpage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
