@@ -31,6 +31,11 @@ public class ProjectCoordinator {
     User user;
 
 
+    public ProjectCoordinator() {
+
+    }
+
+
     public long getCoordinatorId() {
         return coordinatorId;
     }
