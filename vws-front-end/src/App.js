@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "./App.css";
 import {
   BrowserRouter,
@@ -21,6 +22,13 @@ import Sidebar from "./pages/admin/Sidebar/Sidebar";
 import Guestpage from "./pages/guestUser/home/HomePage";
 import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
+=======
+import './App.css';
+// import Sidebar from './Utilities/Sidebar/Sidebar';
+import TestComponent from './utilities/TestComponent'
+import Sidebar from './pages/admin/Sidebar/Sidebar';
+>>>>>>> Yashodha
+
 
 function App() {
 
@@ -32,6 +40,7 @@ function App() {
   
   return (
     <div className="App">
+<<<<<<< HEAD
       <BrowserRouter>
       {sidebar()}
         <Routes>
@@ -75,6 +84,16 @@ function App() {
         </Routes>
 
       </BrowserRouter>
+=======
+      <Sidebar/>
+
+      
+      
+      <div class="container">
+       
+      </div>
+      
+>>>>>>> Yashodha
     </div>
   );
 }
