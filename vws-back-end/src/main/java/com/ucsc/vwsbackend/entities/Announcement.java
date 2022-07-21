@@ -28,6 +28,8 @@ public class Announcement {
     @JoinColumn(name = "coordinator_id")
     ProjectCoordinator projectCoordinator;
 
+    public Announcement() {
+    }
 
     public long getAnnId() {
         return annId;
