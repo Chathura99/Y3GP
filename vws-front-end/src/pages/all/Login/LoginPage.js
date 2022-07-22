@@ -12,6 +12,7 @@ import { Alert, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const LoginPage = ({ loading, error, ...props }) => {
+  // create "values" objecct
   const [values, setValues] = useState({
     userName: "",
     password: "",
@@ -68,7 +69,7 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   const handleChange = (e) => {
     e.persist();
-    // console.log(e.target.name+"-"+e.target.value)
+    console.log(e.target.name+"-"+e.target.value)
     setValues((values) => ({
       ...values,
       [e.target.name]: e.target.value,

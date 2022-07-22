@@ -30,10 +30,10 @@ function App() {
   const [userrole, setUserRoles] = useState([]);
   const [userId, setUserId] = useState(null)
   useEffect(() => {
-    user();
+    userData();
   },[]);
 
-  const user= async () => {
+  const userData= async () => {
     const res = await fetchUserData();
     setUserId(res.data.id);
     setUserRoles(res.data.roles[0].roleCode);
