@@ -26,36 +26,30 @@ import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
 import { fetchUserData } from "./services/authenticationService";
 
-
 function App() {
-
-  const [userrole, setUserRole] = useState([]);
+  const [userrole, setUserRoles] = useState([]);
   const [userId, setUserId] = useState(null)
   useEffect(() => {
     user();
   },[]);
 
   const user= async () => {
-    setUserRole("admin")
-    // setUserRole("project coordinator")
-    // setUserRole("volunteer")
-    
-    // const res = await fetchUserData();
-    // setUserId(res);
-    // setUserRoles(res);
+    const res = await fetchUserData();
+    setUserId(res.data.id);
+    setUserRoles(res.data.roles[0].roleCode);
+    // can user userId anywhere
+    console.log(userId,userrole);
   };
 
 
   function sidebar(){
     if(localStorage.getItem("USER_KEY")){
-      if(userrole === "project coordinator")
+      if(userrole === "PROJECT_COORDINATOR")
           return <PcSidebar />
-      else if(userrole === "admin")
+      else if(userrole === "ADMIN")
         return <AdminSidebar />
-      else if(userrole === "volunteer")
+      else if(userrole === "VOLUNTEER")
         return <VolunteerSidebar />
-      else
-        return null
     }
   }
   
@@ -63,7 +57,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
       {sidebar()}
-      
         <Routes>
           <Route exact path="/" element={<Guestpage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
@@ -103,7 +96,6 @@ function App() {
 
           {/* volunteer part */}
         </Routes>
-
       </BrowserRouter>
     </div>
   );
