@@ -27,6 +27,8 @@ import Guestpage from "./pages/guestUser/home/HomePage";
 import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
 import { fetchUserData } from "./services/authenticationService";
+import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
+
 
 function App() {
   const [userrole, setUserRoles] = useState([]);
@@ -54,8 +56,22 @@ function App() {
         return <VolunteerSidebar />
     }
   }
+// for overide material table style
+  const theme = createTheme({
+    overrides: {
+      MuiTableCell: {
+        root: {
+          padding: 2,
+          "&:last-child": {
+            paddingRight: 5
+          }
+        }
+      }
+    }
+  });
   
   return (
+    <MuiThemeProvider theme={theme}>
     <div className="App">
       <BrowserRouter>
       {sidebar()}
@@ -102,17 +118,9 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    </MuiThemeProvider>
   );
 }
 
 export default App;
 
-// 2596BE light blue
-// 96BE25 dark green
-// BE4D25 dark orange
-// 145369 dark blue
-// 6C25BE purple
-// BE2596 pink
-// 49BE25 light green
-// BEA925 brown
-// A6A6A6 gray

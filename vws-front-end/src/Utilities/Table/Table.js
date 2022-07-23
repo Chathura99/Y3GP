@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { lighten, makeStyles } from "@material-ui/core/styles";
@@ -17,73 +17,29 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import "./table.css";
 
-//add api requset in here
-function createData(id, name, coordinator, phone, startdate, action) {
-  return { id, name, coordinator, phone, startdate, action };
-}
 //dummy data
-const rows = [
-  createData(
-    "P001",
-    "Ganitha Saviya",
-    "Ravindu",
-    "+94 75 025 1451",
-    "2022 05 01",
-    
-  ),
-  createData(
-    "P002",
-    "Re-Green Earth",
-    "Shan",
-    "+94 75 025 1451",
-    "2021 05 01",
+// const rows = [
+//   {
+//     id:"P001",
+//     name:"Ganitha Saviya",
+//     coordinator:"Ravindu",
+//     phone:"+94 75 025 1451",
+//     startdate:"2022 05 01",
+//     action:"Button"
+//   },
 
-  ),
-  createData(
-    "P003",
-    "Lohithuppada",
-    "Malik",
-    "+94 75 025 1451",
-    "2020 05 01",
-    
-  ),
-  createData(
-    "P004",
-    "Sarasavi Piyageta",
-    "Yashoda",
-    "+94 75 025 1451",
-    "2022 04 01",
-    
-  ),
-  createData(
-    "P005",
-    "Sisura Sadaya",
-    "Malan",
-    "+94 76 025 1451",
-    "2022 05 01",
-    
-  ),
-  createData(
-    "P006",
-    "Scholarship",
-    "Chathura",
-    "+94 70 025 1451",
-    "2022 01 01",
-    
-  ),
-];
+// ];
 
-const headCells = [
-  //Change label in here
-  //id for unique attribute
-  { id: "id", label: "Project ID" },
-  { id: "name", label: "Project Name" },
-  { id: "coordinator", label: "Coordinator" },
-  { id: "phone", label: "Phone" },
-  { id: "startsOn",  label: "Starts On" },
-  { id: "action", label: "Action" },
-];
+// const headCells = [
+//   { id: "id", label: "Project ID" },
+//   { id: "name", label: "Project Name" },
+//   { id: "coordinator", label: "Coordinator" },
+//   { id: "phone", label: "Phone" },
+//   { id: "startsOn", label: "Starts On" },
+//   { id: "action", label: "Action" },
+// ];
 
 //sorting part
 function descendingComparator(a, b, orderBy) {
@@ -121,6 +77,7 @@ function EnhancedTableHead(props) {
     numSelected,
     rowCount,
     onRequestSort,
+    headCells,
   } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -172,7 +129,7 @@ EnhancedTableHead.propTypes = {
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
 };
-
+// styles for selection
 const useToolbarStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
@@ -193,7 +150,7 @@ const useToolbarStyles = makeStyles((theme) => ({
   },
 }));
 
-// table head start in here
+//return table head
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
@@ -220,7 +177,7 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Ongoing Projects
+          Upcoming Events
         </Typography>
       )}
 
@@ -251,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: "100%",
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
   },
   table: {
     minWidth: 750,
@@ -264,18 +221,22 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     padding: 0,
     position: "absolute",
-    top: 20,
+    top: 10,
     width: 1,
   },
 }));
 
-export default function EnhancedTable() {
+// main component
+export default function EnhancedTable(props) {
   const classes = useStyles();
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("id");
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("id");
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rows, setRows] = useState(props.rows);
+  const [headCells, setHeadCells] = useState(props.headCells);
+  console.log(headCells);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -294,7 +255,7 @@ export default function EnhancedTable() {
   };
   //select for delete
   const handleClick = (event, id) => {
-    console.log("New selected :" +id);
+    console.log("New selected :" + id);
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
@@ -346,6 +307,15 @@ export default function EnhancedTable() {
             onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
             rowCount={rows.length}
+            headCells={[
+              // get data from parent props...
+              { id: "id", label: "Project ID" },
+              { id: "name", label: "Project Name" },
+              { id: "coordinator", label: "Coordinator" },
+              { id: "phone", label: "Phone" },
+              { id: "startsOn", label: "Starts On" },
+              { id: "action", label: "Action" },
+            ]}
           />
           <TableBody>
             {stableSort(rows, getComparator(order, orderBy))
@@ -370,19 +340,14 @@ export default function EnhancedTable() {
                         inputProps={{ "aria-labelledby": labelId }}
                       />
                     </TableCell>
-                    <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                    >
+                    <TableCell component="th" id={labelId} scope="row">
                       {row.id}
                     </TableCell>
                     <TableCell>{row.name}</TableCell>
                     <TableCell>{row.coordinator}</TableCell>
                     <TableCell>{row.phone}</TableCell>
                     <TableCell>{row.startdate}</TableCell>
-                    <TableCell>Button</TableCell>
-                    {/* <TableCell align="right">Button</TableCell> */}
+                    <TableCell>{row.action}</TableCell>
                   </TableRow>
                 );
               })}
