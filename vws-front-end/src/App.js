@@ -6,7 +6,9 @@ import {
 } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/all/Login/LoginPage";
-import HomePage from "./pages/admin/Home/HomePage";
+import AdminHomePage from "./pages/admin/Home/HomePage";
+import PcHomePage from "./pages/projectCoordinator/home/HomePage";
+import VolunteerHomePage from "./pages/volunteer/home/HomePage";
 import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
 import Forum from "./pages/admin/ForumPoll/Forum";
@@ -64,7 +66,7 @@ function App() {
           <Route path="/viewprofile" element={<Profile/>}></Route>
 
           {/* admin part */}
-          <Route path="/adminhome" element={<HomePage />}></Route>
+          <Route path="/adminhome" element={<AdminHomePage />}></Route>
           <Route
             path="/adminviewannouncement"
             element={<ViewAnnouncement />}
@@ -91,10 +93,12 @@ function App() {
 
 
           {/* project coordinator part */}
-
+          <Route path="/pchome" element={<PcHomePage />}></Route>
 
 
           {/* volunteer part */}
+          <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>
