@@ -1,4 +1,4 @@
-/* body {
+body {
   font-family: "Poppins", Arial, sans-serif;
   font-size: 14px;
   line-height: 1.8;
@@ -11,7 +11,6 @@ a {
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
   transition: 0.3s all ease;
-  color: #f8b739;
 }
 
 a:hover,
@@ -80,13 +79,16 @@ h5,
 }
 
 .navbar {
-  padding: 15px 10px;
   background: #fff;
   border: none;
   border-radius: 0;
-  margin-bottom: 20px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: #000;
+  position: fixed;
+  z-index: 10;
+  left: 300px;
+  width: calc(100% - 300px);
 }
 
 .navbar-btn {
@@ -105,22 +107,25 @@ h5,
 
 .wrapper {
   width: 100%;
-  position: fixed;
+  /* position: fixed; */
 }
 
 #sidebar {
   min-width: 300px;
   max-width: 300px;
+  min-height: 800px;
   background: #fff;
   color: #000;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+  z-index: 5;
+  position: fixed;
 }
 
-#sidebar.active {
+/* #sidebar.active {
   margin-left: -300px;
-}
+} */
 
 #sidebar .logo {
   display: block;
@@ -151,21 +156,24 @@ h5,
 }
 
 #sidebar ul li a {
-  padding: 10px 0;
+  padding: 8px 0;
   display: block;
   color: #898787;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #sidebar ul li a:hover {
-  color: #2596BA;
+  color: #2596ba;
 }
 
 #sidebar ul li.active>a {
-  padding: 5px;
   border-radius: 135px;
-  background: #2596BA;
+  background: #2596ba;
   color: #ffffff;
+}
+
+#sidebarCollapse {
+  pointer-events: none;
 }
 
 @media (max-width: 991.98px) {
@@ -175,6 +183,23 @@ h5,
 
   #sidebar.active {
     margin-left: 0;
+    top: 50px;
+  }
+
+  .calculated-bodywidth {
+    width: 100% !important;
+    margin-left: 0px !important;
+    padding: 75px 15px;
+  }
+
+  .navbar {
+    z-index: 10;
+    left: 0;
+    width: 100%;
+  }
+
+  #sidebarCollapse {
+    pointer-events: auto;
   }
 }
 
@@ -209,16 +234,32 @@ a[data-toggle="collapse"] {
 }
 
 .btn.btn-primary {
-  background: #2596BA;
-  border-color: #2596BA;
+  background: #2596ba;
+  border-color: #2596ba;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
-  background: #2596BA !important;
-  border-color: #2596BA !important;
+  background: #2596ba !important;
+  border-color: #2596ba !important;
 }
 
-.footer p {
-  color: rgba(255, 255, 255, 0.5);
+.calculated-bodywidth {
+  width: -webkit-calc(100% - 300px);
+  width: -moz-calc(100% - 300px);
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  padding: 75px 15px;
+}
+
+/* .navwidth {
+  width: 100%;
 } */
+
+/* #contentcard {
+  z-index: -5;
+} */
+
+.linkdark {
+  color: #000 !important;
+}
