@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/all/Login/LoginPage";
-import HomePage from "./pages/admin/Home/HomePage";
-import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
+import HomePage from "./pages/admin/home/HomePage";
+import ViewAnnouncement from "./pages/admin/announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
 import Forum from "./pages/admin/ForumPoll/Forum";
 import Poll from "./pages/admin/ForumPoll/Poll";
