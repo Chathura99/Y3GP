@@ -37,7 +37,7 @@ form {
     font-size: 14px;
    padding-top: 10px;
     margin-top: 20px;
-   
+    background: linear-gradient(90deg, rgba(201,201,201,1) 35%, rgba(255,255,255,1) 100%);
     color:black;
 
 }

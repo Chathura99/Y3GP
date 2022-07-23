@@ -143,7 +143,7 @@ marginBottom: 107,
                     </div>
                   
                     <div className="form-group m-0">
-                      <button type="submit" className="btn btn-primary btn-block bg-light">
+                      <button type="submit" className="btn btn-block">
                         <b>LOGIN</b>
                         {loading && (
                           <Spinner
