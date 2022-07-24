@@ -95,7 +95,6 @@ const LoginPage = ({ loading, error, ...props }) => {
           }}
         >
           <div className="card-body">
-            <Link to="/">Home</Link>
             <h2 className="card-title">Login</h2>
             <hr
               style={{
@@ -190,22 +189,20 @@ const LoginPage = ({ loading, error, ...props }) => {
               </div>
               <div className="sign-up">
                 New to Sasnaka?
-                <Link to="/" className="sign-up">
-                  {" "}
+                <Link to="/signUp" className="sign-up">
                   <b>Register</b>
-                </Link>{" "}
+                </Link>
                 Here
-              </div>{error && (
-        <Alert style={{ marginTop: "20px" }} variant="danger">
-          {error}
-        </Alert>
-      )}
+              </div>
+              {error && (
+                <Alert style={{ marginTop: "20px" }} variant="danger">
+                  {error}
+                </Alert>
+              )}
             </form>
-            
           </div>
         </div>
       </div>
-      
     </div>
   );
 };

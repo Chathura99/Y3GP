@@ -78,6 +78,7 @@ function EnhancedTableHead(props) {
     rowCount,
     onRequestSort,
     headCells,
+    tableName,
   } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -154,6 +155,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
+  const { tableName } = props;
 
   return (
     <Toolbar
@@ -177,7 +179,8 @@ const EnhancedTableToolbar = (props) => {
           id="tableTitle"
           component="div"
         >
-          Upcoming Events
+          {/* Table name from main component */}
+          {props.tableName}
         </Typography>
       )}
 
@@ -200,6 +203,7 @@ const EnhancedTableToolbar = (props) => {
 // table head end in here
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
+  tableName: PropTypes.string.isRequired,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -234,9 +238,12 @@ export default function EnhancedTable(props) {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  // data came from main component
   const [rows, setRows] = useState(props.rows);
+  // table head came from main component
   const [headCells, setHeadCells] = useState(props.headCells);
-  console.log(headCells);
+  // table title came from main component
+  const [tableName, settableName] = useState(props.tableName);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -292,7 +299,11 @@ export default function EnhancedTable(props) {
   return (
     <div class="container">
       {/* heading */}
-      <EnhancedTableToolbar numSelected={selected.length} />
+      {/* table name from main component */}
+      <EnhancedTableToolbar
+        numSelected={selected.length}
+        tableName={tableName}
+      />
       <TableContainer>
         <Table
           className={classes.table}
@@ -306,16 +317,9 @@ export default function EnhancedTable(props) {
             orderBy={orderBy}
             onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
+            tableName={tableName}
             rowCount={rows.length}
-            headCells={[
-              // get data from parent props...
-              { id: "id", label: "Project ID" },
-              { id: "name", label: "Project Name" },
-              { id: "coordinator", label: "Coordinator" },
-              { id: "phone", label: "Phone" },
-              { id: "startsOn", label: "Starts On" },
-              { id: "action", label: "Action" },
-            ]}
+            headCells={headCells}
           />
           <TableBody>
             {stableSort(rows, getComparator(order, orderBy))
@@ -341,13 +345,13 @@ export default function EnhancedTable(props) {
                       />
                     </TableCell>
                     <TableCell component="th" id={labelId} scope="row">
-                      {row.id}
+                      {Object.values(row)[0]}
                     </TableCell>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.coordinator}</TableCell>
-                    <TableCell>{row.phone}</TableCell>
-                    <TableCell>{row.startdate}</TableCell>
-                    <TableCell>{row.action}</TableCell>
+                    <TableCell>{Object.values(row)[1]}</TableCell>
+                    <TableCell>{Object.values(row)[2]}</TableCell>
+                    <TableCell>{Object.values(row)[3]}</TableCell>
+                    <TableCell>{Object.values(row)[4]}</TableCell>
+                    <TableCell>{Object.values(row)[5]}</TableCell>
                   </TableRow>
                 );
               })}
