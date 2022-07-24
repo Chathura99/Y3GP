@@ -22,27 +22,29 @@ public class AnnouncementJdbcRepository {
 
 //    NamedParameterJdbcTemplate
     public List<AnnouncementWithAuthor> getAllWithAuthor(String category) {
-        MapSqlParameterSource namedParameters =
-                new MapSqlParameterSource();
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
         namedParameters.addValue("category", category);
+
+
 
         String query = "SELECT a.*,p.address,u.first_name,u.last_name " +
                 "FROM announcement as a,project_coordinator as p,user as u " +
                 "where category= :category and a.coordinator_id=p.coordinator_id and u.id=p.id";
-        List<AnnouncementWithAuthor> announcementWithAuthor = jdbc.query(query,namedParameters,
-                new BeanPropertyRowMapper<AnnouncementWithAuthor>(AnnouncementWithAuthor.class));
+
+        List<AnnouncementWithAuthor> announcementWithAuthor = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<AnnouncementWithAuthor>(AnnouncementWithAuthor.class));
         return announcementWithAuthor;
 
     }
 
 
     public long deleteAnnouncement(Long id) {
-        MapSqlParameterSource namedParameters =
-                new MapSqlParameterSource();
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        namedParameters.addValue("id", id);
+
         String query = "Delete FROM announcement where ann_id = :id;";
 
-        namedParameters.addValue("id", id);
+
 
         return jdbc.update(query, namedParameters);
 

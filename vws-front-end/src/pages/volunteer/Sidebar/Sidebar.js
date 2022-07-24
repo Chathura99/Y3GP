@@ -167,16 +167,7 @@ export default function Sidebar(page) {
                 </ul>
               </li>
 
-              <li
-                className={selected === 5 ? "active" : ""}
-                onClick={() => {
-                  highLight(5);
-                }}
-              >
-                <Link to="/volunteerViewAnnouncement">
-                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Announcements
-                </Link>
-              </li>
+              
 
               <li
                 className={selected === 6 ? "active" : ""}
@@ -189,16 +180,7 @@ export default function Sidebar(page) {
                 </Link>
               </li>
 
-              <li
-                className={selected === 7 ? "active" : ""}
-                onClick={() => {
-                  highLight(7);
-                }}
-              >
-                <Link to="/volunteerSummary">
-                  <i className="fa fa-bar-chart ml-3 mr-4"></i>Summary
-                </Link>
-              </li>
+              
 
             </ul>
 

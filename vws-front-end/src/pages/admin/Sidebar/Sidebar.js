@@ -17,7 +17,7 @@ export default function Sidebar(page) {
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
-    const xx = JSON.parse(localStorage.getItem('authorization')); 
+    const xx = JSON.parse(localStorage.getItem("authorization"));
     if (!y) {
       window.location.href = "/";
     }
@@ -37,10 +37,8 @@ export default function Sidebar(page) {
   };
 
   function showHide() {
-    if (isActive === "")
-      setIsActive("active");
-    else
-      setIsActive("");
+    if (isActive === "") setIsActive("active");
+    else setIsActive("");
   }
 
   function highLight(i) {
@@ -56,7 +54,7 @@ export default function Sidebar(page) {
             <a
               href={""}
               className="img logo"
-              style={{ backgroundImage:"./sss.png"  }}
+              style={{ backgroundImage: "./sss.png" }}
             ></a>
             <ul className="list-unstyled components mb-5">
               <li
@@ -86,22 +84,26 @@ export default function Sidebar(page) {
                 <ul className="collapse list-unstyled" id="projectSubmenu">
                   <li className="ml-5">
                     <Link to="/adminongoingproject" className="p-1">
-                      <div 
-                      className={linkdark === 2.1 ? "linkdark" : ""}
-                      onClick={() => {
-                        setLinkdark(2.1);
-                      }}
-                      >Ongoing Projects</div>
+                      <div
+                        className={linkdark === 2.1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(2.1);
+                        }}
+                      >
+                        Ongoing Projects
+                      </div>
                     </Link>
                   </li>
                   <li className="ml-5">
                     <Link to="/adminproposedproject" className="p-1">
-                    <div 
-                    className={linkdark === 2.2 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(2.2);
-                    }}
-                    >Proposed Projects</div>
+                      <div
+                        className={linkdark === 2.2 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(2.2);
+                        }}
+                      >
+                        Proposed Projects
+                      </div>
                     </Link>
                   </li>
                 </ul>
@@ -133,24 +135,26 @@ export default function Sidebar(page) {
                 <ul className="collapse list-unstyled" id="userSubmenu">
                   <li className="ml-5">
                     <Link to="/admincurrentuser" className="p-1">
-                      
-                      <div 
-                    className={linkdark === 4.1 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(4.1);
-                    }}
-                    >Current User</div>
+                      <div
+                        className={linkdark === 4.1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(4.1);
+                        }}
+                      >
+                        Current User
+                      </div>
                     </Link>
                   </li>
                   <li className="ml-5">
                     <Link to="/adminnewuser" className="p-1">
-                      
-                      <div 
-                    className={linkdark === 4.2 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(4.2);
-                    }}
-                    >New User</div>
+                      <div
+                        className={linkdark === 4.2 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(4.2);
+                        }}
+                      >
+                        New User
+                      </div>
                     </Link>
                   </li>
                 </ul>
@@ -192,35 +196,38 @@ export default function Sidebar(page) {
                 <ul className="collapse list-unstyled" id="summarySubmenu">
                   <li className="ml-5">
                     <Link to="/admineventsummary" className="p-1">
-                      
-                      <div 
-                    className={linkdark === 7.1 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(7.1);
-                    }}
-                    >Events</div>
+                      <div
+                        className={linkdark === 7.1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(7.1);
+                        }}
+                      >
+                        Events
+                      </div>
                     </Link>
                   </li>
                   <li className="ml-5">
                     <Link to="/adminprojectsummary" className="p-1">
-                      
-                      <div 
-                    className={linkdark === 7.2  ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(7.2);
-                    }}
-                    >Projects</div>
+                      <div
+                        className={linkdark === 7.2 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(7.2);
+                        }}
+                      >
+                        Projects
+                      </div>
                     </Link>
                   </li>
                   <li className="ml-5">
                     <Link to="/adminmembersummary" className="p-1">
-                      
-                      <div 
-                    className={linkdark === 7.3 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(7.3);
-                    }}
-                    >Members</div>
+                      <div
+                        className={linkdark === 7.3 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(7.3);
+                        }}
+                      >
+                        Members
+                      </div>
                     </Link>
                   </li>
                 </ul>
@@ -235,6 +242,7 @@ export default function Sidebar(page) {
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
               <button
+                style={{ marginTop: 0 }}
                 type="button"
                 id="sidebarCollapse"
                 className="btn btn-primary"
@@ -244,6 +252,7 @@ export default function Sidebar(page) {
                 <span className="sr-only">Toggle Menu</span>
               </button>
               <button
+                style={{ marginTop: 0 }}
                 className="btn btn-dark d-inline-block d-lg-none ml-auto"
                 type="button"
                 data-toggle="collapse"
@@ -260,31 +269,29 @@ export default function Sidebar(page) {
                 id="navbarSupportedContent"
               >
                 <ul className="nav navbar-nav ml-auto">
-                  <li
-                    className="nav-item"
-                  >
+                  <li className="nav-item">
                     <Link to="/adminhome" className="nav-link">
-                      
-                      <div 
-                    className={linkdark === 0 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(0);
-                    }}
-                    >Home</div>
+                      <div
+                        className={linkdark === 0 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(0);
+                        }}
+                      >
+                        Home
+                      </div>
                     </Link>
                   </li>
-                  <li
-                    className="nav-item"
-
-                  >
+                  <li className="nav-item">
                     <Link to="/adminhome" className="nav-link">
-                     
-                      <div 
-                    className={linkdark === 1 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(1);
-                    }}
-                    > Notification</div>
+                      <div
+                        className={linkdark === 1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(1);
+                        }}
+                      >
+                        {" "}
+                        Notification
+                      </div>
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -292,17 +299,17 @@ export default function Sidebar(page) {
                       Log Out
                     </a>
                   </li>
-                  <li
-                    className="nav-item"
-                  >
+                  <li className="nav-item">
                     <Link to="/viewprofile" className="nav-link">
-                      
-                      <div 
-                    className={linkdark === 3 ? "linkdark" : ""}
-                    onClick={() => {
-                      setLinkdark(3);
-                    }}
-                    >{userdata && `${userdata.firstName} ${userdata.lastName}`}</div>
+                      <div
+                        className={linkdark === 3 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(3);
+                        }}
+                      >
+                        {userdata &&
+                          `${userdata.firstName} ${userdata.lastName}`}
+                      </div>
                     </Link>
                   </li>
                 </ul>
@@ -314,4 +321,3 @@ export default function Sidebar(page) {
     </>
   );
 }
-

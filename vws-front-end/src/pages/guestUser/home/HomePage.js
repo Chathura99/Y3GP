@@ -6,6 +6,8 @@ export default function HomePage() {
     <div>
         <h3>Landing Page</h3>
     <Link to="/login">Login</Link>
+<br></br>
+    <Link to ="/signup">Request to Join</Link>
     </div>
   )
 }

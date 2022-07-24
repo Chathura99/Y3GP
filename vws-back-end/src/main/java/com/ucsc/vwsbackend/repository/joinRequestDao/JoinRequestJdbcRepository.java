@@ -18,9 +18,6 @@ public class JoinRequestJdbcRepository {
 
         String query ="SELECT * FROM join_request WHERE id = ?";
 
-        return (JoinRequest) jdbcTemplate.queryForObject(
-                query,
-                new Object[]{id},
-                new BeanPropertyRowMapper(JoinRequest.class));
+        return (JoinRequest) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(JoinRequest.class));
     }
 }
