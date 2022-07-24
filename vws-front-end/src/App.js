@@ -23,11 +23,12 @@ import NewUser from "./pages/admin/User/NewUser";
 import AdminSidebar from "./pages/admin/Sidebar/Sidebar";
 import PcSidebar from "./pages/projectCoordinator/Sidebar/Sidebar"
 import VolunteerSidebar from "./pages/volunteer/Sidebar/Sidebar";
-import Guestpage from "./pages/guestUser/home/HomePage";
+import Guestpage from "./pages/guestUser/Home/HomePage";
 import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
 import { fetchUserData } from "./services/authenticationService";
 import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import SignUp from "./pages/guestUser/SignUp/SignUp";
 
 
 function App() {
@@ -41,7 +42,6 @@ function App() {
     const res = await fetchUserData();
     setUserId(res.data.id);
     setUserRoles(res.data.roles[0].roleCode);
-    // can user userId anywhere
     console.log(userId,userrole);
   };
 
@@ -77,6 +77,7 @@ function App() {
       {sidebar()}
         <Routes>
           <Route exact path="/" element={<Guestpage />}></Route>
+          <Route exact path="/signup" element={<SignUp/>}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/forgotpassword" element={<ForgotPassword/>}></Route>
           <Route path="/viewprofile" element={<Profile/>}></Route>

@@ -20,8 +20,14 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   const userData = async () => {
     const res = await fetchUserData();
-    var user=res.data.roles[0].roleCode;
-    alert("Welcome " +res.data.firstName + " you login as " + res.data.roles[0].roleCode + "!");
+    var user = res.data.roles[0].roleCode;
+    alert(
+      "Welcome " +
+        res.data.firstName +
+        " you login as " +
+        res.data.roles[0].roleCode +
+        "!"
+    );
     if (user === "PROJECT_COORDINATOR") {
       window.location.href = "/pchome";
     } else if (user === "ADMIN") {
@@ -69,7 +75,7 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   const handleChange = (e) => {
     e.persist();
-    console.log(e.target.name+"-"+e.target.value)
+    // console.log(e.target.name + "-" + e.target.value);
     setValues((values) => ({
       ...values,
       [e.target.name]: e.target.value,
@@ -78,7 +84,7 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   return (
     <div className="card-body ">
-      <Link to="/vws">Home</Link>
+      <Link to="/">Home</Link>
       <h4 className="card-title">Login</h4>
       {/* onsubmit then, call to {handleSubmit}*/}
       <form
