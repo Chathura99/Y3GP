@@ -356,6 +356,11 @@ export default function EnhancedTable(props) {
                     <TableCell>{Object.values(row)[3]}</TableCell>
                     <TableCell>{Object.values(row)[4]}</TableCell>
                     <TableCell>{Object.values(row)[5]}</TableCell>
+                    <TableCell>{Object.values(row)[6]}</TableCell>
+                    <TableCell>{Object.values(row)[7]}</TableCell>
+                    <TableCell>{Object.values(row)[8]}</TableCell>
+                    <TableCell>{Object.values(row)[9]}</TableCell>
+                    <TableCell>{Object.values(row)[10]}</TableCell>
                   </TableRow>
                 );
               })}
