@@ -90,8 +90,8 @@ const LoginPage = ({ loading, error, ...props }) => {
           style={{
             backgroundColor: "rgba(255,255,255,0.2)",
             borderRadius: 25,
-            marginTop: 80,
-            marginBottom: 107,
+            marginTop: 110,
+            marginBottom: 186,
           }}
         >
           <div className="card-body">
@@ -174,7 +174,7 @@ const LoginPage = ({ loading, error, ...props }) => {
               </div>
 
               <div className="form-group m-0">
-                <button type="submit" className="btn btn-block">
+                <button type="submit" id="logbtn" className="btn btn-block">
                   <b>LOGIN</b>
                   {loading && (
                     <Spinner

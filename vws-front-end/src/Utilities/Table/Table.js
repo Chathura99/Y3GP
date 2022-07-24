@@ -78,7 +78,7 @@ function EnhancedTableHead(props) {
     rowCount,
     onRequestSort,
     headCells,
-    tableName,
+    // tableName,
   } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -148,6 +148,8 @@ const useToolbarStyles = makeStyles((theme) => ({
         },
   title: {
     flex: "1 1 100%",
+    fontWeight:500,
+    color:"black",
   },
 }));
 
@@ -155,7 +157,7 @@ const useToolbarStyles = makeStyles((theme) => ({
 const EnhancedTableToolbar = (props) => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
-  const { tableName } = props;
+  // const { tableName } = props;
 
   return (
     <Toolbar
@@ -170,7 +172,9 @@ const EnhancedTableToolbar = (props) => {
           variant="subtitle1"
           component="div"
         >
-          {numSelected} selected
+          {props.tableName}
+          <br></br>
+          <small></small>{numSelected} selected
         </Typography>
       ) : (
         <Typography
@@ -180,7 +184,7 @@ const EnhancedTableToolbar = (props) => {
           component="div"
         >
           {/* Table name from main component */}
-          {props.tableName}
+          {/* {props.tableName} */}
         </Typography>
       )}
 
@@ -203,7 +207,7 @@ const EnhancedTableToolbar = (props) => {
 // table head end in here
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
-  tableName: PropTypes.string.isRequired,
+  // tableName: PropTypes.string.isRequired,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -325,13 +329,13 @@ export default function EnhancedTable(props) {
             {stableSort(rows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
-                const isItemSelected = isSelected(row.id);
+                const isItemSelected = isSelected(Object.values(row)[0]);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.id)}
+                    onClick={(event) => handleClick(event, Object.values(row)[0])}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -352,6 +356,11 @@ export default function EnhancedTable(props) {
                     <TableCell>{Object.values(row)[3]}</TableCell>
                     <TableCell>{Object.values(row)[4]}</TableCell>
                     <TableCell>{Object.values(row)[5]}</TableCell>
+                    <TableCell>{Object.values(row)[6]}</TableCell>
+                    <TableCell>{Object.values(row)[7]}</TableCell>
+                    <TableCell>{Object.values(row)[8]}</TableCell>
+                    <TableCell>{Object.values(row)[9]}</TableCell>
+                    <TableCell>{Object.values(row)[10]}</TableCell>
                   </TableRow>
                 );
               })}

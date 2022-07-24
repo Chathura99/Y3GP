@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
+import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -21,6 +23,14 @@ export default function HomePage() {
       place:"Kaduruwela",
       member: 100,
       coordinator: "Namal Upendra",
+      date: "2022 09 25",
+    },
+    {
+      eventId: "E003",
+      project: "Re-green Earth",
+      place:"Matara",
+      member: 130,
+      coordinator: "Sahan Kalhara",
       date: "2022 09 25",
     },
     
@@ -66,6 +76,16 @@ export default function HomePage() {
     { id: "date", label: "DATE" },
     { id: "status", label: "Status" },
   ]);
+
+  useEffect(() => {
+    getRequest();
+  }, []);
+
+  const getRequest = async () => {
+    const res = await getJoinRequest();
+    console.log(res.data)
+    // setJoinRequestsData(res.data);
+  };
 
   return (
     <>
