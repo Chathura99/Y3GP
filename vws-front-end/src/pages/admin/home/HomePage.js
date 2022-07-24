@@ -23,6 +23,14 @@ export default function HomePage() {
       coordinator: "Namal Upendra",
       date: "2022 09 25",
     },
+    {
+      eventId: "E003",
+      project: "Re-green Earth",
+      place:"Matara",
+      member: 130,
+      coordinator: "Sahan Kalhara",
+      date: "2022 09 25",
+    },
     
   ]);
 
