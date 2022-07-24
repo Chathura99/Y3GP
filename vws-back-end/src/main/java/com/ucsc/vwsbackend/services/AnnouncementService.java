@@ -1,6 +1,8 @@
 package com.ucsc.vwsbackend.services;
 
 
+import com.ucsc.vwsbackend.dto.AnnouncementInfo;
+import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
 import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementRepository;
 import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementJdbcRepository;
@@ -9,9 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class AnnouncementService {
+public class AnnouncementService{
 
     @Autowired
     AnnouncementRepository announcementRepository;
@@ -19,18 +22,13 @@ public class AnnouncementService {
     @Autowired
     AnnouncementJdbcRepository announcementJdbcRepository;
 
-    public List<Announcement> getAllAnnouncement() {
-//        List<Announcement> announcement = announcementRepository.findAll();
-          List<Announcement> announcement = announcementJdbcRepository.getAllWithAuthor();
-        return announcement;
+    public List<AnnouncementWithAuthor> getAllAnnouncement(String category) {
+        List<AnnouncementWithAuthor> announcementWithAuthors = announcementJdbcRepository.getAllWithAuthor(category);
+        return announcementWithAuthors;
     }
-//  get announcement by view category
-    public List<Announcement> getAnnouncementByCategory(String category){
-        List<Announcement> announcement = announcementJdbcRepository.getByCategory(category);
-        return announcement;
-    }
-     public long addAnnouncement(Announcement announcement){
-        return announcementJdbcRepository.addAnnouncement(announcement);
+
+     public long addAnnouncement(AnnouncementInfo announcementInfo){
+        return announcementJdbcRepository.addAnnouncement(announcementInfo);
      }
 
     public long deleteAnnouncement(@PathVariable Long id) {

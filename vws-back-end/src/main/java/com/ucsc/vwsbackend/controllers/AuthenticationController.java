@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ucsc.vwsbackend.config.JWTTokenHelper;
 import com.ucsc.vwsbackend.entities.User;
-import com.ucsc.vwsbackend.requests.AuthenticationRequest;
-import com.ucsc.vwsbackend.responses.LoginResponse;
-import com.ucsc.vwsbackend.responses.UserInfo;
+import com.ucsc.vwsbackend.dto.AuthenticationRequest;
+import com.ucsc.vwsbackend.dto.LoginResponse;
+import com.ucsc.vwsbackend.dto.UserInfo;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -63,6 +63,7 @@ public class AuthenticationController {
         User userObj=(User) userDetailsService.loadUserByUsername(user.getName());
         //userDetailsService call to repo
         UserInfo userInfo=new UserInfo();
+        userInfo.setId(userObj.getId());
         userInfo.setFirstName(userObj.getFirstName());
         userInfo.setLastName(userObj.getLastName());
         userInfo.setUserName(userObj.getUsername());

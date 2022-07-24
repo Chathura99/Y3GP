@@ -4,8 +4,11 @@ import {
   Routes, // instead of "Switch"
   Route,
 } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/all/Login/LoginPage";
-import HomePage from "./pages/admin/Home/HomePage";
+import AdminHomePage from "./pages/admin/Home/HomePage";
+import PcHomePage from "./pages/projectCoordinator/home/HomePage";
+import VolunteerHomePage from "./pages/volunteer/home/HomePage";
 import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
 import Forum from "./pages/admin/ForumPoll/Forum";
@@ -17,32 +20,70 @@ import ProjectSummary from "./pages/admin/Summary/ProjectSummary";
 import MemberSummary from "./pages/admin/Summary/MemberSummary";
 import CurrentUser from "./pages/admin/User/CurrentUser";
 import NewUser from "./pages/admin/User/NewUser";
-import Sidebar from "./pages/admin/Sidebar/Sidebar";
-import Guestpage from "./pages/guestUser/home/HomePage";
+import AdminSidebar from "./pages/admin/Sidebar/Sidebar";
+import PcSidebar from "./pages/projectCoordinator/Sidebar/Sidebar"
+import VolunteerSidebar from "./pages/volunteer/Sidebar/Sidebar";
+import Guestpage from "./pages/guestUser/Home/HomePage";
 import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
+import { fetchUserData } from "./services/authenticationService";
+import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import SignUp from "./pages/guestUser/SignUp/SignUp";
 
 
 function App() {
+  const [userrole, setUserRoles] = useState([]);
+  const [userId, setUserId] = useState(null)
+  useEffect(() => {
+    userData();
+  },[]);
+
+  const userData= async () => {
+    const res = await fetchUserData();
+    setUserId(res.data.id);
+    setUserRoles(res.data.roles[0].roleCode);
+    console.log(userId,userrole);
+  };
+
 
   function sidebar(){
     if(localStorage.getItem("USER_KEY")){
-      return <Sidebar />
+      if(userrole === "PROJECT_COORDINATOR")
+          return <PcSidebar />
+      else if(userrole === "ADMIN")
+        return <AdminSidebar />
+      else if(userrole === "VOLUNTEER")
+        return <VolunteerSidebar />
     }
   }
+// for overide material table style
+  const theme = createTheme({
+    overrides: {
+      MuiTableCell: {
+        root: {
+          padding: 2,
+          "&:last-child": {
+            paddingRight: 5
+          }
+        }
+      }
+    }
+  });
   
   return (
+    <MuiThemeProvider theme={theme}>
     <div className="App">
       <BrowserRouter>
       {sidebar()}
         <Routes>
           <Route exact path="/" element={<Guestpage />}></Route>
+          <Route exact path="/signup" element={<SignUp/>}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/forgotpassword" element={<ForgotPassword/>}></Route>
           <Route path="/viewprofile" element={<Profile/>}></Route>
 
           {/* admin part */}
-          <Route path="/adminhome" element={<HomePage />}></Route>
+          <Route path="/adminhome" element={<AdminHomePage />}></Route>
           <Route
             path="/adminviewannouncement"
             element={<ViewAnnouncement />}
@@ -69,25 +110,18 @@ function App() {
 
 
           {/* project coordinator part */}
-
+          <Route path="/pchome" element={<PcHomePage />}></Route>
 
 
           {/* volunteer part */}
-        </Routes>
+          <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
 
+        </Routes>
       </BrowserRouter>
     </div>
+    </MuiThemeProvider>
   );
 }
 
 export default App;
 
-// 2596BE light blue
-// 96BE25 dark green
-// BE4D25 dark orange
-// 145369 dark blue
-// 6C25BE purple
-// BE2596 pink
-// 49BE25 light green
-// BEA925 brown
-// A6A6A6 gray

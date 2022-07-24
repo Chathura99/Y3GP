@@ -15,7 +15,10 @@ export const options = {
   pieHole: 0.4,
   is3D: false,
   colors: ['#2596BE', '#96BE25', '#BE4D25', '#145369', '#BE2596'],
-  chartArea: {width: 300, height: 300}
+  chartArea: {width: 320, height: 320},
+  legend:{
+    alignment: 'center' ,    
+  }
 };
 
 export default function DonutChart() {

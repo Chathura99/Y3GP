@@ -1,11 +1,19 @@
-package com.ucsc.vwsbackend.responses;
+package com.ucsc.vwsbackend.dto;
 
 public class UserInfo {
-
+    private Long Id;
     private String firstName;
     private String lastName;
     private String userName;
     private Object roles;
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
 
     public String getFirstName() {
         return firstName;

@@ -2,21 +2,21 @@ import React from "react";
 import { Chart } from "react-google-charts";
 
 export const data = [
-  ["Task", "Hours per Day"],
-  ["1", 11],
-  ["2", 2],
-  
-  ["3", 2],
-  ["4", 2],
-  ["5", 7],
+  ["Task", "votes"],
+  ["Lohithuthpada", 11],
+  ["Re-green Earth", 2],
 ];
 
 export const options = {
-  title: "Pie Chart",
-  colors: ['#96BE25','#2596BE',  '#BE4D25', '#145369', '#BE2596'],
+  // title: "Poll Results",
+  colors: ['#2596BE',   '#BE2596','#145369','#BE4D25','#96BE25' ],
+  chartArea: {width: 320, height: 320},
+  legend:{
+    alignment: 'center' ,    
+  }
 };
 
-export function PieChart() {
+export default function PieChart() {
   return (
     <Chart
       chartType="PieChart"

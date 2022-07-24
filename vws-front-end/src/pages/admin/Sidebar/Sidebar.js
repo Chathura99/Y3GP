@@ -79,6 +79,7 @@ export default function Sidebar(page) {
                   href="#projectSubmenu"
                   data-toggle="collapse"
                   aria-expanded="false"
+                  className="dropdown-toggle"
                 >
                   <i className="fa fa-newspaper-o ml-3 mr-4"></i>Projects
                 </a>
@@ -171,7 +172,7 @@ export default function Sidebar(page) {
                 }}
               >
                 <Link to="/adminforum">
-                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Forum | Poll
+                  <i className="fa fa-comments ml-3 mr-4"></i>Forum | Poll
                 </Link>
               </li>
               <li

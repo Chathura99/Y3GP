@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.entities.User;
 import com.ucsc.vwsbackend.repository.userDao.UserRepository;
+import com.ucsc.vwsbackend.services.VolunteerService;
 import com.ucsc.vwsbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @Autowired
-    private UserService customUserService;
+    private VolunteerService volunteerService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/test")
     public String test(){
@@ -28,13 +32,16 @@ public class UserController {
 
     @GetMapping("/users")
     public List<User> getAllUsers(){
-
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 
     @GetMapping("/users/{id}")
     public Optional<User> getUserById(@PathVariable Long id){
+        return userService.getUserById(id);
+    }
 
-        return userRepository.findById(id);
+    @PostMapping("/registerUser/{id}")
+    public User registerUser(@PathVariable Long id){
+        return volunteerService.registerUser(id);
     }
 }

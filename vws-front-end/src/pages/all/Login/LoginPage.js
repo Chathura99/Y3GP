@@ -1,17 +1,41 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+
 import { authenticate, authFailure, authSuccess } from "../../../redux/authActions";
 import "./loginPage.css";
-
 import { userLogin } from "../../../services/authenticationService";
+import { fetchUserData } from "../../../services/authenticationService";
 import { Alert, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const LoginPage = ({ loading, error, ...props }) => {
+  // create "values" objecct
   const [values, setValues] = useState({
     userName: "",
     password: "",
   });
+
+  const userData = async () => {
+    const res = await fetchUserData();
+    var user = res.data.roles[0].roleCode;
+    alert(
+      "Welcome " +
+        res.data.firstName +
+        " you login as " +
+        res.data.roles[0].roleCode +
+        "!"
+    );
+    if (user === "PROJECT_COORDINATOR") {
+      window.location.href = "/pchome";
+    } else if (user === "ADMIN") {
+      window.location.href = "/adminhome";
+    } else if (user === "VOLUNTEER") {
+      window.location.href = "/volunteerhome";
+    } else {
+      localStorage.clear();
+      window.location.href = "/";
+    }
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -24,10 +48,9 @@ const LoginPage = ({ loading, error, ...props }) => {
         if (response.status === 200) {
           // console.log("logging success");
           props.setUser(response.data);
-          window.location.href = "/adminhome";
+          userData();
         } else {
           props.loginFailure("1.Something Wrong!Please Try Again");
-          // window.location.href = "/adminhome";
         }
       })
       .catch((err) => {
@@ -49,7 +72,7 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   const handleChange = (e) => {
     e.persist();
-    // console.log(e.target.name+"-"+e.target.value)
+    // console.log(e.target.name + "-" + e.target.value);
     setValues((values) => ({
       ...values,
       [e.target.name]: e.target.value,
@@ -169,8 +192,84 @@ marginBottom: 107,
                   )}
                 </div>
 
+    <div className="card-body ">
+      <Link to="/">Home</Link>
+      <h4 className="card-title">Login</h4>
+      {/* onsubmit then, call to {handleSubmit}*/}
+      <form
+        className="my-login-validation"
+        onSubmit={handleSubmit}
+        noValidate={false}
+      >
+        <div className="form-group">
+          <label htmlFor="email">User Name</label>
+          <input
+            id="username"
+            type="text"
+            className="form-control"
+            minLength={4}
+            value={values.userName}
+            onChange={handleChange}
+            name="userName"
+            required
+          />
+
+          <div className="invalid-feedback">UserId is invalid</div>
+        </div>
+
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            id="password"
+            type="password"
+            className="form-control"
+            minLength={8}
+            value={values.password}
+            onChange={handleChange}
+            name="password"
+            required
+          />
+
+          <Link to="/forgotpassword">Forgot Password?</Link>
+          <div className="invalid-feedback">Password is required</div>
+        </div>
+
+
+        <div className="form-group">
+          <div className="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="customCheck1"
+            />
+            <label className="custom-control-label" htmlFor="customCheck1">
+              Remember me
+            </label>
+          </div>
+        </div>
 
   </div>
+        <div className="form-group m-0">
+          <button type="submit" className="btn btn-primary">
+            Login
+            {loading && (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            )}
+          </button>
+        </div>
+      </form>
+      {error && (
+        <Alert style={{ marginTop: "20px" }} variant="danger">
+          {error}
+        </Alert>
+      )}
+    </div>
   );
 };
 

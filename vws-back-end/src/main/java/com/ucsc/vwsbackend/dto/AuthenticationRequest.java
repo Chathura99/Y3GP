@@ -1,4 +1,4 @@
-package com.ucsc.vwsbackend.requests;
+package com.ucsc.vwsbackend.dto;
 
 public class AuthenticationRequest {
 

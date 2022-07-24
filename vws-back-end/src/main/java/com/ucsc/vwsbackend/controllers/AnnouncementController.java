@@ -1,7 +1,8 @@
 package com.ucsc.vwsbackend.controllers;
 
+import com.ucsc.vwsbackend.dto.AnnouncementInfo;
+import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
 import com.ucsc.vwsbackend.entities.Announcement;
-import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementRepository;
 import com.ucsc.vwsbackend.services.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,30 +17,15 @@ public class AnnouncementController {
     @Autowired
     AnnouncementService announcementService;
 
-    @Autowired
-    AnnouncementRepository announcementRepository;
-
-    @GetMapping("/getAllAnnouncement")
-    public List<Announcement> getAllAnnouncement() {
-        return announcementService.getAllAnnouncement();
-    }
-
     @GetMapping("/getAllAnnouncement/{category}")
-    public List<Announcement> getByCategory(@PathVariable(value = "category") String category){
-        return announcementService.getAnnouncementByCategory(category);
+    public List<AnnouncementWithAuthor> getAllAnnouncement(@PathVariable(value = "category") String category) {
+        return announcementService.getAllAnnouncement(category);
     }
+
 
     @PostMapping("/addAnnouncement")
-    public long addAnnouncement(@RequestBody Announcement announcement){
-//        {
-//            "title": "New Project Proposal 1",
-//                "content": "content",
-//                "category": "all",
-//                "date": "2022-07-07T06:40:00.000+00:00",
-//                "projectCoordinator":{
-//            "coordinatorId":1
-//        }
-        return announcementService.addAnnouncement(announcement);
+    public long addAnnouncement(@RequestBody AnnouncementInfo announcementInfo){
+        return announcementService.addAnnouncement(announcementInfo);
     }
 
     @DeleteMapping("/deleteAnnouncement/{id}")
@@ -49,7 +35,7 @@ public class AnnouncementController {
 
     @PutMapping("/editAnnouncement")
 //    {
-//        "annId": 6,
+//            "annId": 6,
 //            "title": "Update Announcement 1",
 //            "content": "content",
 //            "category": "guest",
