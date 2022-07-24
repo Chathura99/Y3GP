@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { authenticate, authFailure, authSuccess } from "../../../redux/authActions";
+import {
+  authenticate,
+  authFailure,
+  authSuccess,
+} from "../../../redux/authActions";
 import "./loginPage.css";
 import { userLogin } from "../../../services/authenticationService";
 import { fetchUserData } from "../../../services/authenticationService";
@@ -81,194 +85,127 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   return (
     <div className="global-container">
-      <div className="login-form"><div style={{
-backgroundColor: 'rgba(255,255,255,0.2)',
+      <div className="login-form">
+        <div
+          style={{
+            backgroundColor: "rgba(255,255,255,0.2)",
+            borderRadius: 25,
+            marginTop: 80,
+            marginBottom: 107,
+          }}
+        >
+          <div className="card-body">
+            <Link to="/">Home</Link>
+            <h2 className="card-title">Login</h2>
+            <hr
+              style={{
+                position: "absolute",
+                background: "white",
+                textAlign: "left",
+                height: "1.5px",
+                width: 80,
+                marginTop: -10,
+              }}
+            />
 
-borderRadius: 25,
-marginTop: 80,
-marginBottom: 107,
+            <h6 className="card-title" style={{ marginTop: 20 }}>
+              Welcome to Sasnaka Sansada!
+            </h6>
+            {/* onsubmit then, call to {handleSubmit}*/}
+            <form
+              className="my-login-validation"
+              onSubmit={handleSubmit}
+              noValidate={false}
+            >
+              <div className="form-group">
+                <label htmlFor="email" className="card-title">
+                  User Name
+                </label>
+                <input
+                  id="username"
+                  type="text"
+                  className="form-control"
+                  minLength={4}
+                  value={values.userName}
+                  onChange={handleChange}
+                  name="userName"
+                  placeholder="Enter your username"
+                  required
+                />
 
-}}>
-                <div className="card-body">
-                  <Link to="/">Home</Link>
-                  <h2 className="card-title">Login</h2>
-                  <hr 
-        style={{
-          position: "absolute",
-          background: 'white',
-          textAlign: 'left',
-          height: '1.5px',
-          width: 80,
-          marginTop: -10
-          
-        }}
-      />
-                  <h6 className="card-title" style={{marginTop:20}}>Welcome to Sasnaka Sansada!</h6>
-                  {/* onsubmit then, call to {handleSubmit}*/}
-                  <form
-                    className="my-login-validation"
-                    onSubmit={handleSubmit}
-                    noValidate={false}
-                  >
-                    <div className="form-group">
-                      <label htmlFor="email" className="card-title">User Name</label>
-                      <input
-                        id="username"
-                        type="text"
-                        className="form-control"
-                        minLength={4}
-                        value={values.userName}
-                        onChange={handleChange}
-                        name="userName"
-                        placeholder="Enter your username"
-                        required
-                      />
+                <div className="invalid-feedback">UserId is invalid</div>
+              </div>
 
-                      <div className="invalid-feedback">UserId is invalid</div>
-                    </div>
+              <div className="form-group">
+                <label className="card-title">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  className="form-control"
+                  minLength={8}
+                  value={values.password}
+                  onChange={handleChange}
+                  name="password"
+                  placeholder="Enter your password"
+                  required
+                />
 
-                    <div className="form-group">
-                      <label className="card-title">Password</label>
-                      <input
-                        id="password"
-                        type="password"
-                        className="form-control"
-                        minLength={8}
-                        value={values.password}
-                        onChange={handleChange}
-                        name="password"
-                        placeholder="Enter your password"
-                        required
-                      />
-                        
-                 
-                      
-                      <div className="invalid-feedback">
-                        Password is required
-                      </div>
-                    
-                      <div><br></br></div>
-                      
-                      <div className="custom-control custom-checkbox d-flex justify-content-between">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input"
-                          id="customCheck1"
-                        />
-                        <label
-                          className="custom-control-label"
-                          htmlFor="customCheck1"
-                        >
-                          <div className="card-title">Remember me</div>
-                        </label>
-                        <Link to="/forgotpassword" ><p className="card-title forgotpw" >Forgot Password?</p></Link>
-                      </div>
-                    </div>
-                  
-                    <div className="form-group m-0">
-                      <button type="submit" className="btn btn-block">
-                        <b>LOGIN</b>
-                        {loading && (
-                          <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                          />
-                        )}
-                      </button>
-                    </div>
-                    <div className="sign-up">New to Sasnaka?<Link to="/" className="sign-up"> <b>Register</b></Link> Here</div>
-                    
-                    
-                  </form>
-                  </div>
-                  </div>
-                  {error && (
-                    <Alert style={{ marginTop: "20px" }} variant="danger">
-                      {error}
-                    </Alert>
-                  )}
+                <div className="invalid-feedback">Password is required</div>
+
+                <div>
+                  <br></br>
                 </div>
 
-    <div className="card-body ">
-      <Link to="/">Home</Link>
-      <h4 className="card-title">Login</h4>
-      {/* onsubmit then, call to {handleSubmit}*/}
-      <form
-        className="my-login-validation"
-        onSubmit={handleSubmit}
-        noValidate={false}
-      >
-        <div className="form-group">
-          <label htmlFor="email">User Name</label>
-          <input
-            id="username"
-            type="text"
-            className="form-control"
-            minLength={4}
-            value={values.userName}
-            onChange={handleChange}
-            name="userName"
-            required
-          />
+                <div className="custom-control custom-checkbox d-flex justify-content-between">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    id="customCheck1"
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor="customCheck1"
+                  >
+                    <div className="card-title">Remember me</div>
+                  </label>
+                  <Link to="/forgotpassword">
+                    <p className="card-title forgotpw">Forgot Password?</p>
+                  </Link>
+                </div>
+              </div>
 
-          <div className="invalid-feedback">UserId is invalid</div>
-        </div>
-
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            id="password"
-            type="password"
-            className="form-control"
-            minLength={8}
-            value={values.password}
-            onChange={handleChange}
-            name="password"
-            required
-          />
-
-          <Link to="/forgotpassword">Forgot Password?</Link>
-          <div className="invalid-feedback">Password is required</div>
-        </div>
-
-
-        <div className="form-group">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
-          </div>
-        </div>
-
-  </div>
-        <div className="form-group m-0">
-          <button type="submit" className="btn btn-primary">
-            Login
-            {loading && (
-              <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-              />
-            )}
-          </button>
-        </div>
-      </form>
-      {error && (
+              <div className="form-group m-0">
+                <button type="submit" className="btn btn-block">
+                  <b>LOGIN</b>
+                  {loading && (
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                  )}
+                </button>
+              </div>
+              <div className="sign-up">
+                New to Sasnaka?
+                <Link to="/" className="sign-up">
+                  {" "}
+                  <b>Register</b>
+                </Link>{" "}
+                Here
+              </div>{error && (
         <Alert style={{ marginTop: "20px" }} variant="danger">
           {error}
         </Alert>
       )}
+            </form>
+            
+          </div>
+        </div>
+      </div>
+      
     </div>
   );
 };
