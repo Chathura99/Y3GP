@@ -1,0 +1,80 @@
+
+.account-settings .about {
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+
+.account-settings .about h5 {
+  margin: 0 0 15px 0;
+  color: #000000;
+}
+
+.account-settings .about p {
+  font-size: 0.825rem;
+}
+
+.form-control {
+  border: 0px solid #cfd1d8;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 4px;
+  font-size: 12px;
+  background: linear-gradient(90deg, rgba(201, 201, 201, 1) 15%, rgba(255, 255, 255, 1) 100%);
+  color: #2e323c;
+}
+
+.card {
+  background: #ffffff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 0;
+  margin-bottom: 1rem;
+}
+
+.text-primary {
+  font-weight: 900;
+  color: 145369;
+  font-size: 24px;
+  text-align: center;
+}
+
+.form-group {
+  font-weight: 600;
+}
+
+.btn{
+  width: 90px;
+  height: 36px;
+}
+
+.btn-secondary {
+  font-weight: 800;
+  font-size: 16px;
+  border: none;
+}
+
+.btn-primary {
+  font-weight: 800;
+  font-size: 16px;
+  margin-right: 100px;
+}
+
+.about h5 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.about h6 {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.btn {
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.browse{
+  padding: 10px;
+}
