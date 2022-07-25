@@ -135,7 +135,7 @@ export default function Sidebar(page) {
                 </a>
                 <ul className="collapse list-unstyled" id="myEventSubmenu">
                   <li className="ml-5">
-                    <Link to="/volunteerUpcomingEventst" className="p-1">
+                    <Link to="/volunteerUpcomingEvents" className="p-1">
                       <div
                         className={linkdark === 4.1 ? "linkdark" : ""}
                         onClick={() => {
