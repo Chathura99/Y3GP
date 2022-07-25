@@ -37,8 +37,8 @@ import CompletedEvents from './pages/volunteer/MyEvents/CompletedEvents';
 import CoordinatedEvents from './pages/volunteer/MyEvents/CoordinatedEvents';
 
 // Project Coordinator
-import PcOngoingProject from "./pages/projectCoordinator/Project/OngoingProject";
-import PcMyProject from "./pages/projectCoordinator/Project/MyProjects";
+import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
+import PcMyProject from "./pages/projectCoordinator/project/MyProjects";
 import PcUpcomingEvents from "./pages/projectCoordinator/Event/upcomingevents";
 import PcCompletedEvents from "./pages/projectCoordinator/Event/completedevents";
 import PcCordinatedEvents from "./pages/projectCoordinator/Event/coordinatedevent";
