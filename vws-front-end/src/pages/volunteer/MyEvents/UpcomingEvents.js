@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 
-export default function Projects() {
+export default function UpcomingEvents() {
     useEffect(() => {
         checkValidate();
     }, []);
