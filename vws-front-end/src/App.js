@@ -42,8 +42,14 @@ import CoordinatedEvents from './pages/volunteer/MyEvents/CoordinatedEvents';
 import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
 import PcMyProject from "./pages/projectCoordinator/project/MyProjects";
 import PcUpcomingEvents from "./pages/projectCoordinator/Event/upcomingevents";
-import PcCompletedEvents from "./pages/projectCoordinator/Event/completedevents";
-import PcCordinatedEvents from "./pages/projectCoordinator/Event/coordinatedevent";
+import PcPreviousEvents from "./pages/projectCoordinator/Event/previousevents";
+import PcCompletedEvents from "./pages/projectCoordinator/MyEvents/completedevents";
+import PcMyEvents from "./pages/projectCoordinator/MyEvents/myevents";
+import PcCoordinatedEvents from "./pages/projectCoordinator/MyEvents/coordinatedevents";
+import PcVolunteers from "./pages/projectCoordinator/Volunteers/volunteer";
+import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcements";
+import PcForum from "./pages/projectCoordinator/Poll/forum";
+import PcSummary from "./pages/projectCoordinator/Summary/summary";
 
 function App() {
   const [userrole, setUserRoles] = useState([]);
@@ -128,8 +134,15 @@ function App() {
           <Route path="/pcongoingproject" element={<PcOngoingProject />}></Route>
           <Route path="/pcmyproject" element={<PcMyProject />}></Route>
           <Route path="/pcupcomingevents" element={<PcUpcomingEvents />}></Route>
+          <Route path="/pcpreviousevents" element={<PcPreviousEvents />}></Route>
           <Route path="/pccompletedevents" element={<PcCompletedEvents />}></Route>
-          <Route path="/pccordinatedevents" element={<PcCordinatedEvents />}></Route>
+          <Route path="/pcmyevents" element={<PcMyEvents />}></Route>
+          <Route path="/pccoordinatedevents" element={<PcCoordinatedEvents />}></Route>
+          <Route path="/pcvolunteers" element={<PcVolunteers />}></Route>
+          <Route path="/pcannouncements" element={<PcAnnouncements />}></Route>
+          <Route path="/pcforum" element={<PcForum />}></Route>
+          <Route path="/pcsummary" element={<PcSummary />}></Route>
+
 
 
           {/* volunteer part */}

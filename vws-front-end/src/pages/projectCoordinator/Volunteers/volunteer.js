@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PcCordinatedEvents() {
+export default function PcVolunteers() {
   return (
     <>
     <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -8,7 +8,7 @@ export default function PcCordinatedEvents() {
         <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
           <div className="card h-100" id="contentcard">
             <div className="card-body">
-              <div className="row gutters">Coordinated Events</div>
+              <div className="row gutters">Volunteers</div>
               <div className="row gutters ">line 1</div>
               <div className="row gutters">line 2</div>
             </div>

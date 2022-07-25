@@ -1,24 +1,63 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
+import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 
-export default function HomePage() {
-  const [tableData, setTableData] = useState([
+
+export default function PcHomePage() {
+  const [upComingEventsData, setUpComingEventsData] = useState([
     {
-      id: "P001",
-      name: "Ganitha Saviya",
-      coordinator: "Ravindu",
+      eventId: "E001",
+      project: "Ganitha Saviya",
+      place:"Kurunegala",
+      member: 25,
+      coordinator: "Ravindu Prabasha",
+      date: "2022 09 12",
+    },
+    {
+      eventId: "E002",
+      project: "Re-green Earth",
+      place:"Kaduruwela",
+      member: 100,
+      coordinator: "Namal Upendra",
+      date: "2022 09 25",
+    },
+    {
+      eventId: "E003",
+      project: "Re-green Earth",
+      place:"Matara",
+      member: 130,
+      coordinator: "Sahan Kalhara",
+      date: "2022 09 25",
+    },
+    
+  ]);
+
+  const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
+    { id: "eventId", label: "EVENT ID" },
+    { id: "project", label: "PROJECT NAME" },
+    { id: "place", label: "PLACE" },
+    { id: "member", label: "MEMBERS" },
+    { id: "coordinator", label: "COORDINATOR" },
+    { id: "date", label: "DATE" },
+  ]);
+
+  const [joinRequestsData, setJoinRequestsData] = useState([
+    {
+      id: "R001",
+      name: "Chathura Manohara",
+      nic: "998547521v",
       phone: "+94 75 025 1451",
-      startdate: "2022 09 12",
-      action: (
+      date: "2022 09 12",
+      status: (
         <button
           type="button"
           id="submit"
           name="submit"
-          className="btn btn-primary p-1"
+          className="btn btn-primary p-1 mt-0"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
@@ -27,36 +66,26 @@ export default function HomePage() {
         </button>
       ),
     },
-    {
-      id: "P002",
-      name: "Re-green Earth",
-      coordinator: "Sadaru",
-      phone: "+94 75 025 1451",
-      startdate: "2022 09 01",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1"
-          style={{backgroundColor:"#BE4D25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Rejected
-        </button>
-      ),
-    },
   ]);
 
-  const [tableHead, setTableHead] = useState([
-    { id: "id", label: "Project ID" },
-    { id: "name", label: "Project Name" },
-    { id: "coordinator", label: "Coordinator" },
-    { id: "phone", label: "Phone" },
-    { id: "startsOn", label: "Starts On" },
-    { id: "action", label: "Action" },
+  const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
+    { id: "id", label: "REQUEST ID" },
+    { id: "name", label: "NAME" },
+    { id: "nic", label: "NIC" },
+    { id: "phone", label: "PHONE" },
+    { id: "date", label: "DATE" },
+    { id: "status", label: "Status" },
   ]);
+
+  useEffect(() => {
+    getRequest();
+  }, []);
+
+  const getRequest = async () => {
+    const res = await getJoinRequest();
+    console.log(res.data)
+    // setJoinRequestsData(res.data);
+  };
 
   return (
     <>
@@ -65,10 +94,10 @@ export default function HomePage() {
           <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 ">
             <div className="card h-8" id="contentcard">
               <div className="card-body" id="mid">
-                <div className="row gutters">Upcoming Events</div>
+                <div className="row gutters">Volunteers</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">5</span>
+                    <span className="featured">750</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -90,7 +119,7 @@ export default function HomePage() {
                 <div className="row gutters">Events Completed</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">7</span>
+                    <span className="featured">119</span>
                     <span className="rate">
                       -3 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -131,10 +160,10 @@ export default function HomePage() {
           <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12  ">
             <div className="card h-10" id="contentcard">
               <div className="card-body" id="mid">
-                <div className="row gutters">New Polls</div>
+                <div className="row gutters">Total Projects</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">2</span>
+                    <span className="featured">19</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -159,7 +188,7 @@ export default function HomePage() {
                   {/* <h5>Upcoming Events</h5> */}
                 </div>
                 <div className="row gutters ">
-                  <Table rows={tableData} />
+                  <Table rows={upComingEventsData} headCells={upComingEventsTableHead} tableName={"Up Coming Events"}/>
                 </div>
               </div>
             </div>
@@ -170,13 +199,12 @@ export default function HomePage() {
               <div className="card-body">
                 <div className="row gutters ">
                   <h3 className="ml-3">
-                    <h5>Request Count</h5>
+                    <h5>Project Summary</h5>
                   </h3>
                 </div>
-                <span className="featured1">2</span>
-                {/* <div className="row gutters "> */}
-                  {/* <DonutChart /> */}
-                {/* </div> */}
+                <div className="row gutters ">
+                  <DonutChart />
+                </div>
               </div>
             </div>
           </div>
@@ -202,7 +230,7 @@ export default function HomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <Table rows={tableData} headCells={tableHead} />
+                <Table rows={joinRequestsData} headCells={joinRequestsTableHead} tableName={"Join Requests"}/>
               </div>
             </div>
           </div>
