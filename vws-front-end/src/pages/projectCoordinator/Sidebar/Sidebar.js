@@ -86,7 +86,7 @@ export default function Sidebar(page) {
                 </a>
                 <ul className="collapse list-unstyled" id="projectSubmenu">
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorOngoinProjects" className="p-1">
+                    <Link to="/pcongoingproject" className="p-1">
                       <div
                         className={linkdark === 2.1 ? "linkdark" : ""}
                         onClick={() => {
@@ -96,7 +96,7 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorMyProjects" className="p-1">
+                    <Link to="/pcmyproject" className="p-1">
                       <div
                         className={linkdark === 2.2 ? "linkdark" : ""}
                         onClick={() => {
@@ -124,7 +124,7 @@ export default function Sidebar(page) {
                 </a>
                 <ul className="collapse list-unstyled" id="eventSubmenu">
                   <li className="ml-5">
-                    <Link to="/pcOngoingEvents" className="p-1">
+                    <Link to="/pcupcomingevents" className="p-1">
                       <div
                         className={linkdark === 3.1 ? "linkdark" : ""}
                         onClick={() => {
@@ -134,13 +134,23 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorPreviousEvents" className="p-1">
+                    <Link to="/pccompletedevents" className="p-1">
                       <div
                         className={linkdark === 3.2 ? "linkdark" : ""}
                         onClick={() => {
                           setLinkdark(3.2);
                         }}
-                      >Previous Events</div>
+                      >Completed Events</div>
+                    </Link>
+                  </li>
+                  <li className="ml-5">
+                    <Link to="/pccordinatedevents" className="p-1">
+                      <div
+                        className={linkdark === 3.1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(3.1);
+                        }}
+                      >Events Coordinated</div>
                     </Link>
                   </li>
                 </ul>
@@ -276,7 +286,7 @@ export default function Sidebar(page) {
                   <li
                     className="nav-item"
                   >
-                    <Link to="/adminhome" className="nav-link">
+                    <Link to="/pchome" className="nav-link">
 
                       <div
                         className={linkdark === 0 ? "linkdark" : ""}

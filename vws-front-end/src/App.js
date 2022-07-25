@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/all/Login/LoginPage";
 import AdminHomePage from "./pages/admin/Home/HomePage";
-import PcHomePage from "./pages/projectCoordinator/home/HomePage";
+import PcHomePage from "./pages/projectCoordinator/Home/HomePage";
 import VolunteerHomePage from "./pages/volunteer/home/HomePage";
 import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
@@ -29,6 +29,12 @@ import Profile from "./pages/all/Profile/Profile";
 import { fetchUserData } from "./services/authenticationService";
 import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
+// Project Coordinator
+import PcOngoingProject from "./pages/projectCoordinator/Project/OngoingProject";
+import PcMyProject from "./pages/projectCoordinator/Project/MyProjects";
+import PcUpcomingEvents from "./pages/projectCoordinator/Event/upcomingevents";
+import PcCompletedEvents from "./pages/projectCoordinator/Event/completedevents";
+import PcCordinatedEvents from "./pages/projectCoordinator/Event/coordinatedevent";
 
 function App() {
   const [userrole, setUserRoles] = useState([]);
@@ -110,6 +116,11 @@ function App() {
 
           {/* project coordinator part */}
           <Route path="/pchome" element={<PcHomePage />}></Route>
+          <Route path="/pcongoingproject" element={<PcOngoingProject />}></Route>
+          <Route path="/pcmyproject" element={<PcMyProject />}></Route>
+          <Route path="/pcupcomingevents" element={<PcUpcomingEvents />}></Route>
+          <Route path="/pccompletedevents" element={<PcCompletedEvents />}></Route>
+          <Route path="/pccordinatedevents" element={<PcCordinatedEvents />}></Route>
 
 
           {/* volunteer part */}
