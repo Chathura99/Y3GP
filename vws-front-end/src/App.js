@@ -23,16 +23,16 @@ import NewUser from "./pages/admin/User/NewUser";
 import AdminSidebar from "./pages/admin/Sidebar/Sidebar";
 import PcSidebar from "./pages/projectCoordinator/Sidebar/Sidebar"
 import VolunteerSidebar from "./pages/volunteer/Sidebar/Sidebar";
-import Guestpage from "./pages/guestUser/Home/HomePage";
+import Guestpage from "./pages/guestUser/home/HomePage";
 import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
 import { fetchUserData } from "./services/authenticationService";
 import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import SignUp from "./pages/guestUser/SignUp/SignUp";
+import SignUp from "./pages/guestUser/signUp/SignUp";
 
 // Project Coordinator
-import PcOngoingProject from "./pages/projectCoordinator/Project/OngoingProject";
-import PcMyProject from "./pages/projectCoordinator/Project/MyProjects";
+import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
+import PcMyProject from "./pages/projectCoordinator/project/MyProjects";
 import PcUpcomingEvents from "./pages/projectCoordinator/Event/upcomingevents";
 import PcCompletedEvents from "./pages/projectCoordinator/Event/completedevents";
 import PcCordinatedEvents from "./pages/projectCoordinator/Event/coordinatedevent";
