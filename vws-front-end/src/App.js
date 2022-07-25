@@ -28,7 +28,15 @@ import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
 import { fetchUserData } from "./services/authenticationService";
 import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
+
 import SignUp from "./pages/guestUser/signUp/SignUp";
+import Projects from './pages/volunteer/Projects/Projects';
+import OngoingEvents from './pages/volunteer/Event/OngoingEvents';
+import PreviousEvents from './pages/volunteer/Event/PreviousEvents';
+import UpcomingEvents from './pages/volunteer/MyEvents/UpcomingEvents';
+import CompletedEvents from './pages/volunteer/MyEvents/CompletedEvents';
+import CoordinatedEvents from './pages/volunteer/MyEvents/CoordinatedEvents';
+
 
 // Project Coordinator
 import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
@@ -126,6 +134,13 @@ function App() {
 
           {/* volunteer part */}
           <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
+          <Route path="/volunteerProjects" element={<Projects />}></Route>
+          <Route path="/volunteerOngoingEvents" element={<OngoingEvents />}></Route>
+          <Route path="/volunteerPreviousEvents" element={<PreviousEvents />}></Route>
+          <Route path="/volunteerUpcomingEvents" element={<UpcomingEvents />}></Route>
+          <Route path="/volunteerCompletedEvents" element={<CompletedEvents />}></Route>
+          <Route path="/volunteerCoordinatedEvents" element={<CoordinatedEvents />}></Route>
+          
 
         </Routes>
       </BrowserRouter>
