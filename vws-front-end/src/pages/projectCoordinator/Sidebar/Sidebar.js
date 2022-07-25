@@ -140,19 +140,9 @@ export default function Sidebar(page) {
                         onClick={() => {
                           setLinkdark(3.2);
                         }}
-                      >Completed Events</div>
+                      >Previous Events</div>
                     </Link>
-                  </li>
-                  <li className="ml-5">
-                    <Link to="/pccordinatedevents" className="p-1">
-                      <div
-                        className={linkdark === 3.1 ? "linkdark" : ""}
-                        onClick={() => {
-                          setLinkdark(3.1);
-                        }}
-                      >Events Coordinated</div>
-                    </Link>
-                  </li>
+                  </li> 
                 </ul>
               </li>
 
