@@ -1,16 +1,15 @@
 import React, { useEffect,useState } from 'react';
 import Table from "../../../utilities/Table/Table";
+import "./Projects.css";
 
 export default function Projects() {
-    const [upcomingEventsData, setUpComingEventsData] = useState([
+    const [ProjectsData, setProjectsData] = useState([
         {
-          event_id: "E001",
-          category: "Ganitha Saviya",
-          event_coordinator: "Ravindu",
-          startdate: "2022 09 12",
-          enddate: "2022 09 14",
-          no_of_members: "13",
-          location: "Nikawaratiya",
+          project_name: "Ganitha Saviya",
+          description: "Ganitha Saviya is a ....",
+          idea_by: "Ravindu Perera",
+          date: "2022 09 12",
+          
           
           action: (
             <button
@@ -22,18 +21,16 @@ export default function Projects() {
               // #96BE25,#BE4D25
               // onClick={handleSubmit}
             >
-              Accepted
+              Coordinate Event
             </button>
           ),
         },
         {
-          event_id: "E002",
-          category: "Re-green Earth",
-          event_coordinator: "Sadaru",
-          startdate: "2022 09 02",
-          enddate: "2022 09 04",
-          no_of_members: "8",
-          location: "Horana",
+          project_name: "Re-green Earth",
+          description: "Re-green Earth is a ...",
+          idea_by: "Sadaru Avishka",
+          date: "2022 09 02",
+          
           
           action: (
             <button
@@ -41,25 +38,22 @@ export default function Projects() {
               id="submit"
               name="submit"
               className="btn btn-primary p-1"
-              style={{backgroundColor:"#BE4D25",border:"none"}}
-              // #96BE25,#BE4D25
+              style={{backgroundColor:"#96BE25",border:"none"}}
+              // #96BE25-green,#BE4D25-red
               // onClick={handleSubmit}
             >
-              Rejected
+              Coordinate Event
             </button>
           ),
         },
       ]);
     
-      const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-        { id: "event_id", label: "Event ID" },
-        { id: "category", label: "Category" },
-        { id: "event_coordinator", label: "Event Coordinator" },
-        { id: "startdate", label: "Starts On" },
-        { id: "enddate", label: "Ends On" },
-        { id: "no_of_members", label: "No. of Members" },
-        { id: "location", label: "Location" },
-        { id: "action", label: "Action" },
+      const [ProjectsHeadings, setProjectsTableHead] = useState([
+        { id: "project_name", label: "PROJECT NAME" },
+        { id: "description", label: "DESCRIPTION" },
+        { id: "idea_by", label: "IDEA BY" },
+        { id: "date", label: "DATE" },
+        { id: "action", label: "COORDINATE EVENT" },
     
       ]);
 
@@ -83,7 +77,10 @@ export default function Projects() {
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
                                 <h5>Ongoing Events</h5>
-                                <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
+                                <a href="https://react.school" target="_blank">
+                                  <button id='proposenewbtn'>+ Propose New Project </button>
+                                </a>
+                                <Table rows={ProjectsData} headCells={ProjectsHeadings} />
                             </div>
                         </div>
                     </div>

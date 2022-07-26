@@ -1,8 +1,10 @@
 import React, { useEffect,useState } from 'react';
 import Table from "../../../utilities/Table/Table";
+import Card from "react-bootstrap/Card";
 
 
 export default function UpcomingEvents() {
+  
     const [upcomingEventsData, setUpComingEventsData] = useState([
         {
           event_id: "E001",
@@ -23,7 +25,7 @@ export default function UpcomingEvents() {
               // #96BE25,#BE4D25
               // onClick={handleSubmit}
             >
-              Accepted
+              EVENT DETAILS
             </button>
           ),
         },
@@ -42,25 +44,25 @@ export default function UpcomingEvents() {
               id="submit"
               name="submit"
               className="btn btn-primary p-1"
-              style={{backgroundColor:"#BE4D25",border:"none"}}
+              style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
               // onClick={handleSubmit}
             >
-              Rejected
+              EVENT DETAILS
             </button>
           ),
         },
       ]);
     
       const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-        { id: "event_id", label: "Event ID" },
-        { id: "category", label: "Category" },
-        { id: "event_coordinator", label: "Event Coordinator" },
-        { id: "startdate", label: "Starts On" },
-        { id: "enddate", label: "Ends On" },
-        { id: "no_of_members", label: "No. of Members" },
-        { id: "location", label: "Location" },
-        { id: "action", label: "Action" },
+        { id: "event_id", label: "EVENT ID" },
+        { id: "category", label: "CATEGORY" },
+        { id: "event_coordinator", label: "EVENT COORDINATOR" },
+        { id: "startdate", label: "STARTS ON" },
+        { id: "enddate", label: "ENDS ON" },
+        { id: "no_of_members", label: "NO. OF MEMBERS" },
+        { id: "location", label: "LOCATION" },
+        { id: "action", label: "EVENT DETAILS" },
     
       ]);
 
@@ -84,6 +86,46 @@ export default function UpcomingEvents() {
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
                             <h5>Upcoming Events</h5>
+                            <div className="row gutters mt-10">
+                            <Card style={{ width: "20rem",backgroundColor: "#2596BE",margin:20,borderRadius:10 }}>
+        <Card.Body>
+          <Card.Title id='day' style={{ color: "white",fontSize:40 }}>14</Card.Title>
+          <Card.Subtitle id='month' style={{color: "white",fontSize:10}}>AUGUST</Card.Subtitle>
+          <Card.Text id='event_name' style={{color: "white",fontSize:20}}>
+            MATH LAB PROGRAM
+          </Card.Text>
+          <Card.Text id='place' style={{color: "white",fontSize:10}}>
+            @ DHARMARAJA MAHA VIDYALAYA
+            </Card.Text>
+        </Card.Body>
+      </Card>
+      <Card style={{ width: "20rem",backgroundColor: "#2596BE" ,margin:20,borderRadius:10}}>
+        <Card.Body>
+          <Card.Title id='day' style={{ color: "white",fontSize:40 }}>20</Card.Title>
+          <Card.Subtitle id='month' style={{color: "white",fontSize:10}}>SEPTEMBER</Card.Subtitle>
+          <Card.Text id='event_name' style={{color: "white",fontSize:20}}>
+            BLOOD DONATION
+          </Card.Text>
+          <Card.Text id='place' style={{color: "white",fontSize:10}}>
+            @ MEDAWACHCHIYA
+            </Card.Text>
+        </Card.Body>
+      </Card>
+
+      <Card style={{ width: "20rem",backgroundColor: "#2596BE" ,margin:20,borderRadius:10}}>
+        <Card.Body>
+          <Card.Title id='day' style={{ color: "white",fontSize:40 }}>01</Card.Title>
+          <Card.Subtitle id='month' style={{color: "white",fontSize:10}}>SEPTEMBER</Card.Subtitle>
+          <Card.Text id='event_name' style={{color: "white",fontSize:20}}>
+            GANITHA SAVIYA
+          </Card.Text>
+          <Card.Text id='place' style={{color: "white",fontSize:10}}>
+            @ SUSSEX COLLEGE,NEGOMBO
+            </Card.Text>
+        </Card.Body>
+      </Card>
+      </div>
+      
                             <h5>All Upcoming Events</h5>
                                 <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
                             </div>
