@@ -1,6 +1,43 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import Table from "../../../utilities/Table/Table";
+
 
 export default function NewUser() {
+  const [joinRequestsData, setJoinRequestsData] = useState([
+    {
+      id: "R001",
+      name: "Chathura Manohara",
+      nic: "998547521v",
+      phone: "+94 75 025 1451",
+      date: "2022 09 12",
+      status: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#96BE25",
+            border: "none",
+            marginRight: "2px",
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Rejister
+        </button>
+      ),
+    },
+  ]);
+
+  const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
+    { id: "id", label: "REQUEST ID" },
+    { id: "name", label: "NAME" },
+    { id: "nic", label: "NIC" },
+    { id: "phone", label: "PHONE" },
+    { id: "date", label: "DATE" },
+    { id: "status", label: "STATUS" },
+  ]);
   return (
     <>
     <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -33,7 +70,11 @@ export default function NewUser() {
         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div className="card h-100" id="contentcard">
             <div className="card-body ">
-             Content
+            <Table
+                  rows={joinRequestsData}
+                  headCells={joinRequestsTableHead}
+                  tableName={"Join Requests"}
+                />
             </div>
           </div>
         </div>

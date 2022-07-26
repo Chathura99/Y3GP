@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
@@ -6,13 +6,12 @@ import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 
-
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
     {
       eventId: "E001",
       project: "Ganitha Saviya",
-      place:"Kurunegala",
+      place: "Kurunegala",
       member: 25,
       coordinator: "Ravindu Prabasha",
       date: "2022 09 12",
@@ -20,7 +19,7 @@ export default function HomePage() {
     {
       eventId: "E002",
       project: "Re-green Earth",
-      place:"Kaduruwela",
+      place: "Kaduruwela",
       member: 100,
       coordinator: "Namal Upendra",
       date: "2022 09 25",
@@ -28,12 +27,11 @@ export default function HomePage() {
     {
       eventId: "E003",
       project: "Re-green Earth",
-      place:"Matara",
+      place: "Matara",
       member: 130,
       coordinator: "Sahan Kalhara",
       date: "2022 09 25",
     },
-    
   ]);
 
   const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
@@ -57,8 +55,12 @@ export default function HomePage() {
           type="button"
           id="submit"
           name="submit"
-          className="btn btn-primary p-1 mt-0"
-          style={{backgroundColor:"#96BE25",border:"none",marginRight:"2px"}}
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#96BE25",
+            border: "none",
+            marginRight: "2px",
+          }}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
@@ -83,7 +85,7 @@ export default function HomePage() {
 
   const getRequest = async () => {
     const res = await getJoinRequest();
-    console.log(res.data)
+    console.log(res.data);
     // setJoinRequestsData(res.data);
   };
 
@@ -188,7 +190,11 @@ export default function HomePage() {
                   {/* <h5>Upcoming Events</h5> */}
                 </div>
                 <div className="row gutters ">
-                  <Table rows={upComingEventsData} headCells={upComingEventsTableHead} tableName={"Up Coming Events"}/>
+                  <Table
+                    rows={upComingEventsData}
+                    headCells={upComingEventsTableHead}
+                    tableName={"Up Coming Events"}
+                  />
                 </div>
               </div>
             </div>
@@ -230,7 +236,11 @@ export default function HomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <Table rows={joinRequestsData} headCells={joinRequestsTableHead} tableName={"Join Requests"}/>
+                <Table
+                  rows={joinRequestsData}
+                  headCells={joinRequestsTableHead}
+                  tableName={"Join Requests"}
+                />
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ export default function OnGoingProject() {
           type="button"
           id="submit"
           name="submit"
-          className="btn btn-primary p-1 mt-0"
+          className="btn mt-0"
           style={{
             backgroundColor: "#96BE25",
             border: "none",
@@ -39,7 +39,7 @@ export default function OnGoingProject() {
           type="button"
           id="submit"
           name="submit"
-          className="btn btn-primary p-1 mt-0"
+          className="btn  mt-0"
           style={{
             backgroundColor: "#96BE25",
             border: "none",
