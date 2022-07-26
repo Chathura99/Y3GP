@@ -6,15 +6,18 @@ import { Link } from "react-router-dom";
 export default function SignUp() {
   const [requestData, setRequestData] = useState(
     {
-      firstName: "Manuka",
-      lastName: "Amarasinghe",
-      email: "mam@gmail.com",
-      phoneNumber: "0712548569",
-      address: "Digana",
-      universityCollege: "Peradeniya",
-      district: "Kandy",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      address: "",
+      universityCollege: "",
+      district: "",
       date: "",
       status: 0,
+      nic:"",
+      info:"",
+      other:""
     },
     []
   );
@@ -22,13 +25,22 @@ export default function SignUp() {
   const handleSubmit = (evt) => {
     console.log(requestData);
     evt.preventDefault();
-    joinRequest(requestData).then((response) => {
+    joinRequest(requestData).then((response) => {   
       if (response.status === 200) {
-        console.log("success");
+        console.log(response.data);
       } else {
-        console.log("error");
+        console.log("Something went wrong");
       }
     });
+  };
+
+  const handleChange = (e) => {
+    e.persist();
+    // console.log(e.target.name + "-" + e.target.value);
+    setRequestData((requestData) => ({
+      ...requestData,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   return (
@@ -51,6 +63,9 @@ export default function SignUp() {
                         className="form-control"
                         id="firstName"
                         placeholder="Enter Your First Name"
+                        name="firstName"
+                        value={requestData.firstName}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -63,6 +78,9 @@ export default function SignUp() {
                         className="form-control"
                         id="lastName"
                         placeholder="Enter Your Last Name"
+                        name="lastName"
+                        value={requestData.lastName}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -75,6 +93,9 @@ export default function SignUp() {
                         className="form-control"
                         id="email"
                         placeholder="Enter Your Email"
+                        name="email"
+                        value={requestData.email}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -87,6 +108,9 @@ export default function SignUp() {
                         className="form-control"
                         id="phoneNumber"
                         placeholder="Enter Your Phone Number"
+                        name="phoneNumber"
+                        value={requestData.phoneNumber}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -99,6 +123,9 @@ export default function SignUp() {
                         className="form-control"
                         id="district"
                         placeholder="Enter Your District"
+                        name="district"
+                        value={requestData.district}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -111,6 +138,9 @@ export default function SignUp() {
                         className="form-control"
                         id="address"
                         placeholder="Enter Your Address"
+                        name="address"
+                        value={requestData.address}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -123,6 +153,9 @@ export default function SignUp() {
                         className="form-control"
                         id="universityCollege"
                         placeholder="Enter Your University/School"
+                        name="universityCollege"
+                        value={requestData.universityCollege}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -135,6 +168,9 @@ export default function SignUp() {
                         className="form-control"
                         id="nic"
                         placeholder="Enter Your NIC/Passport Number"
+                        name="nic"
+                        value={requestData.nic}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -148,6 +184,9 @@ export default function SignUp() {
                         class="form-control browse"
                         type="file"
                         id="formFile"
+                        // name="copy"
+                        // value={requestData.copy}
+                        // onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -164,6 +203,9 @@ export default function SignUp() {
                         className="form-control"
                         id="info"
                         placeholder="Type here"
+                        name="info"
+                        value={requestData.info}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -176,6 +218,9 @@ export default function SignUp() {
                         className="form-control"
                         id="other"
                         placeholder="Type here"
+                        name="other"
+                        value={requestData.other}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>

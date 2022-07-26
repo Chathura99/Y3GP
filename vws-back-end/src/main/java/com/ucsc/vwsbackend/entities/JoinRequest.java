@@ -12,6 +12,17 @@ public class JoinRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "nic")
+    private String nic;
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
     @Column(name = "first_name")
     private String firstName;
 
