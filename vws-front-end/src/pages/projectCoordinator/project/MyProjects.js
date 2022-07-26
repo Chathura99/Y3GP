@@ -1,21 +1,132 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react';
+import Table from "../../../utilities/Table/Table";
 
 export default function PcMyProject() {
+
+  const [myProjectsData, setMyProjectsData] = useState([
+    {
+      project_id: "E001",
+      project_name: "Ganitha Saviya",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      coordinator: "Ravindu",
+      startdate: "2022 09 14",
+      // no_of_members: "13",
+      // location: "Nikawaratiya",
+      
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn btn-primary p-1"
+          style={{backgroundColor:"#96BE25",border:"none"}}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Ongoing
+        </button>
+      ),
+    }
+  ]);
+  const [upcomingProjectsData, setUpComingProjectsData] = useState([
+    {
+      project_id: "E001",
+      project_name: "Ganitha Saviya",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      coordinator: "Ravindu",
+      startdate: "2022 09 14",
+      // no_of_members: "13",
+      // location: "Nikawaratiya",
+      
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn btn-primary p-1"
+          style={{backgroundColor:"#96BE25",border:"none"}}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Accept
+        </button>
+      ),
+    },
+    {
+      project_id: "E002",
+      project_name: "Widyawa Mulasita",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      coordinator: "Tharindu",
+      startdate: "2022 09 14",
+      // no_of_members: "8",
+      // location: "Horana",
+      
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn btn-primary p-1"
+          style={{backgroundColor:"#96BE25",border:"none"}}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Accept
+        </button>
+      ),
+    },
+  ]);
+
+  const [MyProjectsHeadings, setMyProjectsTableHead] = useState([
+    { id: "project_id", label: "Project ID" },
+    { id: "project_name", label: "Project Name" },
+    { id: "description", label: "Description" },
+    { id: "coordinator", label: "Coordinator" },
+    { id: "startdate", label: "Start Date" },
+    // { id: "no_of_members", label: "Coordinate Events" },
+    // { id: "location", label: "Location" },
+    { id: "action", label: "Action" },
+
+  ]);
+
+
+  const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
+    { id: "project_id", label: "Project ID" },
+    { id: "project_name", label: "Project Name" },
+    { id: "description", label: "Description" },
+    { id: "coordinator", label: "Coordinator" },
+    { id: "startdate", label: "Start Date" },
+    // { id: "no_of_members", label: "Coordinate Events" },
+    // { id: "location", label: "Location" },
+    { id: "action", label: "Action" },
+
+  ]);
+
+useEffect(() => {
+    checkValidate();
+}, []);
+
+const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+        window.location.href = "/";
+    }
+};
+
   return (
     <>
     <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
       <div className="row gutters mt-10">
-        <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+        <div className="col-xl-12 col-lg-12 col-md-24 col-sm-12 col-12">
           <div className="card h-100" id="contentcard">
             <div className="card-body">
-              <div className="row gutters">My Project</div>
-              <div className="row gutters ">line 1</div>
-              <div className="row gutters">line 2</div>
+            <h5>My Project</h5>
+              <Table rows={myProjectsData} headCells={MyProjectsHeadings} />
             </div>
           </div>
         </div>
 
-        <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+        {/* <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
           <div className="card h-100" id="contentcard">
             <div className="card-body">
               <div className="row gutters ">
@@ -26,14 +137,15 @@ export default function PcMyProject() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="row gutters mt-3">
         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div className="card h-100" id="contentcard">
             <div className="card-body ">
-             Content
+            <h5>Project Requests</h5>
+                <Table rows={upcomingProjectsData} headCells={UpcomingProjectsHeadings} />
             </div>
           </div>
         </div>
