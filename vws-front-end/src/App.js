@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/all/Login/LoginPage";
 import AdminHomePage from "./pages/admin/Home/HomePage";
-import PcHomePage from "./pages/projectCoordinator/home/HomePage";
+import PcHomePage from "./pages/projectCoordinator/Home/HomePage";
 import VolunteerHomePage from "./pages/volunteer/home/HomePage";
 import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
@@ -28,7 +28,28 @@ import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
 import Profile from "./pages/all/Profile/Profile";
 import { fetchUserData } from "./services/authenticationService";
 import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
+
 import SignUp from "./pages/guestUser/SignUp/SignUp";
+import Projects from './pages/volunteer/Projects/Projects';
+import OngoingEvents from './pages/volunteer/Event/OngoingEvents';
+import PreviousEvents from './pages/volunteer/Event/PreviousEvents';
+import UpcomingEvents from './pages/volunteer/MyEvents/UpcomingEvents';
+import CompletedEvents from './pages/volunteer/MyEvents/CompletedEvents';
+import CoordinatedEvents from './pages/volunteer/MyEvents/CoordinatedEvents';
+
+
+// Project Coordinator
+import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
+import PcMyProject from "./pages/projectCoordinator/project/MyProjects";
+import PcUpcomingEvents from "./pages/projectCoordinator/Event/upcomingevents";
+import PcPreviousEvents from "./pages/projectCoordinator/Event/previousevents";
+import PcCompletedEvents from "./pages/projectCoordinator/MyEvents/completedevents";
+import PcMyEvents from "./pages/projectCoordinator/MyEvents/myevents";
+import PcCoordinatedEvents from "./pages/projectCoordinator/MyEvents/coordinatedevents";
+import PcVolunteers from "./pages/projectCoordinator/Volunteers/volunteer";
+import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcements";
+import PcForum from "./pages/projectCoordinator/Poll/forum";
+import PcSummary from "./pages/projectCoordinator/Summary/summary";
 
 function App() {
   const [userrole, setUserRoles] = useState([]);
@@ -113,14 +134,35 @@ function App() {
             {/* project coordinator part */}
             <Route path="/pchome" element={<PcHomePage />}></Route>
 
-            {/* volunteer part */}
-            <Route
-              path="/volunteerhome"
-              element={<VolunteerHomePage />}
-            ></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
+          {/* project coordinator part */}
+          <Route path="/pchome" element={<PcHomePage />}></Route>
+          <Route path="/pcongoingproject" element={<PcOngoingProject />}></Route>
+          <Route path="/pcmyproject" element={<PcMyProject />}></Route>
+          <Route path="/pcupcomingevents" element={<PcUpcomingEvents />}></Route>
+          <Route path="/pcpreviousevents" element={<PcPreviousEvents />}></Route>
+          <Route path="/pccompletedevents" element={<PcCompletedEvents />}></Route>
+          <Route path="/pcmyevents" element={<PcMyEvents />}></Route>
+          <Route path="/pccoordinatedevents" element={<PcCoordinatedEvents />}></Route>
+          <Route path="/pcvolunteers" element={<PcVolunteers />}></Route>
+          <Route path="/pcannouncements" element={<PcAnnouncements />}></Route>
+          <Route path="/pcforum" element={<PcForum />}></Route>
+          <Route path="/pcsummary" element={<PcSummary />}></Route>
+
+
+
+          {/* volunteer part */}
+          <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
+          <Route path="/volunteerProjects" element={<Projects />}></Route>
+          <Route path="/volunteerOngoingEvents" element={<OngoingEvents />}></Route>
+          <Route path="/volunteerPreviousEvents" element={<PreviousEvents />}></Route>
+          <Route path="/volunteerUpcomingEvents" element={<UpcomingEvents />}></Route>
+          <Route path="/volunteerCompletedEvents" element={<CompletedEvents />}></Route>
+          <Route path="/volunteerCoordinatedEvents" element={<CoordinatedEvents />}></Route>
+          
+
+        </Routes>
+      </BrowserRouter>
+    </div>
     </MuiThemeProvider>
   );
 }

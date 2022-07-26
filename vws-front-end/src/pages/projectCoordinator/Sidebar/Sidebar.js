@@ -86,7 +86,7 @@ export default function Sidebar(page) {
                 </a>
                 <ul className="collapse list-unstyled" id="projectSubmenu">
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorOngoinProjects" className="p-1">
+                    <Link to="/pcongoingproject" className="p-1">
                       <div
                         className={linkdark === 2.1 ? "linkdark" : ""}
                         onClick={() => {
@@ -96,7 +96,7 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorMyProjects" className="p-1">
+                    <Link to="/pcmyproject" className="p-1">
                       <div
                         className={linkdark === 2.2 ? "linkdark" : ""}
                         onClick={() => {
@@ -124,7 +124,7 @@ export default function Sidebar(page) {
                 </a>
                 <ul className="collapse list-unstyled" id="eventSubmenu">
                   <li className="ml-5">
-                    <Link to="/pcOngoingEvents" className="p-1">
+                    <Link to="/pcupcomingevents" className="p-1">
                       <div
                         className={linkdark === 3.1 ? "linkdark" : ""}
                         onClick={() => {
@@ -134,7 +134,7 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorPreviousEvents" className="p-1">
+                    <Link to="/pcpreviousevents" className="p-1">
                       <div
                         className={linkdark === 3.2 ? "linkdark" : ""}
                         onClick={() => {
@@ -142,7 +142,7 @@ export default function Sidebar(page) {
                         }}
                       >Previous Events</div>
                     </Link>
-                  </li>
+                  </li> 
                 </ul>
               </li>
 
@@ -162,7 +162,7 @@ export default function Sidebar(page) {
                 </a>
                 <ul className="collapse list-unstyled" id="myEventSubmenu">
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorUpcomingEventst" className="p-1">
+                    <Link to="/pcmyevents" className="p-1">
                       <div
                         className={linkdark === 4.1 ? "linkdark" : ""}
                         onClick={() => {
@@ -172,7 +172,7 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorCompletedEvents" className="p-1">
+                    <Link to="/pccompletedevents" className="p-1">
                       <div
                         className={linkdark === 4.2 ? "linkdark" : ""}
                         onClick={() => {
@@ -182,7 +182,7 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="ml-5">
-                    <Link to="/projectCoordinatorCoordinatedEvents" className="p-1">
+                    <Link to="/pccoordinatedevents" className="p-1">
                       <div
                         className={linkdark === 4.3 ? "linkdark" : ""}
                         onClick={() => {
@@ -200,7 +200,7 @@ export default function Sidebar(page) {
                   highLight(5);
                 }}
               >
-                <Link to="/projectCoordinatorViewVolunteers">
+                <Link to="/pcvolunteers">
                   <i className="fa fa-users ml-3 mr-4"></i>Volunteers
                 </Link>
               </li>
@@ -211,7 +211,7 @@ export default function Sidebar(page) {
                   highLight(6);
                 }}
               >
-                <Link to="/projectCoordinatorViewAnnouncement">
+                <Link to="/pcannouncements">
                   <i className="fa fa-bullhorn ml-3 mr-4"></i>Announcements
                 </Link>
               </li>
@@ -222,7 +222,7 @@ export default function Sidebar(page) {
                   highLight(7);
                 }}
               >
-                <Link to="/projectCoordinatorForum">
+                <Link to="/pcforum">
                   <i className="fa fa-comments ml-3 mr-4"></i>Forum | Poll
                 </Link>
               </li>
@@ -233,7 +233,7 @@ export default function Sidebar(page) {
                   highLight(8);
                 }}
               >
-                <Link to="/projectCoordinatorSummary">
+                <Link to="/pcsummary">
                   <i className="fa fa-bar-chart ml-3 mr-4"></i>Summary
                 </Link>
               </li>
@@ -276,7 +276,7 @@ export default function Sidebar(page) {
                   <li
                     className="nav-item"
                   >
-                    <Link to="/adminhome" className="nav-link">
+                    <Link to="/pchome" className="nav-link">
 
                       <div
                         className={linkdark === 0 ? "linkdark" : ""}

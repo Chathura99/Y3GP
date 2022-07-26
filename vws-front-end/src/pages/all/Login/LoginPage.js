@@ -174,7 +174,7 @@ const LoginPage = ({ loading, error, ...props }) => {
               </div>
 
               <div className="form-group m-0">
-                <button type="submit" id="logbtn" className="btn btn-block">
+                <button type="submit" id="logbtn" >
                   <b>LOGIN</b>
                   {loading && (
                     <Spinner

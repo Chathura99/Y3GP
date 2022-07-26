@@ -36,6 +36,9 @@ form {
     rgba(255, 255, 255, 1) 100%
   );
   color: black;
+  width: 100%;
+  border: white;
+  border-radius: 2px;
 }
 
 .login-form {
