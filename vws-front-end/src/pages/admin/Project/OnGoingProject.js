@@ -1,44 +1,102 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { LineChart } from "./../../../utilities/Charts/LineChart";
+import Table from "../../../utilities/Table/Table";
 
 export default function OnGoingProject() {
+  const [onGoingProjectData, setOnGoingProjectData] = useState([
+    {
+      projectId: "P001",
+      projectName: "Ganitha Saviya",
+      coordinator: "Kaduruwela",
+      phone: "+94 76 7845 111",
+      startedOn: "2020-10-21",
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn btn-primary p-1 mt-0"
+          style={{
+            backgroundColor: "#96BE25",
+            border: "none",
+            marginRight: "2px",
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Edit
+        </button>
+      ),
+    },
+    {
+      projectId: "P002",
+      projectName: "Re-green Earth",
+      coordinator: "Matara",
+      phone: "+94 70 2542 336",
+      startedOn: "2019-12-01",
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn btn-primary p-1 mt-0"
+          style={{
+            backgroundColor: "#96BE25",
+            border: "none",
+            marginRight: "2px",
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Edit
+        </button>
+      ),
+    },
+  ]);
+
+  const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
+    { id: "projectId", label: "PROJECT ID" },
+    { id: "projectName", label: "PROJECT NAME" },
+    { id: "coordinator", label: "COORDINATOR" },
+    { id: "phone", label: "PHONE" },
+    { id: "startedOn", label: "STARTED ON" },
+    { id: "action", label: "ACTION" },
+  ]);
   return (
     <>
-    <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
-      <div className="row gutters mt-10">
-        <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-          <div className="card h-100" id="contentcard">
-            <div className="card-body">
-              <div className="row gutters">On Going Project</div>
-              <div className="row gutters ">line 1</div>
-              <div className="row gutters">line 2</div>
+      <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
+        <div className="row gutters mt-10">
+          <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div className="card h-100" id="contentcard">
+              <div className="card-body">
+                <div className="row gutters ">
+                  <h5>Events Growth</h5>
+                </div>
+                <div className="row gutters ">
+                  <LineChart />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-          <div className="card h-100" id="contentcard">
-            <div className="card-body">
-              <div className="row gutters ">
-                <h3 className="ml-3">Title</h3>
-              </div>
-              <div className="row gutters ">
-                Content
+        <div className="row gutters mt-3">
+          <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div className="card h-100" id="contentcard">
+              <div className="card-body ">
+                <div className="row gutters "></div>
+                <div className="row gutters ">
+                  <Table
+                    rows={onGoingProjectData}
+                    headCells={onGoingProjectTableHead}
+                    tableName={"OnGoing Projects"}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="row gutters mt-3">
-        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div className="card h-100" id="contentcard">
-            <div className="card-body ">
-             Content
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </>
-  )
+    </>
+  );
 }
