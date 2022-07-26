@@ -21,7 +21,7 @@ import MemberSummary from "./pages/admin/Summary/MemberSummary";
 import CurrentUser from "./pages/admin/User/CurrentUser";
 import NewUser from "./pages/admin/User/NewUser";
 import AdminSidebar from "./pages/admin/Sidebar/Sidebar";
-import PcSidebar from "./pages/projectCoordinator/Sidebar/Sidebar"
+import PcSidebar from "./pages/projectCoordinator/Sidebar/Sidebar";
 import VolunteerSidebar from "./pages/volunteer/Sidebar/Sidebar";
 import Guestpage from "./pages/guestUser/Home/HomePage";
 import ForgotPassword from "./pages/all/ForgotPassword/ForgotPassword";
@@ -30,98 +30,99 @@ import { fetchUserData } from "./services/authenticationService";
 import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import SignUp from "./pages/guestUser/SignUp/SignUp";
 
-
 function App() {
   const [userrole, setUserRoles] = useState([]);
-  const [userId, setUserId] = useState(null)
+  const [userId, setUserId] = useState(null);
   useEffect(() => {
     userData();
-  },[]);
+  }, []);
 
-  const userData= async () => {
+  const userData = async () => {
     const res = await fetchUserData();
     setUserId(res.data.id);
     setUserRoles(res.data.roles[0].roleCode);
-    console.log(userId,userrole);
+    console.log(userId, userrole);
   };
 
-
-  function sidebar(){
-    if(localStorage.getItem("USER_KEY")){
-      if(userrole === "PROJECT_COORDINATOR")
-          return <PcSidebar />
-      else if(userrole === "ADMIN")
-        return <AdminSidebar />
-      else if(userrole === "VOLUNTEER")
-        return <VolunteerSidebar />
+  function sidebar() {
+    console.log("current URL :", window.location.href);
+    // "http://localhost:3000/signUp"
+    if (!(window.location.href === "http://localhost:3000/login")) {
+      if (localStorage.getItem("USER_KEY")) {
+        if (userrole === "PROJECT_COORDINATOR") return <PcSidebar />;
+        else if (userrole === "ADMIN") return <AdminSidebar />;
+        else if (userrole === "VOLUNTEER") return <VolunteerSidebar />;
+      }
     }
   }
-// for overide material table style
+  // for overide material table style
   const theme = createTheme({
     overrides: {
       MuiTableCell: {
         root: {
           padding: 2,
           "&:last-child": {
-            paddingRight: 5
-          }
-        }
-      }
-    }
+            paddingRight: 5,
+          },
+        },
+      },
+    },
   });
-  
+
   return (
     <MuiThemeProvider theme={theme}>
-    <div className="App">
-      <BrowserRouter>
-      {sidebar()}
-        <Routes>
-          <Route exact path="/" element={<Guestpage />}></Route>
-          <Route exact path="/signup" element={<SignUp/>}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/forgotpassword" element={<ForgotPassword/>}></Route>
-          <Route path="/viewprofile" element={<Profile/>}></Route>
+      <div className="App">
+        <BrowserRouter>
+          {sidebar()}
+          <Routes>
+            <Route exact path="/" element={<Guestpage />}></Route>
+            <Route exact path="/signup" element={<SignUp />}></Route>
+            <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
+            <Route path="/viewprofile" element={<Profile />}></Route>
 
-          {/* admin part */}
-          <Route path="/adminhome" element={<AdminHomePage />}></Route>
-          <Route
-            path="/adminviewannouncement"
-            element={<ViewAnnouncement />}
-          ></Route>
-          <Route path="/adminevent" element={<Event />}></Route>
-          <Route path="/adminforum" element={<Forum />}></Route>
-          <Route path="/adminpoll" element={<Poll />}></Route>
-          <Route
-            path="/adminongoingproject"
-            element={<OnGoingProject />}
-          ></Route>
-          <Route
-            path="/adminproposedproject"
-            element={<ProposedProject />}
-          ></Route>
-          <Route path="/admineventsummary" element={<EventSummary />}></Route>
-          <Route
-            path="/adminprojectsummary"
-            element={<ProjectSummary />}
-          ></Route>
-          <Route path="/adminmembersummary" element={<MemberSummary />}></Route>
-          <Route path="/admincurrentuser" element={<CurrentUser />}></Route>
-          <Route path="/adminnewuser" element={<NewUser />}></Route>
+            {/* admin part */}
+            <Route path="/adminhome" element={<AdminHomePage />}></Route>
+            <Route
+              path="/adminviewannouncement"
+              element={<ViewAnnouncement />}
+            ></Route>
+            <Route path="/adminevent" element={<Event />}></Route>
+            <Route path="/adminforum" element={<Forum />}></Route>
+            <Route path="/adminpoll" element={<Poll />}></Route>
+            <Route
+              path="/adminongoingproject"
+              element={<OnGoingProject />}
+            ></Route>
+            <Route
+              path="/adminproposedproject"
+              element={<ProposedProject />}
+            ></Route>
+            <Route path="/admineventsummary" element={<EventSummary />}></Route>
+            <Route
+              path="/adminprojectsummary"
+              element={<ProjectSummary />}
+            ></Route>
+            <Route
+              path="/adminmembersummary"
+              element={<MemberSummary />}
+            ></Route>
+            <Route path="/admincurrentuser" element={<CurrentUser />}></Route>
+            <Route path="/adminnewuser" element={<NewUser />}></Route>
 
+            {/* project coordinator part */}
+            <Route path="/pchome" element={<PcHomePage />}></Route>
 
-          {/* project coordinator part */}
-          <Route path="/pchome" element={<PcHomePage />}></Route>
-
-
-          {/* volunteer part */}
-          <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
-
-        </Routes>
-      </BrowserRouter>
-    </div>
+            {/* volunteer part */}
+            <Route
+              path="/volunteerhome"
+              element={<VolunteerHomePage />}
+            ></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </MuiThemeProvider>
   );
 }
 
 export default App;
-

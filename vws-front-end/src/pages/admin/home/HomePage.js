@@ -58,7 +58,7 @@ export default function HomePage() {
           id="submit"
           name="submit"
           className="btn btn-primary p-1 mt-0"
-          style={{backgroundColor:"#96BE25",border:"none"}}
+          style={{backgroundColor:"#96BE25",border:"none",marginRight:"2px"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
@@ -74,7 +74,7 @@ export default function HomePage() {
     { id: "nic", label: "NIC" },
     { id: "phone", label: "PHONE" },
     { id: "date", label: "DATE" },
-    { id: "status", label: "Status" },
+    { id: "status", label: "STATUS" },
   ]);
 
   useEffect(() => {

@@ -87,7 +87,7 @@ export default function Profile() {
                 <form onSubmit={handleSubmit}>
                   <div className="row gutters ">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h6 className="mb-2 text-primary">Details</h6>
+                      <h4 className="mb-2">Details</h4>
                     </div>
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -147,7 +147,7 @@ export default function Profile() {
 
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h6 className="mt-3 mb-2 text-primary">Security</h6>
+                      <h4 className="mt-3 mb-2">Security</h4>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
