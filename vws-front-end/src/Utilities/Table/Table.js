@@ -184,7 +184,7 @@ const EnhancedTableToolbar = (props) => {
           component="div"
         >
           {/* Table name from main component */}
-          {/* {props.tableName} */}
+          {props.tableName}
         </Typography>
       )}
 

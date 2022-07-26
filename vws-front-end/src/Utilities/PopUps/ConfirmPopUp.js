@@ -42,7 +42,7 @@ export default function ConfirmPopUp() {
         data-toggle="modal"
         data-target=".bd-example-modal-sm"
       >
-        Confirm Pop Up
+        Confirm
       </button>
 
       <div

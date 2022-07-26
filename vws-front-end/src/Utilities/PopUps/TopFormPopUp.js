@@ -9,7 +9,7 @@ export default function FormPopUp() {
         data-toggle="modal"
         data-target="#exampleModalCenter"
       >
-        Middle Pop Up
+        Middle
       </button>
 
       <div
