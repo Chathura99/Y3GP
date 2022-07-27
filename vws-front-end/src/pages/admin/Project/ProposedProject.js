@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
 import TopFormPopUp from "../../../utilities/PopUps/TopFormPopUp";
 import MidFormPopUp from "../../../utilities/PopUps/MidFormPopUp";
-import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
-import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
-import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function ProposedProject() {
   useEffect(() => {
