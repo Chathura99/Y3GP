@@ -30,6 +30,7 @@ import { fetchUserData } from "./services/authenticationService";
 import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 import SignUp from "./pages/guestUser/SignUp/SignUp";
+import RequestNewEvent from "./pages/guestUser/RequestNewEvent/RequestNewEvent";
 import Projects from './pages/volunteer/Projects/Projects';
 import OngoingEvents from './pages/volunteer/Event/OngoingEvents';
 import PreviousEvents from './pages/volunteer/Event/PreviousEvents';
@@ -98,6 +99,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Guestpage />}></Route>
             <Route exact path="/signup" element={<SignUp />}></Route>
+            <Route exact path="/requestnewevent" element={<RequestNewEvent />}></Route>
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
             <Route path="/viewprofile" element={<Profile />}></Route>
