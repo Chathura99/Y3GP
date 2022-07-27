@@ -8,6 +8,10 @@ export default function HomePage() {
     <Link to="/login">Login</Link>
 <br></br>
     <Link to ="/signup">Request to Join</Link>
+
+    <br></br>
+    <Link to ="/requestnewevent">Request New Event</Link>
+
     </div>
   )
 }
