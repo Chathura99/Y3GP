@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./signup.css";
 import { joinRequest } from "../../../services/guestUserServices/signUpService";
 import { Link } from "react-router-dom";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function SignUp() {
   const [requestData, setRequestData] = useState(
@@ -15,22 +18,44 @@ export default function SignUp() {
       district: "",
       date: "",
       status: 0,
-      nic:"",
-      info:"",
-      other:""
+      nic: "",
+      info: "",
+      other: "",
     },
     []
   );
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Request to join");
+    setPopUp("confirm");
+  };
 
   const handleSubmit = (evt) => {
     console.log(requestData);
-    evt.preventDefault();
-    joinRequest(requestData).then((response) => {   
+    // evt.preventDefault();
+    joinRequest(requestData).then((response) => {
       if (response.status === 200) {
         console.log(response.data);
+        if (response.data === "You have already an account!") {
+          setPopUp("failed");
+        } else if (response.data === "You have already pending request!") {
+          setPopUp("failed");
+        } else {
+          setPopUp("success");
+        }
       } else {
-        console.log("Something went wrong");
+        console.log("Something went wrong!");
+        setPopUp("failed");
       }
+      setMessage(response.data);
     });
   };
 
@@ -49,7 +74,7 @@ export default function SignUp() {
         <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
           <div className="card h-100" id="contentcard">
             <div className="card-body">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={confirm} method="post">
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <h3 className="mb-4">Member Registration</h3>
@@ -66,6 +91,7 @@ export default function SignUp() {
                         name="firstName"
                         value={requestData.firstName}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -81,6 +107,7 @@ export default function SignUp() {
                         name="lastName"
                         value={requestData.lastName}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -96,6 +123,8 @@ export default function SignUp() {
                         name="email"
                         value={requestData.email}
                         onChange={handleChange}
+                        required
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                       />
                     </div>
                   </div>
@@ -111,6 +140,8 @@ export default function SignUp() {
                         name="phoneNumber"
                         value={requestData.phoneNumber}
                         onChange={handleChange}
+                        pattern="^(?:7|0|(?:\+94))[0-9]{9,10}$"
+                        required
                       />
                     </div>
                   </div>
@@ -126,6 +157,7 @@ export default function SignUp() {
                         name="district"
                         value={requestData.district}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -141,6 +173,7 @@ export default function SignUp() {
                         name="address"
                         value={requestData.address}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -156,6 +189,7 @@ export default function SignUp() {
                         name="universityCollege"
                         value={requestData.universityCollege}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -171,6 +205,8 @@ export default function SignUp() {
                         name="nic"
                         value={requestData.nic}
                         onChange={handleChange}
+                        required
+                        pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$"
                       />
                     </div>
                   </div>
@@ -241,11 +277,11 @@ export default function SignUp() {
                       </Link>
 
                       <button
-                        type="button"
+                        type="submit"
                         id="submit"
                         name="submit"
                         class="btn btn-secondary btn-sm"
-                        onClick={handleSubmit}
+                        // onClick=
                       >
                         Submit
                       </button>
@@ -257,6 +293,19 @@ export default function SignUp() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

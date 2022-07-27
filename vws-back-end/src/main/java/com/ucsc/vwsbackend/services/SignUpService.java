@@ -31,7 +31,7 @@ public class SignUpService {
             return "You have already pending request!";
         }else{
             JoinRequest success=joinRequestRepository.save(joinRequest);
-            return success.getFirstName()+", your request sent successfully!";
+            return "Your request sent successfully!";
         }
 
 
