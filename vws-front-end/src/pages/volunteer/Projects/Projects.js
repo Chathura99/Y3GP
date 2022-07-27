@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import Table from "../../../utilities/Table/Table";
-import "./Projects.css";
+import "./Projects.css"
 
 export default function Projects() {
     const [ProjectsData, setProjectsData] = useState([
@@ -16,7 +16,7 @@ export default function Projects() {
               type="button"
               id="submit"
               name="submit"
-              className="btn btn-primary p-1"
+              className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
               // onClick={handleSubmit}
@@ -37,7 +37,7 @@ export default function Projects() {
               type="button"
               id="submit"
               name="submit"
-              className="btn btn-primary p-1"
+              className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25-green,#BE4D25-red
               // onClick={handleSubmit}
