@@ -5,6 +5,16 @@ import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import MidFormPopUp from "../../../utilities/PopUps/MidFormPopUp";
 
 export default function ProposedProject() {
+  useEffect(() => {
+    checkValidate();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
   const [proposedProjectData, setProposedProjectData] = useState([
     {
       projectName: "Adurata Eliyak",
@@ -63,10 +73,9 @@ export default function ProposedProject() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
+                <div className="row gutters "></div>
                 <div className="row gutters ">
-                </div>
-                <div className="row gutters ">
-                <Table
+                  <Table
                     rows={proposedProjectData}
                     headCells={proposedProjectTableHead}
                     tableName={"Proposed Projects"}
@@ -81,8 +90,10 @@ export default function ProposedProject() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <ConfirmPopUp /><br></br>
-                <TopFormPopUp /><br></br>
+                <ConfirmPopUp />
+                <br></br>
+                <TopFormPopUp />
+                <br></br>
                 <MidFormPopUp />
               </div>
             </div>

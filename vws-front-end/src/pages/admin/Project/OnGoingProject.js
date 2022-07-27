@@ -3,6 +3,16 @@ import { LineChart } from "./../../../utilities/Charts/LineChart";
 import Table from "../../../utilities/Table/Table";
 
 export default function OnGoingProject() {
+  useEffect(() => {
+    checkValidate();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
   const [onGoingProjectData, setOnGoingProjectData] = useState([
     {
       projectId: "P001",

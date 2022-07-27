@@ -4,6 +4,16 @@ import { LineChart } from "./../../../utilities/Charts/LineChart";
 import Table from "../../../utilities/Table/Table";
 
 export default function CurrentUser() {
+  useEffect(() => {
+    checkValidate();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
   const [previousEventData, setPreviousEventData] = useState([
     {
       userID: "E001",

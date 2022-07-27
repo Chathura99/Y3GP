@@ -80,6 +80,7 @@ export default function HomePage() {
   ]);
 
   useEffect(() => {
+    checkValidate();
     getRequest();
   }, []);
 
@@ -87,6 +88,13 @@ export default function HomePage() {
     const res = await getJoinRequest();
     console.log(res.data);
     // setJoinRequestsData(res.data);
+  };
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
   };
 
   return (
