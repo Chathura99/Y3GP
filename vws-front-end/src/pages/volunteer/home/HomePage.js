@@ -4,6 +4,7 @@ import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
+import Card from "react-bootstrap/Card";
 
 export default function HomePage() {
   const [upcomingEventsData, setUpComingEventsData] = useState([
@@ -26,7 +27,7 @@ export default function HomePage() {
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Accepted
+          View Details
         </button>
       ),
     },
@@ -45,11 +46,11 @@ export default function HomePage() {
           id="submit"
           name="submit"
           className="btn p-1"
-          style={{backgroundColor:"#BE4D25",border:"none"}}
+          style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Rejected
+          View Details
         </button>
       ),
     },
@@ -170,6 +171,33 @@ export default function HomePage() {
                 <div className="row gutters ">
                   <h5>Announcements</h5>
                   {/* <Table rows={tableData} /> */}
+                  <Card style={{ width: "50rem",height: "9rem", backgroundColor: "#F1F1F1",margin:10,borderRadius:10 }}>
+        <Card.Body>
+          <Card.Title id='day' style={{ color: "black",fontSize:12 }}>C.S. Dissanayake</Card.Title>
+          <Card.Subtitle id='month' style={{color: "black",fontSize:7,marginTop:-10}}>ADMIN  25-10-2022    19:55</Card.Subtitle>
+          <Card.Text id='event_name' style={{color: "black",fontSize:15,marginTop:10}}>
+            MATH LAB PROGRAM
+          </Card.Text>
+          <Card.Text id='place' style={{color: "black",fontSize:10,marginTop:-10}}>
+          Ut enim labore et dolore magna aliqua. Ut enim aUt enim labore et dolore magna aliqua. Ut enim
+ ad minim veniam, quis nostrud .d minim veniam, quis nostrud . 
+            </Card.Text>
+        </Card.Body>
+      </Card>
+
+      <Card style={{ width: "50rem",height: "9rem", backgroundColor: "#F1F1F1",marginTop:5, margin:10,borderRadius:10 }}>
+        <Card.Body>
+          <Card.Title id='day' style={{ color: "black",fontSize:12 }}>R.R. Ramanayake</Card.Title>
+          <Card.Subtitle id='month' style={{color: "black",fontSize:7,marginTop:-10}}>PC  21-10-2022     09:15</Card.Subtitle>
+          <Card.Text id='event_name' style={{color: "black",fontSize:15,marginTop:10}}>
+            MATH LAB PROGRAM
+          </Card.Text>
+          <Card.Text id='place' style={{color: "black",fontSize:10,marginTop:-10}}>
+          Ut enim labore et dolore magna aliqua. Ut enim aUt enim labore et dolore magna aliqua. Ut enim
+ ad minim veniam, quis nostrud .d minim veniam, quis nostrud . 
+            </Card.Text>
+        </Card.Body>
+      </Card>
                 </div>
               </div>
             </div>
@@ -211,6 +239,7 @@ export default function HomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
+                <h5>Upcoming Events</h5>
                 <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
               </div>
             </div>
