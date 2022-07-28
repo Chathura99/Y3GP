@@ -11,7 +11,6 @@ import {
 import "./loginPage.css";
 import { userLogin } from "../../../services/authenticationService";
 import { fetchUserData } from "../../../services/authenticationService";
-import { Alert, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const LoginPage = ({ loading, error, ...props }) => {
@@ -30,13 +29,7 @@ const LoginPage = ({ loading, error, ...props }) => {
   const userData = async () => {
     const res = await fetchUserData();
     var user = res.data.roles[0].roleCode;
-    // alert(
-    //   "Welcome " +
-    //     res.data.firstName +
-    //     " you login as " +
-    //     res.data.roles[0].roleCode +
-    //     "!"
-    // );
+
     if (user === "PROJECT_COORDINATOR") {
       window.location.href = "/pchome";
     } else if (user === "ADMIN") {
@@ -62,7 +55,8 @@ const LoginPage = ({ loading, error, ...props }) => {
           props.setUser(response.data);
           userData();
         } else {
-          props.loginFailure("1.Something Wrong!Please Try Again");
+          setMessage("Something Wrong!Please Try Again!");
+          setPopUp("failed");
         }
       })
       .catch((err) => {
@@ -80,7 +74,8 @@ const LoginPage = ({ loading, error, ...props }) => {
               setPopUp("failed");
           }
         } else {
-          props.loginFailure("3.Something Wrong!Please Try Again");
+          setMessage("Something Wrong!Please Try Again!");
+          setPopUp("failed");
         }
       });
     //console.log("Loading again",loading);
@@ -96,8 +91,8 @@ const LoginPage = ({ loading, error, ...props }) => {
   };
 
   return (
-    <>      
-    <Loading change={[popup]}/>
+    <>
+      <Loading change={[popup]} />
       <div className="global-container">
         <div className="login-form">
           <div
@@ -124,7 +119,6 @@ const LoginPage = ({ loading, error, ...props }) => {
               <h6 className="card-title" style={{ marginTop: 20 }}>
                 Welcome to Sasnaka Sansada!
               </h6>
-              {/* onsubmit then, call to {handleSubmit}*/}
               <form
                 className="my-login-validation"
                 onSubmit={handleSubmit}
@@ -190,15 +184,6 @@ const LoginPage = ({ loading, error, ...props }) => {
                 <div className="form-group m-0">
                   <button type="submit" id="logbtn">
                     <b>LOGIN</b>
-                    {/* {loading && (
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
-                    />
-                  )} */}
                   </button>
                 </div>
                 <div className="sign-up">
@@ -208,11 +193,6 @@ const LoginPage = ({ loading, error, ...props }) => {
                   </Link>
                   Here
                 </div>
-                {/* {error && (
-                <Alert style={{ marginTop: "20px" }} variant="danger">
-                  {error}
-                </Alert>
-              )} */}
               </form>
             </div>
           </div>
