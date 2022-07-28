@@ -259,3 +259,6 @@ a[data-toggle="collapse"] {
 .linkdark{
   color: #000!important;
 }
+#logout:hover{
+  cursor: pointer;
+}
