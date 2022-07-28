@@ -31,13 +31,12 @@ import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 import SignUp from "./pages/guestUser/SignUp/SignUp";
 import RequestNewEvent from "./pages/guestUser/RequestNewEvent/RequestNewEvent";
-import Projects from './pages/volunteer/Projects/Projects';
-import OngoingEvents from './pages/volunteer/Event/OngoingEvents';
-import PreviousEvents from './pages/volunteer/Event/PreviousEvents';
-import UpcomingEvents from './pages/volunteer/MyEvents/UpcomingEvents';
-import CompletedEvents from './pages/volunteer/MyEvents/CompletedEvents';
-import CoordinatedEvents from './pages/volunteer/MyEvents/CoordinatedEvents';
-
+import Projects from "./pages/volunteer/Projects/Projects";
+import OngoingEvents from "./pages/volunteer/Event/OngoingEvents";
+import PreviousEvents from "./pages/volunteer/Event/PreviousEvents";
+import UpcomingEvents from "./pages/volunteer/MyEvents/UpcomingEvents";
+import CompletedEvents from "./pages/volunteer/MyEvents/CompletedEvents";
+import CoordinatedEvents from "./pages/volunteer/MyEvents/CoordinatedEvents";
 
 // Project Coordinator
 import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
@@ -51,6 +50,7 @@ import PcVolunteers from "./pages/projectCoordinator/Volunteers/volunteer";
 import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcements";
 import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
+import Loading from "./utilities/Loading/Loading";
 
 function App() {
   const [userrole, setUserRoles] = useState([]);
@@ -99,7 +99,11 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Guestpage />}></Route>
             <Route exact path="/signup" element={<SignUp />}></Route>
-            <Route exact path="/requestnewevent" element={<RequestNewEvent />}></Route>
+            <Route
+              exact
+              path="/requestnewevent"
+              element={<RequestNewEvent />}
+            ></Route>
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
             <Route path="/viewprofile" element={<Profile />}></Route>
@@ -132,39 +136,72 @@ function App() {
             ></Route>
             <Route path="/admincurrentuser" element={<CurrentUser />}></Route>
             <Route path="/adminnewuser" element={<NewUser />}></Route>
+            <Route path="/loading" element={<Loading />}></Route>
 
             {/* project coordinator part */}
             <Route path="/pchome" element={<PcHomePage />}></Route>
 
-          {/* project coordinator part */}
-          <Route path="/pchome" element={<PcHomePage />}></Route>
-          <Route path="/pcongoingproject" element={<PcOngoingProject />}></Route>
-          <Route path="/pcmyproject" element={<PcMyProject />}></Route>
-          <Route path="/pcupcomingevents" element={<PcUpcomingEvents />}></Route>
-          <Route path="/pcpreviousevents" element={<PcPreviousEvents />}></Route>
-          <Route path="/pccompletedevents" element={<PcCompletedEvents />}></Route>
-          <Route path="/pcmyevents" element={<PcMyEvents />}></Route>
-          <Route path="/pccoordinatedevents" element={<PcCoordinatedEvents />}></Route>
-          <Route path="/pcvolunteers" element={<PcVolunteers />}></Route>
-          <Route path="/pcannouncements" element={<PcAnnouncements />}></Route>
-          <Route path="/pcforum" element={<PcForum />}></Route>
-          <Route path="/pcsummary" element={<PcSummary />}></Route>
+            {/* project coordinator part */}
+            <Route path="/pchome" element={<PcHomePage />}></Route>
+            <Route
+              path="/pcongoingproject"
+              element={<PcOngoingProject />}
+            ></Route>
+            <Route path="/pcmyproject" element={<PcMyProject />}></Route>
+            <Route
+              path="/pcupcomingevents"
+              element={<PcUpcomingEvents />}
+            ></Route>
+            <Route
+              path="/pcpreviousevents"
+              element={<PcPreviousEvents />}
+            ></Route>
+            <Route
+              path="/pccompletedevents"
+              element={<PcCompletedEvents />}
+            ></Route>
+            <Route path="/pcmyevents" element={<PcMyEvents />}></Route>
+            <Route
+              path="/pccoordinatedevents"
+              element={<PcCoordinatedEvents />}
+            ></Route>
+            <Route path="/pcvolunteers" element={<PcVolunteers />}></Route>
+            <Route
+              path="/pcannouncements"
+              element={<PcAnnouncements />}
+            ></Route>
+            <Route path="/pcforum" element={<PcForum />}></Route>
+            <Route path="/pcsummary" element={<PcSummary />}></Route>
 
-
-
-          {/* volunteer part */}
-          <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
-          <Route path="/volunteerProjects" element={<Projects />}></Route>
-          <Route path="/volunteerOngoingEvents" element={<OngoingEvents />}></Route>
-          <Route path="/volunteerPreviousEvents" element={<PreviousEvents />}></Route>
-          <Route path="/volunteerUpcomingEvents" element={<UpcomingEvents />}></Route>
-          <Route path="/volunteerCompletedEvents" element={<CompletedEvents />}></Route>
-          <Route path="/volunteerCoordinatedEvents" element={<CoordinatedEvents />}></Route>
-          
-
-        </Routes>
-      </BrowserRouter>
-    </div>
+            {/* volunteer part */}
+            <Route
+              path="/volunteerhome"
+              element={<VolunteerHomePage />}
+            ></Route>
+            <Route path="/volunteerProjects" element={<Projects />}></Route>
+            <Route
+              path="/volunteerOngoingEvents"
+              element={<OngoingEvents />}
+            ></Route>
+            <Route
+              path="/volunteerPreviousEvents"
+              element={<PreviousEvents />}
+            ></Route>
+            <Route
+              path="/volunteerUpcomingEvents"
+              element={<UpcomingEvents />}
+            ></Route>
+            <Route
+              path="/volunteerCompletedEvents"
+              element={<CompletedEvents />}
+            ></Route>
+            <Route
+              path="/volunteerCoordinatedEvents"
+              element={<CoordinatedEvents />}
+            ></Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </MuiThemeProvider>
   );
 }
