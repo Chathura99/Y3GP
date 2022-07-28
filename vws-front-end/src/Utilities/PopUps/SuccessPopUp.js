@@ -1,26 +1,29 @@
 import React from "react";
 
-export default function ConfirmPopUp(props) {
+export default function SuccessPopUp(props) {
   return (
     <>
       <div
-        class="modal fade confirm show"
+        className="modal fade success show"
         tabindex="-1"
         role="dialog"
         aria-labelledby="mySmallModalLabel"
         aria-hidden="true"
         style={{ display: "block" }}
       >
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content  justify-content-center">
-            <div class="modal-header">
-              <h5 class="modal-title font-weight-bold" id="exampleModalLabel">
-                Are You Sure?
+        <div className="modal-dialog modal-sm">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5
+                className="modal-title font-weight-bold "
+                id="exampleModalLabel"
+              >
+                Success!
               </h5>
 
               <button
                 type="button"
-                class="close"
+                className="close"
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={props.closePopUp}
@@ -29,12 +32,13 @@ export default function ConfirmPopUp(props) {
               </button>
             </div>
             <small className="text-center">{props.message}</small>
-            <div class="modal-footer justify-content-center">
+
+            <div className="modal-footer justify-content-center">
                 <button
                   type="button"
-                  class="btn pl-4 pr-4 pt-1 pb-1"
-                  style={{ backgroundColor: "#2596be" }}
-                  onClick={props.handleSubmit}
+                  className="btn pl-4 pr-4 pt-1 pb-1"
+                  style={{ backgroundColor: "#96BE25" }}
+                  onClick={props.closePopUp}
                 >
                   OK
                 </button>
@@ -42,7 +46,8 @@ export default function ConfirmPopUp(props) {
           </div>
         </div>
       </div>
-      <div class="modal-backdrop fade show"></div>
+      <div class="modal-backdrop fade show"
+      ></div>
     </>
   );
 }

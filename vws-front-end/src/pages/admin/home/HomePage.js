@@ -5,6 +5,7 @@ import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import Loading from "../../../utilities/Loading/Loading";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([

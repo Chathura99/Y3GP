@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import Loading from "../../../utilities/Loading/Loading";
 
 import {
   authenticate,
@@ -9,10 +11,15 @@ import {
 import "./loginPage.css";
 import { userLogin } from "../../../services/authenticationService";
 import { fetchUserData } from "../../../services/authenticationService";
-import { Alert, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const LoginPage = ({ loading, error, ...props }) => {
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  const closePopUp = () => {
+    setPopUp("");
+  };
   // create "values" objecct
   const [values, setValues] = useState({
     userName: "",
@@ -22,13 +29,7 @@ const LoginPage = ({ loading, error, ...props }) => {
   const userData = async () => {
     const res = await fetchUserData();
     var user = res.data.roles[0].roleCode;
-    alert(
-      "Welcome " +
-        res.data.firstName +
-        " you login as " +
-        res.data.roles[0].roleCode +
-        "!"
-    );
+
     if (user === "PROJECT_COORDINATOR") {
       window.location.href = "/pchome";
     } else if (user === "ADMIN") {
@@ -54,7 +55,8 @@ const LoginPage = ({ loading, error, ...props }) => {
           props.setUser(response.data);
           userData();
         } else {
-          props.loginFailure("1.Something Wrong!Please Try Again");
+          setMessage("Something Wrong!Please Try Again!");
+          setPopUp("failed");
         }
       })
       .catch((err) => {
@@ -62,13 +64,18 @@ const LoginPage = ({ loading, error, ...props }) => {
           switch (err.response.status) {
             case 401:
               console.log("401 status");
-              props.loginFailure("Authentication Failed.Bad Credentials");
+              // props.loginFailure("Authentication Failed.Bad Credentials");
+              setMessage("Authentication Failed.Bad Credentials");
+              setPopUp("failed");
               break;
             default:
-              props.loginFailure("2.Something Wrong!Please Try Again!");
+              // props.loginFailure("2.Something Wrong!Please Try Again!");
+              setMessage("Something Wrong!Please Try Again!");
+              setPopUp("failed");
           }
         } else {
-          props.loginFailure("3.Something Wrong!Please Try Again");
+          setMessage("Something Wrong!Please Try Again!");
+          setPopUp("failed");
         }
       });
     //console.log("Loading again",loading);
@@ -84,126 +91,117 @@ const LoginPage = ({ loading, error, ...props }) => {
   };
 
   return (
-    <div className="global-container">
-      <div className="login-form">
-        <div
-          style={{
-            backgroundColor: "rgba(255,255,255,0.2)",
-            borderRadius: 25,
-            marginTop: 110,
-            marginBottom: 186,
-          }}
-        >
-          <div className="card-body">
-            <h2 className="card-title">Login</h2>
-            <hr
-              style={{
-                position: "absolute",
-                background: "white",
-                textAlign: "left",
-                height: "1.5px",
-                width: 80,
-                marginTop: -10,
-              }}
-            />
+    <>
+      <Loading change={[popup]} time={200}/>
+      <div className="global-container">
+        <div className="login-form">
+          <div
+            style={{
+              backgroundColor: "rgba(255,255,255,0.2)",
+              borderRadius: 25,
+              marginTop: 110,
+              marginBottom: 186,
+            }}
+          >
+            <div className="card-body">
+              <h2 className="card-title">Login</h2>
+              <hr
+                style={{
+                  position: "absolute",
+                  background: "white",
+                  textAlign: "left",
+                  height: "1.5px",
+                  width: 80,
+                  marginTop: -10,
+                }}
+              />
 
-            <h6 className="card-title" style={{ marginTop: 20 }}>
-              Welcome to Sasnaka Sansada!
-            </h6>
-            {/* onsubmit then, call to {handleSubmit}*/}
-            <form
-              className="my-login-validation"
-              onSubmit={handleSubmit}
-              noValidate={false}
-            >
-              <div className="form-group">
-                <label htmlFor="email" className="card-title">
-                  User Name
-                </label>
-                <input
-                  id="username"
-                  type="text"
-                  className="form-control"
-                  minLength={4}
-                  value={values.userName}
-                  onChange={handleChange}
-                  name="userName"
-                  placeholder="Enter your username"
-                  required
-                />
-
-                <div className="invalid-feedback">UserId is invalid</div>
-              </div>
-
-              <div className="form-group">
-                <label className="card-title">Password</label>
-                <input
-                  id="password"
-                  type="password"
-                  className="form-control"
-                  minLength={8}
-                  value={values.password}
-                  onChange={handleChange}
-                  name="password"
-                  placeholder="Enter your password"
-                  required
-                />
-
-                <div className="invalid-feedback">Password is required</div>
-
-                <div>
-                  <br></br>
-                </div>
-
-                <div className="custom-control custom-checkbox d-flex justify-content-between">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="customCheck1"
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor="customCheck1"
-                  >
-                    <div className="card-title">Remember me</div>
+              <h6 className="card-title" style={{ marginTop: 20 }}>
+                Welcome to Sasnaka Sansada!
+              </h6>
+              <form
+                className="my-login-validation"
+                onSubmit={handleSubmit}
+                noValidate={false}
+              >
+                <div className="form-group">
+                  <label htmlFor="email" className="card-title">
+                    User Name
                   </label>
-                  <Link to="/forgotpassword">
-                    <p className="card-title forgotpw">Forgot Password?</p>
-                  </Link>
-                </div>
-              </div>
+                  <input
+                    id="username"
+                    type="text"
+                    className="form-control"
+                    minLength={4}
+                    value={values.userName}
+                    onChange={handleChange}
+                    name="userName"
+                    placeholder="Enter your username"
+                    required
+                  />
 
-              <div className="form-group m-0">
-                <button type="submit" id="logbtn" >
-                  <b>LOGIN</b>
-                  {loading && (
-                    <Spinner
-                      as="span"
-                      animation="border"
-                      size="sm"
-                      role="status"
-                      aria-hidden="true"
+                  <div className="invalid-feedback">UserId is invalid</div>
+                </div>
+
+                <div className="form-group">
+                  <label className="card-title">Password</label>
+                  <input
+                    id="password"
+                    type="password"
+                    className="form-control"
+                    minLength={8}
+                    value={values.password}
+                    onChange={handleChange}
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+
+                  <div className="invalid-feedback">Password is required</div>
+
+                  <div>
+                    <br></br>
+                  </div>
+
+                  <div className="custom-control custom-checkbox d-flex justify-content-between">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck1"
                     />
-                  )}
-                </button>
-              </div>
-              <div className="sign-up">
-                New to Sasnaka?
-                <Link to="/signUp" className="sign-up">
-                  <b>Register</b>
-                </Link>
-                Here
-              </div>
-              {error && (
-                <Alert style={{ marginTop: "20px" }} variant="danger">
-                  {error}
-                </Alert>
-              )}
-            </form>
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck1"
+                    >
+                      <div className="card-title">Remember me</div>
+                    </label>
+                    <Link to="/forgotpassword">
+                      <p className="card-title forgotpw">Forgot Password?</p>
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="form-group m-0">
+                  <button type="submit" id="logbtn">
+                    <b>LOGIN</b>
+                  </button>
+                </div>
+                <div className="sign-up">
+                  New to Sasnaka?
+                  <Link to="/signUp" className="sign-up">
+                    <b>Register</b>
+                  </Link>
+                  Here
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+    </>
   );
 };
 
