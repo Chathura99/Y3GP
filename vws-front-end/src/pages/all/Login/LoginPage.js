@@ -92,7 +92,7 @@ const LoginPage = ({ loading, error, ...props }) => {
 
   return (
     <>
-      <Loading change={[popup]} />
+      <Loading change={[popup]} time={200}/>
       <div className="global-container">
         <div className="login-form">
           <div

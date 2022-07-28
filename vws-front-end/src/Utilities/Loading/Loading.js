@@ -7,7 +7,7 @@ export default function Loading(props) {
         setLoading(true);
         setTimeout(() => {
           setLoading(false);
-        }, 500);
+        }, props.time);
       },props.change);
   return (
     <>

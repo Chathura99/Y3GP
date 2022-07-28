@@ -75,7 +75,7 @@ export default function SignUp() {
 
   return (
     <>
-    <Loading change={[popup]}/>
+    <Loading change={[popup]} time={200}/>
       <div className="container-fluid calculated-bodywidth">
         <div className="row gutters mt-4">
           <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
