@@ -1,4 +1,6 @@
 import React, { useEffect,useState } from 'react';
+import MidFormPopUp from '../../../utilities/PopUps/MidFormPopUp';
+import TopFormPopUp from '../../../utilities/PopUps/TopFormPopUp';
 import Table from "../../../utilities/Table/Table";
 import "./Projects.css"
 
@@ -17,6 +19,8 @@ export default function Projects() {
               id="submit"
               name="submit"
               className="btn p-1"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
               // onClick={handleSubmit}
@@ -37,6 +41,8 @@ export default function Projects() {
               type="button"
               id="submit"
               name="submit"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25-green,#BE4D25-red
@@ -81,6 +87,9 @@ export default function Projects() {
                                   <button id='proposenewbtn'>+ Propose New Project </button>
                                 </a>
                                 <Table rows={ProjectsData} headCells={ProjectsHeadings} />
+                                <TopFormPopUp />
+                                
+                                
                             </div>
                         </div>
                     </div>
