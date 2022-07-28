@@ -52,6 +52,7 @@ import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcemen
 import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
 
+
 function App() {
   const [userrole, setUserRoles] = useState([]);
   const [userId, setUserId] = useState(null);
@@ -92,6 +93,7 @@ function App() {
   });
 
   return (
+    
     <MuiThemeProvider theme={theme}>
       <div className="App">
         <BrowserRouter>
@@ -155,7 +157,9 @@ function App() {
           {/* volunteer part */}
           <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
           <Route path="/volunteerProjects" element={<Projects />}></Route>
-          <Route path="/volunteerOngoingEvents" element={<OngoingEvents />}></Route>
+          <Route path="/volunteerOngoingEvents" element={<OngoingEvents />}>
+          
+          </Route>
           <Route path="/volunteerPreviousEvents" element={<PreviousEvents />}></Route>
           <Route path="/volunteerUpcomingEvents" element={<UpcomingEvents />}></Route>
           <Route path="/volunteerCompletedEvents" element={<CompletedEvents />}></Route>
