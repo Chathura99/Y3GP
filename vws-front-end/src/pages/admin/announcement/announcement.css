@@ -1,0 +1,31 @@
+#profielimg{
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+#details{
+    text-align: left;
+    font-size: smaller;
+}
+#details a.nav-link{
+    padding: 0px!important;
+}
+#edit{
+    font-size: 30px;
+}
+#head{
+    padding: 2px;
+}
+#body{
+    background-color:rgb(246, 246, 246);
+    color: black;
+    font-size: small;
+}
+.card{
+border-radius: 10px!important;
+}
+#file{
+    width:16px;
+    height: 20px;
+}
