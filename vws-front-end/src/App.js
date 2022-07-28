@@ -63,11 +63,11 @@ function App() {
     const res = await fetchUserData();
     setUserId(res.data.id);
     setUserRoles(res.data.roles[0].roleCode);
-    console.log(userId, userrole);
+    // console.log(userId, userrole);
   };
 
   function sidebar() {
-    console.log("current URL :", window.location.href);
+    // console.log("current URL :", window.location.href);
     // "http://localhost:3000/signUp"
     if (!(window.location.href === "http://localhost:3000/login")) {
       if (localStorage.getItem("USER_KEY")) {
