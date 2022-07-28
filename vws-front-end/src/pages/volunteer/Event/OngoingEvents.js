@@ -111,7 +111,7 @@ export default function OngoingEvents() {
         <Modal.Body>
         <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31627.51292771125!2d80.09954441535213!3d7.743159642812479!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afcd5e12ad2b2e5%3A0x6e1f23e96c120ed3!2zTWFoYXNlbiBOYXRpb25hbCBTY2hvb2wg4La44LeE4LeD4LeZ4Lax4LeKIOC2ouC3j-C2reC3kuC2miDgtrTgt4_gt4Pgtr0!5e0!3m2!1sen!2slk!4v1658951746159!5m2!1sen!2slk"
-        width="460"
+        width="461"
         height="450"
         style={{ border: "0" }}
         allowfullscreen=""
