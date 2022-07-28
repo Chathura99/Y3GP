@@ -180,7 +180,7 @@ export default function HomePage() {
           </Card.Text>
           <Card.Text id='place' style={{color: "black",fontSize:10,marginTop:-10}}>
           Ut enim labore et dolore magna aliqua. Ut enim aUt enim labore et dolore magna aliqua. Ut enim
- ad minim veniam, quis nostrud .d minim veniam, quis nostrud . 
+ ad minim veniam, quis nostrud .d minim veniam, quis nostrud. 
             </Card.Text>
         </Card.Body>
       </Card>
