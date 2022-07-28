@@ -52,6 +52,7 @@ import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import Loading from "./utilities/Loading/Loading";
 
+
 function App() {
   const [userrole, setUserRoles] = useState([]);
   const [userId, setUserId] = useState(null);
@@ -92,6 +93,7 @@ function App() {
   });
 
   return (
+    
     <MuiThemeProvider theme={theme}>
       <div className="App">
         <BrowserRouter>
@@ -173,35 +175,23 @@ function App() {
             <Route path="/pcforum" element={<PcForum />}></Route>
             <Route path="/pcsummary" element={<PcSummary />}></Route>
 
-            {/* volunteer part */}
-            <Route
-              path="/volunteerhome"
-              element={<VolunteerHomePage />}
-            ></Route>
-            <Route path="/volunteerProjects" element={<Projects />}></Route>
-            <Route
-              path="/volunteerOngoingEvents"
-              element={<OngoingEvents />}
-            ></Route>
-            <Route
-              path="/volunteerPreviousEvents"
-              element={<PreviousEvents />}
-            ></Route>
-            <Route
-              path="/volunteerUpcomingEvents"
-              element={<UpcomingEvents />}
-            ></Route>
-            <Route
-              path="/volunteerCompletedEvents"
-              element={<CompletedEvents />}
-            ></Route>
-            <Route
-              path="/volunteerCoordinatedEvents"
-              element={<CoordinatedEvents />}
-            ></Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
+
+
+          {/* volunteer part */}
+          <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
+          <Route path="/volunteerProjects" element={<Projects />}></Route>
+          <Route path="/volunteerOngoingEvents" element={<OngoingEvents />}>
+          
+          </Route>
+          <Route path="/volunteerPreviousEvents" element={<PreviousEvents />}></Route>
+          <Route path="/volunteerUpcomingEvents" element={<UpcomingEvents />}></Route>
+          <Route path="/volunteerCompletedEvents" element={<CompletedEvents />}></Route>
+          <Route path="/volunteerCoordinatedEvents" element={<CoordinatedEvents />}></Route>
+          
+
+        </Routes>
+      </BrowserRouter>
+    </div>
     </MuiThemeProvider>
   );
 }
