@@ -70,6 +70,12 @@ export default function CoordinatedEvents() {
     
       ]);
 
+      const [pieChartData, setPieChartData] = useState([
+        ["Event", "Completed precentage"],
+        ["Ganitha Saviya", 60],
+        ["Re-green Earth", 40],
+      ]);
+
     useEffect(() => {
         checkValidate();
     }, []);
@@ -89,8 +95,8 @@ export default function CoordinatedEvents() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                            <h5>Event Progres</h5>
-                                <PieChart />
+                            <h5>Coordinated Event Progres</h5>
+                                <PieChart data={pieChartData}/>
                             </div>
                         </div>
                     </div>

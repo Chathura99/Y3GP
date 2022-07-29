@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
@@ -56,7 +56,29 @@ export default function HomePage() {
       ),
     },
   ]);
+  const [donutChartData, setDonutChartData] = useState([
+    ["Project", "Count"],
+    ["Ganitha Saviya", 11],
+    ["Re-Green Earth", 2],
+    
+  ]);
 
+  const [pieChartData, setPieChartData] = useState([
+    ["Task", "votes"],
+    ["Ganitha Saviya", 60],
+    ["Re-green Earth", 40],
+  ]);
+
+  useEffect(() => {
+    checkValidate();
+}, []);
+
+const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+        window.location.href = "/";
+    }
+};
   const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
     { id: "event_id", label: "Event ID" },
     { id: "category", label: "Category" },
@@ -303,7 +325,7 @@ export default function HomePage() {
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <DonutChart />
+                  <DonutChart data={donutChartData}/>
                 </div>
               </div>
             </div>
@@ -316,12 +338,12 @@ export default function HomePage() {
               <div className="card-body ">
                 <div className="row gutters ">
                   <h3 className="ml-3">
-                    <h5>Poll Results</h5>
+                    <h5>Coordinated Event Progress</h5>
                     <h6>Title : Event for september</h6>
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <PieChart />
+                  <PieChart data={pieChartData}/>
                 </div>
               </div>
             </div>
