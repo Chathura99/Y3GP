@@ -84,16 +84,30 @@ export default function HomePage() {
     { id: "status", label: "STATUS" },
   ]);
 
+  const [pieChartData, setPieChartData] = useState([
+    ["Task", "votes"],
+    ["Lohithuthpada", 11],
+    ["Re-green Earth", 2],
+  ]);
+
+  const [donutChartData, setDonutChartData] = useState([
+    ["Project", "Count"],
+    ["Ganitha Saviya", 11],
+    ["Re-Green Earth", 2],
+    ["Lohithuppada", 2],
+    ["Scholarship", 2],
+    ["Sarasavi Piya", 7],
+  ]);
+
   useEffect(() => {
     checkValidate();
     getRequest();
-  },[]);
+  }, []);
 
   const getRequest = async () => {
     const res = await getJoinRequest();
     console.log(...res.data);
-    // find mistake
-    setJoinRequestsData([...joinRequestsData, res.data]);
+    setJoinRequestsData(res.data[0]);
     console.log(joinRequestsData);
   };
 
@@ -224,7 +238,7 @@ export default function HomePage() {
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <DonutChart />
+                  <DonutChart data={donutChartData} />
                 </div>
               </div>
             </div>
@@ -242,7 +256,7 @@ export default function HomePage() {
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <PieChart />
+                  <PieChart data={pieChartData} />
                 </div>
               </div>
             </div>
