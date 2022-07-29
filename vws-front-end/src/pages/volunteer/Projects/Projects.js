@@ -82,10 +82,10 @@ export default function Projects() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                                <h5>Ongoing Events</h5>
-                                <a href="https://react.school" target="_blank">
-                                  <button id='proposenewbtn'>+ Propose New Project </button>
-                                </a>
+                                <h5>Ongoing Projects</h5>
+                                
+                                  <button id='proposenewbtn' data-toggle="modal" data-target="#exampleModalCenter">+ Propose New Project </button>
+                                
                                 <Table rows={ProjectsData} headCells={ProjectsHeadings} />
                                 <TopFormPopUp />
                                 

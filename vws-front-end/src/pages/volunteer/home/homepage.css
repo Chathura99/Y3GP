@@ -30,3 +30,36 @@
     margin-left: 30px;
   }
   
+  #profielimg{
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+#details{
+    text-align: left;
+    font-size: smaller;
+}
+#details a.nav-link{
+    padding: 0px!important;
+}
+#edit{
+    font-size: 30px;
+}
+#head{
+    padding: 2px;
+    border-radius: 15px 15px 0 0;
+}
+#body{
+    background-color:rgb(246, 246, 246);
+    color: black;
+    font-size: small;
+    border-radius:0 0 15px 15px;
+}
+.card{
+border-radius: 10px!important;
+}
+#file{
+    width:16px;
+    height: 20px;
+}

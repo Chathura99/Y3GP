@@ -3,7 +3,8 @@ import Table from "../../../utilities/Table/Table";
 
 // import Modal from 'react-bootstrap/Modal';
 import TopFormPopUp from '../../../utilities/PopUps/TopFormPopUp';
-import MapFormPopUp from '../../../utilities/PopUps/MapFormPopUp';
+import MapFormPopUp from './MapFormPopUp';
+
 
 
 export default function OngoingEvents() {
@@ -123,12 +124,12 @@ export default function OngoingEvents() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                            <h5>Ongoing Projects</h5>
+                            <h5>Ongoing Events</h5>
                             
                                 <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
-                                <MapFormPopUp />
-                                <TopFormPopUp />
                                 
+                                <TopFormPopUp />
+                                <MapFormPopUp />
                             </div>
                         </div>
                     </div>
