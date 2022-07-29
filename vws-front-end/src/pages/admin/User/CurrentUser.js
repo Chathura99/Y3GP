@@ -55,6 +55,23 @@ export default function CurrentUser() {
     { id: "district", label: "LOCATION" },
     { id: "status", label: "STATUS" },
   ]);
+
+  const [pieChartData,setPieChartData] = useState([
+    ["User", "Count"],
+    ["Volunteer", 750],
+    ["Project Coordinator", 21],
+    ["Admin", 2],
+  ]);
+
+  const [lineChartData,setLineChartData] = useState([
+    ["Month", "ADMIN", "Volunteer","Project Coordinator"],
+    ["Jan", 1, 400, 15],
+    ["Feb", 1, 420, 15],
+    ["Mar", 2, 420, 15],
+    ["Apr", 2, 480, 15],
+    ["May", 2, 500, 18],
+    ["Jun", 2, 520, 20],
+  ]);
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -62,9 +79,9 @@ export default function CurrentUser() {
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <div className="row gutters">Current User</div>
+                <div className="row gutters"><h5>Current User</h5></div>
                 <div className="row gutters ">
-                  <PieChart />
+                  <PieChart data={pieChartData}/>
                 </div>
               </div>
             </div>
@@ -74,10 +91,10 @@ export default function CurrentUser() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters ">
-                  <h3 className="ml-3">Title</h3>
+                  <h5 className="ml-3">User Growth</h5>
                 </div>
                 <div className="row gutters ">
-                  <LineChart />
+                  <LineChart data={lineChartData} />
                 </div>
               </div>
             </div>
