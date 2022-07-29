@@ -301,7 +301,7 @@ export default function EnhancedTable(props) {
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
   return (
-    <div class="container">
+    <div className="container">
       {/* heading */}
       {/* table name from main component */}
       <EnhancedTableToolbar
@@ -335,14 +335,16 @@ export default function EnhancedTable(props) {
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, Object.values(row)[0])}
+                    // onClick={(event) => handleClick(event, Object.values(row)[0])}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
                   >
-                    <TableCell padding="checkbox">
+                    <TableCell padding="checkbox"
+                    onClick={(event) => handleClick(event, Object.values(row)[0])}
+                    >
                       <Checkbox
                         checked={isItemSelected}
                         inputProps={{ "aria-labelledby": labelId }}

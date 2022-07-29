@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
 import { fetchUserData } from "../../../services/authenticationService";
+import { getProfile } from "../../../services/userService";
 
 export default function Profile() {
   const [userdata, setData] = useState([]);
@@ -8,17 +9,31 @@ export default function Profile() {
   const [profile, setProfile] = useState({
     firstName: "",
     email: "",
+    phoneNumber:"",
+    address:"",
+    universityCollege:"",
+
   });
 
   useEffect(() => {
-    userData();
+    userData(); 
   }, []);
 
   const userData = async () => {
     const res = await fetchUserData();
     setData(res.data);
     setUserRoles(res.data.roles);
+    getProfileData(res.data.id);
+    // console.log(res.data);
   };
+
+  const getProfileData = async (userId) => {
+    const res = await getProfile(userId);
+    setProfile(res.data);
+    // console.log(res.data);
+
+  };
+
 
   const handleChange = (e) => {
     e.persist();
@@ -63,7 +78,7 @@ export default function Profile() {
                     <h5 className="user-name">
                       {userdata && `${userdata.firstName} ${userdata.lastName}`}
                     </h5>
-                    <h6 className="user-email">email . . .</h6>
+                    <h6 className="user-email">{profile.email}</h6>
                   </div>
                   <div className="about">
                     <h5>About</h5>
@@ -72,7 +87,7 @@ export default function Profile() {
                       <div key={role.id}>
                         <h6>User ID : {role.id}</h6>
 
-                        <h6>{role.roleDescription} </h6>
+                        <h6>{role.roleCode} </h6>
                       </div>
                     ))}
                   </div>
@@ -128,6 +143,9 @@ export default function Profile() {
                           className="form-control"
                           id="phone"
                           placeholder="Enter phone number"
+                          value={profile.phoneNumber}
+                          name="phoneNumber"
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -138,47 +156,96 @@ export default function Profile() {
                         <input
                           type="url"
                           className="form-control"
-                          id="website"
+                          id="universityCollege"
                           placeholder="University or School"
+                          value={profile.universityCollege}
+                          name="universityCollege"
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
+
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="website">Home Address</label>
+                        <input
+                          type="url"
+                          className="form-control"
+                          id="Address"
+                          placeholder="Adrress"
+                          value={profile.address}
+                          name="address"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      
+                    </div>
+
+                    <div className="row gutters">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div className="text-center mt-3 ">
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          className="btn btn-secondary m-2"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          id="submit"
+                          name="submit"
+                          className="btn btn-primary"
+                          onClick={handleSubmit}
+                        >
+                          Update
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                   </div>
 
+
+                  </form>
+                  <form onSubmit={""}>
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <h4 className="mt-3 mb-2">Security</h4>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="Street">Street</label>
+                        <label for="Street">Current Password</label>
                         <input
                           type="name"
                           className="form-control"
                           id="Street"
-                          placeholder="Enter Street"
+                          placeholder="Enter Current Password"
                         />
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="ciTy">City</label>
+                        <label for="ciTy">New Password</label>
                         <input
                           type="name"
                           className="form-control"
                           id="ciTy"
-                          placeholder="Enter City"
+                          placeholder="Enter New Password"
                         />
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="sTate">State</label>
+                        <label for="sTate">Re-New Password</label>
                         <input
                           type="text"
                           className="form-control"
                           id="sTate"
-                          placeholder="Enter State"
+                          placeholder="Re-Enter New Password"
                         />
                       </div>
                     </div>
