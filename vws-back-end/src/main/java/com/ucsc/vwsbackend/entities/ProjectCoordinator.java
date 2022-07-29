@@ -44,10 +44,6 @@ public class ProjectCoordinator {
         this.coordinatorId = coordinatorId;
     }
 
-    public void setVolunteerId(long volunteerId) {
-        this.coordinatorId = volunteerId;
-    }
-
     public String getAddress() {
         return address;
     }

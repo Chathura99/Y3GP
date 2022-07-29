@@ -1,5 +1,6 @@
 package com.ucsc.vwsbackend.controllers;
 
+import com.ucsc.vwsbackend.dto.Profile;
 import com.ucsc.vwsbackend.entities.User;
 import com.ucsc.vwsbackend.repository.userDao.UserRepository;
 import com.ucsc.vwsbackend.services.VolunteerService;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public Optional<User> getUserById(@PathVariable Long id){
+    public Profile getUserById(@PathVariable Long id){
         return userService.getUserById(id);
     }
 
@@ -44,4 +44,6 @@ public class UserController {
     public User registerUser(@PathVariable Long id){
         return volunteerService.registerUser(id);
     }
+
+
 }
