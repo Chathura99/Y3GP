@@ -45,50 +45,56 @@ export default function HomePage() {
   ]);
 
   const [joinRequestsData, setJoinRequestsData] = useState([
-    {
-      id: "R001",
-      name: "Chathura Manohara",
-      nic: "998547521v",
-      phone: "+94 75 025 1451",
-      date: "2022 09 12",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Rejected
-        </button>
-      ),
-    },
+    // {
+    //   id: "",
+    //   firstName: "",
+    //   nic: "",
+    //   phoneNumber: "",
+    //   date: "",
+    //   district: "",
+    //   universityCollege: "",
+    //   status: (
+    //     <button
+    //       type="button"
+    //       id="submit"
+    //       name="submit"
+    //       className="btn mt-0"
+    //       style={{
+    //         backgroundColor: "#BE4D25",
+    //         border: "none",
+    //         marginRight: "2px",
+    //       }}
+    //       // #96BE25,#BE4D25
+    //       // onClick={handleSubmit}
+    //     >
+    //       Rejected
+    //     </button>
+    //   ),
+    // },
   ]);
 
   const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
     { id: "id", label: "REQUEST ID" },
-    { id: "name", label: "NAME" },
+    { id: "firstName", label: "NAME" },
     { id: "nic", label: "NIC" },
-    { id: "phone", label: "PHONE" },
+    { id: "phoneNumber", label: "PHONE" },
     { id: "date", label: "DATE" },
+    { id: "district", label: "DISTRICT" },
+    { id: "universityCollege", label: "UNIVERSITY" },
     { id: "status", label: "STATUS" },
   ]);
 
   useEffect(() => {
     checkValidate();
     getRequest();
-  }, []);
+  },[]);
 
   const getRequest = async () => {
     const res = await getJoinRequest();
-    console.log(res.data);
-    // setJoinRequestsData(res.data);
+    console.log(...res.data);
+    // find mistake
+    setJoinRequestsData([...joinRequestsData, res.data]);
+    console.log(joinRequestsData);
   };
 
   const checkValidate = async () => {

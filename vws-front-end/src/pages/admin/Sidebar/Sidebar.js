@@ -295,7 +295,7 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" onClick={logOut}>
+                    <a className="nav-link" onClick={logOut} id="logout">
                       Log Out
                     </a>
                   </li>
