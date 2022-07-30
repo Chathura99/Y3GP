@@ -2,8 +2,9 @@ import React, { useEffect,useState } from 'react';
 import Table from "../../../utilities/Table/Table";
 
 // import Modal from 'react-bootstrap/Modal';
-import TopFormPopUp from '../../../utilities/PopUps/TopFormPopUp';
+
 import MapFormPopUp from './MapFormPopUp';
+import JoinEventForm from './JoinEventForm';
 
 
 
@@ -25,7 +26,7 @@ export default function OngoingEvents() {
           id="submit"
           name="submit"
           data-toggle="modal"
-          data-target="#ModalCenter"
+          data-target="#MapForm"
           className="btn p-1"
           style={{backgroundColor:"#2596BE",border:"none"}}
           // #96BE25,#BE4D25
@@ -40,7 +41,7 @@ export default function OngoingEvents() {
               id="submit"
               name="submit"
               data-toggle="modal"
-              data-target="#exampleModalCenter"
+              data-target="#JoinEventForm"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -64,7 +65,7 @@ export default function OngoingEvents() {
           id="submit"
           name="submit"
           data-toggle="modal"
-          data-target="#ModalCenter"
+          data-target="#MapForm"
           className="btn p-1"
           style={{backgroundColor:"#2596BE",border:"none"}}
           // #96BE25,#BE4D25
@@ -79,7 +80,7 @@ export default function OngoingEvents() {
               id="submit"
               name="submit"
               data-toggle="modal"
-              data-target="#exampleModalCenter"
+              data-target="#JoinEventForm"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -128,7 +129,7 @@ export default function OngoingEvents() {
                             
                                 <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
                                 
-                                <TopFormPopUp />
+                                <JoinEventForm />
                                 <MapFormPopUp />
                             </div>
                         </div>

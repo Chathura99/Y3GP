@@ -14,7 +14,7 @@ export default function MapFormPopUp() {
 
       <div
         class="modal fade"
-        id="ModalCenter"
+        id="MapForm"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"

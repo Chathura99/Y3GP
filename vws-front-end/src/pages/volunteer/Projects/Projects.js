@@ -1,8 +1,9 @@
 import React, { useEffect,useState } from 'react';
-import MidFormPopUp from '../../../utilities/PopUps/MidFormPopUp';
-import TopFormPopUp from '../../../utilities/PopUps/TopFormPopUp';
+
 import Table from "../../../utilities/Table/Table";
+import CoordinateEventForm from './CoordinateEventForm';
 import "./Projects.css"
+import ProposeProjectForm from './ProposeProjectForm';
 
 export default function Projects() {
     const [ProjectsData, setProjectsData] = useState([
@@ -20,7 +21,7 @@ export default function Projects() {
               name="submit"
               className="btn p-1"
               data-toggle="modal"
-              data-target="#exampleModalCenter"
+              data-target="#CoordinateEventForm"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
               // onClick={handleSubmit}
@@ -42,7 +43,7 @@ export default function Projects() {
               id="submit"
               name="submit"
               data-toggle="modal"
-              data-target="#exampleModalCenter"
+              data-target="#CoordinateEventForm"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25-green,#BE4D25-red
@@ -84,10 +85,11 @@ export default function Projects() {
                             <div className="card-body ">
                                 <h5>Ongoing Projects</h5>
                                 
-                                  <button id='proposenewbtn' data-toggle="modal" data-target="#exampleModalCenter">+ Propose New Project </button>
+                                  <button id='proposenewbtn' data-toggle="modal" data-target="#ProposeProjectForm">+ Propose New Project </button>
                                 
                                 <Table rows={ProjectsData} headCells={ProjectsHeadings} />
-                                <TopFormPopUp />
+                                <ProposeProjectForm />
+                                <CoordinateEventForm />
                                 
                                 
                             </div>
