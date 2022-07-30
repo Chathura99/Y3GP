@@ -5,9 +5,7 @@ public class AnnouncementInfo {
     private  String content;
     private String category;
     private Date date;
-    private long coordinatorId;
-
-
+    private long userId;
 
     public String getTitle() {
         return title;
@@ -41,11 +39,11 @@ public class AnnouncementInfo {
         this.date = date;
     }
 
-    public long getCoordinatorId() {
-        return coordinatorId;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setCoordinatorId(long coordinatorId) {
-        this.coordinatorId = coordinatorId;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

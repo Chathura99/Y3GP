@@ -1,9 +1,11 @@
 package com.ucsc.vwsbackend.dto;
 
-public class AnnouncementWithAuthor {
-    private long ann_id;
+import java.util.Date;
 
-    long coordinator_id;
+public class AnnouncementWithAuthor {
+    private long annId;
+
+    private long userId;
 
     private String category;
 
@@ -15,21 +17,33 @@ public class AnnouncementWithAuthor {
 
     private String last_name;
 
+    private Date date;
 
-    public long getAnn_id() {
-        return ann_id;
+    private String role;
+
+
+    public long getAnnId() {
+        return annId;
     }
 
-    public void setAnn_id(long ann_id) {
-        this.ann_id = ann_id;
+    public void setAnnId(long annId) {
+        this.annId = annId;
     }
 
-    public long getCoordinator_id() {
-        return coordinator_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setCoordinator_id(long coordinator_id) {
-        this.coordinator_id = coordinator_id;
+    public void setUserID(long userId) {
+        this.userId = userId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCategory() {
@@ -70,5 +84,12 @@ public class AnnouncementWithAuthor {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
