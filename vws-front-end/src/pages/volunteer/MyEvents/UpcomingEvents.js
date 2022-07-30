@@ -15,19 +15,21 @@ export default function UpcomingEvents() {
           no_of_members: "13",
           location: "Nikawaratiya",
           
-          action: (
-            <button
-              type="button"
-              id="submit"
-              name="submit"
-              className="btn p-1"
-              style={{backgroundColor:"#96BE25",border:"none"}}
-              // #96BE25,#BE4D25
-              // onClick={handleSubmit}
-            >
-              EVENT DETAILS
-            </button>
-          ),
+          // action: (
+          //   <button
+          //     type="button"
+          //     id="submit"
+          //     name="submit"
+          //     data-toggle="modal"
+          //     data-target="#exampleModalCenter"
+          //     className="btn p-1"
+          //     style={{backgroundColor:"#96BE25",border:"none"}}
+          //     // #96BE25,#BE4D25
+          //     // onClick={handleSubmit}
+          //   >
+          //     Event Details
+          //   </button>
+          // ),
         },
         {
           event_id: "E002",
@@ -38,19 +40,21 @@ export default function UpcomingEvents() {
           no_of_members: "8",
           location: "Horana",
           
-          action: (
-            <button
-              type="button"
-              id="submit"
-              name="submit"
-              className="btn p-1"
-              style={{backgroundColor:"#96BE25",border:"none"}}
-              // #96BE25,#BE4D25
-              // onClick={handleSubmit}
-            >
-              EVENT DETAILS
-            </button>
-          ),
+          // action: (
+          //   <button
+          //     type="button"
+          //     id="submit"
+          //     name="submit"
+          //     data-toggle="modal"
+          //     data-target="#exampleModalCenter"
+          //     className="btn p-1"
+          //     style={{backgroundColor:"#96BE25",border:"none"}}
+          //     // #96BE25,#BE4D25
+          //     // onClick={handleSubmit}
+          //   >
+          //     Event Details
+          //   </button>
+          // ),
         },
       ]);
     
@@ -62,7 +66,7 @@ export default function UpcomingEvents() {
         { id: "enddate", label: "ENDS ON" },
         { id: "no_of_members", label: "NO. OF MEMBERS" },
         { id: "location", label: "LOCATION" },
-        { id: "action", label: "EVENT DETAILS" },
+        // { id: "action", label: "EVENT DETAILS" },
     
       ]);
 

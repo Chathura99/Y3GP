@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from 'react';
-import TopFormPopUp from '../../../utilities/PopUps/TopFormPopUp';
+
 import Table from "../../../utilities/Table/Table";
 import PieChart from './../../../utilities/Charts/PieChart';
+import EditCoordinatedForm from './EditCoordinatedForm';
 
 
 export default function CoordinatedEvents() {
@@ -21,7 +22,7 @@ export default function CoordinatedEvents() {
               id="submit"
               name="submit"
               data-toggle="modal"
-              data-target="#exampleModalCenter"
+              data-target="#EditCoordinatedEvent"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -46,7 +47,7 @@ export default function CoordinatedEvents() {
               id="submit"
               name="submit"
               data-toggle="modal"
-              data-target="#exampleModalCenter"
+              data-target="#EditCoordinatedEvent"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -108,7 +109,7 @@ export default function CoordinatedEvents() {
                             <div className="card-body ">
                             <h5>Coordinated Events</h5>
                                 <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
-                                <TopFormPopUp />
+                                <EditCoordinatedForm />
                             </div>
                         </div>
                     </div>
