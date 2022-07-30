@@ -25,8 +25,8 @@ public class Announcement {
     private Date date;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "coordinator_id")
-    ProjectCoordinator projectCoordinator;
+    @JoinColumn(name = "user_id")
+    User user;
 
     public Announcement() {
     }
@@ -71,13 +71,11 @@ public class Announcement {
         this.date = date;
     }
 
-    public ProjectCoordinator getProjectCoordinator() {
-        return projectCoordinator;
+    public User getUser() {
+        return user;
     }
 
-    public void setProjectCoordinator(ProjectCoordinator projectCoordinator) {
-        this.projectCoordinator = projectCoordinator;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-
 }

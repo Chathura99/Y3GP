@@ -21,16 +21,17 @@ public class AnnouncementJdbcRepository {
     JdbcTemplate jdbcTemplate;
 
 //    NamedParameterJdbcTemplate
-    public List<AnnouncementWithAuthor> getAllWithAuthor(String category) {
+    public List<AnnouncementWithAuthor> getWithAuthor(String category) {
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
         namedParameters.addValue("category", category);
 
-
-
-        String query = "SELECT a.*,p.address,u.first_name,u.last_name " +
-                "FROM announcement as a,project_coordinator as p,user as u " +
-                "where category= :category and a.coordinator_id=p.coordinator_id and u.id=p.id";
+        String query ="SELECT a.*,u.first_name,u.last_name,auth.role_code as role " +
+                "FROM announcement as a " +
+                "INNER JOIN user as u ON a.user_id = u.id " +
+                "INNER JOIN user_authority as ua ON u.id = ua.user_id " +
+                "INNER JOIN authority as auth ON auth.id = ua.user_id " +
+                "and a.category=:category";
 
         List<AnnouncementWithAuthor> announcementWithAuthor = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<AnnouncementWithAuthor>(AnnouncementWithAuthor.class));
         return announcementWithAuthor;
@@ -52,19 +53,19 @@ public class AnnouncementJdbcRepository {
 
     public long addAnnouncement(AnnouncementInfo announcementInfo) {
 
-        long coordinator_id = announcementInfo.getCoordinatorId();
-        System.out.println(":ID" + announcementInfo.getCoordinatorId());
+        long coordinator_id = announcementInfo.getUserId();
+        System.out.println(":ID" + announcementInfo.getUserId());
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
         String query = "INSERT INTO announcement " +
-                "(category, content,date, title,coordinator_id) " +
-                "values (:category, :content, :date, :title, :coordinator_id )";
+                "(category, content,date, title,user_id) " +
+                "values (:category, :content, :date, :title, :user_id )";
 
         namedParameters.addValue("category", announcementInfo.getCategory());
         namedParameters.addValue("content", announcementInfo.getContent());
         namedParameters.addValue("date", announcementInfo.getDate());
         namedParameters.addValue("title", announcementInfo.getTitle());
-        namedParameters.addValue("coordinator_id", announcementInfo.getCoordinatorId());
+        namedParameters.addValue("user_id", announcementInfo.getUserId());
 
         int rowsAffected = jdbc.update(query , namedParameters);
         return rowsAffected;
@@ -86,6 +87,17 @@ public class AnnouncementJdbcRepository {
         int rowsAffected = jdbc.update(update, namedParameters);
         return rowsAffected;
 
+    }
+
+    public List<AnnouncementWithAuthor> getAllWithAuthor() {
+        String query ="SELECT a.*,u.first_name,u.last_name,auth.role_code as role " +
+                "FROM announcement as a " +
+                "INNER JOIN user as u ON a.user_id = u.id " +
+                "INNER JOIN user_authority as ua ON u.id = ua.user_id " +
+                "INNER JOIN authority as auth ON auth.id = ua.user_id";
+
+        List<AnnouncementWithAuthor> announcementWithAuthor = jdbc.query(query, new BeanPropertyRowMapper<AnnouncementWithAuthor>(AnnouncementWithAuthor.class));
+        return announcementWithAuthor;
     }
 }
 
