@@ -19,12 +19,14 @@ export default function CompletedEvents() {
           type="button"
           id="submit"
           name="submit"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
           className="btn p-1"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          EVENT DETAILS
+          Event Details
         </button>
       ),
     },
@@ -42,12 +44,14 @@ export default function CompletedEvents() {
           type="button"
           id="submit"
           name="submit"
-          className="btn"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+          className="btn p-1"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          EVENT DETAILS
+          Event Details
         </button>
       ),
     },

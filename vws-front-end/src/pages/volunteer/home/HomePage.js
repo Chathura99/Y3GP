@@ -18,19 +18,19 @@ export default function HomePage() {
       no_of_members: "13",
       location: "Nikawaratiya",
       
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View Details
-        </button>
-      ),
+      // action: (
+      //   <button
+      //     type="button"
+      //     id="submit"
+      //     name="submit"
+      //     className="btn p-1"
+      //     style={{backgroundColor:"#96BE25",border:"none"}}
+      //     // #96BE25,#BE4D25
+      //     // onClick={handleSubmit}
+      //   >
+      //     View Details
+      //   </button>
+      // ),
     },
     {
       event_id: "E002",
@@ -41,19 +41,19 @@ export default function HomePage() {
       no_of_members: "8",
       location: "Horana",
       
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View Details
-        </button>
-      ),
+      // action: (
+      //   <button
+      //     type="button"
+      //     id="submit"
+      //     name="submit"
+      //     className="btn p-1"
+      //     style={{backgroundColor:"#96BE25",border:"none"}}
+      //     // #96BE25,#BE4D25
+      //     // onClick={handleSubmit}
+      //   >
+      //     View Details
+      //   </button>
+      // ),
     },
   ]);
   const [donutChartData, setDonutChartData] = useState([
@@ -80,14 +80,14 @@ const checkValidate = async () => {
     }
 };
   const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-    { id: "event_id", label: "Event ID" },
-    { id: "category", label: "Category" },
-    { id: "event_coordinator", label: "Event Coordinator" },
-    { id: "startdate", label: "Starts On" },
-    { id: "enddate", label: "Ends On" },
-    { id: "no_of_members", label: "No. of Members" },
-    { id: "location", label: "Location" },
-    { id: "action", label: "Action" },
+    { id: "event_id", label: "EVENT ID" },
+    { id: "category", label: "CATEGORY" },
+    { id: "event_coordinator", label: "EVENT COORDINATOR" },
+    { id: "startdate", label: "STARTS ON" },
+    { id: "enddate", label: "ENDS ON" },
+    { id: "no_of_members", label: "NO.OF MEMBERS" },
+    { id: "location", label: "LOCATION" },
+    // { id: "action", label: "Action" },
 
   ]);
 
@@ -284,33 +284,7 @@ const checkValidate = async () => {
                   </div>
                 </div>
                   {/* <Table rows={tableData} /> */}
-                  {/* <Card style={{ width: "50rem",height: "9rem", backgroundColor: "#F1F1F1",margin:10,borderRadius:10 }}>
-        <Card.Body>
-          <Card.Title id='day' style={{ color: "black",fontSize:12 }}>C.S. Dissanayake</Card.Title>
-          <Card.Subtitle id='month' style={{color: "black",fontSize:7,marginTop:-10}}>ADMIN  25-10-2022    19:55</Card.Subtitle>
-          <Card.Text id='event_name' style={{color: "black",fontSize:15,marginTop:10}}>
-            MATH LAB PROGRAM
-          </Card.Text>
-          <Card.Text id='place' style={{color: "black",fontSize:10,marginTop:-10}}>
-          Ut enim labore et dolore magna aliqua. Ut enim aUt enim labore et dolore magna aliqua. Ut enim
- ad minim veniam, quis nostrud .d minim veniam, quis nostrud. 
-            </Card.Text>
-        </Card.Body>
-      </Card>
-
-      <Card style={{ width: "50rem",height: "9rem", backgroundColor: "#F1F1F1",marginTop:5, margin:10,borderRadius:10 }}>
-        <Card.Body>
-          <Card.Title id='day' style={{ color: "black",fontSize:12 }}>R.R. Ramanayake</Card.Title>
-          <Card.Subtitle id='month' style={{color: "black",fontSize:7,marginTop:-10}}>PC  21-10-2022     09:15</Card.Subtitle>
-          <Card.Text id='event_name' style={{color: "black",fontSize:15,marginTop:10}}>
-            MATH LAB PROGRAM
-          </Card.Text>
-          <Card.Text id='place' style={{color: "black",fontSize:10,marginTop:-10}}>
-          Ut enim labore et dolore magna aliqua. Ut enim aUt enim labore et dolore magna aliqua. Ut enim
- ad minim veniam, quis nostrud .d minim veniam, quis nostrud . 
-            </Card.Text>
-        </Card.Body>
-      </Card> */}
+                  
                 </div>
               </div>
             </div>
