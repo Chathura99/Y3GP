@@ -106,7 +106,7 @@ export default function HomePage() {
 
   const getRequest = async () => {
     const res = await getJoinRequest();
-    // console.log(...res.data);
+    console.log(...res.data);
     setJoinRequestsData(res.data[0]);
     // console.log(joinRequestsData);
   };

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import "./signup.css";
 import { joinRequest } from "../../../services/guestUserServices/signUpService";
 import { Link } from "react-router-dom";
@@ -8,6 +9,9 @@ import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
 
 export default function SignUp() {
+  const { register, formState: { errors } } = useForm();
+  console.log(errors);
+
   const [requestData, setRequestData] = useState(
     {
       firstName: "",
@@ -75,7 +79,7 @@ export default function SignUp() {
 
   return (
     <>
-    <Loading change={[popup]} time={200}/>
+      <Loading change={[popup]} time={200} />
       <div className="container-fluid calculated-bodywidth">
         <div className="row gutters mt-4">
           <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
@@ -91,6 +95,10 @@ export default function SignUp() {
                       <div className="form-group ">
                         <label for="firstName">First Name</label>
                         <input
+                          {...register("firstName",{
+                            required : "user name is required"
+                            
+                          })}
                           type="text"
                           className="form-control"
                           id="firstName"
@@ -98,7 +106,7 @@ export default function SignUp() {
                           name="firstName"
                           value={requestData.firstName}
                           onChange={handleChange}
-                          required
+                          // required
                         />
                       </div>
                     </div>
