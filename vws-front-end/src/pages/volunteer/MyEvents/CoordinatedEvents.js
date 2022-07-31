@@ -1,6 +1,8 @@
 import React, { useEffect,useState } from 'react';
+
 import Table from "../../../utilities/Table/Table";
 import PieChart from './../../../utilities/Charts/PieChart';
+import EditCoordinatedForm from './EditCoordinatedForm';
 
 
 export default function CoordinatedEvents() {
@@ -19,6 +21,8 @@ export default function CoordinatedEvents() {
               type="button"
               id="submit"
               name="submit"
+              data-toggle="modal"
+              data-target="#EditCoordinatedEvent"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -42,6 +46,8 @@ export default function CoordinatedEvents() {
               type="button"
               id="submit"
               name="submit"
+              data-toggle="modal"
+              data-target="#EditCoordinatedEvent"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -65,6 +71,12 @@ export default function CoordinatedEvents() {
     
       ]);
 
+      const [pieChartData, setPieChartData] = useState([
+        ["Event", "Completed precentage"],
+        ["Ganitha Saviya", 60],
+        ["Re-green Earth", 40],
+      ]);
+
     useEffect(() => {
         checkValidate();
     }, []);
@@ -84,8 +96,8 @@ export default function CoordinatedEvents() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                            <h5>Event Progres</h5>
-                                <PieChart />
+                            <h5>Coordinated Event Progres</h5>
+                                <PieChart data={pieChartData}/>
                             </div>
                         </div>
                     </div>
@@ -97,6 +109,7 @@ export default function CoordinatedEvents() {
                             <div className="card-body ">
                             <h5>Coordinated Events</h5>
                                 <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
+                                <EditCoordinatedForm />
                             </div>
                         </div>
                     </div>

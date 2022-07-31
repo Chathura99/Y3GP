@@ -19,12 +19,14 @@ export default function CompletedEvents() {
           type="button"
           id="submit"
           name="submit"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
           className="btn p-1"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          EVENT DETAILS
+          Event Details
         </button>
       ),
     },
@@ -42,12 +44,14 @@ export default function CompletedEvents() {
           type="button"
           id="submit"
           name="submit"
-          className="btn"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+          className="btn p-1"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          EVENT DETAILS
+          Event Details
         </button>
       ),
     },
@@ -63,6 +67,28 @@ export default function CompletedEvents() {
         { id: "location", label: "LOCATION" },
         { id: "action", label: "EVENT DETAILS" },
 
+  ]);
+
+  const [lineChartData, setLineChartData] = useState([
+    [
+      "Month",
+      "Ganitha Saviya",
+      "Regreen Earth",
+      
+    ],
+    ["Jan", 100, 40],
+    ["Feb", 150, 100],
+    ["Mar", 120, 60],
+    ["Apr", 250, 20],
+    ["May", 300, 80],
+    ["Jun", 200, 150],
+  ]);
+
+  const [donutChartData, setDonutChartData] = useState([
+    ["Project", "Count"],
+    ["Ganitha Saviya", 11],
+    ["Re-Green Earth", 2],
+    
   ]);
 
   useEffect(() => {
@@ -88,7 +114,7 @@ export default function CompletedEvents() {
                   <h5 className="ml-3">Completed Event Summary</h5>
                 </div>
                 <div className="row gutters ">
-                <DonutChart />
+                <DonutChart data={donutChartData}/>
                 </div>
               </div>
             </div>
@@ -97,7 +123,7 @@ export default function CompletedEvents() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters"><h5 className="ml-3">My Participations</h5>
-                <LineChart />
+                <LineChart data={lineChartData}/>
                  </div>
                 
                 

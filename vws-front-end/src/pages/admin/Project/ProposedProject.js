@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
 import TopFormPopUp from "../../../utilities/PopUps/TopFormPopUp";
-import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import MidFormPopUp from "../../../utilities/PopUps/MidFormPopUp";
 
 export default function ProposedProject() {
+  useEffect(() => {
+    checkValidate();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
   const [proposedProjectData, setProposedProjectData] = useState([
     {
       projectName: "Adurata Eliyak",
@@ -58,15 +67,14 @@ export default function ProposedProject() {
   ]);
   return (
     <>
-      <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
+      <div className="container-fluid calculated-bodywidth">
         <div className="row gutters mt-10">
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
+                <div className="row gutters "></div>
                 <div className="row gutters ">
-                </div>
-                <div className="row gutters ">
-                <Table
+                  <Table
                     rows={proposedProjectData}
                     headCells={proposedProjectTableHead}
                     tableName={"Proposed Projects"}
@@ -81,9 +89,26 @@ export default function ProposedProject() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <ConfirmPopUp /><br></br>
-                <TopFormPopUp /><br></br>
+
+                <TopFormPopUp />
                 <MidFormPopUp />
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                >
+                  Middle
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Upper
+                </button>
+
               </div>
             </div>
           </div>

@@ -2,16 +2,18 @@ package com.ucsc.vwsbackend.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
-@Table(name = "project_coordinator")
+@Table(name = "admin")
 @Entity
-public class ProjectCoordinator {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "coordinator_id")
-    private long coordinatorId;
+    @Column(name = "admin_id")
+    private long adminId;
+
+    @Column(name = "address")
+    private String address;
 
     @Column(name = "first_name")
     private String firstName;
@@ -19,26 +21,16 @@ public class ProjectCoordinator {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "address")
-    private String address;
-
     @Column(name = "university_college")
     private String universityCollege;
 
 
-    @Column(name = " district")
-    private String  district;
+    public long getAdminId() {
+        return adminId;
+    }
 
-    @Column(name = "requested_date")
-    private Date date;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    User user;
-
-
-    public ProjectCoordinator() {
-
+    public void setAdminId(long adminId) {
+        this.adminId = adminId;
     }
 
     public String getFirstName() {
@@ -57,13 +49,30 @@ public class ProjectCoordinator {
         this.lastName = lastName;
     }
 
+    @Column(name = " district")
+    private String  district;
+
+    @Column(name = "requested_date")
+    private Date date;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    User user;
+
+
+    public Admin() {
+
+    }
+
+
     public long getCoordinatorId() {
-        return coordinatorId;
+        return adminId;
     }
 
     public void setCoordinatorId(long coordinatorId) {
-        this.coordinatorId = coordinatorId;
+        this.adminId = adminId;
     }
+
 
     public String getAddress() {
         return address;

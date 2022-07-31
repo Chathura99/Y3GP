@@ -1,6 +1,9 @@
 import React, { useEffect,useState } from 'react';
+
 import Table from "../../../utilities/Table/Table";
+import CoordinateEventForm from './CoordinateEventForm';
 import "./Projects.css"
+import ProposeProjectForm from './ProposeProjectForm';
 
 export default function Projects() {
     const [ProjectsData, setProjectsData] = useState([
@@ -17,6 +20,8 @@ export default function Projects() {
               id="submit"
               name="submit"
               className="btn p-1"
+              data-toggle="modal"
+              data-target="#CoordinateEventForm"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
               // onClick={handleSubmit}
@@ -37,6 +42,8 @@ export default function Projects() {
               type="button"
               id="submit"
               name="submit"
+              data-toggle="modal"
+              data-target="#CoordinateEventForm"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25-green,#BE4D25-red
@@ -76,11 +83,15 @@ export default function Projects() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                                <h5>Ongoing Events</h5>
-                                <a href="https://react.school" target="_blank">
-                                  <button id='proposenewbtn'>+ Propose New Project </button>
-                                </a>
+                                <h5>Ongoing Projects</h5>
+                                
+                                  <button id='proposenewbtn' data-toggle="modal" data-target="#ProposeProjectForm">+ Propose New Project </button>
+                                
                                 <Table rows={ProjectsData} headCells={ProjectsHeadings} />
+                                <ProposeProjectForm />
+                                <CoordinateEventForm />
+                                
+                                
                             </div>
                         </div>
                     </div>

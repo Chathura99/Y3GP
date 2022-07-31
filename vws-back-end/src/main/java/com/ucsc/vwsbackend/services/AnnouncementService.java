@@ -23,8 +23,14 @@ public class AnnouncementService{
     AnnouncementJdbcRepository announcementJdbcRepository;
 
     public List<AnnouncementWithAuthor> getAllAnnouncement(String category) {
-        List<AnnouncementWithAuthor> announcementWithAuthors = announcementJdbcRepository.getAllWithAuthor(category);
+        List<AnnouncementWithAuthor> announcementWithAuthors;
+        if(category.equals("all") || category.equals("guest")){
+            announcementWithAuthors = announcementJdbcRepository.getWithAuthor(category);
+        }else{
+            announcementWithAuthors = announcementJdbcRepository.getAllWithAuthor();
+        }
         return announcementWithAuthors;
+
     }
 
      public long addAnnouncement(AnnouncementInfo announcementInfo){

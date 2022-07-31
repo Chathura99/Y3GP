@@ -3,6 +3,16 @@ import { LineChart } from "./../../../utilities/Charts/LineChart";
 import Table from "../../../utilities/Table/Table";
 
 export default function OnGoingProject() {
+  useEffect(() => {
+    checkValidate();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
   const [onGoingProjectData, setOnGoingProjectData] = useState([
     {
       projectId: "P001",
@@ -62,6 +72,22 @@ export default function OnGoingProject() {
     { id: "startedOn", label: "STARTED ON" },
     { id: "action", label: "ACTION" },
   ]);
+  const [lineChartData, setLineChartData] = useState([
+    [
+      "Month",
+      "Ganitha Saviya",
+      "MathLab",
+      "Regreen Earth",
+      "Lohithuppada",
+      "Sarasavi Piyageta",
+    ],
+    ["Jan", 100, 5, 15, 1, 1],
+    ["Feb", 150, 0, 15, 2, 2],
+    ["Mar", 120, 0, 5, 2, 2],
+    ["Apr", 250, 0, 15, 2, 3],
+    ["May", 300, 4, 18, 1, 1],
+    ["Jun", 200, 5, 20, 1, 1],
+  ]);
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -73,7 +99,7 @@ export default function OnGoingProject() {
                   <h5>Events Growth</h5>
                 </div>
                 <div className="row gutters ">
-                  <LineChart />
+                  <LineChart data={lineChartData} />
                 </div>
               </div>
             </div>

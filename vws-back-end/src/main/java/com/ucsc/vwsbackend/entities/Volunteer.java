@@ -2,22 +2,15 @@ package com.ucsc.vwsbackend.entities;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
 
-@Table(name = "project_coordinator")
+@Table(name = "volunteer")
 @Entity
-public class ProjectCoordinator {
+public class Volunteer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "coordinator_id")
-    private long coordinatorId;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "volunteer_id")
+    private long volunteerId;
 
     @Column(name = "address")
     private String address;
@@ -37,33 +30,19 @@ public class ProjectCoordinator {
     User user;
 
 
-    public ProjectCoordinator() {
+    public Volunteer() {
 
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public long getCoordinatorId() {
-        return coordinatorId;
+        return volunteerId;
     }
 
     public void setCoordinatorId(long coordinatorId) {
-        this.coordinatorId = coordinatorId;
+        this.volunteerId = volunteerId;
     }
+
 
     public String getAddress() {
         return address;

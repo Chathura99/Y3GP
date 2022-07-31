@@ -30,8 +30,8 @@ public class SignUpService {
         }else if(rowCount2>0){
             return "You have already pending request!";
         }else{
-            joinRequestRepository.save(joinRequest);
-            return "Request Successfully!";
+            JoinRequest success=joinRequestRepository.save(joinRequest);
+            return "Your request sent successfully!";
         }
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TopFormPopUp() {
+export default function CoordinateEventForm() {
   return (
     <div>
       {/* <button
@@ -14,7 +14,7 @@ export default function TopFormPopUp() {
 
       <div
         class="modal fade"
-        id="exampleModalCenter"
+        id="CoordinateEventForm"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
@@ -24,7 +24,7 @@ export default function TopFormPopUp() {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
-                Modal title
+                Coordinate New Event
               </h5>
               <button
                 type="button"

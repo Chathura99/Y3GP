@@ -1,9 +1,16 @@
 import React, { useEffect,useState } from 'react';
 import Table from "../../../utilities/Table/Table";
 
+// import Modal from 'react-bootstrap/Modal';
+
+import MapFormPopUp from './MapFormPopUp';
+import JoinEventForm from './JoinEventForm';
+
 
 
 export default function OngoingEvents() {
+  const [show, setShow] = useState(false);
+  
     const [upcomingEventsData, setUpComingEventsData] = useState([
         {
           event_id: "E001",
@@ -13,13 +20,28 @@ export default function OngoingEvents() {
           startdate: "2022 09 12",
           enddate: "2022 09 14",
           no_of_members: "13",
-          location: "Nikawaratiya",
+          location: 
+          <button
+          type="button"
+          id="submit"
+          name="submit"
+          data-toggle="modal"
+          data-target="#MapForm"
+          className="btn p-1"
+          style={{backgroundColor:"#2596BE",border:"none"}}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          View in Map
+        </button>,
           
           action: (
             <button
               type="button"
               id="submit"
               name="submit"
+              data-toggle="modal"
+              data-target="#JoinEventForm"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -37,13 +59,28 @@ export default function OngoingEvents() {
           startdate: "2022 09 02",
           enddate: "2022 09 04",
           no_of_members: "8",
-          location: "Horana",
+          location: 
+          <button
+          type="button"
+          id="submit"
+          name="submit"
+          data-toggle="modal"
+          data-target="#MapForm"
+          className="btn p-1"
+          style={{backgroundColor:"#2596BE",border:"none"}}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          View in Map
+        </button>,
           
           action: (
             <button
               type="button"
               id="submit"
               name="submit"
+              data-toggle="modal"
+              data-target="#JoinEventForm"
               className="btn p-1"
               style={{backgroundColor:"#96BE25",border:"none"}}
               // #96BE25,#BE4D25
@@ -80,6 +117,7 @@ export default function OngoingEvents() {
     };
     return (
         <>
+        
             <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
                 
 
@@ -87,9 +125,12 @@ export default function OngoingEvents() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                            <h5>Ongoing Projects</h5>
+                            <h5>Ongoing Events</h5>
                             
                                 <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
+                                
+                                <JoinEventForm />
+                                <MapFormPopUp />
                             </div>
                         </div>
                     </div>

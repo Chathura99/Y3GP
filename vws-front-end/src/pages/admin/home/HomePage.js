@@ -5,6 +5,7 @@ import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import Loading from "../../../utilities/Loading/Loading";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -44,49 +45,77 @@ export default function HomePage() {
   ]);
 
   const [joinRequestsData, setJoinRequestsData] = useState([
-    {
-      id: "R001",
-      name: "Chathura Manohara",
-      nic: "998547521v",
-      phone: "+94 75 025 1451",
-      date: "2022 09 12",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Rejected
-        </button>
-      ),
-    },
+    // {
+    //   id: "",
+    //   firstName: "",
+    //   nic: "",
+    //   phoneNumber: "",
+    //   date: "",
+    //   district: "",
+    //   universityCollege: "",
+    //   status: (
+    //     <button
+    //       type="button"
+    //       id="submit"
+    //       name="submit"
+    //       className="btn mt-0"
+    //       style={{
+    //         backgroundColor: "#BE4D25",
+    //         border: "none",
+    //         marginRight: "2px",
+    //       }}
+    //       // #96BE25,#BE4D25
+    //       // onClick={handleSubmit}
+    //     >
+    //       Rejected
+    //     </button>
+    //   ),
+    // },
   ]);
 
   const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
     { id: "id", label: "REQUEST ID" },
-    { id: "name", label: "NAME" },
+    { id: "firstName", label: "NAME" },
     { id: "nic", label: "NIC" },
-    { id: "phone", label: "PHONE" },
+    { id: "phoneNumber", label: "PHONE" },
     { id: "date", label: "DATE" },
+    { id: "district", label: "DISTRICT" },
+    { id: "universityCollege", label: "UNIVERSITY" },
     { id: "status", label: "STATUS" },
   ]);
 
+  const [pieChartData, setPieChartData] = useState([
+    ["Task", "votes"],
+    ["Lohithuthpada", 11],
+    ["Re-green Earth", 2],
+  ]);
+
+  const [donutChartData, setDonutChartData] = useState([
+    ["Project", "Count"],
+    ["Ganitha Saviya", 11],
+    ["Re-Green Earth", 2],
+    ["Lohithuppada", 2],
+    ["Scholarship", 2],
+    ["Sarasavi Piya", 7],
+  ]);
+
   useEffect(() => {
+    checkValidate();
     getRequest();
   }, []);
 
   const getRequest = async () => {
     const res = await getJoinRequest();
-    console.log(res.data);
-    // setJoinRequestsData(res.data);
+    console.log(...res.data);
+    setJoinRequestsData(res.data[0]);
+    // console.log(joinRequestsData);
+  };
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
   };
 
   return (
@@ -209,7 +238,7 @@ export default function HomePage() {
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <DonutChart />
+                  <DonutChart data={donutChartData} />
                 </div>
               </div>
             </div>
@@ -227,7 +256,7 @@ export default function HomePage() {
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <PieChart />
+                  <PieChart data={pieChartData} />
                 </div>
               </div>
             </div>
