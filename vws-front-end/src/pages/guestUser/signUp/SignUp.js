@@ -9,7 +9,12 @@ import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
 
 export default function SignUp() {
-  const { register, formState: { errors } } = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
+    mode: "all",
+  });
   console.log(errors);
 
   const [requestData, setRequestData] = useState(
@@ -95,9 +100,13 @@ export default function SignUp() {
                       <div className="form-group ">
                         <label for="firstName">First Name</label>
                         <input
-                          {...register("firstName",{
-                            required : "user name is required"
-                            
+                          {...register("firstName", {
+                            required: "firstName is Required...",
+                            minLength: {
+                              value: 5,
+                              message:
+                                "First Name must be atleast 3 characters long...",
+                            },
                           })}
                           type="text"
                           className="form-control"
@@ -108,6 +117,7 @@ export default function SignUp() {
                           onChange={handleChange}
                           // required
                         />
+                        <p className="">{errors.firstName?.message}</p>
                       </div>
                     </div>
 
@@ -115,6 +125,14 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="lastName">Last Name</label>
                         <input
+                          {...register("lastName", {
+                            required: "lastName is Required...",
+                            minLength: {
+                              value: 5,
+                              message:
+                                "Last Name must be atleast 3 characters long...",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="lastName"
@@ -124,6 +142,7 @@ export default function SignUp() {
                           onChange={handleChange}
                           required
                         />
+                        <p className="">{errors.lastName?.message}</p>
                       </div>
                     </div>
 
@@ -138,9 +157,16 @@ export default function SignUp() {
                           name="email"
                           value={requestData.email}
                           onChange={handleChange}
-                          required
-                          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                          {...register("email", {
+                            required: "Email is Required...",
+                            pattern: {
+                              value:
+                                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                              message: "Email must be valid",
+                            },
+                          })}
                         />
+                        <p>{errors.email?.message}</p>
                       </div>
                     </div>
 
