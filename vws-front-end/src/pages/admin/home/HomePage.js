@@ -6,6 +6,7 @@ import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
+import NewTable from "../../../utilities/Table/NewTable";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -42,53 +43,33 @@ export default function HomePage() {
     { id: "member", label: "MEMBERS" },
     { id: "coordinator", label: "COORDINATOR" },
     { id: "date", label: "DATE" },
-  ]);
-
-  const [joinRequestsData, setJoinRequestsData] = useState([
-    // {
-    //   id: "",
-    //   firstName: "",
-    //   nic: "",
-    //   phoneNumber: "",
-    //   date: "",
-    //   district: "",
-    //   universityCollege: "",
-    //   status: (
-    //     <button
-    //       type="button"
-    //       id="submit"
-    //       name="submit"
-    //       className="btn mt-0"
-    //       style={{
-    //         backgroundColor: "#BE4D25",
-    //         border: "none",
-    //         marginRight: "2px",
-    //       }}
-    //       // #96BE25,#BE4D25
-    //       // onClick={handleSubmit}
-    //     >
-    //       Rejected
-    //     </button>
-    //   ),
-    // },
-  ]);
-
-  const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
-    { id: "id", label: "REQUEST ID" },
-    { id: "firstName", label: "NAME" },
-    { id: "nic", label: "NIC" },
-    { id: "phoneNumber", label: "PHONE" },
-    { id: "date", label: "DATE" },
-    { id: "district", label: "DISTRICT" },
-    { id: "universityCollege", label: "UNIVERSITY" },
-    { id: "status", label: "STATUS" },
-  ]);
+  ])
 
   const [pieChartData, setPieChartData] = useState([
     ["Task", "votes"],
     ["Lohithuthpada", 11],
     ["Re-green Earth", 2],
   ]);
+
+  
+  const [joinRequestsData, setJoinRequestsData] = useState([]);
+  const data = React.useMemo(
+    () => joinRequestsData  )
+
+  const joinRequestsTableHead=React.useMemo(
+    () => [
+     
+      { accessor: "id", Header: "REQ_ID" },
+      { accessor: "firstName", Header: "NAME" },
+      { accessor: "nic", Header: "NIC" },
+      { accessor: "phoneNumber", Header: "PHONE" },
+      { accessor: "date", Header: "DATE" },
+      { accessor: "district", Header: "DISTRICT" },
+      { accessor: "universityCollege", Header: "UNIVERSITY" },
+      { accessor: "status", Header: "STATUS" },
+    ],
+    []
+  )
 
   const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
@@ -104,11 +85,11 @@ export default function HomePage() {
     getRequest();
   }, []);
 
+
   const getRequest = async () => {
     const res = await getJoinRequest();
-    console.log(...res.data);
-    setJoinRequestsData(res.data[0]);
-    // console.log(joinRequestsData);
+    console.log(res.data);
+    setJoinRequestsData(res.data)
   };
 
   const checkValidate = async () => {
@@ -265,11 +246,11 @@ export default function HomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <Table
-                  rows={joinRequestsData}
-                  headCells={joinRequestsTableHead}
-                  tableName={"Join Requests"}
-                />
+                <h5>Join Requests</h5>
+                {/* <RequestDataTable></RequestDataTable> */}
+
+                <NewTable columns={joinRequestsTableHead} data={joinRequestsData} />
+
               </div>
             </div>
           </div>
