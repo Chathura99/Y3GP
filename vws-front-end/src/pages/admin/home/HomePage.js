@@ -248,7 +248,6 @@ export default function HomePage() {
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
                 <h5>Join Requests</h5>
-                {/* <RequestDataTable></RequestDataTable> */}
 
                 <NewTable columns={joinRequestsTableHead} data={joinRequestsData} />
 

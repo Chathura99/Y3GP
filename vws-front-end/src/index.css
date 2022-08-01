@@ -8,3 +8,9 @@ body {
 .btn {
   color: #f5f6fa !important;
 }
+.formerror{
+  color:red;
+  font-size: 10px;
+  font-weight: lighter;
+  margin: 2px;
+}
