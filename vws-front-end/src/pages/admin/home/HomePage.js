@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
@@ -53,10 +53,11 @@ export default function HomePage() {
 
   
   const [joinRequestsData, setJoinRequestsData] = useState([]);
-  const data = React.useMemo(
+
+  const data = useMemo(
     () => joinRequestsData  )
 
-  const joinRequestsTableHead=React.useMemo(
+  const joinRequestsTableHead=useMemo(
     () => [
      
       { accessor: "id", Header: "REQ_ID" },
