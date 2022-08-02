@@ -13,7 +13,12 @@ export default function NewTable({ columns, data }) {
 
       return (
         <>
-          <input type="checkbox" ref={resolvedRef} {...rest} />
+          <input
+            id="tablecheckbox"
+            type="checkbox"
+            ref={resolvedRef}
+            {...rest}
+          />
         </>
       );
     }
@@ -77,14 +82,17 @@ export default function NewTable({ columns, data }) {
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <th
+                  className="tablehead"
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                >
                   {column.render("Header")}
                   <span>
                     {column.isSorted ? (
                       column.isSortedDesc ? (
-                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                        <i class="fa fa-arrow-up" aria-hidden="true"  id="sorticon"></i>
                       ) : (
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        <i class="fa fa-arrow-down" aria-hidden="true"  id="sorticon"></i>
                       )
                     ) : (
                       ""
@@ -111,52 +119,62 @@ export default function NewTable({ columns, data }) {
         </tbody>
       </table>
 
-      <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {"<<"}
-        </button>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          <i class="fa fa-angle-left"></i>
-        </button>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          <i class="fa fa-angle-right"></i>
-        </button>
-
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {">>"}
-        </button>
-        <span>
-          Page
+      <div className="pagination col-12">
+        <div className="col-lg-4" id="tableprop">
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            &laquo;
+          </button>
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            <i class="fa fa-angle-left"></i>
+          </button>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            <i class="fa fa-angle-right"></i>
+          </button>
+          <button
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            &raquo;
+          </button>
+        </div>
+        <div className="col-2" id="tableprop">
           <strong>
             {pageIndex + 1} of {pageOptions.length}
           </strong>
-        </span>
-        <span>
-          Go to page:
-          <input
-            type="number"
-            defaultValue={pageIndex + 1}
+        </div>
+        <div className="col-3" id="tableprop">
+          <span>
+            Go to:
+            <input
+              id="gotopage"
+              type="number"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                gotoPage(page);
+              }}
+              style={{ width: "100px" }}
+            />
+          </span>
+        </div>
+        <div className="col-3" id="tableprop">
+          Rows:
+          <select
+            id="rowselect"
+            value={pageSize}
             onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
+              setPageSize(Number(e.target.value));
             }}
-            style={{ width: "100px" }}
-          />
-        </span>
-        <select
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[5, 10, 15, 20, 25].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-        {console.log(selectedRowIds)}
-        {console.log(selectedFlatRows.map((d) => d.original))}
+          >
+            {[5, 10, 15, 20].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>
+          {console.log(selectedRowIds)}
+          {console.log(selectedFlatRows.map((d) => d.original))}
+        </div>
       </div>
     </div>
   );
