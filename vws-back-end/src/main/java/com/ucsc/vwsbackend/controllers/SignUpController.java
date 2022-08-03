@@ -1,8 +1,6 @@
 package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.entities.JoinRequest;
-import com.ucsc.vwsbackend.entities.User;
-import com.ucsc.vwsbackend.repository.joinRequestDao.JoinRequestRepository;
 import com.ucsc.vwsbackend.services.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,4 +26,13 @@ public class SignUpController {
         return signUpService.getJoinRequest();
 
     }
+    @PostMapping("/signUpApproved")
+    public String signUpApproved(@RequestBody JoinRequest joinRequest)
+    {
+        String status = signUpService.signUpApproved(joinRequest);
+        return status;
+    }
+
+
+
 }
