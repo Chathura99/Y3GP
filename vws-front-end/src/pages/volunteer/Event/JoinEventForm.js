@@ -3,123 +3,60 @@ import React from "react";
 export default function JoinEventForm() {
   return (
     <div>
-      {/* <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        Middle
-      </button> */}
+      {/* <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Upper
+</button> */}
 
       <div
         class="modal fade"
         id="JoinEventForm"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="exampleModalCenterTitle"
+        aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Join to this Event
-              </h5>
+           
+              
               <button
                 type="button"
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true" style={{float:"right",margin:10}}>&times;</span>
               </button>
-            </div>
+           
             <div class="modal-body">
-              <form onSubmit={""}>
-                <div className="row gutters ">
+              <form onSubmit={""} style={{marginTop:0}}>
+               
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2">Details</h4>
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:40,marginTop:-40,color:"#96BE25"}}>Successfull !!!</h4>
+                    <h6 className="mb-2" style={{textAlign:"center",fontSize:20,color:"#A6A6A6"}}>Requested to join</h6>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group ">
-                      <label for="fullName">Full Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        placeholder="Enter full name"
-                        // value={profile.firstName}
-                        name="firstName"
-                        // onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="eMail">Email</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="eMail"
-                        placeholder="Enter email ID"
-                        // value={profile.email}
-                        name="email"
-                        // onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="phone">Phone</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="phone"
-                        placeholder="Enter phone number"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="website">University/School</label>
-                      <input
-                        type="url"
-                        className="form-control"
-                        id="website"
-                        placeholder="University or School"
-                      />
-                    </div>
-                  </div>
-                </div>
+                  
+                
 
                 <div className="row gutters">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="text-center mt-3 ">
-                      <div class="modal-footer justify-content-center ">
+                     
                         <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          className="btn btn-secondary m-2"
-                          data-dismiss="modal"
-                        >
-                          Cancel
-                        </button>
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          className="btn btn-primary"
-                          // onClick={handleSubmit}
-                        >
-                          Update
-                        </button>
-                      </div>
+                type="button"
+                id="submit"
+                name="submit"
+                data-dismiss="modal"
+                
+                className="btn p-1"
+                style={{backgroundColor:"#96BE25",border:"none",fontSize:15}}
+                
+              >
+                OK
+              </button>
+                        
+                      
                     </div>
                   </div>
                 </div>

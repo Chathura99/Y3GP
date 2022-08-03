@@ -84,7 +84,7 @@ export default function Projects() {
                   // #96BE25,#BE4D25
                   // onClick={handleSubmit}
                 >
-                  Coordinate Event
+                  Coordinate
                 </button>
               ),
               action: (
@@ -122,7 +122,7 @@ export default function Projects() {
                   // #96BE25-green,#BE4D25-red
                   // onClick={handleSubmit}
                 >
-                  Coordinate Event
+                  Coordinate
                 </button>
               ),
               action: (

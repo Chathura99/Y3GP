@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import NewTable from '../../../utilities/Table/NewTable';
 import { useMemo } from 'react';
 import MapFormPopUp from './MapFormPopUp';
-import "./UpcomingEvents.css";
+import "./UpcomingEvents.css"
 
 
 export default function UpcomingEvents() {
