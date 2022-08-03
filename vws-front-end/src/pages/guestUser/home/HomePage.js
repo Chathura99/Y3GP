@@ -1,8 +1,10 @@
 import React from 'react';
 import "./homepage.css";
 import { Link } from 'react-router-dom';
+
 import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
 import AboutUs from "../AboutUs/About";
+import OurProjects from "../OurProjects/OurProjects";
 
 export default function HomePage() {
   return (
@@ -84,17 +86,20 @@ export default function HomePage() {
         </div>
 
 
-
-
       </div>
 
       <div className='OurLatestEvents'>
         <OurLatestEvents />
       </div>
 
+      <div className='OurProjects'>
+        <OurProjects />
+      </div>
+
       <div className='AboutUs'>
         <AboutUs />
       </div>
+
       <br />
       <br />
       <br />
