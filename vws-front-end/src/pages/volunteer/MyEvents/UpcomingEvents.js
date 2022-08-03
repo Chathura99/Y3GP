@@ -1,74 +1,83 @@
 import React, { useEffect,useState } from 'react';
-import Table from "../../../utilities/Table/Table";
+// import Table from "../../../utilities/Table/Table";
 import Card from "react-bootstrap/Card";
+import NewTable from '../../../utilities/Table/NewTable';
+import { useMemo } from 'react';
+import MapFormPopUp from './MapFormPopUp';
+import "./UpcomingEvents.css";
 
 
 export default function UpcomingEvents() {
   
-    const [upcomingEventsData, setUpComingEventsData] = useState([
+    
+      const [upcomingEventsData, setUpComingEventsData] = useState([
         {
-          event_id: "E001",
-          category: "Ganitha Saviya",
-          event_coordinator: "Ravindu",
-          startdate: "2022 09 12",
-          enddate: "2022 09 14",
-          no_of_members: "13",
-          location: "Nikawaratiya",
-          
-          // action: (
-          //   <button
-          //     type="button"
-          //     id="submit"
-          //     name="submit"
-          //     data-toggle="modal"
-          //     data-target="#exampleModalCenter"
-          //     className="btn p-1"
-          //     style={{backgroundColor:"#96BE25",border:"none"}}
-          //     // #96BE25,#BE4D25
-          //     // onClick={handleSubmit}
-          //   >
-          //     Event Details
-          //   </button>
-          // ),
+                event_id: "E001",
+                category: "Ganitha Saviya",
+                event_coordinator: "Ravindu",
+                startdate: "2022 09 12",
+                enddate: "2022 09 14",
+                no_of_members: "13",
+                location: 
+                <button
+          type="button"
+          id="submit"
+          name="submit"
+          data-toggle="modal"
+          data-target="#MapForm"
+          className="btn p-1"
+          style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          View in Map
+        </button>,
+                
         },
         {
-          event_id: "E002",
-          category: "Re-green Earth",
-          event_coordinator: "Sadaru",
-          startdate: "2022 09 02",
-          enddate: "2022 09 04",
-          no_of_members: "8",
-          location: "Horana",
+                event_id: "E002",
+                category: "Re-green Earth",
+                event_coordinator: "Sadaru",
+                startdate: "2022 09 02",
+                enddate: "2022 09 04",
+                no_of_members: "8",
+                location: 
+                <button
+          type="button"
+          id="submit"
+          name="submit"
+          data-toggle="modal"
+          data-target="#MapForm"
+          className="btn p-1"
+          style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          View in Map
+        </button>,
+                
+        }
+      ]);
+
+  const data = useMemo(
+    () => upcomingEventsData  )
+
+      const UpcomingEventsHeadings=useMemo(
+        () => [
+         
+          { accessor: "event_id", Header: "EVENT ID" },
+          { accessor: "category", Header: "CATEGORY" },
+          { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
+          { accessor: "startdate", Header: "STARTS ON" },
+          { accessor: "enddate", Header: "ENDS ON" },
+          { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
+          { accessor: "location", Header: "LOCATION" },
           
-          // action: (
-          //   <button
-          //     type="button"
-          //     id="submit"
-          //     name="submit"
-          //     data-toggle="modal"
-          //     data-target="#exampleModalCenter"
-          //     className="btn p-1"
-          //     style={{backgroundColor:"#96BE25",border:"none"}}
-          //     // #96BE25,#BE4D25
-          //     // onClick={handleSubmit}
-          //   >
-          //     Event Details
-          //   </button>
-          // ),
-        },
-      ]);
-    
-      const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-        { id: "event_id", label: "EVENT ID" },
-        { id: "category", label: "CATEGORY" },
-        { id: "event_coordinator", label: "EVENT COORDINATOR" },
-        { id: "startdate", label: "STARTS ON" },
-        { id: "enddate", label: "ENDS ON" },
-        { id: "no_of_members", label: "NO. OF MEMBERS" },
-        { id: "location", label: "LOCATION" },
-        // { id: "action", label: "EVENT DETAILS" },
-    
-      ]);
+         
+        ],
+        []
+      )
+      
 
     useEffect(() => {
         checkValidate();
@@ -128,10 +137,17 @@ export default function UpcomingEvents() {
             </Card.Text>
         </Card.Body>
       </Card>
-      </div>
       
-                            <h5>All Upcoming Events</h5>
-                                <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
+      </div>
+      <a href="#" class="next round">&#8250;</a>
+      <a href="#" class="previous round">&#8249;</a>
+
+      
+                            <h5><br></br>All Upcoming Events</h5><br></br>
+                               
+                                <NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData} />
+                                <MapFormPopUp />
+
                             </div>
                         </div>
                     </div>
