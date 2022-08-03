@@ -24,7 +24,7 @@ export default function CompletedEvents() {
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
                         className="btn p-1"
-                        style={{backgroundColor:"#96BE25",border:"none"}}
+                        style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
                         // #96BE25,#BE4D25
                         // onClick={handleSubmit}
                       >
@@ -49,7 +49,7 @@ export default function CompletedEvents() {
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
                 className="btn p-1"
-                style={{backgroundColor:"#96BE25",border:"none"}}
+                style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >

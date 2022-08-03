@@ -36,20 +36,20 @@ export default function ProposeProjectForm() {
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""}>
+              <form onSubmit={""} style={{marginTop:0}}>
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2">Details</h4>
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>Adurata Eliyak</h4>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
-                      <label for="fullName">Full Name</label>
+                      <label for="fullName">Proposed By</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="fullName"
-                        placeholder="Enter full name"
+                        id="proposedBy"
+                        placeholder="Ravindu Medagama"
                         // value={profile.firstName}
                         name="firstName"
                         // onChange={handleChange}
@@ -59,15 +59,27 @@ export default function ProposeProjectForm() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Email</label>
+                      <label for="eMail">Date</label>
                       <input
                         type="email"
                         className="form-control"
-                        id="eMail"
-                        placeholder="Enter email ID"
+                        id="date"
+                        placeholder="DD/MM/YY"
                         // value={profile.email}
                         name="email"
                         // onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="phone">Project Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="ProjectName"
+                        placeholder="Enter project name"
                       />
                     </div>
                   </div>
@@ -86,15 +98,41 @@ export default function ProposeProjectForm() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="website">University/School</label>
+                      <label for="phone">Description</label>
                       <input
-                        type="url"
+                        type="text"
+                        style={{height:80}}
                         className="form-control"
-                        id="website"
-                        placeholder="University or School"
+                        id="description"
+                        placeholder="Enter description"
                       />
                     </div>
                   </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="website">Other</label>
+                      <input
+                        type="url"
+                        className="form-control"
+                        id="other"
+                        placeholder="Content"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="website">Events per year</label>
+                      <input
+                        type="url"
+                        className="form-control"
+                        id="numberOfEvents"
+                        placeholder="Enter number of events"
+                      />
+                    </div>
+                  </div>
+
                 </div>
 
                 <div className="row gutters">
@@ -104,6 +142,7 @@ export default function ProposeProjectForm() {
                         <button
                           type="button"
                           id="submit"
+                          
                           name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
@@ -113,11 +152,12 @@ export default function ProposeProjectForm() {
                         <button
                           type="button"
                           id="submit"
+                      
                           name="submit"
                           className="btn btn-primary"
                           // onClick={handleSubmit}
                         >
-                          Update
+                          Save
                         </button>
                       </div>
                     </div>
