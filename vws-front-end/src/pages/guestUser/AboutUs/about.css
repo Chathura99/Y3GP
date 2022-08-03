@@ -4,9 +4,14 @@
     margin-top: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #145369;
-    border-radius: 8px;
+    background-color: #ffffff;
+}
 
+#about {
+    background-color: #145369;
+    padding: 15px 0 15px 0;
+    margin: auto;
+    border-radius: 8px;
 }
 
 #about-img {
