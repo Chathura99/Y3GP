@@ -3,9 +3,11 @@ import "./homepage.css";
 import { Link } from 'react-router-dom';
 
 import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
-import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
-import AboutUs from "../AboutUs/About";
 import OurProjects from "../OurProjects/OurProjects";
+import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
+import VisionMission from "../VisionMission/VisionMission";
+import AboutUs from "../AboutUs/About";
+
 
 export default function HomePage() {
   return (
@@ -97,13 +99,19 @@ export default function HomePage() {
         <OurProjects />
       </div>
 
+      <div className='OurLatestEvents'>
+        <OurLatestEvents />
+      </div>
+
       <div className='AboutUs'>
         <AboutUs />
       </div>
 
-      <div className='OurLatestEvents'>
-        <OurLatestEvents />
+      <div className='VisionMission'>
+        <VisionMission />
       </div>
+
+
 
       <br />
       <br />
