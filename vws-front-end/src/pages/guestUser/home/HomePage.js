@@ -1,8 +1,14 @@
 import React from 'react';
 import "./homepage.css";
 import { Link } from 'react-router-dom';
+
+import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
+import OurProjects from "../OurProjects/OurProjects";
 import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
+import VisionMission from "../VisionMission/VisionMission";
 import AboutUs from "../AboutUs/About";
+import ContactUs from "../ContactUs/ContactUs";
+
 
 export default function HomePage() {
   return (
@@ -34,8 +40,12 @@ export default function HomePage() {
               </li>
             </ul>
 
-            <button class="btn my-2 my-sm-0" id="header-btn" type="submit">Login</button>
-            <button class="btn my-2 my-sm-0" id="header-btn-2" type="submit">Sign Up</button>
+            <Link to="/login" smooth={true} spy={true}>
+              <button class="btn my-2 my-sm-0" id="header-btn" Link to="/login" type="submit">Login</button>
+            </Link>
+            <Link to="/signup" smooth={true} spy={true}>
+              <button class="btn my-2 my-sm-0" id="header-btn-2" type="submit">Sign Up</button>
+            </Link>
 
           </div>
         </nav>
@@ -62,11 +72,11 @@ export default function HomePage() {
               </h4>
 
               <div className='btn-group'>
-                <Link to="contact" smooth={true} spy={true}>
+                <Link to="/signup" smooth={true} spy={true}>
                   <button className="button h-button">Join With Us</button>
                 </Link>
 
-                <Link to="contact" smooth={true} spy={true}>
+                <Link to="#" smooth={true} spy={true}>
                   <button className="button h-button">Support Us</button>
                 </Link>
               </div>
@@ -80,8 +90,14 @@ export default function HomePage() {
         </div>
 
 
+      </div>
 
+      <div className='UpcomingEvents'>
+        <UpcomingEvents />
+      </div>
 
+      <div className='OurProjects'>
+        <OurProjects />
       </div>
 
       <div className='OurLatestEvents'>
@@ -90,6 +106,14 @@ export default function HomePage() {
 
       <div className='AboutUs'>
         <AboutUs />
+      </div>
+
+      <div className='VisionMission'>
+        <VisionMission />
+      </div>
+
+      <div className='ContactUs'>
+        <ContactUs />
       </div>
 
     </>

@@ -1,0 +1,87 @@
+#vision-mission-cont {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    align-content: center;
+    background-color: #ffffff;
+}
+
+#vision-card {
+    width: 300px;
+    background-color: #145369;
+}
+
+#vision-card-h {
+    color: #ffffff;
+    background-color: #00BCD4;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-weight: 900;
+    font-size: 24px;
+    text-align: center;
+}
+
+#vision-card-p {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+}
+
+#mission-card-h {
+    color: #145369;
+    background-color: #ffffff;
+    border: none;
+    font-weight: 900;
+    font-size: 28px;
+    text-align: center;
+}
+
+#mission-text {
+    color: #145369;
+    text-align: center;
+    padding: auto;
+}
+
+#mission-cont {
+    background-color: #ffffff;
+    padding-left: 200px;
+    padding-right: 200px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+
+@media screen and (max-width: 1085px) {
+    #mission-cont {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
+@media screen and (max-width: 966px) {
+    #mission-cont {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media screen and (max-width: 666px) {
+    #mission-cont {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+#mission-col {
+    margin-bottom: 10px;
+}
+
+#mission-card {
+    border-radius: 8px;
+    border: #00BCD4;
+    border-style: dashed;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}

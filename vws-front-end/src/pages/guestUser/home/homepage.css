@@ -90,7 +90,7 @@ button:focus {
   height: auto;
 }
 
-#h-right{
+#h-right {
   padding: auto;
   margin: auto;
   width: auto;
@@ -116,21 +116,21 @@ button:focus {
 }
 
 
-#right-H2{
+#right-H2 {
   color: #ffffff;
-    
+
 }
 
-#right-H1{
+#right-H1 {
   color: #ffffff;
   font-weight: 900;
-    font-size: 30px;
+  font-size: 30px;
 }
 
 
 @media screen and (max-width: 1100px) {
-  #right-H2{
-      font-size: 16px;
+  #right-H2 {
+    font-size: 16px;
   }
 }
 
@@ -138,6 +138,6 @@ button:focus {
 
 /* Other components */
 
-.OurLatestEvents {
+.UpcomingEvents {
   margin-top: 20px;
 }
