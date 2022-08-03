@@ -2,6 +2,7 @@ import React from 'react';
 import "./homepage.css";
 import { Link } from 'react-router-dom';
 
+import UpcomingEvents from '../UpcomingEvents/UpcomingEvents';
 import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
 import AboutUs from "../AboutUs/About";
 import OurProjects from "../OurProjects/OurProjects";
@@ -88,8 +89,8 @@ export default function HomePage() {
 
       </div>
 
-      <div className='OurLatestEvents'>
-        <OurLatestEvents />
+      <div className='UpcomingEvents'>
+        <UpcomingEvents />
       </div>
 
       <div className='OurProjects'>
@@ -98,6 +99,10 @@ export default function HomePage() {
 
       <div className='AboutUs'>
         <AboutUs />
+      </div>
+
+      <div className='OurLatestEvents'>
+        <OurLatestEvents />
       </div>
 
       <br />
