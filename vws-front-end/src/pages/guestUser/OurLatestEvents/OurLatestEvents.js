@@ -3,11 +3,11 @@ import "./ourlatestevents.css";
 import { Link } from 'react-router-dom';
 
 
-export default function HomePage() {
+export default function OurLatestEvents() {
     return (
         <div className=" container-fluid" id="about-body">
 
-            <div className="row gutters ">
+            <div className="row gutters">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="left-col">
                     <h2 className='innerheading-1'>Upcoming Events</h2>
 
