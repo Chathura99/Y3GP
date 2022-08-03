@@ -1,61 +1,56 @@
 import React, { useState,useEffect } from "react";
-import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 // import Card from "react-bootstrap/Card";
+import NewTable from './../../../utilities/Table/NewTable';
+import { useMemo } from 'react';
 
 
 export default function HomePage() {
   const [upcomingEventsData, setUpComingEventsData] = useState([
     {
-      event_id: "E001",
-      category: "Ganitha Saviya",
-      event_coordinator: "Ravindu",
-      startdate: "2022 09 12",
-      enddate: "2022 09 14",
-      no_of_members: "13",
-      location: "Nikawaratiya",
-      
-      // action: (
-      //   <button
-      //     type="button"
-      //     id="submit"
-      //     name="submit"
-      //     className="btn p-1"
-      //     style={{backgroundColor:"#96BE25",border:"none"}}
-      //     // #96BE25,#BE4D25
-      //     // onClick={handleSubmit}
-      //   >
-      //     View Details
-      //   </button>
-      // ),
+            event_id: "E001",
+            category: "Ganitha Saviya",
+            event_coordinator: "Ravindu",
+            startdate: "2022 09 12",
+            enddate: "2022 09 14",
+            no_of_members: "13",
+            location: "Nikawaratiya",
+            
+            
     },
     {
-      event_id: "E002",
-      category: "Re-green Earth",
-      event_coordinator: "Sadaru",
-      startdate: "2022 09 02",
-      enddate: "2022 09 04",
-      no_of_members: "8",
-      location: "Horana",
-      
-      // action: (
-      //   <button
-      //     type="button"
-      //     id="submit"
-      //     name="submit"
-      //     className="btn p-1"
-      //     style={{backgroundColor:"#96BE25",border:"none"}}
-      //     // #96BE25,#BE4D25
-      //     // onClick={handleSubmit}
-      //   >
-      //     View Details
-      //   </button>
-      // ),
-    },
+            event_id: "E002",
+            category: "Re-green Earth",
+            event_coordinator: "Sadaru",
+            startdate: "2022 09 02",
+            enddate: "2022 09 04",
+            no_of_members: "8",
+            location: "Horana",
+            
+            
+    }
   ]);
+
+const data = useMemo(
+() => upcomingEventsData  )
+
+  const UpcomingEventsHeadings=useMemo(
+    () => [
+     
+      { accessor: "event_id", Header: "EVENT ID" },
+      { accessor: "category", Header: "CATEGORY" },
+      { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
+      { accessor: "startdate", Header: "STARTS ON" },
+      { accessor: "enddate", Header: "ENDS ON" },
+      { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
+      { accessor: "location", Header: "LOCATION" },
+     
+    ],
+    []
+  )
   const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
     ["Ganitha Saviya", 11],
@@ -79,17 +74,7 @@ const checkValidate = async () => {
         window.location.href = "/";
     }
 };
-  const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-    { id: "event_id", label: "EVENT ID" },
-    { id: "category", label: "CATEGORY" },
-    { id: "event_coordinator", label: "EVENT COORDINATOR" },
-    { id: "startdate", label: "STARTS ON" },
-    { id: "enddate", label: "ENDS ON" },
-    { id: "no_of_members", label: "NO.OF MEMBERS" },
-    { id: "location", label: "LOCATION" },
-    // { id: "action", label: "Action" },
-
-  ]);
+  
 
   return (
     <>
@@ -326,8 +311,8 @@ const checkValidate = async () => {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <h5>Upcoming Events</h5>
-                <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
+                <h5>Upcoming Events</h5><br></br>
+                <NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData} />
               </div>
             </div>
           </div>
