@@ -34,8 +34,12 @@ export default function HomePage() {
               </li>
             </ul>
 
-            <button class="btn my-2 my-sm-0" id="header-btn" type="submit">Login</button>
-            <button class="btn my-2 my-sm-0" id="header-btn-2" type="submit">Sign Up</button>
+            <Link to="/login" smooth={true} spy={true}>
+              <button class="btn my-2 my-sm-0" id="header-btn" Link to="/login" type="submit">Login</button>
+            </Link>
+            <Link to="/signup" smooth={true} spy={true}>
+              <button class="btn my-2 my-sm-0" id="header-btn-2" type="submit">Sign Up</button>
+            </Link>
 
           </div>
         </nav>
@@ -62,11 +66,11 @@ export default function HomePage() {
               </h4>
 
               <div className='btn-group'>
-                <Link to="contact" smooth={true} spy={true}>
+                <Link to="/signup" smooth={true} spy={true}>
                   <button className="button h-button">Join With Us</button>
                 </Link>
 
-                <Link to="contact" smooth={true} spy={true}>
+                <Link to="#" smooth={true} spy={true}>
                   <button className="button h-button">Support Us</button>
                 </Link>
               </div>
@@ -91,7 +95,10 @@ export default function HomePage() {
       <div className='AboutUs'>
         <AboutUs />
       </div>
-
+      <br />
+      <br />
+      <br />
+      <br />
     </>
   )
 }
