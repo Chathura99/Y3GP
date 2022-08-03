@@ -7,6 +7,7 @@ import OurProjects from "../OurProjects/OurProjects";
 import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
 import VisionMission from "../VisionMission/VisionMission";
 import AboutUs from "../AboutUs/About";
+import ContactUs from "../ContactUs/ContactUs";
 
 
 export default function HomePage() {
@@ -111,12 +112,10 @@ export default function HomePage() {
         <VisionMission />
       </div>
 
+      <div className='ContactUs'>
+        <ContactUs />
+      </div>
 
-
-      <br />
-      <br />
-      <br />
-      <br />
     </>
   )
 }
