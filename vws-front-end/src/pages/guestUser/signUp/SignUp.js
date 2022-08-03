@@ -9,8 +9,13 @@ import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
 
 export default function SignUp() {
-  const { register, formState: { errors } } = useForm();
-  console.log(errors);
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
+    mode: "all",
+  });
+  console.log(errors, Object.keys(errors).length === 1);
 
   const [requestData, setRequestData] = useState(
     {
@@ -95,9 +100,13 @@ export default function SignUp() {
                       <div className="form-group ">
                         <label for="firstName">First Name</label>
                         <input
-                          {...register("firstName",{
-                            required : "user name is required"
-                            
+                          {...register("firstName", {
+                            required: "First name is required...",
+                            minLength: {
+                              value: 5,
+                              message:
+                                "First Name must be atleast 3 characters long...",
+                            },
                           })}
                           type="text"
                           className="form-control"
@@ -106,8 +115,8 @@ export default function SignUp() {
                           name="firstName"
                           value={requestData.firstName}
                           onChange={handleChange}
-                          // required
                         />
+                        <p className="formerror">{errors.firstName?.message}</p>
                       </div>
                     </div>
 
@@ -115,6 +124,14 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="lastName">Last Name</label>
                         <input
+                          {...register("lastName", {
+                            required: "Last name is required...",
+                            minLength: {
+                              value: 5,
+                              message:
+                                "Last Name must be atleast 3 characters long...",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="lastName"
@@ -122,8 +139,8 @@ export default function SignUp() {
                           name="lastName"
                           value={requestData.lastName}
                           onChange={handleChange}
-                          required
                         />
+                        <p className="formerror">{errors.lastName?.message}</p>
                       </div>
                     </div>
 
@@ -131,6 +148,14 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="email">Email</label>
                         <input
+                          {...register("email", {
+                            required: "Email is required...",
+                            pattern: {
+                              value:
+                                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                              message: "Email must be valid",
+                            },
+                          })}
                           type="email"
                           className="form-control"
                           id="email"
@@ -138,9 +163,8 @@ export default function SignUp() {
                           name="email"
                           value={requestData.email}
                           onChange={handleChange}
-                          required
-                          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                         />
+                        <p className="formerror">{errors.email?.message}</p>
                       </div>
                     </div>
 
@@ -148,6 +172,13 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="phoneNumber">Phone</label>
                         <input
+                          {...register("phoneNumber", {
+                            required: "Phone number is required...",
+                            pattern: {
+                              value: /^(?:7|0|(?:\+94))[0-9]{9,10}$/,
+                              message: "Phone number must be valid",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="phoneNumber"
@@ -155,9 +186,10 @@ export default function SignUp() {
                           name="phoneNumber"
                           value={requestData.phoneNumber}
                           onChange={handleChange}
-                          pattern="^(?:7|0|(?:\+94))[0-9]{9,10}$"
-                          required
                         />
+                        <p className="formerror">
+                          {errors.phoneNumber?.message}
+                        </p>
                       </div>
                     </div>
 
@@ -165,6 +197,9 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="district">District</label>
                         <input
+                          {...register("district", {
+                            required: "District is required...",
+                          })}
                           type="text"
                           className="form-control"
                           id="district"
@@ -172,8 +207,8 @@ export default function SignUp() {
                           name="district"
                           value={requestData.district}
                           onChange={handleChange}
-                          required
                         />
+                        <p className="formerror">{errors.district?.message}</p>
                       </div>
                     </div>
 
@@ -181,6 +216,9 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="address">Address</label>
                         <input
+                          {...register("address", {
+                            required: "District is required...",
+                          })}
                           type="text"
                           className="form-control"
                           id="address"
@@ -188,8 +226,8 @@ export default function SignUp() {
                           name="address"
                           value={requestData.address}
                           onChange={handleChange}
-                          required
                         />
+                        <p className="formerror">{errors.address?.message}</p>
                       </div>
                     </div>
 
@@ -197,6 +235,9 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="universityCollege">University/School</label>
                         <input
+                          {...register("universityCollege", {
+                            required: "University is required...",
+                          })}
                           type="text"
                           className="form-control"
                           id="universityCollege"
@@ -204,8 +245,10 @@ export default function SignUp() {
                           name="universityCollege"
                           value={requestData.universityCollege}
                           onChange={handleChange}
-                          required
                         />
+                        <p className="formerror">
+                          {errors.universityCollege?.message}
+                        </p>
                       </div>
                     </div>
 
@@ -213,6 +256,13 @@ export default function SignUp() {
                       <div className="form-group">
                         <label for="nic">NIC/Passport</label>
                         <input
+                          {...register("nic", {
+                            required: "NIC is required...",
+                            pattern: {
+                              value: /^([0-9]{9}[x|X|v|V]|[0-9]{12})$/,
+                              message: "NIC must be valid",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="nic"
@@ -220,9 +270,8 @@ export default function SignUp() {
                           name="nic"
                           value={requestData.nic}
                           onChange={handleChange}
-                          required
-                          pattern="^([0-9]{9}[x|X|v|V]|[0-9]{12})$"
                         />
+                        <p className="formerror">{errors.nic?.message}</p>
                       </div>
                     </div>
 
@@ -296,6 +345,11 @@ export default function SignUp() {
                           id="submit"
                           name="submit"
                           class="btn btn-secondary btn-sm"
+                          {...(Object.keys(errors).length === true)}
+                          style={{ backgroundColor: "#CCC" }}
+                          disabled
+                          title="Please fill the form correctly!"
+
                           // onClick=
                         >
                           Submit
