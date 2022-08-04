@@ -61,10 +61,10 @@ export default function CoordinateEventForm() {
                     <div className="form-group">
                       <label for="eMail">Starts On</label>
                       <input
-                        type="email"
+                        type="date"
                         className="form-control"
                         id="date"
-                        placeholder="DD/MM/YY"
+                        
                         // value={profile.email}
                         name="email"
                         // onChange={handleChange}
@@ -88,10 +88,10 @@ export default function CoordinateEventForm() {
                     <div className="form-group">
                       <label for="eMail">Ends On</label>
                       <input
-                        type="email"
+                        type="date"
                         className="form-control"
                         id="date"
-                        placeholder="DD/MM/YY"
+                        
                         // value={profile.email}
                         name="email"
                         // onChange={handleChange}

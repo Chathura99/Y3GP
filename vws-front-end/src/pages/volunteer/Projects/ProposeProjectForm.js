@@ -61,10 +61,10 @@ export default function ProposeProjectForm() {
                     <div className="form-group">
                       <label for="eMail">Date</label>
                       <input
-                        type="email"
+                        type="date"
                         className="form-control"
                         id="date"
-                        placeholder="DD/MM/YY"
+                        
                         // value={profile.email}
                         name="email"
                         // onChange={handleChange}
