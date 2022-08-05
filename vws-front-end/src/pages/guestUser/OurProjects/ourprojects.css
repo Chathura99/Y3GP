@@ -1,8 +1,8 @@
 /* Projects */
 
 #project-cont {
-    margin-top: 50px;
-    padding-top: 20px;
+    margin-top: 0px;
+    padding-top: 30px;
     background-color: #ffffff;
 }
 
@@ -18,6 +18,8 @@
     color: #145369;
     font-weight: 900;
     font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #project-img {
@@ -67,6 +69,7 @@
     font-weight: 900;
     font-size: 30px;
     text-align: center;
+    padding-bottom: 5px;
 }
 
 
