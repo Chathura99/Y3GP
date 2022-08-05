@@ -12,7 +12,7 @@ export default function OurLatestEvents() {
                 make an impact on the world we live. Throughout the past years,
                 months and the days our members have being dedicated to contribute their best to the society.</h4>
 
-            <div className="row gutters" id="inner-cont">
+            <div className="row gutters" id="inner-cont-event">
 
                 <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12" id="latestevents">
                     <div class="card h-100" id="event-card-2">

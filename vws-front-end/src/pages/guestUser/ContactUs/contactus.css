@@ -24,6 +24,8 @@
     font-size: 26px;
     font-weight: 800;
     color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 5px;
 }
 
 #footer-p1 {
@@ -101,4 +103,13 @@
 
 #cont-2 {
     margin-top: 10px !important;
+}
+
+.footer-end{
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #ffffff;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
 }

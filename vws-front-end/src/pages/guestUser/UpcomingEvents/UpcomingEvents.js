@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function UpcomingEvents() {
     return (
-        <div className=" container-fluid" id="about-body">
+        <div className=" container-fluid" id="ue-body">
 
             <div className="row gutters">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="left-col">
