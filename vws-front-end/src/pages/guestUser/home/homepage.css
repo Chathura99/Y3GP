@@ -37,7 +37,7 @@ button:focus {
 
 .home-cont {
   background: #145369;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 #Navbar {
@@ -134,10 +134,3 @@ button:focus {
   }
 }
 
-
-
-/* Other components */
-
-.UpcomingEvents {
-  margin-top: 20px;
-}
