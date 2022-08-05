@@ -113,3 +113,12 @@
     padding-bottom: 20px;
     margin-bottom: 0px;
 }
+
+@media screen and (max-width: 575px) {
+    #link-cont{
+        padding-left: 10px;
+    }
+}
+
+
+

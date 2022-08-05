@@ -23,7 +23,7 @@ export default function ContactUs() {
 
             <div className="container mt-5" id="cont-2">
                 <div className="row">
-                    <div className="col-sm-3">
+                    <div className="col-sm-3" id="link-cont">
                         <h3 className="footer-h">Our Links</h3>
 
                         <li className="nav-item" id="footer-li">
@@ -49,7 +49,7 @@ export default function ContactUs() {
 
                     </div>
 
-                    <div class="col-sm-3">
+                    <div className="col-sm-3" id="link-cont">
                         <h3 className='footer-h'>Services</h3>
 
                         <li className="nav-item" id="footer-li">
@@ -74,8 +74,8 @@ export default function ContactUs() {
 
                     </div>
 
-                    <div class="col-sm-3">
-                        <h3 className="footer-h">Services</h3>
+                    <div className="col-sm-3" id="link-cont">
+                        <h3 className="footer-h">Contacts</h3>
 
                         <li className="nav-item" id="footer-li">
                             <Link to="#" className="nav-link" id="footer-link"> Sasnaka Sansada foundation
@@ -98,7 +98,7 @@ export default function ContactUs() {
 
                     </div>
 
-                    <div class="col-sm-3">
+                    <div className="col-sm-3" id="link-cont">
                         <h3 className="footer-h">Social Media</h3>
 
                         <li className="nav-item" id="footer-li">
@@ -126,7 +126,7 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                    <hr></hr>
+                   
                    <h4 className='footer-end'>2020 All Rights Reserved © Sasnaka Sansada</h4>
                 </div>
 
