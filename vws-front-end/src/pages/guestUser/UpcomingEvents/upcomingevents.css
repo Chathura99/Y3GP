@@ -1,5 +1,6 @@
-#about-body {
+#ue-body {
     background-color: #ffffff;
+    padding-top: 20px;
 }
 
 #eventcard {
@@ -99,6 +100,8 @@
     color: #145369;
     font-weight: 900;
     font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #name-right {
@@ -117,6 +120,8 @@
     color: #ffffff;
     font-weight: 900;
     font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 @media screen and (max-width: 980px) {
