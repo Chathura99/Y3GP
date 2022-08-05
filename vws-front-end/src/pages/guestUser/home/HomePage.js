@@ -73,11 +73,11 @@ export default function HomePage() {
 
               <div className='btn-group'>
                 <Link to="/signup" smooth={true} spy={true}>
-                  <button className="button h-button">Join With Us</button>
+                  <button className="button h-button" id="btn-change1">Join With Us</button>
                 </Link>
 
                 <Link to="#" smooth={true} spy={true}>
-                  <button className="button h-button">Support Us</button>
+                  <button className="button h-button" id="btn-change">Support Us</button>
                 </Link>
               </div>
 

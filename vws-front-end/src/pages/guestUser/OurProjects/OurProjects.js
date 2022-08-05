@@ -48,11 +48,11 @@ export default function OurProjects() {
                         <div className='btn-group'>
 
                             <Link to="contact" smooth={true} spy={true}>
-                                <button className="button p-button">Join With Us</button>
+                                <button className="button p-button">Donate</button>
                             </Link>
 
                             <Link to="contact" smooth={true} spy={true}>
-                                <button className="button p-button">Support Us</button>
+                                <button className="button p-button">Request Event</button>
                             </Link>
 
                         </div>
