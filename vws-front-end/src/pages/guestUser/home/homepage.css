@@ -1,7 +1,8 @@
-
-
-
 /* Navbar */
+
+a:hover {
+  background-color: transparent !important;
+}
 
 .home-cont {
   background: #145369;
@@ -69,9 +70,12 @@
   display: inline-block;
 }
 
-.h-button {
+
+#h-button1 {
   border-radius: 4px;
-  color: #145369;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: #145369 !important;
   font-weight: 600;
   width: 120px;
   height: 40px;
@@ -81,15 +85,18 @@
   margin-bottom: 5px;
 }
 
-#btn-change1{
-  border: none;
-  background-color: rgb(255, 255, 255);
-}
-
-#btn-change{
- background: none;
+#h-button2 {
+  background-color: #145369;
   color: #ffffff;
   border-color: #ffffff;
+  border-radius: 4px;
+  font-weight: 600;
+  width: 120px;
+  height: 40px;
+  margin-right: 20px;
+  margin-left: 10px;
+  flex: 2;
+  margin-bottom: 5px;
 }
 
 
@@ -110,4 +117,3 @@
     font-size: 16px;
   }
 }
-
