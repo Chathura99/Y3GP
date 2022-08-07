@@ -56,6 +56,10 @@ export default function UpcomingEvents() {
                         </div>
                     </div>
 
+                    <Link to="/allupcomingevents" id="seemore1" smooth={true} spy={true}>
+                        See more
+                    </Link>
+
                 </div>
 
 
@@ -125,6 +129,11 @@ export default function UpcomingEvents() {
                             </div>
                         </div>
                     </div>
+
+
+                    <Link to="/allupcomingevents" id="seemore2" smooth={true} spy={true}>
+                        See more
+                    </Link>
 
                 </div>
 
