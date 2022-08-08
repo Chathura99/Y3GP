@@ -23,6 +23,15 @@
   color: #2e323c;
 }
 
+.global-containerbackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #145369;
+  /* background: url("../../../../public/images/bglogin.png"); */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
 .card {
   background: #ffffff;
   -webkit-border-radius: 5px;
@@ -72,9 +81,17 @@
 
 .btn {
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px !important;
 }
 
 .browse{
   padding: 10px;
+}
+
+#formLabel{
+  color: white;
+}
+
+#submitbtn{
+  color: #145369 !important;
 }
