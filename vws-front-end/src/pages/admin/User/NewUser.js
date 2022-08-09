@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
-
+import RegisterNewUser from "./RegisterNewUser";
 export default function NewUser() {
   useEffect(() => {
     checkValidate();
@@ -86,6 +86,15 @@ export default function NewUser() {
             </div>
           </div>
         </div>
+        <RegisterNewUser />
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#registerUser"
+        >
+          Register
+        </button>
       </div>
     </>
   );
