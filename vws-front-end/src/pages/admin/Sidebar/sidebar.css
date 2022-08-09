@@ -168,7 +168,7 @@ h5,
 
 #sidebar ul li.active > a {
   border-radius: 135px;
-  background: #2596ba;
+  background: #2596ba !important;
   color: #ffffff;
 }
 #sidebarCollapse{
