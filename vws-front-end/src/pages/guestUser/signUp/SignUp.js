@@ -345,7 +345,6 @@ export default function SignUp() {
                         <button
                           type="submit"
                           id="submitbtn"
-
                           name="submit"
                           class="btn btn-secondary btn-sm"
                           {...(Object.keys(errors).length === true)}
