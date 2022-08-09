@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getAnnouncement } from "../../../services/announcementServices/announcementServices";
 import AddAnnouncement from "./AddAnnouncement";
 import "./announcement.css";
+import EditAnnouncement from "./EditAnnouncement";
 export default function ViewAnnouncement() {
   const [announcement, setAnnouncement] = useState([]);
 
@@ -31,13 +32,16 @@ export default function ViewAnnouncement() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <h4 className="ml-3">Announcements</h4>
-                <AddAnnouncement/>
+                <AddAnnouncement />
+                <EditAnnouncement />
                 <button
                   type="button"
                   class="btn btn-primary"
                   data-toggle="modal"
                   data-target="#addAnnouncement"
-                >ADD</button>
+                >
+                  ADD
+                </button>
 
                 {announcement.map((ann, index) => (
                   <div key={ann.annId}>
@@ -58,9 +62,11 @@ export default function ViewAnnouncement() {
                             style={{ marginTop: "8px" }}
                           >
                             <a className="nav-link" style={{ color: "black" }}>
-                              <b>{ann.first_name+" "+ann.last_name}</b>
+                              <b>{ann.first_name + " " + ann.last_name}</b>
                             </a>
-                            <a className="nav-link">{ann.role+" "+ann.date}</a>
+                            <a className="nav-link">
+                              {ann.role + " " + ann.date}
+                            </a>
                           </li>
                         </ul>
                       </div>
@@ -80,7 +86,12 @@ export default function ViewAnnouncement() {
                             </a>
                           </div> */}
                         </p>
-                        <i className="fa fa-edit" id="edit"></i>
+                        <i
+                          className="fa fa-edit"
+                          id="edit"
+                          data-toggle="modal"
+                          data-target="#editAnnouncement"
+                        ></i>
                       </div>
                     </div>
                   </div>

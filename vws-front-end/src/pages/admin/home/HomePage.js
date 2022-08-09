@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
@@ -7,6 +7,7 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 import NewTable from "../../../utilities/Table/NewTable";
+import RegisterNewUser from "./RegisterNewUser";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -43,7 +44,7 @@ export default function HomePage() {
     { id: "member", label: "MEMBERS" },
     { id: "coordinator", label: "COORDINATOR" },
     { id: "date", label: "DATE" },
-  ])
+  ]);
 
   const [pieChartData, setPieChartData] = useState([
     ["Task", "votes"],
@@ -51,15 +52,12 @@ export default function HomePage() {
     ["Re-green Earth", 2],
   ]);
 
-  
   const [joinRequestsData, setJoinRequestsData] = useState([]);
 
-  const data = useMemo(
-    () => joinRequestsData  )
+  const data = useMemo(() => joinRequestsData);
 
-  const joinRequestsTableHead=useMemo(
+  const joinRequestsTableHead = useMemo(
     () => [
-     
       { accessor: "id", Header: "REQ_ID" },
       { accessor: "firstName", Header: "NAME" },
       { accessor: "nic", Header: "NIC" },
@@ -70,7 +68,7 @@ export default function HomePage() {
       { accessor: "status", Header: "STATUS" },
     ],
     []
-  )
+  );
 
   const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
@@ -86,11 +84,10 @@ export default function HomePage() {
     getRequest();
   }, []);
 
-
   const getRequest = async () => {
     const res = await getJoinRequest();
     console.log(res.data);
-    setJoinRequestsData(res.data)
+    setJoinRequestsData(res.data);
   };
 
   const checkValidate = async () => {
@@ -249,11 +246,22 @@ export default function HomePage() {
               <div className="card-body ">
                 <h5>Join Requests</h5>
 
-                <NewTable columns={joinRequestsTableHead} data={joinRequestsData} />
-
+                <NewTable
+                  columns={joinRequestsTableHead}
+                  data={joinRequestsData}
+                />
               </div>
             </div>
           </div>
+          <RegisterNewUser />
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#registerUser"
+          >
+            Register
+          </button>
         </div>
       </div>
     </>
