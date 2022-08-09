@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
 import TopFormPopUp from "../../../utilities/PopUps/TopFormPopUp";
 import MidFormPopUp from "../../../utilities/PopUps/MidFormPopUp";
+import Initializeproject from "./InitializeProject";
 
 export default function ProposedProject() {
   useEffect(() => {
@@ -89,7 +90,22 @@ export default function ProposedProject() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-
+                <Initializeproject />
+                <button
+                  type="button"
+                  class="btn"
+                  data-toggle="modal"
+                  data-target="#initializeproject"
+                  style={{
+                    backgroundColor: "#96BE25",
+                    border: "none",
+                    marginRight: 0,
+                  }}
+                >
+                  Initialize
+                </button>
+                <br></br>
+                sample button for pop ups, get from here...
                 <TopFormPopUp />
                 <MidFormPopUp />
                 <button
@@ -108,7 +124,6 @@ export default function ProposedProject() {
                 >
                   Upper
                 </button>
-
               </div>
             </div>
           </div>
