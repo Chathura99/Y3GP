@@ -1,0 +1,14 @@
+#forumbtn{
+
+    font-size: 14px;
+   padding-top: 5px;
+    margin-top: 20px;
+    
+    background: #2596BA;
+    color:white;
+    
+    border: none;
+    
+    border-radius: 5px;
+
+}
