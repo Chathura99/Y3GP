@@ -27,7 +27,7 @@ export default function PreviousEvents() {
                         // #96BE25,#BE4D25
                         // onClick={handleSubmit}
                       >
-                        Event Details
+                        Details
                       </button>
                     ),
     },
@@ -52,7 +52,7 @@ export default function PreviousEvents() {
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >
-                Event Details
+                Details
               </button>
             ),
     }
