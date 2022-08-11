@@ -2,6 +2,7 @@
 
     font-size: 14px;
    padding-top: 5px;
+    margin-bottom: 20px;
     margin-top: 20px;
     
     background: #2596BA;
@@ -12,3 +13,48 @@
     border-radius: 5px;
 
 }
+#maindiv{
+    width: 82%;
+    height: 720px;
+    margin-top: 40px;
+    float: right;
+    /* background-color:#D9D9D9; */
+}
+ #leftside{
+    padding-top: 15px; 
+    padding-bottom: 15px;
+    width: 50%;
+    height: 100%;
+    float: left;
+    /* background-color: aquamarine; */
+ }
+
+ #rightside{
+    padding-top: 15px; 
+    padding-bottom: 15px;
+    width: 50%;
+    height: 100%;
+    float: right;
+    /* background-color: red; */
+ }
+ #blaa{
+    width: 97%;
+    height: 720px;
+    float: right;
+    padding: 0;
+    /* margin-top: 10px; */
+    margin-right: 1%;
+    margin-left: 0;
+    
+
+ }
+
+ #blaaa{
+    width: 97%;
+    height: 100%;
+    float: right;
+    padding: 0;
+    /* margin-top: 10px; */
+    margin-right: 2%;
+    margin-left: 0;
+ }
