@@ -90,7 +90,7 @@ const data = useMemo(
     <>
     <div  id="maindiv">
     <div id="leftside">
-      <div className="container-fluid calculated-bodywidth"  id="blaa">
+      <div className="container-fluid calculated-bodywidth"  id="blaa" style={{paddingLeft:25}}>
                 
 
                 <div className="row gutters mt-3">
@@ -113,7 +113,7 @@ const data = useMemo(
             </div>
             </div> 
             <div id="rightside">
-            <div className="container-fluid calculated-bodywidth" style={{}} id="blaaa">
+            <div className="container-fluid calculated-bodywidth" style={{paddingLeft:7}} id="blaaa">
                 
 
                 <div className="row gutters mt-3">
