@@ -84,6 +84,7 @@ const data = useMemo(
     ],
     []
   )
+// poll data
 
   return (
     <>
@@ -125,8 +126,7 @@ const data = useMemo(
                                 
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
-                                {/* <ProposeProjectForm /> */}
-                                {/* <CoordinateEventForm /> */}
+                                
                                 
                                 
                             </div>
