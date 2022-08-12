@@ -29,7 +29,7 @@ form {
 #logbtn {
   font-size: 14px;
   padding-top: 10px;
-  margin-top: 20px;
+  margin-top: -10px;
   background: linear-gradient(
     90deg,
     rgba(201, 201, 201, 1) 35%,
@@ -51,7 +51,8 @@ form {
 
 .sign-up {
   text-align: center;
-  padding: 20px 0 0;
+  
+  padding: 10px 0 0;
   font-size: 12px;
   color: white;
 }

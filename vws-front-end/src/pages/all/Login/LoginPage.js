@@ -176,7 +176,7 @@ const LoginPage = ({ loading, error, ...props }) => {
                       <div className="card-title">Remember me</div>
                     </label>
                     <Link to="/forgotpassword">
-                      <p className="card-title forgotpw">Forgot Password?</p>
+                      <div className="card-title forgotpw" style={{marginTop:-10}}>Forgot Password?</div>
                     </Link>
                   </div>
                 </div>
