@@ -1,5 +1,7 @@
 package com.ucsc.vwsbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -22,8 +24,8 @@ public class Announcement {
     private String category;
 
     @Column(name = "date")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date date;
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     User user;

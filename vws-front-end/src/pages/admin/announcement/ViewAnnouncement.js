@@ -31,17 +31,23 @@ export default function ViewAnnouncement() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <h4 className="ml-3">Announcements</h4>
+                <h4 className="">Announcements</h4>
                 <AddAnnouncement />
                 <EditAnnouncement />
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn"
                   data-toggle="modal"
                   data-target="#addAnnouncement"
+                  style={{
+                    backgroundColor: "#2596be",
+                    border: "none",
+                    marginRight: 0,
+                    marginBottom:"10px"
+                  }}
                 >
                   ADD
-                </button>
+                </button>        
 
                 {announcement.map((ann, index) => (
                   <div key={ann.annId}>

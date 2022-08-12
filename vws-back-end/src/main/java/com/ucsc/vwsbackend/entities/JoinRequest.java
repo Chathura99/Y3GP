@@ -1,6 +1,8 @@
 package com.ucsc.vwsbackend.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -45,6 +47,7 @@ public class JoinRequest {
     private String  district;
 
     @Column(name = "requested_date")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date date;
 
     @Column(name="status")
