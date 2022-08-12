@@ -7,6 +7,7 @@ body {
 }
 .btn {
   color: #f5f6fa !important;
+  font-weight: 100!important;
 }
 .formerror {
   color: red;
@@ -17,7 +18,4 @@ body {
 label {
   color: rgb(146, 145, 145) ;
   font-size: smaller;
-}
-.btn {
-  font-weight: 100;
 }

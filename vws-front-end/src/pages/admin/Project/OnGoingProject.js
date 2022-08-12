@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
 import Table from "../../../utilities/Table/Table";
+import EditProject from "./EditProject";
 
 export default function OnGoingProject() {
   useEffect(() => {
@@ -17,7 +18,7 @@ export default function OnGoingProject() {
     {
       projectId: "P001",
       projectName: "Ganitha Saviya",
-      coordinator: "Kaduruwela",
+      coordinator: "Hazeen Ram",
       phone: "+94 76 7845 111",
       startedOn: "2020-10-21",
       action: (
@@ -41,7 +42,7 @@ export default function OnGoingProject() {
     {
       projectId: "P002",
       projectName: "Re-green Earth",
-      coordinator: "Matara",
+      coordinator: "Chamath Shanuka",
       phone: "+94 70 2542 336",
       startedOn: "2019-12-01",
       action: (
@@ -122,6 +123,21 @@ export default function OnGoingProject() {
             </div>
           </div>
         </div>
+        <EditProject />
+                <button
+                  type="button"
+                  class="btn"
+                  data-toggle="modal"
+                  data-target="#editproject"
+                  style={{
+                    backgroundColor: "#96BE25",
+                    border: "none",
+                    marginRight: 0,
+                  }}
+                >
+                  Edit
+                </button>
+                <br></br>
       </div>
     </>
   );
