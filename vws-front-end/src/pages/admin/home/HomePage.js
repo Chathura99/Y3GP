@@ -87,7 +87,27 @@ export default function HomePage() {
   const getRequest = async () => {
     const res = await getJoinRequest();
     console.log(res.data);
-    setJoinRequestsData(res.data);
+    setJoinRequestsData([
+      ...res.data,
+      // {status: (
+      //   <button
+      //     type="button"
+      //     id="submit"
+      //     name="submit"
+      //     className="btn mt-0"
+      //     style={{
+      //       backgroundColor: "#96BE25",
+      //       border: "none",
+      //       marginRight: "2px",
+      //     }}
+      //     // #96BE25,#BE4D25
+      //     // onClick={handleSubmit}
+      //   >
+      //     Approve
+      //   </button>
+      // )},
+    
+    ]);
   };
 
   const checkValidate = async () => {
