@@ -1,5 +1,8 @@
 import React, { useEffect,useState } from 'react';
-import Table from "../../../utilities/Table/Table";
+import NewTable from '../../../utilities/Table/NewTable';
+import CoordinateEventForm from './Coordinate';
+import "./Project.css"
+import { useMemo } from 'react';
 
 export default function PcOngoingProject() {
   
@@ -12,14 +15,32 @@ export default function PcOngoingProject() {
       startdate: "2022 09 14",
       // no_of_members: "13",
       // location: "Nikawaratiya",
-      
+
+//        coordinate: (
+//                <button
+//                  type="button"
+//                  id="submit"
+//                  name="submit"
+//                  className="btn p-1"
+//                  data-toggle="modal"
+//                  data-target="#Coordinate"
+//                  style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+//                  // #96BE25,#BE4D25
+//                  // onClick={handleSubmit}
+//                >
+//                  Coordinate
+//                </button>
+//              ),
+
       action: (
         <button
           type="button"
           id="submit"
           name="submit"
           className="btn btn-primary p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
+          data-toggle="modal"
+          data-target="#CoordinateEventForm"
+          style={{backgroundColor:"#96BE25",border:"none", marginTop: 10,marginBottom: 10}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
@@ -35,13 +56,32 @@ export default function PcOngoingProject() {
       startdate: "2022 09 14",
       // no_of_members: "8",
       // location: "Horana",
-      
+
+
+//coordinate: (
+//                <button
+//                  type="button"
+//                  id="submit"
+//                  name="submit"
+//                  data-toggle="modal"
+//                  data-target="#Coordinate"
+//                  className="btn p-1"
+//                  style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+//                  // #96BE25-green,#BE4D25-red
+//                  // onClick={handleSubmit}
+//                >
+//                  Coordinate
+//                </button>
+//              ),
+
       action: (
         <button
           type="button"
           id="submit"
           name="submit"
           className="btn btn-primary p-1"
+          data-toggle="modal"
+          data-target="#CoordinateEventForm"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
@@ -52,15 +92,22 @@ export default function PcOngoingProject() {
     },
   ]);
 
-  const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
-    { id: "project_id", label: "Project ID" },
-    { id: "project_name", label: "Project Name" },
-    { id: "description", label: "Description" },
-    { id: "coordinator", label: "Coordinator" },
-    { id: "startdate", label: "Start Date" },
+//  const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
+
+    const data = useMemo(
+      () => upcomingProjectsData  )
+
+        const UpcomingProjectsHeadings=useMemo(
+          () => [
+
+    { accessor: "project_id", Header: "Project ID" },
+    { accessor: "project_name", Header: "Project Name" },
+    { accessor: "description", Header: "Description" },
+    { accessor: "coordinator", Header: "Coordinator" },
+    { accessor: "startdate", Header: "Start Date" },
     // { id: "no_of_members", label: "Coordinate Events" },
     // { id: "location", label: "Location" },
-    { id: "action", label: "Action" },
+    { accessor: "action", Header: "Action" },
 
   ]);
 
@@ -77,14 +124,15 @@ const checkValidate = async () => {
 return (
     <>
         <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
-            
+
 
             <div className="row gutters mt-3">
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="card h-100" id="contentcard">
                         <div className="card-body ">
                             <h5>Ongoing Projects</h5>
-                            <Table rows={upcomingProjectsData} headCells={UpcomingProjectsHeadings} />
+                            <br></br><NewTable columns={UpcomingProjectsHeadings} data={upcomingProjectsData}/>
+                            <CoordinateEventForm />
                         </div>
                     </div>
                 </div>

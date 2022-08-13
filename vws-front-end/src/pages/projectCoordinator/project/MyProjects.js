@@ -1,5 +1,8 @@
 import React, { useEffect,useState } from 'react';
-import Table from "../../../utilities/Table/Table";
+import NewTable from '../../../utilities/Table/NewTable';
+//import CoordinateEventForm from './Coordinate';
+import "./Project.css"
+import { useMemo } from 'react';
 
 export default function PcMyProject() {
 
@@ -18,7 +21,7 @@ export default function PcMyProject() {
           type="button"
           id="submit"
           name="submit"
-          className="btn btn-primary p-1"
+          className="btn p-1"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
@@ -44,6 +47,8 @@ export default function PcMyProject() {
           id="submit"
           name="submit"
           className="btn btn-primary p-1"
+          data-toggle="modal"
+          data-target="#CoordinateEventForm"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
@@ -67,6 +72,8 @@ export default function PcMyProject() {
           id="submit"
           name="submit"
           className="btn btn-primary p-1"
+          data-toggle="modal"
+          data-target="#CoordinateEventForm"
           style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
@@ -78,27 +85,27 @@ export default function PcMyProject() {
   ]);
 
   const [MyProjectsHeadings, setMyProjectsTableHead] = useState([
-    { id: "project_id", label: "Project ID" },
-    { id: "project_name", label: "Project Name" },
-    { id: "description", label: "Description" },
-    { id: "coordinator", label: "Coordinator" },
-    { id: "startdate", label: "Start Date" },
+    { accessor: "project_id", Header: "Project ID" },
+    { accessor: "project_name", Header: "Project Name" },
+    { accessor: "description", Header: "Description" },
+    { accessor: "coordinator", Header: "Coordinator" },
+    { accessor: "startdate", Header: "Start Date" },
     // { id: "no_of_members", label: "Coordinate Events" },
     // { id: "location", label: "Location" },
-    { id: "action", label: "Action" },
+    { accessor: "action", Header: "Action" },
 
   ]);
 
 
   const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
-    { id: "project_id", label: "Project ID" },
-    { id: "project_name", label: "Project Name" },
-    { id: "description", label: "Description" },
-    { id: "coordinator", label: "Coordinator" },
-    { id: "startdate", label: "Start Date" },
+    { accessor: "project_id", Header: "Project ID" },
+    { accessor: "project_name", Header: "Project Name" },
+    { accessor: "description", Header: "Description" },
+    { accessor: "coordinator", Header: "Coordinator" },
+    { accessor: "startdate", Header: "Start Date" },
     // { id: "no_of_members", label: "Coordinate Events" },
     // { id: "location", label: "Location" },
-    { id: "action", label: "Action" },
+    { accessor: "action", Header: "Action" },
 
   ]);
 
@@ -121,7 +128,7 @@ const checkValidate = async () => {
           <div className="card h-100" id="contentcard">
             <div className="card-body">
             <h5>My Project</h5>
-              <Table rows={myProjectsData} headCells={MyProjectsHeadings} />
+              <br></br><NewTable columns={MyProjectsHeadings} data={myProjectsData}/>
             </div>
           </div>
         </div>
@@ -145,7 +152,7 @@ const checkValidate = async () => {
           <div className="card h-100" id="contentcard">
             <div className="card-body ">
             <h5>Project Requests</h5>
-                <Table rows={upcomingProjectsData} headCells={UpcomingProjectsHeadings} />
+                <br></br><NewTable columns={UpcomingProjectsHeadings} data={upcomingProjectsData}/>
             </div>
           </div>
         </div>
