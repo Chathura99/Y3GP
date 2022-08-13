@@ -13,13 +13,8 @@ export default function SuccessPopUp(props) {
       >
         <div className="modal-dialog modal-sm">
           <div className="modal-content">
-            <div className="modal-header">
-              <h5
-                className="modal-title font-weight-bold "
-                id="exampleModalLabel"
-              >
-                Success!
-              </h5>
+            <div className="header">
+              
 
               <button
                 type="button"
@@ -28,20 +23,28 @@ export default function SuccessPopUp(props) {
                 aria-label="Close"
                 onClick={props.closePopUp}
               >
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true" style={{float:"right",margin:10}}>&times;</span>
               </button>
             </div>
+            <h5
+                className="modal-title font-weight-bold text-center"
+                id="exampleModalLabel"
+                style={{marginTop:-20,color:"#96BE25",fontSize:30}}
+              >
+                Successfull!
+              </h5><br></br>
             <small className="text-center">{props.message}</small>
 
-            <div className="modal-footer justify-content-center">
+            <div className="text-center">
                 <button
                   type="button"
                   className="btn pl-4 pr-4 pt-1 pb-1"
-                  style={{ backgroundColor: "#96BE25" }}
+                  style={{ backgroundColor: "#96BE25",marginBottom:"1rem" }}
                   onClick={props.closePopUp}
                 >
                   OK
                 </button>
+                <br></br>
             </div>
           </div>
         </div>
