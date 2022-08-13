@@ -1,6 +1,9 @@
 package com.ucsc.vwsbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Table(name = "handle_project")
@@ -31,12 +34,13 @@ public class HandleProject {
         return project;
     }
 
-    public Date getAssignedDate() {
+    public LocalDateTime getAssignedDate() {
         return assignedDate;
     }
 
     @Column(name = "assigned_date")
-    private Date assignedDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime assignedDate;
 
 
 }
