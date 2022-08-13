@@ -1,6 +1,7 @@
 package com.ucsc.vwsbackend.services;
 
 import com.ucsc.vwsbackend.dto.Profile;
+import com.ucsc.vwsbackend.dto.userPassword;
 import com.ucsc.vwsbackend.entities.User;
 import com.ucsc.vwsbackend.repository.userDao.UserJdbcRepository;
 import com.ucsc.vwsbackend.repository.userDao.UserRepository;
@@ -54,6 +55,15 @@ public class UserService implements UserDetailsService {
 
 
         return null;
+    }
+
+    public long updateProfile(Profile profile,String role) {
+        return userJdbcRepository.updateProfile(profile,role);
+    }
+
+    public String changePassword(userPassword userPassword) {
+//        check match
+        return userJdbcRepository.changePassword(userPassword.getNewPassword());
     }
 }
 

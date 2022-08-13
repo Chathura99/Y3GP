@@ -1,6 +1,7 @@
 package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.dto.Profile;
+import com.ucsc.vwsbackend.dto.userPassword;
 import com.ucsc.vwsbackend.entities.User;
 import com.ucsc.vwsbackend.repository.userDao.UserRepository;
 import com.ucsc.vwsbackend.services.VolunteerService;
@@ -43,6 +44,15 @@ public class UserController {
     @PostMapping("/registerUser/{id}")
     public User registerUser(@PathVariable Long id){
         return volunteerService.registerUser(id);
+    }
+
+    @PutMapping("/updateProfile/{role}")
+    public long updateProfile(@RequestBody Profile profile,@PathVariable String role){
+        return userService.updateProfile(profile,role);
+    }
+    @PutMapping("/changePassword")
+    public String changePassword(@RequestBody userPassword userPassword){
+        return userService.changePassword(userPassword);
     }
 
 
