@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import "./profile.css";
 import { fetchUserData } from "../../../services/authenticationService";
-import { getProfile,updateProfile,updatePassword } from "../../../services/userService";
+import {
+  getProfile,
+  updateProfile,
+  updatePassword,
+} from "../../../services/userService";
 
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
@@ -9,12 +14,19 @@ import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
 
 export default function Profile() {
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
+    mode: "all",
+  });
+
   const [userdata, setData] = useState([]);
   const [userrole, setUserRoles] = useState([]);
   const [canEdit, setCanEdit] = useState(false);
   const [myEmail, setMyEmail] = useState("");
   const [profile, setProfile] = useState({
-    id:"",
+    id: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -84,7 +96,7 @@ export default function Profile() {
       [e.target.name]: e.target.value,
     }));
   };
-// change basic details
+  // change basic details
   const handleSubmit1 = (e) => {
     console.log(profile);
     // get role
@@ -107,9 +119,9 @@ export default function Profile() {
         setPopUp("failed");
       });
   };
-// change password
+  // change password
   const handleSubmit2 = (e) => {
-    updatePassword(password,userdata.id)
+    updatePassword(password, userdata.id)
       .then((response) => {
         if (response.data == 1) {
           setMessage("Update Successful!");
@@ -174,6 +186,14 @@ export default function Profile() {
                       <div className="form-group ">
                         <label for="firstName">First Name</label>
                         <input
+                          {...register("firstName", {
+                            required: "First name is required...",
+                            minLength: {
+                              value: 5,
+                              message:
+                                "First Name must be atleast 3 characters long...",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="firstName"
@@ -182,12 +202,21 @@ export default function Profile() {
                           name="firstName"
                           onChange={handleChange}
                         />
+                        <p className="formerror">{errors.firstName?.message}</p>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group ">
                         <label for="lastName">Last Name</label>
                         <input
+                          {...register("lastName", {
+                            required: "Last name is required...",
+                            minLength: {
+                              value: 5,
+                              message:
+                                "Last Name must be atleast 3 characters long...",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="lastName"
@@ -196,6 +225,7 @@ export default function Profile() {
                           name="lastName"
                           onChange={handleChange}
                         />
+                        <p className="formerror">{errors.lastName?.message}</p>
                       </div>
                     </div>
 
@@ -203,6 +233,14 @@ export default function Profile() {
                       <div className="form-group">
                         <label for="eMail">Email</label>
                         <input
+                          {...register("email", {
+                            required: "Email is required...",
+                            pattern: {
+                              value:
+                                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                              message: "Email must be valid",
+                            },
+                          })}
                           type="email"
                           className="form-control"
                           id="eMail"
@@ -211,6 +249,7 @@ export default function Profile() {
                           name="email"
                           onChange={handleChange}
                         />
+                        <p className="formerror">{errors.email?.message}</p>
                       </div>
                     </div>
 
@@ -218,6 +257,13 @@ export default function Profile() {
                       <div className="form-group">
                         <label for="phone">Phone</label>
                         <input
+                          {...register("phoneNumber", {
+                            required: "Phone number is required...",
+                            pattern: {
+                              value: /^(?:7|0|(?:\+94))[0-9]{9,10}$/,
+                              message: "Phone number must be valid",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="phone"
@@ -226,6 +272,9 @@ export default function Profile() {
                           name="phoneNumber"
                           onChange={handleChange}
                         />
+                        <p className="formerror">
+                          {errors.phoneNumber?.message}
+                        </p>
                       </div>
                     </div>
 
@@ -233,6 +282,9 @@ export default function Profile() {
                       <div className="form-group">
                         <label for="text">University/School</label>
                         <input
+                          {...register("universityCollege", {
+                            required: "University is required...",
+                          })}
                           type="text"
                           className="form-control"
                           id="universityCollege"
@@ -241,6 +293,9 @@ export default function Profile() {
                           name="universityCollege"
                           onChange={handleChange}
                         />
+                        <p className="formerror">
+                          {errors.universityCollege?.message}
+                        </p>
                       </div>
                     </div>
 
@@ -248,6 +303,9 @@ export default function Profile() {
                       <div className="form-group">
                         <label for="address">Home Address</label>
                         <input
+                          {...register("address", {
+                            required: "District is required...",
+                          })}
                           type="text"
                           className="form-control"
                           id="address"
@@ -257,6 +315,7 @@ export default function Profile() {
                           onChange={handleChange}
                           // {...canEdit === false && console.log("disabled")}
                         />
+                        <p className="formerror">{errors.address?.message}</p>
                       </div>
                     </div>
 
@@ -264,7 +323,10 @@ export default function Profile() {
                       <div className="form-group">
                         <label for="district">District</label>
                         <input
-                          type="test"
+                          {...register("district", {
+                            required: "District is required...",
+                          })}
+                          type="text"
                           className="form-control"
                           id="district"
                           placeholder="District"
@@ -273,6 +335,7 @@ export default function Profile() {
                           onChange={handleChange}
                           // {...canEdit === false && console.log("dis")}
                         />
+                        <p className="formerror">{errors.district?.message}</p>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -327,6 +390,9 @@ export default function Profile() {
                       <div className="form-group">
                         <label for="oldPassword">Current Password</label>
                         <input
+                          {...register("oldPassword", {
+                            required: "Old password is required...",
+                          })}
                           type="text"
                           className="form-control"
                           id="oldPassword"
@@ -334,12 +400,23 @@ export default function Profile() {
                           name="oldPassword"
                           onChange={handlePassword}
                         />
+                        <p className="formerror">
+                          {errors.oldPassword?.message}
+                        </p>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label for="newPassword">New Password</label>
                         <input
+                          {...register("newPassword", {
+                            required: "New password is required...",
+                            minLength: {
+                              value: 8,
+                              message:
+                                "Password must be atleast 8 characters long...",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="newPassword"
@@ -347,12 +424,23 @@ export default function Profile() {
                           name="newPassword"
                           onChange={handlePassword}
                         />
+                        <p className="formerror">
+                          {errors.newPassword?.message}
+                        </p>
                       </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label for="reNewPassword">Re-New Password</label>
                         <input
+                          {...register("reNewPassword", {
+                            required: "Renew password is required...",
+                            minLength: {
+                              value: 8,
+                              message:
+                                "Password must be atleast 8 characters long...",
+                            },
+                          })}
                           type="text"
                           className="form-control"
                           id="reNewPassword"
@@ -360,6 +448,9 @@ export default function Profile() {
                           name="reNewPassword"
                           onChange={handlePassword}
                         />
+                        <p className="formerror">
+                          {errors.reNewPassword?.message}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -368,7 +459,7 @@ export default function Profile() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div className="text-center mt-3 ">
                         <button
-                          type="submit"
+                          type="button"
                           id="submit"
                           name="submit"
                           className="btn btn-secondary m-2"
