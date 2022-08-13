@@ -54,7 +54,7 @@ export default function HomePage() {
 
   const [joinRequestsData, setJoinRequestsData] = useState([]);
 
-  const data = useMemo(() => joinRequestsData);
+  // const data = useMemo(() => joinRequestsData);
 
   const joinRequestsTableHead = useMemo(
     () => [
