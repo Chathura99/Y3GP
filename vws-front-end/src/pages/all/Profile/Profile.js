@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./profile.css";
 import { fetchUserData } from "../../../services/authenticationService";
 import { getProfile } from "../../../services/userService";
+import { updateProfile } from "../../../services/userService";
 
 export default function Profile() {
   const [userdata, setData] = useState([]);
   const [userrole, setUserRoles] = useState([]);
   const [canEdit, setCanEdit] = useState(false);
+  const [myEmail, setMyEmail] = useState("");
   const [profile, setProfile] = useState({
     firstName: "",
     email: "",
     phoneNumber: "",
     address: "",
     universityCollege: "",
+    district:"",
   });
 
   useEffect(() => {
@@ -30,6 +33,7 @@ export default function Profile() {
   const getProfileData = async (userId) => {
     const res = await getProfile(userId);
     setProfile(res.data);
+    setMyEmail(res.data.email);
     // console.log(res.data);
   };
 
@@ -42,20 +46,22 @@ export default function Profile() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit1 = (e) => {
     e.preventDefault();
     console.log(profile);
-    // ServicefunctionName(profile)
-    //   .then((response) => {
-    //     if (response) {
-    //       //
-    //     } else {
-    //       //
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     //
-    //   });
+    const role = document.getElementById('role').innerHTML;
+    // console.log(role);
+    updateProfile(profile,role)
+      .then((response) => {
+        if (response) {
+          console.log("done");
+        } else {
+          console.log("failed");
+        }
+      })
+      .catch((err) => {
+        //
+      });
   };
   return (
     <>
@@ -75,16 +81,15 @@ export default function Profile() {
                     <h5 className="user-name">
                       {userdata && `${userdata.firstName} ${userdata.lastName}`}
                     </h5>
-                    <h6 className="user-email">{profile.email}</h6>
+                    {/* <h6 className="user-email">{profile.userName}</h6> */}
+                    <h6 className="user-email">{myEmail}</h6>
                   </div>
                   <div className="about">
                     <h5>About</h5>
-
+                    <h6>User ID : {userdata.id}</h6>
                     {userrole.map((role, index) => (
                       <div key={role.id}>
-                        <h6>User ID : {role.id}</h6>
-
-                        <h6>{role.roleCode} </h6>
+                        <h6 id="role">{role.roleCode} </h6>
                       </div>
                     ))}
                   </div>
@@ -96,7 +101,7 @@ export default function Profile() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit1}>
                   <div className="row gutters ">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <h4 className="mb-2">Details</h4>
@@ -104,14 +109,28 @@ export default function Profile() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group ">
-                        <label for="fullName">Full Name</label>
+                        <label for="firstName">First Name</label>
                         <input
                           type="text"
                           className="form-control"
-                          id="fullName"
-                          placeholder="Enter full name"
+                          id="firstName"
+                          placeholder="Enter first name"
                           value={profile.firstName}
                           name="firstName"
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group ">
+                        <label for="lastName">Last Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="lastName"
+                          placeholder="Enter last name"
+                          value={profile.lastName}
+                          name="lastName"
                           onChange={handleChange}
                         />
                       </div>
@@ -149,9 +168,9 @@ export default function Profile() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="website">University/School</label>
+                        <label for="text">University/School</label>
                         <input
-                          type="url"
+                          type="text"
                           className="form-control"
                           id="universityCollege"
                           placeholder="University or School"
@@ -164,11 +183,11 @@ export default function Profile() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="website">Home Address</label>
+                        <label for="address">Home Address</label>
                         <input
-                          type="url"
+                          type="text"
                           className="form-control"
-                          id="Address"
+                          id="address"
                           placeholder="Adrress"
                           value={profile.address}
                           name="address"
@@ -178,13 +197,30 @@ export default function Profile() {
                       </div>
                     </div>
 
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"></div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="district">District</label>
+                        <input
+                          type="test"
+                          className="form-control"
+                          id="district"
+                          placeholder="District"
+                          value={profile.district}
+                          name="district"
+                          onChange={handleChange}
+                          // {...canEdit === false && console.log("dis")}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group"></div>
+                    </div>
 
                     <div className="row gutters">
                       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="text-center mt-3 ">
                           {canEdit === true && (
-                            <div>
+                            <>
                               <button
                                 type="button"
                                 id="submit"
@@ -199,11 +235,11 @@ export default function Profile() {
                                 id="submit"
                                 name="submit"
                                 className="btn btn-primary"
-                                onClick={handleSubmit}
+                                onClick={handleSubmit1}
                               >
                                 Update
                               </button>
-                            </div>
+                            </>
                           )}
 
                           {canEdit === false && (
@@ -220,6 +256,7 @@ export default function Profile() {
                     </div>
                   </div>
                 </form>
+
                 <form onSubmit={""}>
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -276,7 +313,7 @@ export default function Profile() {
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          onClick={handleSubmit}
+                          onClick={""}
                         >
                           Update
                         </button>

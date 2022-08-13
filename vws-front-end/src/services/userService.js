@@ -27,3 +27,15 @@ export const getProfile = (id) => {
   });
 };
 
+export const updateProfile = (profile,role) => {
+  // return axios.get(USER_URL);
+  return axios({
+    method: "PUT",
+    url: `${USER_URL}/updateProfile/${role}`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data:profile,
+  });
+};
+
