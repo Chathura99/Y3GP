@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from "react";
-import Table from "../../../utilities/Table/Table";
+import NewTable from './../../../utilities/Table/NewTable';
+import { useMemo } from 'react';
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
@@ -37,12 +38,12 @@ export default function PcHomePage() {
   ]);
 
   const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "project", label: "PROJECT NAME" },
-    { id: "place", label: "PLACE" },
-    { id: "member", label: "MEMBERS" },
-    { id: "coordinator", label: "COORDINATOR" },
-    { id: "date", label: "DATE" },
+    { accessor: "eventId", Header: "EVENT ID" },
+    { accessor: "project", Header: "PROJECT NAME" },
+    { accessor: "place", Header: "PLACE" },
+    { accessor: "member", Header: "MEMBERS" },
+    { accessor: "coordinator", Header: "COORDINATOR" },
+    { accessor: "date", Header: "DATE" },
   ]);
 
   const [joinRequestsData, setJoinRequestsData] = useState([
@@ -69,12 +70,12 @@ export default function PcHomePage() {
   ]);
 
   const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
-    { id: "id", label: "REQUEST ID" },
-    { id: "name", label: "NAME" },
-    { id: "nic", label: "NIC" },
-    { id: "phone", label: "PHONE" },
-    { id: "date", label: "DATE" },
-    { id: "status", label: "Status" },
+    { accessor: "id", Header: "REQUEST ID" },
+    { accessor: "name", Header: "NAME" },
+    { accessor: "nic", Header: "NIC" },
+    { accessor: "phone", Header: "PHONE" },
+    { accessor: "date", Header: "DATE" },
+    { accessor: "status", Header: "Status" },
   ]);
 
   useEffect(() => {
@@ -86,6 +87,20 @@ export default function PcHomePage() {
     console.log(res.data)
     // setJoinRequestsData(res.data);
   };
+
+const [donutChartData, setDonutChartData] = useState([
+    ["Project", "Count"],
+    ["Ganitha Saviya", 15],
+    ["Re-Green Earth", 4],
+
+  ]);
+
+const [pieChartData, setPieChartData] = useState([
+    ["Task", "votes"],
+    ["Ganitha Saviya", 60],
+    ["Re-green Earth", 40],
+  ]);
+
 
   return (
     <>
@@ -185,10 +200,10 @@ export default function PcHomePage() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters">
-                  {/* <h5>Upcoming Events</h5> */}
+                  <h5>Project Details</h5>
                 </div>
                 <div className="row gutters ">
-                  <Table rows={upComingEventsData} headCells={upComingEventsTableHead} tableName={"Up Coming Events"}/>
+                <NewTable columns={upComingEventsTableHead} data={upComingEventsData} />
                 </div>
               </div>
             </div>
@@ -203,7 +218,7 @@ export default function PcHomePage() {
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <DonutChart />
+                  <DonutChart data={donutChartData}/>
                 </div>
               </div>
             </div>
@@ -221,7 +236,7 @@ export default function PcHomePage() {
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <PieChart />
+                  <PieChart data={pieChartData}/>
                 </div>
               </div>
             </div>
@@ -230,7 +245,7 @@ export default function PcHomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <Table rows={joinRequestsData} headCells={joinRequestsTableHead} tableName={"Join Requests"}/>
+                <NewTable columns={joinRequestsTableHead} data={joinRequestsData} />
               </div>
             </div>
           </div>
