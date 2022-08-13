@@ -48,14 +48,13 @@ public class UserJdbcRepository {
 
         namedParameters.addValue("id", id);
 //        namedParameters.addValue("table", table);
-        String query = "select u.id,u.first_name,u.last_name,u.phone_number,u.email,r.address,r.district,r.university_college " +
+        String query = "select u.id,u.first_name,u.last_name,u.phone_number,u.email,r.address,r.district,r.university_college,u.user_key " +
                 "from user as u, $table as r " +
                 "where r.id=u.id and u.id=?";
 //        add table name to query
         query =query.replace("$table",table);
 //        get single row
         Profile profile = (Profile) jdbcTemplate.queryForObject(query, new Object[] {id}, new BeanPropertyRowMapper(Profile.class));
-        System.out.println(profile.getFirstName());
 
         return profile;
     }
@@ -89,12 +88,30 @@ public class UserJdbcRepository {
         namedParameters.addValue("role", role);
 
         int table1 = jdbc.update(update1, namedParameters);
-
         int table2 = jdbc.update(update2, namedParameters);
         return table1+table2;
     }
 
-    public String changePassword(String newPassword) {
-        return "Password Changed!";
+    public long changePassword(String newPassword,long id) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE user " +
+                "SET user_key = :newPassword WHERE id = :id;";
+        namedParameters.addValue("newPassword", newPassword);
+        namedParameters.addValue("id", id);
+
+        int rowAffected = jdbc.update(update, namedParameters);
+        return rowAffected;
+    }
+
+    public String getUserKey(long id) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+
+        namedParameters.addValue("id", id);
+        String sql = "select user_key from user where id=?";
+        String key = jdbcTemplate.queryForObject(sql, new Object[] { id }, String.class);
+
+        return key;
     }
 }

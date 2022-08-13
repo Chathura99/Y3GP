@@ -7,6 +7,8 @@ public class userPassword {
 
     private String newPassword;
 
+    private String reNewPassword;
+
     public long getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class userPassword {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getReNewPassword() {
+        return reNewPassword;
+    }
+
+    public void setReNewPassword(String reNewPassword) {
+        this.reNewPassword = reNewPassword;
     }
 }

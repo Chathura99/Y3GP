@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
 import { fetchUserData } from "../../../services/authenticationService";
-import { getProfile } from "../../../services/userService";
-import { updateProfile } from "../../../services/userService";
+import { getProfile,updateProfile,updatePassword } from "../../../services/userService";
+
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import Loading from "../../../utilities/Loading/Loading";
 
 export default function Profile() {
   const [userdata, setData] = useState([]);
@@ -10,17 +14,43 @@ export default function Profile() {
   const [canEdit, setCanEdit] = useState(false);
   const [myEmail, setMyEmail] = useState("");
   const [profile, setProfile] = useState({
+    id:"",
     firstName: "",
+    lastName: "",
     email: "",
     phoneNumber: "",
     address: "",
     universityCollege: "",
-    district:"",
+    district: "",
+  });
+  const [password, setPassword] = useState({
+    oldPassword: "",
+    newPassword: "",
+    reNewPassword: "",
   });
 
   useEffect(() => {
     userData();
   }, []);
+
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm1 = (e) => {
+    e.preventDefault();
+    setMessage("Update profile");
+    setPopUp("confirm1");
+  };
+  const confirm2 = (e) => {
+    e.preventDefault();
+    setMessage("Update password");
+    setPopUp("confirm2");
+  };
 
   const userData = async () => {
     const res = await fetchUserData();
@@ -46,25 +76,58 @@ export default function Profile() {
     }));
   };
 
+  const handlePassword = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setPassword((password) => ({
+      ...password,
+      [e.target.name]: e.target.value,
+    }));
+  };
+// change basic details
   const handleSubmit1 = (e) => {
-    e.preventDefault();
     console.log(profile);
-    const role = document.getElementById('role').innerHTML;
-    // console.log(role);
-    updateProfile(profile,role)
+    // get role
+    const role = document.getElementById("role").innerHTML;
+    updateProfile(profile, role)
       .then((response) => {
-        if (response) {
-          console.log("done");
+        if (response.data == 2) {
+          setMessage("Update Successful!");
+          setPopUp("success");
+          setTimeout(() => {
+            window.location.href = "/viewprofile";
+          }, 3000);
         } else {
-          console.log("failed");
+          setMessage("Update Failed!");
+          setPopUp("failed");
         }
       })
       .catch((err) => {
-        //
+        setMessage(err);
+        setPopUp("failed");
+      });
+  };
+// change password
+  const handleSubmit2 = (e) => {
+    updatePassword(password,userdata.id)
+      .then((response) => {
+        if (response.data == 1) {
+          setMessage("Update Successful!");
+          setPopUp("success");
+        } else {
+          setMessage("Update Failed!");
+          setPopUp("failed");
+        }
+      })
+      .catch((err) => {
+        setMessage(err);
+        setPopUp("failed");
       });
   };
   return (
     <>
+      <Loading change={[popup]} time={100} />
+
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
         <div className="row gutters mt-10">
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
@@ -101,7 +164,7 @@ export default function Profile() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <form onSubmit={handleSubmit1}>
+                <form onSubmit={confirm1}>
                   <div className="row gutters ">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <h4 className="mb-2">Details</h4>
@@ -192,7 +255,7 @@ export default function Profile() {
                           value={profile.address}
                           name="address"
                           onChange={handleChange}
-                          // {...canEdit === false && console.log("dis")}
+                          // {...canEdit === false && console.log("disabled")}
                         />
                       </div>
                     </div>
@@ -215,83 +278,87 @@ export default function Profile() {
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group"></div>
                     </div>
-
-                    <div className="row gutters">
-                      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="text-center mt-3 ">
-                          {canEdit === true && (
-                            <>
-                              <button
-                                type="button"
-                                id="submit"
-                                name="submit"
-                                className="btn btn-secondary m-2"
-                                onClick={() => setCanEdit(false)}
-                              >
-                                Cancel
-                              </button>
-                              <button
-                                type="button"
-                                id="submit"
-                                name="submit"
-                                className="btn btn-primary"
-                                onClick={handleSubmit1}
-                              >
-                                Update
-                              </button>
-                            </>
-                          )}
-
-                          {canEdit === false && (
+                  </div>
+                  <div className="row gutters">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div className="text-center mt-3 ">
+                        {canEdit === true && (
+                          <>
                             <button
                               type="button"
-                              className="btn btn-primary"
-                              onClick={() => setCanEdit(true)}
+                              id="submit"
+                              name="submit"
+                              className="btn btn-secondary m-2"
+                              onClick={() => setCanEdit(false)}
                             >
-                              Edit
+                              Cancel
                             </button>
-                          )}
-                        </div>
+                            <button
+                              type="submit"
+                              id="submit"
+                              name="submit"
+                              className="btn btn-primary"
+                            >
+                              Update
+                            </button>
+                          </>
+                        )}
+
+                        {canEdit === false && (
+                          <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => setCanEdit(true)}
+                          >
+                            Edit
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
                 </form>
 
-                <form onSubmit={""}>
+                <form onSubmit={confirm2}>
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <h4 className="mt-3 mb-2">Security</h4>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="Street">Current Password</label>
-                        <input
-                          type="name"
-                          className="form-control"
-                          id="Street"
-                          placeholder="Enter Current Password"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label for="ciTy">New Password</label>
-                        <input
-                          type="name"
-                          className="form-control"
-                          id="ciTy"
-                          placeholder="Enter New Password"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label for="sTate">Re-New Password</label>
+                        <label for="oldPassword">Current Password</label>
                         <input
                           type="text"
                           className="form-control"
-                          id="sTate"
+                          id="oldPassword"
+                          placeholder="Enter Current Password"
+                          name="oldPassword"
+                          onChange={handlePassword}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="newPassword"
+                          placeholder="Enter New Password"
+                          name="newPassword"
+                          onChange={handlePassword}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="reNewPassword">Re-New Password</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="reNewPassword"
                           placeholder="Re-Enter New Password"
+                          name="reNewPassword"
+                          onChange={handlePassword}
                         />
                       </div>
                     </div>
@@ -301,7 +368,7 @@ export default function Profile() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div className="text-center mt-3 ">
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-secondary m-2"
@@ -309,7 +376,7 @@ export default function Profile() {
                           Cancel
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
@@ -333,6 +400,26 @@ export default function Profile() {
             </div>
           </div>
         </div>
+        {popup === "success" && (
+          <SuccessPopUp message={message} closePopUp={closePopUp} />
+        )}
+        {popup === "failed" && (
+          <FailedPopUp message={message} closePopUp={closePopUp} />
+        )}
+        {popup === "confirm1" && (
+          <ConfirmPopUp
+            message={message}
+            closePopUp={closePopUp}
+            handleSubmit={handleSubmit1}
+          />
+        )}
+        {popup === "confirm2" && (
+          <ConfirmPopUp
+            message={message}
+            closePopUp={closePopUp}
+            handleSubmit={handleSubmit2}
+          />
+        )}
       </div>
     </>
   );
