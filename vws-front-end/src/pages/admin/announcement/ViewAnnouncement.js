@@ -5,6 +5,15 @@ import "./announcement.css";
 import EditAnnouncement from "./EditAnnouncement";
 export default function ViewAnnouncement() {
   const [announcement, setAnnouncement] = useState([]);
+  const [editannouncement, setEditAnnouncement] = useState({
+    title:"Title ",
+    category:"All",
+    content:"Content . . .",
+    date:"2022-10-10",
+    firstName:"Chathura",
+    lastName:"Manohara",
+    file:"",
+  });
 
   useEffect(() => {
     checkValidate();
@@ -33,7 +42,7 @@ export default function ViewAnnouncement() {
               <div className="card-body">
                 <h4 className="">Announcements</h4>
                 <AddAnnouncement />
-                <EditAnnouncement />
+                <EditAnnouncement ann={editannouncement}/>
                 <button
                   type="button"
                   class="btn"
@@ -68,7 +77,7 @@ export default function ViewAnnouncement() {
                             style={{ marginTop: "8px" }}
                           >
                             <a className="nav-link" style={{ color: "black" }}>
-                              <b>{ann.first_name + " " + ann.last_name}</b>
+                              <b>{ann.firstName + " " + ann.lastName}</b>
                             </a>
                             <a className="nav-link">
                               {ann.role + " " + ann.date}

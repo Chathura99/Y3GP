@@ -62,8 +62,8 @@ public class SignUpService {
     }
 
     public List<JoinRequest> getJoinRequest() {
-//      write query for get only new requests
-        return joinRequestRepository.findAll();
+
+        return joinRequestJdbcRepository.getNewRequest();
     }
 
     public String signUpApproved(JoinRequest joinRequest){
