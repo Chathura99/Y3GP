@@ -87,6 +87,8 @@ export default function OurLatestEvents() {
 
             </div>
 
+            {/* Slider buttons
+            
             <div className="d-flex justify-content-between" id="icon-group1">
 
                 <Link to="#">
@@ -97,8 +99,14 @@ export default function OurLatestEvents() {
                     <i class="fa fa-arrow-circle-right fa-4x" aria-hidden="true" id="icon-right2"></i>
                 </Link>
 
-            </div>
-            
+            </div> */}
+
+
+            <Link to="/morelatestevents" id="seemore3" smooth={true} spy={true}>
+                See more
+            </Link>
+
+
         </div>
 
     )
