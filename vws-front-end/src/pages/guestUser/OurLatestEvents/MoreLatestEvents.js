@@ -2,10 +2,17 @@ import React from 'react';
 import "./morelatestevents.css";
 import { Link } from 'react-router-dom';
 
+import Navbar from '../LandingPageNavbar/navbar';
 
-export default function OurLatestEvents() {
+export default function MoreLatestEvents() {
     return (
-        <div className=" container-fluid" id="latestevents-cont">
+
+        <div className=" container-fluid" id="morelatestevents-cont">
+
+            <div className='Navbar'>
+                <Navbar />
+            </div>
+
 
             <h1 className="eventH1">Our Events</h1>
             <h4 className="eventH4">Over the past two decades Sasanaka Sansada has contributed in many ways to
