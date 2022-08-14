@@ -153,3 +153,19 @@
     padding: auto;
     margin: auto;
 }
+
+#seemore1 {
+    color: #145369;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    float: right;
+}
+
+#seemore2 {
+    color: #ffffff;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 800;
+    float: right;
+}
