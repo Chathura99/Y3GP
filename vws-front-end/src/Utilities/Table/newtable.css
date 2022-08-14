@@ -1,28 +1,24 @@
 table {
-  border-spacing: 0;
+  width: 100%;
 }
 
 table th,
 table td {
-  margin: 0;
   border-bottom: 1px solid rgb(198, 198, 198);
   color: black;
+  line-height: 50px;
 }
 table th :last-child,
 table td :last-child {
   border-right: 0;
 }
-td,
-th {
-  padding: 0;
-  padding-right: 40px;
-}
+
 .tablehead {
   font-weight: lighter;
 }
 #tablecheckbox {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .pagination {
@@ -53,11 +49,16 @@ th {
 #tableprop {
   margin: auto;
 }
-td {
-  line-height: 20px;
-}
 #sorticon {
   font-size: medium;
+  font-weight: 10px;
   color: rgb(160, 160, 160);
   margin-left: 5px;
+  -webkit-text-stroke: 1px white;
+}
+tr:hover{
+  background-color: rgb(233, 233, 233);
+}
+th{
+  font-weight: bold!important;
 }

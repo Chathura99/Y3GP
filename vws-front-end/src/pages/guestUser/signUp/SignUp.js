@@ -85,20 +85,21 @@ export default function SignUp() {
   return (
     <>
       <Loading change={[popup]} time={200} />
+      <div className="global-containerbackground">
       <div className="container-fluid calculated-bodywidth">
         <div className="row gutters mt-4">
-          <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
-            <div className="card h-100" id="contentcard">
+          <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 " >
+            <div className="card h-100" id="contentcard" style={{backgroundColor: "rgba(255,255,255,0.2)"}}>
               <div className="card-body">
                 <form onSubmit={confirm} method="post">
                   <div className="row gutters ">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <h3 className="mb-4">Member Registration</h3>
+                      <h3 className="mb-4" style={{color:"white"}}><center><b>Member Registration</b></center></h3>
                     </div>
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group ">
-                        <label for="firstName">First Name</label>
+                        <label for="firstName" id="formLabel">First Name</label>
                         <input
                           {...register("firstName", {
                             required: "First name is required...",
@@ -122,7 +123,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="lastName">Last Name</label>
+                        <label for="lastName" id="formLabel">Last Name</label>
                         <input
                           {...register("lastName", {
                             required: "Last name is required...",
@@ -146,7 +147,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="email">Email</label>
+                        <label for="email" id="formLabel">Email</label>
                         <input
                           {...register("email", {
                             required: "Email is required...",
@@ -170,7 +171,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="phoneNumber">Phone</label>
+                        <label for="phoneNumber" id="formLabel">Phone</label>
                         <input
                           {...register("phoneNumber", {
                             required: "Phone number is required...",
@@ -195,7 +196,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="district">District</label>
+                        <label for="district" id="formLabel">District</label>
                         <input
                           {...register("district", {
                             required: "District is required...",
@@ -214,7 +215,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="address">Address</label>
+                        <label for="address" id="formLabel">Address</label>
                         <input
                           {...register("address", {
                             required: "District is required...",
@@ -233,7 +234,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="universityCollege">University/School</label>
+                        <label for="universityCollege" id="formLabel">University/School</label>
                         <input
                           {...register("universityCollege", {
                             required: "University is required...",
@@ -254,7 +255,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="nic">NIC/Passport</label>
+                        <label for="nic" id="formLabel">NIC/Passport</label>
                         <input
                           {...register("nic", {
                             required: "NIC is required...",
@@ -277,7 +278,7 @@ export default function SignUp() {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="formFile" class="form-label">
+                        <label for="formFile" class="form-label" id="formLabel">
                           NIC/Passport Copy
                         </label>
                         <input
@@ -295,7 +296,7 @@ export default function SignUp() {
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div className="form-group">
-                        <label for="info">
+                        <label for="info" id="formLabel">
                           What are the potentials you have?
                         </label>
                         <input
@@ -312,7 +313,7 @@ export default function SignUp() {
 
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div className="form-group">
-                        <label for="other">Other comments?</label>
+                        <label for="other" id="formLabel">Other comments?</label>
                         <input
                           type="text"
                           className="form-control"
@@ -335,6 +336,7 @@ export default function SignUp() {
                             id="submit"
                             name="submit"
                             class="btn btn-primary btn-sm"
+                          
                           >
                             Cancel
                           </button>
@@ -342,12 +344,12 @@ export default function SignUp() {
 
                         <button
                           type="submit"
-                          id="submit"
+                          id="submitbtn"
                           name="submit"
                           class="btn btn-secondary btn-sm"
                           {...(Object.keys(errors).length === true)}
-                          style={{ backgroundColor: "#CCC" }}
-                          disabled
+                          style={{backgroundColor:"white"}}
+                          
                           title="Please fill the form correctly!"
 
                           // onClick=
@@ -375,6 +377,7 @@ export default function SignUp() {
             handleSubmit={handleSubmit}
           />
         )}
+      </div>
       </div>
     </>
   );

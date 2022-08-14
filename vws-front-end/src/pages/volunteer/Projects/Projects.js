@@ -99,7 +99,7 @@ export default function Projects() {
                   // #96BE25,#BE4D25
                   // onClick={handleSubmit}
                 >
-                  Project Details
+                  Details
                 </button>
               ),
             },
@@ -137,7 +137,7 @@ export default function Projects() {
                   // #96BE25,#BE4D25
                   // onClick={handleSubmit}
                 >
-                  Project Details
+                  Details
                 </button>
               ),
       }

@@ -165,7 +165,7 @@ export default function EditCoordinatedForm() {
     
   </div>
   <div class="btn-group" role="group" aria-label="Third group">
-    <button type="button" class="btn btn-secondary" style={{backgroundColor:"#BE4D25"}}>Cancelled</button>
+    <button type="button" class="btn btn-secondary" style={{backgroundColor:"#BE4D25"}}>Cancel</button>
   </div>
 </div>
                     
@@ -185,7 +185,7 @@ export default function EditCoordinatedForm() {
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
                         >
-                          Cancel
+                          Back
                         </button>
                         <button
                           type="button"

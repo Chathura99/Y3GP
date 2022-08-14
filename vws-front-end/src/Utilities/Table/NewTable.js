@@ -1,3 +1,4 @@
+import { Divider } from "@material-ui/core";
 import React, { useEffect, useMemo, useRef, forwardRef } from "react";
 import { useTable, usePagination, useRowSelect, useSortBy } from "react-table";
 import "./newtable.css";
@@ -12,17 +13,18 @@ export default function NewTable({ columns, data }) {
       }, [resolvedRef, indeterminate]);
 
       return (
-        <>
+        <div>
           <input
             id="tablecheckbox"
             type="checkbox"
             ref={resolvedRef}
             {...rest}
           />
-        </>
+        </div>
       );
     }
   );
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -69,7 +71,7 @@ export default function NewTable({ columns, data }) {
   );
 
   return (
-    <div style={{ overflowX: "scroll" }}>
+    <div  style={{ overflowX: "scroll" }}>
       {console.log(
         pageIndex,
         pageSize,
@@ -77,7 +79,7 @@ export default function NewTable({ columns, data }) {
         canNextPage,
         canPreviousPage
       )}
-      <table {...getTableProps()}>
+      <table {...getTableProps()}  style={{ overflowX: "scroll" }}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -87,12 +89,20 @@ export default function NewTable({ columns, data }) {
                   {...column.getHeaderProps(column.getSortByToggleProps())}
                 >
                   {column.render("Header")}
-                  <span>
+                  <span style={{}}>
                     {column.isSorted ? (
                       column.isSortedDesc ? (
-                        <i class="fa fa-arrow-up" aria-hidden="true"  id="sorticon"></i>
+                        <i
+                          class="fa fa-arrow-up"
+                          aria-hidden="true"
+                          id="sorticon"
+                        ></i>
                       ) : (
-                        <i class="fa fa-arrow-down" aria-hidden="true"  id="sorticon"></i>
+                        <i
+                          class="fa fa-arrow-down"
+                          aria-hidden="true"
+                          id="sorticon"
+                        ></i>
                       )
                     ) : (
                       ""

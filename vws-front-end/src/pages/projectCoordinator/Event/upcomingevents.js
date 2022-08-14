@@ -1,5 +1,9 @@
 import React, { useEffect,useState } from 'react';
-import Table from "../../../utilities/Table/Table";
+import NewTable from '../../../utilities/Table/NewTable';
+//import CoordinateEventForm from './Coordinate';
+//import "./Project.css"
+import { useMemo } from 'react';
+
 
 export default function PcUpcomingEvents() {
 
@@ -54,14 +58,14 @@ export default function PcUpcomingEvents() {
   ]);
 
   const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
-    { id: "project_id", label: "Project ID" },
-    { id: "project_name", label: "Project Name" },
-    { id: "description", label: "Description" },
-    { id: "coordinator", label: "Coordinator" },
-    { id: "startdate", label: "Start Date" },
+    { accessor: "project_id", Header: "Project ID" },
+    { accessor: "project_name", Header: "Project Name" },
+    { accessor: "description", Header: "Description" },
+    { accessor: "coordinator", Header: "Coordinator" },
+    { accessor: "startdate", Header: "Start Date" },
     // { id: "no_of_members", label: "Coordinate Events" },
     // { id: "location", label: "Location" },
-    { id: "action", label: "Action" },
+    { accessor: "action", Header: "Action" },
 
   ]);
 
@@ -85,7 +89,10 @@ return (
                     <div className="card h-100" id="contentcard">
                         <div className="card-body ">
                             <h5>Upcoming Events</h5>
-                            <Table rows={upcomingProjectsData} headCells={UpcomingProjectsHeadings} />
+
+                            <br></br><NewTable columns={UpcomingProjectsHeadings} data={upcomingProjectsData}/>
+
+
                         </div>
                     </div>
                 </div>

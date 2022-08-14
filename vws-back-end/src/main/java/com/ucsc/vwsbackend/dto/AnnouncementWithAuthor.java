@@ -1,5 +1,8 @@
 package com.ucsc.vwsbackend.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class AnnouncementWithAuthor {
@@ -16,7 +19,7 @@ public class AnnouncementWithAuthor {
     private String first_name;
 
     private String last_name;
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date date;
 
     private String role;

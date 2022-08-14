@@ -163,7 +163,7 @@ h5,
 #sidebar ul li.active>a {
   padding: 5px;
   border-radius: 135px;
-  background: #2596BA;
+  background: #2596BA !important;
   color: #ffffff;
 }
 

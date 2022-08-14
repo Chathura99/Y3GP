@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from "../../../utilities/Table/Table";
+import AddEventProgress from "./AddEventProgress";
 
 export default function Event() {
   useEffect(() => {
@@ -112,6 +113,15 @@ export default function Event() {
             </div>
           </div>
         </div>
+        <AddEventProgress />
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#addeventprogress"
+        >
+          Progress
+        </button>
       </div>
     </>
   );
