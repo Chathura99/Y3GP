@@ -32,6 +32,7 @@ import { createTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import SignUp from "./pages/guestUser/signUp/SignUp";
 import RequestNewEvent from "./pages/guestUser/RequestNewEvent/RequestNewEvent";
 import UpcomingEventsFullPage from "./pages/guestUser/UpcomingEvents/UpcomingEventsFullPage";
+import MoreLatestEvents from "./pages/guestUser/OurLatestEvents/MoreLatestEvents";
 
 import Projects from "./pages/volunteer/Projects/Projects";
 import OngoingEvents from "./pages/volunteer/Event/OngoingEvents";
@@ -110,6 +111,7 @@ function App() {
             ></Route>
 
             <Route exact path="/allupcomingevents" element={<UpcomingEventsFullPage />}></Route>
+            <Route exact path="/morelatestevents" element={<MoreLatestEvents />}></Route>
 
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
