@@ -262,7 +262,3 @@ a[data-toggle="collapse"] {
 #logout:hover{
   cursor: pointer;
 }
-
-#navbarSupportedContent {
-  background-color: transparent!important;
-}
