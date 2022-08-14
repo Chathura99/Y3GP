@@ -13,7 +13,6 @@ export default function MoreLatestEvents() {
                 <Navbar />
             </div>
 
-
             <h1 className="eventH1">Our Events</h1>
             <h4 className="eventH4">Over the past two decades Sasanaka Sansada has contributed in many ways to
                 make an impact on the world we live. Throughout the past years,

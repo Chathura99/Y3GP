@@ -42,12 +42,10 @@ a:hover {
     margin-right: 5px;
 }
 
-
 #nav-icon {
     background-color: #ffffff;
-
 }
 
 #navbarSupportedContent {
-    background-color: #145369;
+    background-color: #145369 !important;
 }
