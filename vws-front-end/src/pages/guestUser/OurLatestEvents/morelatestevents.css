@@ -1,10 +1,11 @@
-#latestevents-cont {
+#morelatestevents-cont {
+    margin-top: 60px;
     padding-top: 30px;
     padding-bottom: 30px;
     background-color: rgb(255, 255, 255);
 }
 
-#inner-cont-event{
+#inner-cont-event {
     margin-left: 20px;
     background-color: #ffffff;
     margin-right: 20px;
@@ -23,7 +24,12 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 10px;
+}
 
+@media screen and (max-width: 745px) {
+    .eventH4 {
+        font-size: 16px;
+    }
 }
 
 #latestevents {
@@ -54,13 +60,4 @@
 #icon-right2 {
     color: #145369;
     margin-right: 40px;
-}
-
-#seemore3{
-    color: #145369;
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: 800;
-    float: right;
-    margin-right: 20px;
 }

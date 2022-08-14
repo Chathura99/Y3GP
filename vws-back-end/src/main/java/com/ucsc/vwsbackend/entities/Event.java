@@ -1,6 +1,9 @@
 package com.ucsc.vwsbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Table(name = "event")
@@ -18,10 +21,12 @@ public class Event {
     private Integer noOfVolunteers;
 
     @Column(name = "start_date")
-    private Date startDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime startDate;
 
     @Column(name = "end_date")
-    private Date endDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime endDate;
 
     public Long getEventId() {
         return eventId;
@@ -35,11 +40,11 @@ public class Event {
         return noOfVolunteers;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
