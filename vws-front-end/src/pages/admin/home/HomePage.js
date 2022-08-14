@@ -53,6 +53,22 @@ export default function HomePage() {
   ]);
 
   const [joinRequestsData, setJoinRequestsData] = useState([]);
+  const [selectedJoinRequestsData, setselectedJoinRequestsData] = useState(
+    {
+      // firstName: "chathura",
+      // lastName: "manohara",
+      // email: "c@gmail.com",
+      // phoneNumber: "0715248569",
+      // address: "Polgahawela",
+      // universityCollege: "Colombo",
+      // district: "Kurunegala",
+      // date: "2021-10-11",
+      // status: 0,
+      // nic: "985475865v",
+      // info: "Singing",
+      // other: "",
+    },[]
+  );
 
   // const data = useMemo(() => joinRequestsData);
 
@@ -269,11 +285,15 @@ export default function HomePage() {
                 <NewTable
                   columns={joinRequestsTableHead}
                   data={joinRequestsData}
+                  setSelectedData={setselectedJoinRequestsData}
+                 
                 />
+                {console.log(selectedJoinRequestsData)}
               </div>
             </div>
           </div>
-          <RegisterNewUser />
+          <RegisterNewUser data={selectedJoinRequestsData}/>
+
           <button
             type="button"
             class="btn btn-primary"

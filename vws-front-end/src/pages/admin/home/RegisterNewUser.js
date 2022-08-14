@@ -3,21 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function AddAnnouncement(props) {
   const [requestData, setRequestData] = useState(
-    {
-      firstName: "chathura",
-      lastName: "manohara",
-      email: "c@gmail.com",
-      phoneNumber: "0715248569",
-      address: "Polgahawela",
-      universityCollege: "Colombo",
-      district: "Kurunegala",
-      date: "2021-10-11",
-      status: 0,
-      nic: "985475865v",
-      info: "Singing",
-      other: "",
-    },
-    []
+    props.data,[]
   );
 
   const handleChange = (e) => {

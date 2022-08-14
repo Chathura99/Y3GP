@@ -1,8 +1,7 @@
-import { Divider } from "@material-ui/core";
 import React, { useEffect, useMemo, useRef, forwardRef } from "react";
 import { useTable, usePagination, useRowSelect, useSortBy } from "react-table";
 import "./newtable.css";
-export default function NewTable({ columns, data }) {
+export default function NewTable({ columns, data, setSelectedData}) {
   const IndeterminateCheckbox = forwardRef(
     ({ indeterminate, ...rest }, ref) => {
       const defaultRef = useRef();
@@ -183,9 +182,10 @@ export default function NewTable({ columns, data }) {
             ))}
           </select>
           {console.log(selectedRowIds)}
-          {console.log(selectedFlatRows.map((d) => d.original))}
+          {selectedFlatRows.map((d) => setSelectedData(d.original))}
         </div>
       </div>
+    <button onClick={()=>setSelectedData()}>Set Selected</button>
     </div>
   );
 }

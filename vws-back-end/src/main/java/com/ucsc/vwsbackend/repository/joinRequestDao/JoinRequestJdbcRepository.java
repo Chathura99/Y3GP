@@ -42,11 +42,11 @@ public class JoinRequestJdbcRepository {
     }
 
     public List<JoinRequest> getNewRequest() {
-        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
         String query ="SELECT * from join_request where status=0";
 
-        List<JoinRequest> joinRequests = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<JoinRequest>(JoinRequest.class));
+        List<JoinRequest> joinRequests = jdbc.query(query, new BeanPropertyRowMapper<JoinRequest>(JoinRequest.class));
+        System.out.println(joinRequests.get(0).getDate());
         return joinRequests;
     }
 }
