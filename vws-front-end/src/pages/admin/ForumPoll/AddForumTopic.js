@@ -1,37 +1,31 @@
-import React,{useState} from "react";
+import { red } from "@material-ui/core/colors";
+import React from "react";
 
 export default function AddForumTopic() {
-  const [ann, setAnn] = useState({
-    title: "",
-    category: "",
-    content:"",
-    file:"",
-  });
-
-  const handleChange = (e) => {
-    e.persist();
-    console.log(e.target.name + "-" + e.target.value);
-    setAnn((ann) => ({
-      ...ann,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
   return (
     <div>
+      {/* <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+      >
+        Middle
+      </button> */}
+
       <div
         class="modal fade"
-        id="addAnnouncement"
+        id="AddForumTopic"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
       >
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Add Forum Topic
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Add New Forum Topic 
               </h5>
               <button
                 type="button"
@@ -43,94 +37,127 @@ export default function AddForumTopic() {
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""}>
+              <form onSubmit={""} style={{marginTop:0}}>
                 <div className="row gutters ">
+                  
+
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
-                      <label for="title">Title</label>
+                      <label for="fullName">Created By</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="title"
-                        placeholder="Enter title"
-                        value={ann.title}
-                        name="title"
-                        onChange={handleChange}
+                        id="proposedBy"
+                        placeholder="Ravindu Medagama"
+                        // value={profile.firstName}
+                        name="firstName"
+                        // onChange={handleChange}
                       />
                     </div>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="category">Category</label>
-
-                      <select
-                        type="text"
+                      <label for="eMail">Starts On</label>
+                      <input
+                        type="date"
                         className="form-control"
-                        id="category"
-                        placeholder="Select category"
-                        value={ann.category}
-                        name="category"
-                        onChange={handleChange}
-                      >
-                        <option value="all">All</option>
-                        <option value="guest">Guest</option>
-                      </select>
+                        id="date"
+                        
+                        // value={profile.email}
+                        name="email"
+                        // onChange={handleChange}
+                      />
                     </div>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="content">Content</label>
+                      <label for="phone">Title</label>
                       <input
                         type="text"
                         className="form-control"
-                        id=""
-                        placeholder="Enter content"
-                        value={ann.content}
-                        name="content"
-                        onChange={handleChange}
+                        id="ProjectName"
+                        placeholder="Enter project name"
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-12 col-lg-12 col-md-6 col-sm-6 col-12">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="file">File</label>
+                      <label for="phone">Ends On</label>
                       <input
-                        type="file"
+                        type="date"
                         className="form-control"
-                        id=""
-                        placeholder="file"
-                        value={ann.file}
-                        name="file"
-                        onChange={handleChange}
+                        id="date"
+                        
                       />
                     </div>
                   </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="phone">Description</label>
+                      <input
+                        type="text"
+                        style={{height:80, width:460}}
+                        className="form-control"
+                        id="description"
+                        placeholder="Enter description"
+                      />
+                    </div>
+                  </div>
+
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="website">Other</label>
+                      <input
+                        type="url"
+                        className="form-control"
+                        id="other"
+                        placeholder="Content"
+                      />
+                    </div>
+                  </div> */}
+
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="website">Events per year</label>
+                      <input
+                        type="url"
+                        className="form-control"
+                        id="numberOfEvents"
+                        placeholder="Enter number of events"
+                      />
+                    </div>
+                  </div> */}
+
                 </div>
 
-                <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div className="text-center mt-3 ">
-                      <div class="modal-footer justify-content-center ">
+                <div className="row gutters" >
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+                    <div className="text-center mt-3 " >
+                      <div class="modal-footer justify-content-center " >
                         <button
                           type="button"
                           id="submit"
+                          
                           name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
+                          
                         >
                           Cancel
                         </button>
                         <button
                           type="button"
                           id="submit"
+                      
                           name="submit"
                           className="btn btn-primary"
                           // onClick={handleSubmit}
                         >
-                          Update
+                          Save
                         </button>
                       </div>
                     </div>
