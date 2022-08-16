@@ -13,6 +13,7 @@ import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
 import Forum from "./pages/admin/ForumPoll/Forum";
 import Poll from "./pages/admin/ForumPoll/Poll";
+import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 import OnGoingProject from "./pages/admin/Project/OnGoingProject";
 import ProposedProject from "./pages/admin/Project/ProposedProject";
 import EventSummary from "./pages/admin/Summary/EventSummary";
@@ -54,7 +55,6 @@ import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcemen
 import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import Loading from "./utilities/Loading/Loading";
-import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 
 
 function App() {
