@@ -4,7 +4,7 @@ import "./Forum.css"
 import NewTable from "../../../utilities/Table/NewTable.js";
 import AddForumTopic from "./AddForumTopic";
 import { Link } from "react-router-dom";
-
+import AddNewPoll from "./AddNewPoll";
 
 export default function Forum() {
   
@@ -125,8 +125,8 @@ const data = useMemo(
                             <div className="card-body ">
                                 <h5>Poll</h5>
                                 
-                                  <button id='forumbtn' data-toggle="modal" data-target="#ProposeProjectForm">Add New Poll </button>
-                                
+                                  <button id='forumbtn' data-toggle="modal" data-target="#AddNewPoll">Add New Poll </button>
+                                  <AddNewPoll/>
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
                                 
