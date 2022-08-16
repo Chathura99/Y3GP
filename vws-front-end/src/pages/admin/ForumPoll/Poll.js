@@ -4,6 +4,8 @@ import EnhancedTable from "../../../utilities/Table/ForumTable";
 import "./Forum.css"
 import NewTable from "../../../utilities/Table/NewTable.js";
 import AddForumTopic from "./AddForumTopic";
+import ViewForum from "./ViewForum";
+import { Link } from "react-router-dom";
 
 
 
@@ -35,12 +37,14 @@ export default function Poll() {
                 name="submit"
                 className="btn p-1"
                 data-toggle="modal"
-                data-target="#CoordinateEventForm"
+                // data-target="#ViewForum"
                 style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >
-                Read
+                <Link to="/adminviewforum" className="sign-up">
+                    <b>Read</b>
+                  </Link>
               </button>
             ),
             
@@ -81,8 +85,10 @@ const data = useMemo(
                                 
                                   <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic">Add New Poll </button>
                                   <AddForumTopic/>
+                                  
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                  
                                 
                                 
                                 

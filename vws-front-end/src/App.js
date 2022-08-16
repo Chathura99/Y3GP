@@ -54,6 +54,7 @@ import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcemen
 import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import Loading from "./utilities/Loading/Loading";
+import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 
 
 function App() {
@@ -126,6 +127,9 @@ function App() {
             <Route path="/adminevent" element={<Event />}></Route>
             <Route path="/adminforum" element={<Forum />}></Route>
             <Route path="/adminpoll" element={<Poll />}></Route>
+            <Route path="/adminviewforum" element={<ViewForum />}></Route>
+            
+            
             <Route
               path="/adminongoingproject"
               element={<OnGoingProject />}
