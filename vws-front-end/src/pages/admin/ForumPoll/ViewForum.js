@@ -2,6 +2,8 @@ import React, { useEffect,useState } from 'react';
 import NewTable from '../../../utilities/Table/NewTable';
 import { useMemo } from 'react';
 import "./ViewForum.css";
+import AddNewDiscussion from './AddNewDiscussion';
+import { Link } from "react-router-dom";
 
 export default function ViewForum() {
     
@@ -215,7 +217,8 @@ export default function ViewForum() {
                             <div className="card-body ">
                                 <h5>Forum- Blood Donation</h5>
                                 
-                                  <button id='proposenewbtn' data-toggle="modal" data-target="#ProposeProjectForm">Add New Discussion Topic </button>
+                                  <button id='proposenewbtn' data-toggle="modal" data-target="#AddNewDiscussion">Add New Discussion Topic </button>
+                                  <AddNewDiscussion/>
                                 <h5> </h5>
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
