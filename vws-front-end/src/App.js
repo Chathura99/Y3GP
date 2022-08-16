@@ -56,6 +56,9 @@ import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcemen
 import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import Loading from "./utilities/Loading/Loading";
+// import ViewForum from "./pages/admin/ForumPoll/ViewForum";
+import Event1 from "./pages/guestUser/OurLatestEvents/Event1";
+
 
 
 function App() {
@@ -114,6 +117,8 @@ function App() {
 
             <Route exact path="/allupcomingevents" element={<UpcomingEventsFullPage />}></Route>
             <Route exact path="/morelatestevents" element={<MoreLatestEvents />}></Route>
+            <Route exact path="/Event1" element={<Event1/>}></Route>
+
 
             <Route path="/login" element={<LoginPage />}></Route>
             <Route path="/forgotpassword" element={<ForgotPassword />}></Route>
