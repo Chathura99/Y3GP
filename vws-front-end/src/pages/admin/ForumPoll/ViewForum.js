@@ -1,78 +1,68 @@
 import React, { useEffect,useState } from 'react';
 import NewTable from '../../../utilities/Table/NewTable';
-// import CoordinateEventForm from './CoordinateEventForm';
-// import "..\Projects\Projects.cssProjects.css"
-// import ProposeProjectForm from './ProposeProjectForm';
 import { useMemo } from 'react';
+import "./ViewForum.css";
+import AddNewDiscussion from './AddNewDiscussion';
+import { Link } from "react-router-dom";
 
 export default function ViewForum() {
-    // const [ProjectsData, setProjectsData] = useState([
-    //     {
-    //       project_name: "Ganitha Saviya",
-    //       description: "Ganitha Saviya is a ....",
-    //       idea_by: "Ravindu Perera",
-    //       date: "2022 09 12",
-          
-          
-    //       action: (
-    //         <button
-    //           type="button"
-    //           id="submit"
-    //           name="submit"
-    //           className="btn p-1"
-    //           data-toggle="modal"
-    //           data-target="#CoordinateEventForm"
-    //           style={{backgroundColor:"#96BE25",border:"none"}}
-    //           // #96BE25,#BE4D25
-    //           // onClick={handleSubmit}
-    //         >
-    //           Coordinate Event
-    //         </button>
-    //       ),
-    //     },
-    //     {
-    //       project_name: "Re-green Earth",
-    //       description: "Re-green Earth is a ...",
-    //       idea_by: "Sadaru Avishka",
-    //       date: "2022 09 02",
-          
-          
-    //       action: (
-    //         <button
-    //           type="button"
-    //           id="submit"
-    //           name="submit"
-    //           data-toggle="modal"
-    //           data-target="#CoordinateEventForm"
-    //           className="btn p-1"
-    //           style={{backgroundColor:"#96BE25",border:"none"}}
-    //           // #96BE25-green,#BE4D25-red
-    //           // onClick={handleSubmit}
-    //         >
-    //           Coordinate Event
-    //         </button>
-    //       ),
-    //     },
-    //   ]);
     
-    //   const [ProjectsHeadings, setProjectsTableHead] = useState([
-    //     { id: "project_name", label: "PROJECT NAME" },
-    //     { id: "description", label: "DESCRIPTION" },
-    //     { id: "idea_by", label: "IDEA BY" },
-    //     { id: "date", label: "DATE" },
-    //     { id: "action", label: "COORDINATE EVENT" },
-    
-    //   ]);
 
     const [ProjectsData, setProjectsData] = useState([
       {
-        project_name: "Ganitha Saviya",
-              description: "Ganitha Saviya is a ....",
-              idea_by: "Ravindu Perera",
-              date: "2022 09 12",
+        discussion: "Places for campaign", 
+        started_by:<div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12" id='outestbox'>                              
+            <div className="row gutters " id='row'>                           
+                <ul className="nav ">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#">
+                      <img
+                        id="profielimg"
+                        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                      ></img>
+                    </a>
+                  </li>
+                  <li
+                    className="nav-item"
+                    id="details"
+                    style={{ marginTop: "10px" }}
+                    >
+                  {/*   style={{ marginTop: "8px" }} */}
+                    <a className="nav-link" style={{color:"black", margin:0, padding:0,lineHeight:2 }}><b>R.R. Rathnayake</b></a>
+                    <a className="nav-link" style={{fontSize:"smaller", margin:0, padding:0, lineHeight:2}}>ADMIN 2021-10-21 12:12</a>
+                  </li> 
+                  {/* <li><a className="nav-link" style={{fontSize:"smaller"}}>ADMIN 2021-10-21 12:12</a></li> */}
+                </ul>                                                    
+          </div>        
+      </div>,
+        last_update:<div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12" id='outestbox'>                              
+        <div className="row gutters " id='row'>                           
+            <ul className="nav ">
+              <li className="nav-item">
+                <a className="nav-link" href="#">
+                  <img
+                    id="profielimg"
+                    src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                  ></img>
+                </a>
+              </li>
+              <li
+                className="nav-item"
+                id="details"
+                style={{ marginTop: "10px" }}
+                >
+              {/*   style={{ marginTop: "8px" }} */}
+                <a className="nav-link" style={{color:"black", margin:0, padding:0,lineHeight:2 }}><b>R.R. Rathnayake</b></a>
+                <a className="nav-link" style={{fontSize:"smaller", margin:0, padding:0, lineHeight:2}}>ADMIN 2021-10-21 12:12</a>
+              </li> 
+              {/* <li><a className="nav-link" style={{fontSize:"smaller"}}>ADMIN 2021-10-21 12:12</a></li> */}
+            </ul>                                                    
+      </div>        
+  </div>,
+        replies: "02",
               
               
-              coordinate: (
+        action: (
                 <button
                   type="button"
                   id="submit"
@@ -84,33 +74,79 @@ export default function ViewForum() {
                   // #96BE25,#BE4D25
                   // onClick={handleSubmit}
                 >
-                  Coordinate
+                  Read
                 </button>
               ),
-              action: (
-                <button
-                  type="button"
-                  id="submit"
-                  name="submit"
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
-                  className="btn p-1"
-                  style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                  // #96BE25,#BE4D25
-                  // onClick={handleSubmit}
-                >
-                  Details
-                </button>
-              ),
+              // action: (
+              //   <button
+              //     type="button"
+              //     id="submit"
+              //     name="submit"
+              //     data-toggle="modal"
+              //     data-target="#exampleModalCenter"
+              //     className="btn p-1"
+              //     style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
+              //     // #96BE25,#BE4D25
+              //     // onClick={handleSubmit}
+              //   >
+              //     Details
+              //   </button>
+              // ),
             },
             {
-              project_name: "Re-green Earth",
-              description: "Re-green Earth is a ...",
-              idea_by: "Sadaru Avishka",
-              date: "2022 09 02",
+              discussion: "Dates for blood donation campaign",
+              started_by: <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12" id='outestbox'>                              
+              <div className="row gutters " id='row'>                           
+                  <ul className="nav ">
+                    <li className="nav-item">
+                      <a className="nav-link" href="#">
+                        <img
+                          id="profielimg"
+                          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                        ></img>
+                      </a>
+                    </li>
+                    <li
+                      className="nav-item"
+                      id="details"
+                      style={{ marginTop: "10px" }}
+                      >
+                    {/*   style={{ marginTop: "8px" }} */}
+                      <a className="nav-link" style={{color:"black", margin:0, padding:0,lineHeight:2 }}><b>R.R. Rathnayake</b></a>
+                      <a className="nav-link" style={{fontSize:"smaller", margin:0, padding:0, lineHeight:2}}>ADMIN 2021-10-21 12:12</a>
+                    </li> 
+                    {/* <li><a className="nav-link" style={{fontSize:"smaller"}}>ADMIN 2021-10-21 12:12</a></li> */}
+                  </ul>                                                    
+            </div>        
+        </div>,
+              last_update: <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12" id='outestbox'>                              
+              <div className="row gutters " id='row'>                           
+                  <ul className="nav ">
+                    <li className="nav-item">
+                      <a className="nav-link" href="#">
+                        <img
+                          id="profielimg"
+                          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                        ></img>
+                      </a>
+                    </li>
+                    <li
+                      className="nav-item"
+                      id="details"
+                      style={{ marginTop: "10px" }}
+                      >
+                    {/*   style={{ marginTop: "8px" }} */}
+                      <a className="nav-link" style={{color:"black", margin:0, padding:0,lineHeight:2 }}><b>R.R. Rathnayake</b></a>
+                      <a className="nav-link" style={{fontSize:"smaller", margin:0, padding:0, lineHeight:2}}>ADMIN 2021-10-21 12:12</a>
+                    </li> 
+                    {/* <li><a className="nav-link" style={{fontSize:"smaller"}}>ADMIN 2021-10-21 12:12</a></li> */}
+                  </ul>                                                    
+            </div>        
+        </div>,
+              replies: "03",
               
               
-              coordinate: (
+              action: (
                 <button
                   type="button"
                   id="submit"
@@ -122,24 +158,24 @@ export default function ViewForum() {
                   // #96BE25-green,#BE4D25-red
                   // onClick={handleSubmit}
                 >
-                  Coordinate
+                  Read
                 </button>
               ),
-              action: (
-                <button
-                  type="button"
-                  id="submit"
-                  name="submit"
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
-                  className="btn p-1"
-                  style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                  // #96BE25,#BE4D25
-                  // onClick={handleSubmit}
-                >
-                  Details
-                </button>
-              ),
+              // action: (
+              //   <button
+              //     type="button"
+              //     id="submit"
+              //     name="submit"
+              //     data-toggle="modal"
+              //     data-target="#exampleModalCenter"
+              //     className="btn p-1"
+              //     style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
+              //     // #96BE25,#BE4D25
+              //     // onClick={handleSubmit}
+              //   >
+              //     Details
+              //   </button>
+              // ),
       }
     ]);
   
@@ -149,12 +185,12 @@ export default function ViewForum() {
     const ProjectsHeadings=useMemo(
       () => [
        
-        { accessor: "project_name", Header: "PROJECT NAME" },
-        { accessor: "description", Header: "DESCRIPTION" },
-        { accessor: "idea_by", Header: "IDEA BY" },
-        { accessor: "date", Header: "DATE" },
-        { accessor: "coordinate", Header: "COORDINATE EVENT" },
-        { accessor: "action", Header: "PROJECT DETAILS" },
+        { accessor: "discussion", Header: "DISCUSSION" },
+        { accessor: "started_by", Header: "STARTED BY" },
+        { accessor: "last_update", Header: "LAST UPDATE" },
+        { accessor: "replies", Header: "REPLIES" },
+        { accessor: "action", Header: "Action" },
+        
         
       ],
       []
@@ -179,9 +215,10 @@ export default function ViewForum() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                                <h5>Ongoing Projects</h5>
+                                <h5>Forum- Blood Donation</h5>
                                 
-                                  <button id='proposenewbtn' data-toggle="modal" data-target="#ProposeProjectForm">+ Propose New Project </button>
+                                  <button id='proposenewbtn' data-toggle="modal" data-target="#AddNewDiscussion">Add New Discussion Topic </button>
+                                  <AddNewDiscussion/>
                                 <h5> </h5>
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>

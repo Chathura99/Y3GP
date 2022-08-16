@@ -13,6 +13,8 @@ import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
 import Forum from "./pages/admin/ForumPoll/Forum";
 import Poll from "./pages/admin/ForumPoll/Poll";
+import ViewForum from "./pages/admin/ForumPoll/ViewForum";
+import AddNewDiscussion from "./pages/admin/ForumPoll/AddNewDiscussion.js";
 import OnGoingProject from "./pages/admin/Project/OnGoingProject";
 import ProposedProject from "./pages/admin/Project/ProposedProject";
 import EventSummary from "./pages/admin/Summary/EventSummary";
@@ -55,7 +57,7 @@ import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import Loading from "./utilities/Loading/Loading";
 import ViewForum from "./pages/admin/ForumPoll/ViewForum";
-import Event1 from './pages/guestUser/OurLatestEvents/Event1';
+
 
 
 function App() {
@@ -131,6 +133,7 @@ function App() {
             <Route path="/adminforum" element={<Forum />}></Route>
             <Route path="/adminpoll" element={<Poll />}></Route>
             <Route path="/adminviewforum" element={<ViewForum />}></Route>
+            <Route path="/adminaddnewdiscussion" element={<AddNewDiscussion />}></Route>
             
             
             <Route
