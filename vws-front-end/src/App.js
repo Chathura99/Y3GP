@@ -56,7 +56,8 @@ import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcemen
 import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import Loading from "./utilities/Loading/Loading";
-import ViewForum from "./pages/admin/ForumPoll/ViewForum";
+// import ViewForum from "./pages/admin/ForumPoll/ViewForum";
+import Event1 from "./pages/guestUser/OurLatestEvents/Event1";
 
 
 
