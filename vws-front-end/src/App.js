@@ -15,6 +15,7 @@ import Forum from "./pages/admin/ForumPoll/Forum";
 import Poll from "./pages/admin/ForumPoll/Poll";
 import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 import AddNewDiscussion from "./pages/admin/ForumPoll/AddNewDiscussion.js";
+import DiscussionTopic from "./pages/admin/ForumPoll/DiscussionTopic.js";
 import OnGoingProject from "./pages/admin/Project/OnGoingProject";
 import ProposedProject from "./pages/admin/Project/ProposedProject";
 import EventSummary from "./pages/admin/Summary/EventSummary";
@@ -135,7 +136,7 @@ function App() {
             <Route path="/adminpoll" element={<Poll />}></Route>
             <Route path="/adminviewforum" element={<ViewForum />}></Route>
             <Route path="/adminaddnewdiscussion" element={<AddNewDiscussion />}></Route>
-            
+            <Route path="/admindiscussiontopic" element={<DiscussionTopic />}></Route>
             
             <Route
               path="/adminongoingproject"

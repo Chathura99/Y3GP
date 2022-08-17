@@ -1,0 +1,30 @@
+#topicbody{
+    border-radius: 10px;
+    background-color: rgba(0,0,0,.03);
+    
+}
+#cardtopic{
+    padding-top: 10px;
+}
+#bla{
+    
+    /* background-color: blueviolet; */
+    height:auto;
+    padding-top: 40px;
+}
+#contentcard{
+    /* background-color:burlywood; */
+    width: 100%;
+}
+/* #contentcard01{
+    background-color: aqua;
+    width: 2000px;
+    margin: 0;
+    float: right;
+} */
+#contentcard02{
+    /* background-color: brown; */
+    margin-top: 0;
+    padding: 10px;
+
+}
