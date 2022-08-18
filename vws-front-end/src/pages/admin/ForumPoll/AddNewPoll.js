@@ -1,7 +1,7 @@
 import { red } from "@material-ui/core/colors";
 import React from "react";
 
-export default function AddForumTopic() {
+export default function AddNewPoll() {
   return (
     <div>
       {/* <button
@@ -15,7 +15,7 @@ export default function AddForumTopic() {
 
       <div
         class="modal fade"
-        id="AddForumTopic"
+        id="AddNewPoll"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
@@ -25,7 +25,7 @@ export default function AddForumTopic() {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
-                Add New Forum Topic 
+                Add New Poll 
               </h5>
               <button
                 type="button"
@@ -95,18 +95,18 @@ export default function AddForumTopic() {
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" >
+                    <div className="form-group" style={{ width:460}}>
                       <label for="phone">Description</label>
                       <input
                         type="text"
-                        style={{height:80, width:460}}
                         className="form-control"
                         id="description"
-                        placeholder="Enter description"
+                        placeholder="Content"
+                        style={{height: 80 }}
                       />
                     </div>
-                  </div>
+                  </div> 
 
                   {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -120,17 +120,33 @@ export default function AddForumTopic() {
                     </div>
                   </div> */}
 
-                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div style={{width: 460, backgroundColor: red }}>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"  style={{ float: "left"}}>
                     <div className="form-group">
-                      <label for="website">Events per year</label>
+                      <label for="website">Option 1</label>
                       <input
                         type="url"
                         className="form-control"
-                        id="numberOfEvents"
-                        placeholder="Enter number of events"
+                        id="option1"
+                        placeholder="Enter option 1"
+                        
                       />
                     </div>
-                  </div> */}
+                  </div>
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" style={{ float: "right"}} >
+                    <div className="form-group">
+                      <label for="website">Option 2</label>
+                      <input
+                        type="url"
+                        className="form-control"
+                        id="Option 2"
+                        placeholder="Enter option 2"
+                        
+                      />
+                    </div>
+                  </div>
+                  </div>
 
                 </div>
 

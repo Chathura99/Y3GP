@@ -1,7 +1,7 @@
 import { red } from "@material-ui/core/colors";
 import React from "react";
 
-export default function AddForumTopic() {
+export default function AddNewDiscussion() {
   return (
     <div>
       {/* <button
@@ -15,7 +15,7 @@ export default function AddForumTopic() {
 
       <div
         class="modal fade"
-        id="AddForumTopic"
+        id="AddNewDiscussion"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
@@ -25,7 +25,7 @@ export default function AddForumTopic() {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
-                Add New Forum Topic 
+                Add New Discussion Topic 
               </h5>
               <button
                 type="button"
@@ -56,7 +56,7 @@ export default function AddForumTopic() {
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="eMail">Starts On</label>
                       <input
@@ -69,7 +69,7 @@ export default function AddForumTopic() {
                         // onChange={handleChange}
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -83,7 +83,7 @@ export default function AddForumTopic() {
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="phone">Ends On</label>
                       <input
@@ -93,7 +93,7 @@ export default function AddForumTopic() {
                         
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
