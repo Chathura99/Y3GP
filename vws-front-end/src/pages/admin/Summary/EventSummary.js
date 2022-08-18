@@ -18,11 +18,12 @@ export default function EventSummary() {
   };
   const [onGoingProjectData, setOnGoingProjectData] = useState([
     {
-      projectId: "P001",
-      projectName: "Ganitha Saviya",
+      eventId: "E001",
+      category: "Ganitha Saviya",
       coordinator: "Hazeen Ram",
-      phone: "+94 76 7845 111",
-      startedOn: "2020-10-21",
+      district: "Kalutara",
+      startOn: "2020-10-21",
+      endOn:"2020-11-21",
       action: (
         <button
           type="button"
@@ -37,16 +38,17 @@ export default function EventSummary() {
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Edit
+          View
         </button>
       ),
     },
     {
-      projectId: "P002",
-      projectName: "Re-green Earth",
+      eventId: "E002",
+      category: "Re-green Earth",
       coordinator: "Chamath Shanuka",
-      phone: "+94 70 2542 336",
-      startedOn: "2019-12-01",
+      district: "Colombo",
+      startOn: "2019-12-01",
+      endsOn:"2020-01-21",
       action: (
         <button
           type="button"
@@ -61,18 +63,19 @@ export default function EventSummary() {
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Edit
+          View
         </button>
       ),
     },
   ]);
 
   const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "projectId", label: "PROJECT ID" },
-    { id: "projectName", label: "PROJECT NAME" },
+    { id: "eventId", label: "EVENT ID" },
+    { id: "category", label: "CATEGORY" },
     { id: "coordinator", label: "COORDINATOR" },
-    { id: "phone", label: "PHONE" },
-    { id: "startedOn", label: "STARTED ON" },
+    { id: "district", label: "DISTRICT" },
+    { id: "startOn", label: "START ON" },
+    { id: "endOn", label: "END ON" },
     { id: "action", label: "ACTION" },
   ]);
   const [lineChartData, setLineChartData] = useState([
@@ -122,8 +125,8 @@ export default function EventSummary() {
                 <div id="selectionrow">
                   
                     <form onSubmit={""}>
-                      <div id="q1">
-                        <label for="event" id="q1label">Event </label>
+                      <div id="q1" >
+                        <label for="event" id="q1label"><b>Event</b> </label>
                         <select id="eventlist" name="event" size="1" className="form-control" >
                           <option value="Completed">Completed</option>
                           <option value="Ongoing">Ongoing</option>
@@ -132,8 +135,8 @@ export default function EventSummary() {
                         </select>
                       </div>
                       <div id="q2">
-                        <label for="event" >District </label>
-                        <select id="cars" name="event" size="1" multiple>
+                        <label for="event" id="q2label" ><b>District</b> </label>
+                        <select id="Disctrictlist" name="event" size="1" className="form-control" >
                           <option value="Colombo">Colombo</option>
                           <option value="Kalutara">Kalutara</option>
                           <option value="Gampaha">Gampaha</option>
@@ -141,23 +144,25 @@ export default function EventSummary() {
                         </select>
                       </div>
                       <div id="q3">
-                        <label for="datefrom" >Date From </label>
+                        <label for="datefrom" id="q3label" ><b>Date From</b> </label>
                         <input type="date"
+                        className="form-control"
                         id="fromdate"
                         placeholder="select date"
                         // value={profile.firstName}
                         name="datefrom"/>
                       </div>
                       <div id="q4">
-                        <label for="datefrom" >To </label>
+                        <label for="datefrom" id="q4label" ><b>To</b> </label>
                         <input type="date"
-                        id="fromdate"
+                        className="form-control"
+                        id="todate"
                         placeholder="select date"
                         // value={profile.firstName}
                         name="datefrom"/>
                       </div>
-                      <div id="q5">
-                        <button> Generate</button>
+                      <div id="q5" >
+                        <button type="button" className="btn p-1" id="generate"> Generate</button>
                       </div>
 
                     </form>
