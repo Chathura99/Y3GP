@@ -61,3 +61,12 @@
     color: #145369;
     margin-right: 40px;
 }
+
+#seemorebtn{
+    color: #2596BE;
+    font-size: 12px;
+    
+    font-weight: 800;
+    float: right;
+    margin-right: 5px;
+}

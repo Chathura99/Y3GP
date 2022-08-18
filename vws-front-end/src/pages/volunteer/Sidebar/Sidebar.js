@@ -175,7 +175,7 @@ export default function Sidebar(page) {
                   highLight(6);
                 }}
               >
-                <Link to="/volunteerForum">
+                <Link to="/volunteerForumpoll">
                   <i className="fa fa-comments ml-3 mr-4"></i>Forum | Poll
                 </Link>
               </li>

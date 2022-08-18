@@ -15,7 +15,7 @@ export default function SignUp() {
   } = useForm({
     mode: "all",
   });
-  console.log(errors, Object.keys(errors).length === 1);
+  // console.log(errors, Object.keys(errors).length === 1);
 
   const [requestData, setRequestData] = useState(
     {

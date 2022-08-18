@@ -10,7 +10,17 @@ export const getAnnouncement = (category) => {
     method: "GET",
     url: `${USER_URL}/getAllAnnouncement/${category}`,
     headers: {
-        Authorization: "Bearer " + getToken(),
-      },
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
+export const editAnnouncement = (announcement) => {
+  return axios({
+    method: "PUT",
+    url: `${USER_URL}/editAnnouncement`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
   });
 };

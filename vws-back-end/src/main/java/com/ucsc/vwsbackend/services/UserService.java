@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -55,5 +56,11 @@ public class UserService implements UserDetailsService {
 
         return null;
     }
+
+    public long updateProfile(Profile profile,String role) {
+         return userJdbcRepository.updateProfile(profile,role);
+    }
+
+
 }
 

@@ -1,12 +1,51 @@
 import React, { useState } from "react";
+import { editAnnouncement } from "../../../services/announcementServices/announcementServices";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import Loading from "../../../utilities/Loading/Loading";
 
-export default function EditAnnouncement() {
-  const [ann, setAnn] = useState({
-    title: "New Event",
-    category: "all",
-    content: "Content . . . ",
-    file: "",
-  });
+export default function EditAnnouncement(props) {
+  const [ann, setAnn] = useState(props.ann);
+
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Update Announcement");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (evt) => {
+    // evt.preventDefault();
+    editAnnouncement(ann)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          if (response.data === "") {
+            setPopUp("failed");
+          } else if (response.data === "") {
+            setPopUp("failed");
+          } else {
+            setPopUp("success");
+          }
+        }
+      })
+      .catch((err) => {
+        if (err && err.response) {
+          console.log(err);
+          setMessage(err.message);
+          setPopUp("failed");
+        }
+      });
+  };
 
   const handleChange = (e) => {
     e.persist();
@@ -45,19 +84,19 @@ export default function EditAnnouncement() {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <h5>Title</h5>
+                  <h5>{ann.title}</h5>
                 </div>
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <small>
-                    Date
+                    Date : {ann.date}
                     <br />
-                    by
+                    by {ann.firstName + " " + ann.lastName}
                   </small>
                 </div>
               </div>
 
-              <form onSubmit={""}>
+              <form onSubmit={confirm}>
                 <div className="row gutters ">
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
@@ -83,10 +122,11 @@ export default function EditAnnouncement() {
                         className="form-control"
                         id="category"
                         placeholder="Select category"
-                        value={ann.category}
+                        // value={ann.category}
                         name="category"
                         onChange={handleChange}
                       >
+                        <option value="all">{ann.category}</option>
                         <option value="all">All</option>
                         <option value="guest">Guest</option>
                       </select>
@@ -138,7 +178,7 @@ export default function EditAnnouncement() {
                           Cancel
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
@@ -155,6 +195,19 @@ export default function EditAnnouncement() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

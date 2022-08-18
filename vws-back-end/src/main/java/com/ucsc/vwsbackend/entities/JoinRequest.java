@@ -4,7 +4,7 @@ package com.ucsc.vwsbackend.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Table(name="join_request")
 @Entity
@@ -48,7 +48,7 @@ public class JoinRequest {
 
     @Column(name = "requested_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date date;
+    private LocalDateTime date;
 
     @Column(name="status")
     private int status;
@@ -120,11 +120,11 @@ public class JoinRequest {
         this.district = district;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

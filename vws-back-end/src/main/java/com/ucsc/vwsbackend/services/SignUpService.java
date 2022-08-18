@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,6 +50,7 @@ public class SignUpService {
 //      check in requests also
         int rowCount1 = userJdbcRepository.checkEmailExists(joinRequest.getEmail());
         int rowCount2 = joinRequestJdbcRepository.checkEmailExists(joinRequest.getEmail());
+        joinRequest.setDate(LocalDateTime.now());
         if(rowCount1>0){
             return "You have already an account!";
         }else if(rowCount2>0){
@@ -60,8 +62,8 @@ public class SignUpService {
     }
 
     public List<JoinRequest> getJoinRequest() {
-//      write query for get only new requests
-        return joinRequestRepository.findAll();
+
+        return joinRequestJdbcRepository.getNewRequest();
     }
 
     public String signUpApproved(JoinRequest joinRequest){
