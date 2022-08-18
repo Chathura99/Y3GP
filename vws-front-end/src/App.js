@@ -36,6 +36,8 @@ import SignUp from "./pages/guestUser/SignUp/SignUp";
 import RequestNewEvent from "./pages/guestUser/RequestNewEvent/RequestNewEvent";
 import UpcomingEventsFullPage from "./pages/guestUser/UpcomingEvents/UpcomingEventsFullPage";
 import MoreLatestEvents from "./pages/guestUser/OurLatestEvents/MoreLatestEvents";
+import ApplyForScholarship from "./pages/guestUser/ApplyForScholarship/ApplyForScholarship";
+
 
 import Projects from "./pages/volunteer/Projects/Projects";
 import OngoingEvents from "./pages/volunteer/Event/OngoingEvents";
@@ -115,6 +117,11 @@ function App() {
               exact
               path="/requestnewevent"
               element={<RequestNewEvent />}
+            ></Route>
+            <Route
+              exact
+              path="/applyforscholarship"
+              element={<ApplyForScholarship/>}
             ></Route>
 
             <Route exact path="/allupcomingevents" element={<UpcomingEventsFullPage />}></Route>
