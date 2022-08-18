@@ -292,6 +292,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+          
           <RegisterNewUser data={selectedJoinRequestsData}/>
 
           <button
