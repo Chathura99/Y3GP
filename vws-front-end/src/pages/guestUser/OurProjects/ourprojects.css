@@ -61,13 +61,15 @@
 
 #project-right-H2 {
     color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
 
 }
 
 #project-right-H1 {
     color: #ffffff;
-    font-weight: 900;
-    font-size: 30px;
+    font-weight: 800;
+    font-size: 28px;
     text-align: center;
     padding-bottom: 5px;
 }
