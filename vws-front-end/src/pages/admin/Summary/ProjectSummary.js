@@ -18,12 +18,11 @@ export default function ProjectSummary() {
   };
   const [onGoingProjectData, setOnGoingProjectData] = useState([
     {
-      eventId: "E001",
-      category: "Ganitha Saviya",
-      coordinator: "Hazeen Ram",
-      district: "Kalutara",
-      startOn: "2020-10-21",
-      endOn:"2020-11-21",
+      projectId: "P001",
+      projectname: "Ganitha Saviya",
+      description: "asefbrhnkugh dffgd...",
+      ideaby: "Hazeen Ram",
+      date: "2020-10-21",
       action: (
         <button
           type="button"
@@ -43,12 +42,11 @@ export default function ProjectSummary() {
       ),
     },
     {
-      eventId: "E002",
-      category: "Re-green Earth",
-      coordinator: "Chamath Shanuka",
-      district: "Colombo",
-      startOn: "2019-12-01",
-      endsOn:"2020-01-21",
+      projectId: "P002",
+      projectname: "Re-green Earth",
+      description: "weffgbg ghgukm...",
+      ideaby: "Chamath Shanuka",
+      date: "2019-12-01",
       action: (
         <button
           type="button"
@@ -70,18 +68,17 @@ export default function ProjectSummary() {
   ]);
 
   const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "category", label: "CATEGORY" },
-    { id: "coordinator", label: "COORDINATOR" },
-    { id: "district", label: "DISTRICT" },
-    { id: "startOn", label: "START ON" },
-    { id: "endOn", label: "END ON" },
+    { id: "projectId", label: "PROJECT ID" },
+    { id: "projectname", label: "PROJECT NAME" },
+    { id: "description", label: "DESCRIPATION" },
+    { id: "ideaby", label: "IDEA BY" },
+    { id: "date", label: "Date" },
     { id: "action", label: "ACTION" },
   ]);
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
-      "No of Events",
+      "No of Projects",
       // "MathLab",
       // "Regreen Earth",
       // "Lohithuppada",
@@ -108,7 +105,7 @@ export default function ProjectSummary() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters ">
-                  <h5>Events Summary</h5>
+                  <h5>Project Summary</h5>
                 </div>
                 <div id="selectionrow">
                   
@@ -155,7 +152,7 @@ export default function ProjectSummary() {
                           
                         </select>
                       </div>
-                      <div id="q2">
+                      {/* <div id="q2">
                         <label for="event" id="q2label" ><b>District</b> </label>
                         <select id="Disctrictlist" name="event" size="1" className="form-control" >
                           <option value="Colombo">Colombo</option>
@@ -163,7 +160,7 @@ export default function ProjectSummary() {
                           <option value="Gampaha">Gampaha</option>
                           
                         </select>
-                      </div>
+                      </div> */}
                       <div id="q3">
                         <label for="datefrom" id="q3label" ><b>Date From</b> </label>
                         <input type="date"
