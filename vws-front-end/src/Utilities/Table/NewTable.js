@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, forwardRef } from "react";
 import { useTable, usePagination, useRowSelect, useSortBy } from "react-table";
 import "./newtable.css";
-export default function NewTable({ columns, data, setSelectedData}) {
+export default function NewTable({ columns, data, setSelectedData, action }) {
   const IndeterminateCheckbox = forwardRef(
     ({ indeterminate, ...rest }, ref) => {
       const defaultRef = useRef();
@@ -47,7 +47,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
     },
     useSortBy,
     usePagination,
-    useRowSelect,
+    useRowSelect
     // (hooks) => {
     //   hooks.visibleColumns.push((columns) => [
     //     {
@@ -70,7 +70,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
   );
 
   return (
-    <div  style={{ overflowX: "scroll",margin:"auto" }}>
+    <div style={{ overflowX: "scroll", margin: "auto" }}>
       {console.log(
         pageIndex,
         pageSize,
@@ -78,7 +78,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
         canNextPage,
         canPreviousPage
       )}
-      <table {...getTableProps()}  style={{ overflowX: "scroll" }}>
+      <table {...getTableProps()} style={{ overflowX: "scroll" }}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -86,7 +86,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
                 <th
                   className="tablehead"
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  style={{paddingRight:"20px"}}
+                  style={{ paddingRight: "20px" }}
                 >
                   {column.render("Header")}
                   <span style={{}}>
@@ -110,6 +110,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
                   </span>
                 </th>
               ))}
+              {!action == "" && <th className="tablehead">ACTION</th>}
             </tr>
           ))}
         </thead>
@@ -123,6 +124,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
+                <td>{!action == "" && action}</td>
               </tr>
             );
           })}
@@ -186,7 +188,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
           {selectedFlatRows.map((d) => setSelectedData(d.original))}
         </div>
       </div>
-    {/* <button onClick={()=>setSelectedData()}>Set Selected</button> */}
+      {/* <button onClick={()=>setSelectedData()}>Set Selected</button> */}
     </div>
   );
 }

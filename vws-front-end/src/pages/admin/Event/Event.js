@@ -45,7 +45,7 @@ export default function Event() {
             backgroundColor: "#BE4D25",
             border: "none",
             marginRight: 0,
-            padding:"6px",
+            padding: "6px",
           }}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
@@ -86,13 +86,12 @@ export default function Event() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters "></div>
+                <h5>Upcoming Events</h5>
                 <div className="row gutters ">
-
                   <NewTable
-                  columns={upComingEventTableHead}
-                  data={upComingEventData}
-                 
-                />
+                    columns={upComingEventTableHead}
+                    data={upComingEventData}
+                  />
                 </div>
               </div>
             </div>
@@ -104,13 +103,12 @@ export default function Event() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters "></div>
+                <h5>Previous Events</h5>
                 <div className="row gutters ">
-
                   <NewTable
-                  columns={previousEventTableHead}
-                  data={previousEventData}
-                 
-                />
+                    columns={previousEventTableHead}
+                    data={previousEventData}
+                  />
                 </div>
               </div>
             </div>
