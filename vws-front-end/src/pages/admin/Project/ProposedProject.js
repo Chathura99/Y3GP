@@ -74,13 +74,12 @@ export default function ProposedProject() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters "></div>
+                <h5 style={{ paddingLeft: "30px" }}>Proposed Projects</h5>
                 <div className="row gutters ">
-
                   <NewTable
-                  columns={proposedProjectTableHead}
-                  data={proposedProjectData}
-                 
-                />
+                    columns={proposedProjectTableHead}
+                    data={proposedProjectData}
+                  />
                 </div>
               </div>
             </div>

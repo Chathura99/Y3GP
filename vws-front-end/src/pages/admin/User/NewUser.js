@@ -77,6 +77,7 @@ export default function NewUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
+              <h5>New Users</h5>
 
                 <NewTable
                   columns={joinRequestsTableHead}

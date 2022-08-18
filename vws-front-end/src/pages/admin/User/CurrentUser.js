@@ -56,15 +56,15 @@ export default function CurrentUser() {
     { accessor: "status", Header: "STATUS" },
   ]);
 
-  const [pieChartData,setPieChartData] = useState([
+  const [pieChartData, setPieChartData] = useState([
     ["User", "Count"],
     ["Volunteer", 750],
     ["Project Coordinator", 21],
     ["Admin", 2],
   ]);
 
-  const [lineChartData,setLineChartData] = useState([
-    ["Month", "ADMIN", "Volunteer","Project Coordinator"],
+  const [lineChartData, setLineChartData] = useState([
+    ["Month", "ADMIN", "Volunteer", "Project Coordinator"],
     ["Jan", 1, 400, 15],
     ["Feb", 1, 420, 15],
     ["Mar", 2, 420, 15],
@@ -79,9 +79,11 @@ export default function CurrentUser() {
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <div className="row gutters"><h5>Current User</h5></div>
+                <div className="row gutters">
+                  <h5>Current User</h5>
+                </div>
                 <div className="row gutters ">
-                  <PieChart data={pieChartData}/>
+                  <PieChart data={pieChartData} />
                 </div>
               </div>
             </div>
@@ -105,10 +107,11 @@ export default function CurrentUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                
+                <h5>Current Users</h5>
+
                 <NewTable
                   columns={currentUserTableHead}
-                  data={currentUserTableData}                 
+                  data={currentUserTableData}
                 />
               </div>
             </div>
