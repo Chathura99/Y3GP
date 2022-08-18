@@ -1,0 +1,36 @@
+/* #outertablebox{
+    background-color: aqua;
+}
+#outertablebox2{
+    background-color: bisque;
+} */
+#contentcard2{
+    background-color: blueviolet;
+    padding-top: 0;
+}
+#selectionrow{
+    width: 100%;
+    height: 50px;
+    background-color: aqua;
+}
+#q1{
+    background-color: blanchedalmond;
+    float: left;
+    width: 200px;
+}
+#q1label{
+    float: left;
+}
+#eventlist{
+    width: 70%;
+    height: 100%;
+}
+#q2{
+    float: left ;
+}
+#q3{
+    float: left;
+}
+#q4{
+    float: left;
+}
