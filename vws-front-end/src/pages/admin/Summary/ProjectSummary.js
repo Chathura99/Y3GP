@@ -110,6 +110,27 @@ export default function ProjectSummary() {
                 <div className="row gutters ">
                   <h5>Events Summary</h5>
                 </div>
+                <div id="selectionrow">
+                  
+                    <form onSubmit={""}>
+                    <div id="q5" >
+                        <button type="button" className="btn p-1" id="generate"> Generate</button>
+                      </div>
+                      <div id="qQ3">
+                        <label for="datefrom" id="qQ3label" ><b>Year</b> </label>
+                        <input type="date"
+                        className="form-control"
+                        id="fromdate"
+                        placeholder="select date"
+                        // value={profile.firstName}
+                        name="datefrom"/>
+                      </div>
+                      
+                      
+
+                    </form>
+                  
+                </div>
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
                 </div>
