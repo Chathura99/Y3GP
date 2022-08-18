@@ -19,23 +19,6 @@ export default function NewUser() {
       nic: "998547521v",
       phone: "+94 75 025 1451",
       date: "2022 09 12",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Rejister
-        </button>
-      ),
     },
   ]);
 
@@ -45,7 +28,6 @@ export default function NewUser() {
     { accessor: "nic", Header: "NIC" },
     { accessor: "phone", Header: "PHONE" },
     { accessor: "date", Header: "DATE" },
-    { accessor: "status", Header: "STATUS" },
   ]);
   return (
     <>
@@ -77,25 +59,32 @@ export default function NewUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-              <h5>New Users</h5>
+                <h5>New Users</h5>
 
                 <NewTable
                   columns={joinRequestsTableHead}
-                  data={joinRequestsData}                 
+                  data={joinRequestsData}
+                  action={
+                    <button
+                      type="button"
+                      class="btn"
+                      data-toggle="modal"
+                      data-target="#registerUser"
+                      style={{
+                        backgroundColor: "#96BE25",
+                        border: "none",
+                        marginRight: "2px",
+                      }}
+                    >
+                      Register
+                    </button>
+                  }
                 />
               </div>
             </div>
           </div>
         </div>
         <RegisterNewUser />
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          data-target="#registerUser"
-        >
-          Register
-        </button>
       </div>
     </>
   );
