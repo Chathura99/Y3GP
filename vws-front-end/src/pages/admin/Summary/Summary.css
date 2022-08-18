@@ -13,6 +13,16 @@
     height: 50px;
     /* background-color: aqua; */
 }
+#qQ3{
+    float: right;
+    width: 200px;
+    margin-right: 20px;
+}
+#qQ3label{
+    float: left;
+    margin-top: 5px;
+    margin-left: 10px;
+}
                         /* q1 div */
 #q1{
     /* background-color: blanchedalmond; */
