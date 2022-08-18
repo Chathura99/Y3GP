@@ -38,12 +38,12 @@ export default function HomePage() {
   ]);
 
   const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "project", label: "PROJECT NAME" },
-    { id: "place", label: "PLACE" },
-    { id: "member", label: "MEMBERS" },
-    { id: "coordinator", label: "COORDINATOR" },
-    { id: "date", label: "DATE" },
+    { accessor: "eventId", Header: "EVENT ID" },
+    { accessor: "project", Header: "PROJECT NAME" },
+    { accessor: "place", Header: "PLACE" },
+    { accessor: "member", Header: "MEMBERS" },
+    { accessor: "coordinator", Header: "COORDINATOR" },
+    { accessor: "date", Header: "DATE" },
   ]);
 
   const [pieChartData, setPieChartData] = useState([
@@ -234,11 +234,19 @@ export default function HomePage() {
                   {/* <h5>Upcoming Events</h5> */}
                 </div>
                 <div className="row gutters ">
-                  <Table
+                  {/* <Table
                     rows={upComingEventsData}
                     headCells={upComingEventsTableHead}
                     tableName={"Up Coming Events"}
-                  />
+                  /> */}
+
+
+                <NewTable
+                  columns={upComingEventsTableHead}
+                  data={upComingEventsData}
+                  setSelectedData={setselectedJoinRequestsData}
+                 
+                />
                 </div>
               </div>
             </div>

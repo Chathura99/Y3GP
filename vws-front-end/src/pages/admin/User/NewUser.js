@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table from "../../../utilities/Table/Table";
+import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
 export default function NewUser() {
   useEffect(() => {
@@ -40,12 +40,12 @@ export default function NewUser() {
   ]);
 
   const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
-    { id: "id", label: "REQUEST ID" },
-    { id: "name", label: "NAME" },
-    { id: "nic", label: "NIC" },
-    { id: "phone", label: "PHONE" },
-    { id: "date", label: "DATE" },
-    { id: "status", label: "STATUS" },
+    { accessor: "id", Header: "REQUEST ID" },
+    { accessor: "name", Header: "NAME" },
+    { accessor: "nic", Header: "NIC" },
+    { accessor: "phone", Header: "PHONE" },
+    { accessor: "date", Header: "DATE" },
+    { accessor: "status", Header: "STATUS" },
   ]);
   return (
     <>
@@ -77,10 +77,10 @@ export default function NewUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <Table
-                  rows={joinRequestsData}
-                  headCells={joinRequestsTableHead}
-                  tableName={"Join Requests"}
+
+                <NewTable
+                  columns={joinRequestsTableHead}
+                  data={joinRequestsData}                 
                 />
               </div>
             </div>

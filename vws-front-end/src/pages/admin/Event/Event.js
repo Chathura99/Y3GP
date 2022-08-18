@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table from "../../../utilities/Table/Table";
+import NewTable from "../../../utilities/Table/NewTable";
 import AddEventProgress from "./AddEventProgress";
 
 export default function Event() {
@@ -15,10 +15,10 @@ export default function Event() {
   };
   const [upComingEventData, setUpComingEventData] = useState([
     {
-      eventId: "Adurata Eliyak",
-      category: "Yashodha Subhasinghe",
-      eventCoordinator: "+94 76 7845 111",
-      phone: "2020-10-21",
+      eventId: "E015",
+      category: "Adurata Eliyak",
+      eventCoordinator: "Yashodha Sub",
+      phone: "+94 71 5486 957",
       startsOn: "2020-10-21",
       endsOn: "2020-10-21",
       noOfMembers: "2020-10-21",
@@ -29,7 +29,7 @@ export default function Event() {
     {
       eventId: "E001",
       category: "Ganitha Saviya",
-      eventCoordinator: "Lasith Gunathilake",
+      eventCoordinator: "Lasith Gun",
       phone: "+94 75 4785 123",
       startsOn: "2020-10-21",
       endsOn: "2020-10-22",
@@ -45,6 +45,7 @@ export default function Event() {
             backgroundColor: "#BE4D25",
             border: "none",
             marginRight: 0,
+            padding:"6px",
           }}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
@@ -56,26 +57,26 @@ export default function Event() {
   ]);
 
   const [previousEventTableHead, setPreviousEventTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "category", label: "PROJECT CATEGORY" },
-    { id: "eventCoordinator", label: "EVENT COORDINATOR" },
-    { id: "phone", label: "PHONE" },
-    { id: "startsOn", label: "STARTS ON" },
-    { id: "endsOn", label: "ENDS ON" },
-    { id: "noOfMembers", label: "NO OF MEMBERS" },
-    { id: "location", label: "LOCATION" },
-    { id: "status", label: "STATUS" },
+    { accessor: "eventId", Header: "EVENT ID" },
+    { accessor: "category", Header: "CATEGORY" },
+    { accessor: "eventCoordinator", Header: "COORDINATOR" },
+    { accessor: "phone", Header: "PHONE" },
+    { accessor: "startsOn", Header: "STARTS ON" },
+    { accessor: "endsOn", Header: "ENDS ON" },
+    { accessor: "noOfMembers", Header: "NO OF MEMBERS" },
+    { accessor: "location", Header: "LOCATION" },
+    { accessor: "status", Header: "STATUS" },
   ]);
 
   const [upComingEventTableHead, setupComingEventTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "category", label: "PROJECT CATEGORY" },
-    { id: "eventCoordinator", label: "EVENT COORDINATOR" },
-    { id: "phone", label: "PHONE" },
-    { id: "startsOn", label: "STARTS ON" },
-    { id: "endsOn", label: "ENDS ON" },
-    { id: "noOfMembers", label: "NO OF MEMBERS" },
-    { id: "location", label: "LOCATION" },
+    { accessor: "eventId", Header: "EVENT ID" },
+    { accessor: "category", Header: "CATEGORY" },
+    { accessor: "eventCoordinator", Header: "COORDINATOR" },
+    { accessor: "phone", Header: "PHONE" },
+    { accessor: "startsOn", Header: "STARTS ON" },
+    { accessor: "endsOn", Header: "ENDS ON" },
+    { accessor: "noOfMembers", Header: "NO OF MEMBERS" },
+    { accessor: "location", Header: "LOCATION" },
   ]);
   return (
     <>
@@ -86,11 +87,12 @@ export default function Event() {
               <div className="card-body">
                 <div className="row gutters "></div>
                 <div className="row gutters ">
-                  <Table
-                    rows={upComingEventData}
-                    headCells={upComingEventTableHead}
-                    tableName={"UpComing Events"}
-                  />
+
+                  <NewTable
+                  columns={upComingEventTableHead}
+                  data={upComingEventData}
+                 
+                />
                 </div>
               </div>
             </div>
@@ -103,11 +105,12 @@ export default function Event() {
               <div className="card-body">
                 <div className="row gutters "></div>
                 <div className="row gutters ">
-                  <Table
-                    rows={previousEventData}
-                    headCells={previousEventTableHead}
-                    tableName={"Previous Events"}
-                  />
+
+                  <NewTable
+                  columns={previousEventTableHead}
+                  data={previousEventData}
+                 
+                />
                 </div>
               </div>
             </div>

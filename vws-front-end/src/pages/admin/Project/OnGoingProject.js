@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
-import Table from "../../../utilities/Table/Table";
+import NewTable from "../../../utilities/Table/NewTable";
 import EditProject from "./EditProject";
 
 export default function OnGoingProject() {
@@ -42,7 +42,7 @@ export default function OnGoingProject() {
     {
       projectId: "P002",
       projectName: "Re-green Earth",
-      coordinator: "Chamath Shanuka",
+      coordinator: "Chamath Sha",
       phone: "+94 70 2542 336",
       startedOn: "2019-12-01",
       action: (
@@ -66,12 +66,12 @@ export default function OnGoingProject() {
   ]);
 
   const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "projectId", label: "PROJECT ID" },
-    { id: "projectName", label: "PROJECT NAME" },
-    { id: "coordinator", label: "COORDINATOR" },
-    { id: "phone", label: "PHONE" },
-    { id: "startedOn", label: "STARTED ON" },
-    { id: "action", label: "ACTION" },
+    { accessor: "projectId", Header: "PROJECT ID" },
+    { accessor: "projectName", Header: "PROJECT NAME" },
+    { accessor: "coordinator", Header: "COORDINATOR" },
+    { accessor: "phone", Header: "PHONE" },
+    { accessor: "startedOn", Header: "STARTED ON" },
+    { accessor: "action", Header: "ACTION" },
   ]);
   const [lineChartData, setLineChartData] = useState([
     [
@@ -113,11 +113,11 @@ export default function OnGoingProject() {
               <div className="card-body ">
                 <div className="row gutters "></div>
                 <div className="row gutters ">
-                  <Table
-                    rows={onGoingProjectData}
-                    headCells={onGoingProjectTableHead}
-                    tableName={"OnGoing Projects"}
-                  />
+                  
+                  <NewTable
+                  columns={onGoingProjectTableHead}
+                  data={onGoingProjectData}                 
+                />
                 </div>
               </div>
             </div>
