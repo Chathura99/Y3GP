@@ -189,7 +189,7 @@ export default function UpcomingEventsFullPage() {
                         <div className="card" id="announcementcard">
                             <div className="card-body" id="announcement-body">
                                 <h5 className="card-title" id="title-2">Announcement Title</h5>
-                                <p className="card-text">Nam sollicitudin dignissim nunc, cursus ullamcorper eros vulputate sed. Vestibulum sit amet tortor sit amet libero lobortis semper at et odio. In eu tellus tellus t
+                                <p className="card-text">Nam sollicitudin dignissim n ullamcorper eros vulputate sed. Vestibulum sit amet tortor sit amet libero lobortis semper at et odio. In eu tellus tellus t
                                     Pellentesque ullamcorper aliquet ultrices.</p>
 
                                 <div className="d-flex flex-row">
