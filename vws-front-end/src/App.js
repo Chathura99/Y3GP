@@ -8,7 +8,7 @@ import React, { useEffect, useState } from "react";
 import LoginPage from "./pages/all/Login/LoginPage";
 import AdminHomePage from "./pages/admin/Home/HomePage";
 import PcHomePage from "./pages/projectCoordinator/Home/HomePage";
-import VolunteerHomePage from "./pages/volunteer/home/HomePage";
+import VolunteerHomePage from "./pages/volunteer/Home/HomePage";
 import ViewAnnouncement from "./pages/admin/Announcement/ViewAnnouncement";
 import Event from "./pages/admin/Event/Event";
 import Forum from "./pages/admin/ForumPoll/Forum";
