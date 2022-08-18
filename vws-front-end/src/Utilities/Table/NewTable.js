@@ -48,29 +48,29 @@ export default function NewTable({ columns, data, setSelectedData}) {
     useSortBy,
     usePagination,
     useRowSelect,
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllPageRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
-            </div>
-          ),
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllPageRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
+    //         </div>
+    //       ),
 
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
 
   return (
-    <div  style={{ overflowX: "scroll" }}>
+    <div  style={{ overflowX: "scroll",margin:"auto" }}>
       {console.log(
         pageIndex,
         pageSize,
@@ -86,6 +86,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
                 <th
                   className="tablehead"
                   {...column.getHeaderProps(column.getSortByToggleProps())}
+                  style={{paddingRight:"20px"}}
                 >
                   {column.render("Header")}
                   <span style={{}}>
@@ -185,7 +186,7 @@ export default function NewTable({ columns, data, setSelectedData}) {
           {selectedFlatRows.map((d) => setSelectedData(d.original))}
         </div>
       </div>
-    <button onClick={()=>setSelectedData()}>Set Selected</button>
+    {/* <button onClick={()=>setSelectedData()}>Set Selected</button> */}
     </div>
   );
 }
