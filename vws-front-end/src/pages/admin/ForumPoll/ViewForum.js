@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import "./ViewForum.css";
 import AddNewDiscussion from './AddNewDiscussion';
 import { Link } from "react-router-dom";
+import DiscussionTopic from './DiscussionTopic';
 
 export default function ViewForum() {
     
@@ -69,13 +70,17 @@ export default function ViewForum() {
                   name="submit"
                   className="btn p-1"
                   data-toggle="modal"
-                  data-target="#CoordinateEventForm"
+                  data-target="#DiscussionTopic"
                   style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+                  
                   // #96BE25,#BE4D25
                   // onClick={handleSubmit}
                 >
-                  Read
+                < Link to="/admindiscussiontopic" className="sign-up">
+                    <b>Read</b>
+                  </Link>
                 </button>
+                
               ),
               // action: (
               //   <button
@@ -152,7 +157,7 @@ export default function ViewForum() {
                   id="submit"
                   name="submit"
                   data-toggle="modal"
-                  data-target="#CoordinateEventForm"
+                  data-target="#DiscussionTopic"
                   className="btn p-1"
                   style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
                   // #96BE25-green,#BE4D25-red
@@ -219,10 +224,11 @@ export default function ViewForum() {
                                 
                                   <button id='proposenewbtn' data-toggle="modal" data-target="#AddNewDiscussion">Add New Discussion Topic </button>
                                   <AddNewDiscussion/>
+                                  
                                 <h5> </h5>
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
-                                
+                                  
                                 
                                 
                             </div>

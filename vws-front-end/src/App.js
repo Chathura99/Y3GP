@@ -15,6 +15,7 @@ import Forum from "./pages/admin/ForumPoll/Forum";
 import Poll from "./pages/admin/ForumPoll/Poll";
 import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 import AddNewDiscussion from "./pages/admin/ForumPoll/AddNewDiscussion.js";
+import DiscussionTopic from "./pages/admin/ForumPoll/DiscussionTopic.js";
 import OnGoingProject from "./pages/admin/Project/OnGoingProject";
 import ProposedProject from "./pages/admin/Project/ProposedProject";
 import EventSummary from "./pages/admin/Summary/EventSummary";
@@ -42,6 +43,7 @@ import PreviousEvents from "./pages/volunteer/Event/PreviousEvents";
 import UpcomingEvents from "./pages/volunteer/MyEvents/UpcomingEvents";
 import CompletedEvents from "./pages/volunteer/MyEvents/CompletedEvents";
 import CoordinatedEvents from "./pages/volunteer/MyEvents/CoordinatedEvents";
+import Forumpoll from "./pages/volunteer/ForumPoll/Forumpoll";
 
 // Project Coordinator
 import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
@@ -135,7 +137,7 @@ function App() {
             <Route path="/adminpoll" element={<Poll />}></Route>
             <Route path="/adminviewforum" element={<ViewForum />}></Route>
             <Route path="/adminaddnewdiscussion" element={<AddNewDiscussion />}></Route>
-            
+            <Route path="/admindiscussiontopic" element={<DiscussionTopic />}></Route>
             
             <Route
               path="/adminongoingproject"
@@ -199,6 +201,7 @@ function App() {
             <Route path="/volunteerhome" element={<VolunteerHomePage />}></Route>
             <Route path="/volunteerProjects" element={<Projects />}></Route>
             <Route path="/volunteerOngoingEvents" element={<OngoingEvents />}>
+            
 
             </Route>
             <Route path="/volunteerPreviousEvents" element={<PreviousEvents />}></Route>
@@ -206,6 +209,7 @@ function App() {
             <Route path="/volunteerCompletedEvents" element={<CompletedEvents />}></Route>
             <Route path="/volunteerCoordinatedEvents" element={<CoordinatedEvents />}></Route>
 
+            <Route path="/volunteerforumpoll" element={<Forumpoll />}></Route>
 
           </Routes>
         </BrowserRouter>
