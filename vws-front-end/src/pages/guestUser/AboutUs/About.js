@@ -11,7 +11,7 @@ export default function About() {
 
                 <div className="row gutters" id="about">
 
-                    {/* left side */}
+                    {/* left side - image*/}
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="about-left">
 
                         <img src="https://img.freepik.com/free-vector/people-volunteering-donating-money_53876-66112.jpg" class="img-fluid" id="about-img" alt="about image"></img>
@@ -40,7 +40,6 @@ export default function About() {
                                 </Link>
                             </div>
                         </div>
-
 
 
                     </div>
