@@ -18,13 +18,14 @@ export default function MemberSummary() {
   };
   const [onGoingProjectData, setOnGoingProjectData] = useState([
     {
-      eventId: "E001",
-      category: "Ganitha Saviya",
-      coordinator: "Hazeen Ram",
+      userid: "V001",
+      name: "Hazeen Ram",
+      email: "hazeen@gmail.com",
+      phone:"0766782567",
       district: "Kalutara",
-      startOn: "2020-10-21",
-      endOn:"2020-11-21",
-      action: (
+      joineddate: "2020-10-21",
+      position:"Volunteer",
+      status: (
         <button
           type="button"
           id="submit"
@@ -38,18 +39,19 @@ export default function MemberSummary() {
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          View
+          Active
         </button>
       ),
     },
     {
-      eventId: "E002",
-      category: "Re-green Earth",
-      coordinator: "Chamath Shanuka",
+      userid: "V002",
+      name: "Chamath Shanuka",
+      email: "chamath23@gmail.com",
+      phone:"0765467341",
       district: "Colombo",
-      startOn: "2019-12-01",
-      endsOn:"2020-01-21",
-      action: (
+      joineddate: "2019-12-01",
+      position:"Volunteer",
+      status: (
         <button
           type="button"
           id="submit"
@@ -63,25 +65,26 @@ export default function MemberSummary() {
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          View
+          Active
         </button>
       ),
     },
   ]);
 
   const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "category", label: "CATEGORY" },
-    { id: "coordinator", label: "COORDINATOR" },
+    { id: "userid", label: "User ID" },
+    { id: "name", label: "NAME" },
+    { id: "email", label: "EMAIL" },
+    { id: "phone", label: "PHONE" },
     { id: "district", label: "DISTRICT" },
-    { id: "startOn", label: "START ON" },
-    { id: "endOn", label: "END ON" },
-    { id: "action", label: "ACTION" },
+    { id: "joineddate", label: "JOINED DATE" },
+    { id: "position", label: "POSITION" },
+    { id: "status", label: "STATUS" },
   ]);
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
-      "No of Events",
+      "No of Volunteers",
       // "MathLab",
       // "Regreen Earth",
       // "Lohithuppada",
@@ -108,7 +111,7 @@ export default function MemberSummary() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters ">
-                  <h5>Events Summary</h5>
+                  <h5>Volunteer Summary</h5>
                 </div>
                 <div id="selectionrow">
                   
@@ -147,11 +150,11 @@ export default function MemberSummary() {
                   
                     <form onSubmit={""}>
                       <div id="q1" >
-                        <label for="event" id="q1label"><b>Event</b> </label>
+                        <label for="event" id="q1label"><b>Type</b> </label>
                         <select id="eventlist" name="event" size="1" className="form-control" >
-                          <option value="Completed">Completed</option>
-                          <option value="Ongoing">Ongoing</option>
-                          <option value="Upcoming">Upcoming</option>
+                          <option value="Completed">Current</option>
+                          <option value="Ongoing">Past</option>
+                          
                           
                         </select>
                       </div>
