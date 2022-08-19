@@ -47,6 +47,7 @@ import UpcomingEvents from "./pages/volunteer/MyEvents/UpcomingEvents";
 import CompletedEvents from "./pages/volunteer/MyEvents/CompletedEvents";
 import CoordinatedEvents from "./pages/volunteer/MyEvents/CoordinatedEvents";
 import Forumpoll from "./pages/volunteer/ForumPoll/Forumpoll";
+import VPoll from "./pages/volunteer/ForumPoll/VPoll";
 
 // Project Coordinator
 import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
@@ -220,6 +221,7 @@ function App() {
             <Route path="/volunteerCoordinatedEvents" element={<CoordinatedEvents />}></Route>
 
             <Route path="/volunteerforumpoll" element={<Forumpoll />}></Route>
+            <Route path="/volunteervpoll" element={<VPoll/>}></Route>
 
           </Routes>
         </BrowserRouter>
