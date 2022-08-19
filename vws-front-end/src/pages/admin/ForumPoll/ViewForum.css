@@ -23,3 +23,29 @@
     /* background-color: green; */
     height: auto;
 }
+
+
+/* View Poll CSS */
+#bla{
+    /* background-color: aqua; */
+}
+/* #body{
+    width:100%;
+} */
+#outbox{
+    /* background-color: blanchedalmond; */
+    width:100%;
+}
+#outbox2{
+    /* background-color: blueviolet; */
+    float: right;
+    width: 80%;
+    height: 80%;
+}
+#pollqdiv{
+    width: 90%;
+    margin: 20px;
+}
+#pollq{
+    text-align: left;
+}

@@ -40,7 +40,7 @@ export default function Forum() {
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >
-                <Link to="/adminviewforum" className="sign-up">
+                <Link to="/adminviewpoll" className="sign-up">
                     <b>Read</b>
                   </Link>
               </button>
