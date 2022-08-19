@@ -115,29 +115,7 @@ const data = useMemo(
                 </div>
             </div>
             </div> 
-            <div id="rightside">
-            <div className="container-fluid calculated-bodywidth" style={{paddingLeft:7}} id="blaaa">
-                
-
-                <div className="row gutters mt-3">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="card h-100" id="contentcard">
-                            <div className="card-body ">
-                                <h5>Poll</h5>
-                                
-                                  <button id='forumbtn' data-toggle="modal" data-target="#AddNewPoll">Add New Poll </button>
-                                  <AddNewPoll/>
-                                
-                                  <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
-                                
-                                
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
+            
             </div>
           </>
   );

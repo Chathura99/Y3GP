@@ -1,15 +1,12 @@
-
 import React, { useState, useEffect,useMemo } from "react";
 import EnhancedTable from "../../../utilities/Table/ForumTable";
 import "./Forum.css"
 import NewTable from "../../../utilities/Table/NewTable.js";
 import AddForumTopic from "./AddForumTopic";
-import ViewForum from "./ViewForum";
 import { Link } from "react-router-dom";
+import AddNewPoll from "./AddNewPoll";
 
-
-
-export default function Poll() {
+export default function Forum() {
   
 
   useEffect(() => {
@@ -37,7 +34,7 @@ export default function Poll() {
                 name="submit"
                 className="btn p-1"
                 data-toggle="modal"
-                // data-target="#ViewForum"
+                data-target="#CoordinateEventForm"
                 style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
@@ -49,7 +46,30 @@ export default function Poll() {
             ),
             
           },
-    
+    //       {
+    //         project_name: "Re-green Earth",
+    //         description: "Re-green Earth is a ...",
+    //         idea_by: "Sadaru Avishka",
+    //         date: "2022 09 02",
+            
+            
+    //         read: (
+    //           <button
+    //             type="button"
+    //             id="submit"
+    //             name="submit"
+    //             data-toggle="modal"
+    //             data-target="#CoordinateEventForm"
+    //             className="btn p-1"
+    //             style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+    //             // #96BE25-green,#BE4D25-red
+    //             // onClick={handleSubmit}
+    //           >
+    //             Read
+    //           </button>
+    //         ),
+            
+    // }
   ]);
 
 const data = useMemo(
@@ -74,7 +94,7 @@ const data = useMemo(
     <div  id="maindiv">
     
             <div id="rightside">
-            <div className="container-fluid calculated-bodywidth" style={{}} id="blaaa">
+            <div className="container-fluid calculated-bodywidth" style={{paddingLeft:25}} id="blaaa">
                 
 
                 <div className="row gutters mt-3">
@@ -83,12 +103,10 @@ const data = useMemo(
                             <div className="card-body ">
                                 <h5>Poll</h5>
                                 
-                                  <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic">Add New Poll </button>
-                                  <AddForumTopic/>
-                                  
+                                  <button id='forumbtn' data-toggle="modal" data-target="#AddNewPoll">Add New Poll </button>
+                                  <AddNewPoll/>
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
-                                  
                                 
                                 
                                 
