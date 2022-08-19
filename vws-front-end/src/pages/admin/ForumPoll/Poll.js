@@ -22,9 +22,10 @@ export default function Forum() {
   const [ProjectsData, setProjectsData] = useState([
     {
       topic: "Blood Donation",
+      starteddate:"2022 07 11",
       last_update: "2022 07 12",
-      replies: "05",
-            
+      votes: "25",
+      enddate:"2022 07 13",     
             
             
       read: (
@@ -79,10 +80,11 @@ const data = useMemo(
     () => [
      
       { accessor: "topic", Header: "TOPIC" },
+      { accessor: "starteddate", Header: "STARTED DATE" },
       { accessor: "last_update", Header: "LAST UPDATE" },
-      { accessor: "replies", Header: "REPLIES" },
+      { accessor: "votes", Header: "VOTES" },
+      { accessor: "enddate", Header: "END DATE" },
       { accessor: "read", Header: "ACTION" },
-      
       
     ],
     []
