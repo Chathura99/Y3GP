@@ -112,6 +112,8 @@ export default function OnGoingProject() {
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
                 <div className="row gutters "></div>
+                <h5 style={{paddingLeft:"30px"}}>Ongoing Projects</h5>
+
                 <div className="row gutters ">
                   
                   <NewTable

@@ -6,13 +6,13 @@ import EditAnnouncement from "./EditAnnouncement";
 export default function ViewAnnouncement() {
   const [announcement, setAnnouncement] = useState([]);
   const [editannouncement, setEditAnnouncement] = useState({
-    title:"Title ",
-    category:"All",
-    content:"Content . . .",
-    date:"2022-10-10",
-    firstName:"Chathura",
-    lastName:"Manohara",
-    file:"",
+    title: "Title ",
+    category: "All",
+    content: "Content . . .",
+    date: "2022-10-10",
+    firstName: "Chathura",
+    lastName: "Manohara",
+    file: "",
   });
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function ViewAnnouncement() {
               <div className="card-body">
                 <h4 className="">Announcements</h4>
                 <AddAnnouncement />
-                <EditAnnouncement ann={editannouncement}/>
+                <EditAnnouncement ann={editannouncement} />
                 <button
                   type="button"
                   class="btn"
@@ -52,11 +52,11 @@ export default function ViewAnnouncement() {
                     backgroundColor: "#2596be",
                     border: "none",
                     marginRight: 0,
-                    marginBottom:"10px"
+                    marginBottom: "10px",
                   }}
                 >
                   ADD
-                </button>        
+                </button>
 
                 {announcement.map((ann, index) => (
                   <div key={ann.annId}>

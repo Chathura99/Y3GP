@@ -67,7 +67,8 @@ export default function HomePage() {
       // nic: "985475865v",
       // info: "Singing",
       // other: "",
-    },[]
+    },
+    []
   );
 
   // const data = useMemo(() => joinRequestsData);
@@ -103,27 +104,7 @@ export default function HomePage() {
   const getRequest = async () => {
     const res = await getJoinRequest();
     console.log(res.data);
-    setJoinRequestsData([
-      ...res.data,
-      // {status: (
-      //   <button
-      //     type="button"
-      //     id="submit"
-      //     name="submit"
-      //     className="btn mt-0"
-      //     style={{
-      //       backgroundColor: "#96BE25",
-      //       border: "none",
-      //       marginRight: "2px",
-      //     }}
-      //     // #96BE25,#BE4D25
-      //     // onClick={handleSubmit}
-      //   >
-      //     Approve
-      //   </button>
-      // )},
-    
-    ]);
+    setJoinRequestsData([...res.data]);
   };
 
   const checkValidate = async () => {
@@ -231,22 +212,14 @@ export default function HomePage() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters">
-                  {/* <h5>Upcoming Events</h5> */}
+                  <h5 style={{ paddingLeft: "30px" }}>Upcoming Events</h5>
                 </div>
                 <div className="row gutters ">
-                  {/* <Table
-                    rows={upComingEventsData}
-                    headCells={upComingEventsTableHead}
-                    tableName={"Up Coming Events"}
-                  /> */}
-
-
-                <NewTable
-                  columns={upComingEventsTableHead}
-                  data={upComingEventsData}
-                  setSelectedData={setselectedJoinRequestsData}
-                 
-                />
+                  <NewTable
+                    columns={upComingEventsTableHead}
+                    data={upComingEventsData}
+                    setSelectedData={setselectedJoinRequestsData}
+                  />
                 </div>
               </div>
             </div>
@@ -294,14 +267,30 @@ export default function HomePage() {
                   columns={joinRequestsTableHead}
                   data={joinRequestsData}
                   setSelectedData={setselectedJoinRequestsData}
-                 
+                  action={
+                    <button
+                      type="button"
+                      id="submit"
+                      name="submit"
+                      className="btn mt-0"
+                      style={{
+                        backgroundColor: "#96BE25",
+                        border: "none",
+                        marginRight: "2px",
+                      }}
+                      data-target="#registerUser"
+                      data-toggle="modal"
+                    >
+                      Register
+                    </button>
+                  }
                 />
                 {console.log(selectedJoinRequestsData)}
               </div>
             </div>
           </div>
-          
-          <RegisterNewUser data={selectedJoinRequestsData}/>
+
+          <RegisterNewUser data={selectedJoinRequestsData} />
 
           <button
             type="button"
