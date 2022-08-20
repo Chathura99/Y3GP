@@ -14,3 +14,15 @@ export const getJoinRequest = () => {
     },
   });
 };
+
+export const signUpApprove = (requestData) => {
+  console.log(requestData);
+  return axios({
+    method: "POST",
+    url: `${USER_URL}/signUpApproved`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data: requestData,
+  });
+};
