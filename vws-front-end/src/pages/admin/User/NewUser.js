@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
+
+
 export default function NewUser() {
   useEffect(() => {
     checkValidate();
@@ -22,6 +24,7 @@ export default function NewUser() {
     },
   ]);
 
+
   const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
     { accessor: "id", Header: "REQUEST ID" },
     { accessor: "name", Header: "NAME" },
@@ -29,6 +32,7 @@ export default function NewUser() {
     { accessor: "phone", Header: "PHONE" },
     { accessor: "date", Header: "DATE" },
   ]);
+
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -85,6 +89,7 @@ export default function NewUser() {
           </div>
         </div>
         <RegisterNewUser />
+
       </div>
     </>
   );

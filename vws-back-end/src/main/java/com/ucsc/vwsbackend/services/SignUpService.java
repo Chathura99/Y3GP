@@ -85,8 +85,7 @@ public class SignUpService {
         authorityList.add(createAuthority("VOLUNTEER","Volunteer role"));
 
         User user=new User();
-
-        user.setUserName(joinRequest.getFirstName());
+        user.setUserName(joinRequest.getFirstName()+joinRequest.getId());
         user.setFirstName(joinRequest.getFirstName());
         user.setLastName(joinRequest.getLastName());
         user.setEmail(joinRequest.getEmail());
@@ -94,8 +93,6 @@ public class SignUpService {
         user.setPassword(passwordEncoder.encode(pw));
         user.setEnabled(true);
         user.setAuthorities(authorityList);
-
-//        userRepository.save(user);
 
         //Update volunteer
 
@@ -105,11 +102,13 @@ public class SignUpService {
         volunteer.setDate(joinRequest.getDate());
         volunteer.setDistrict(joinRequest.getDistrict());
         volunteer.setUniversityCollege(joinRequest.getUniversityCollege());
+//        set user in here
         volunteer.setUser(user);
         volunteer.setFirstName(joinRequest.getFirstName());
         volunteer.setLastName(joinRequest.getLastName());
 
         volunteerRepository.save(volunteer);
+        joinRequestJdbcRepository.updateStatus(joinRequest.getId());
 
         mailSender.send(message);
         //Update join Request status
