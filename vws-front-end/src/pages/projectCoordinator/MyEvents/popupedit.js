@@ -2,7 +2,7 @@ import React from "react";
 import ImageUploadComponent from "./ImageUploadComponent";
 
 
-export default function EditCoordinatedForm() {
+export default function PopUpEditEvent() {
   return (
     <div>
       {/* <button
@@ -154,21 +154,21 @@ export default function EditCoordinatedForm() {
                       <label for="progress">Status</label>
                       </div>
                       </div>
-                      
+
                       <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group mr-2" role="group" aria-label="First group">
     <button type="button" class="btn btn-secondary" style={{marginLeft:15,backgroundColor:"#96BE25"}}>Success</button>
-    
+
   </div>
   <div class="btn-group mr-2" role="group" aria-label="Second group">
     <button type="button" class="btn btn-secondary" style={{backgroundColor:"#2596BE"}}>Ongoing</button>
-    
+
   </div>
   <div class="btn-group" role="group" aria-label="Third group">
     <button type="button" class="btn btn-secondary" style={{backgroundColor:"#BE4D25"}}>Cancel</button>
   </div>
 </div>
-                    
+
 
 
 

@@ -14,6 +14,7 @@ import Event from "./pages/admin/Event/Event";
 import Forum from "./pages/admin/ForumPoll/Forum";
 import Poll from "./pages/admin/ForumPoll/Poll";
 import ViewForum from "./pages/admin/ForumPoll/ViewForum";
+import ViewPoll from "./pages/admin/ForumPoll/ViewPoll";
 import AddNewDiscussion from "./pages/admin/ForumPoll/AddNewDiscussion.js";
 import DiscussionTopic from "./pages/admin/ForumPoll/DiscussionTopic.js";
 import OnGoingProject from "./pages/admin/Project/OnGoingProject";
@@ -46,6 +47,7 @@ import UpcomingEvents from "./pages/volunteer/MyEvents/UpcomingEvents";
 import CompletedEvents from "./pages/volunteer/MyEvents/CompletedEvents";
 import CoordinatedEvents from "./pages/volunteer/MyEvents/CoordinatedEvents";
 import Forumpoll from "./pages/volunteer/ForumPoll/Forumpoll";
+import VPoll from "./pages/volunteer/ForumPoll/VPoll";
 
 // Project Coordinator
 import PcOngoingProject from "./pages/projectCoordinator/project/OngoingProject";
@@ -62,6 +64,7 @@ import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import Loading from "./utilities/Loading/Loading";
 // import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 import Event1 from "./pages/guestUser/OurLatestEvents/Event1";
+
 
 
 
@@ -143,6 +146,7 @@ function App() {
             <Route path="/adminforum" element={<Forum />}></Route>
             <Route path="/adminpoll" element={<Poll />}></Route>
             <Route path="/adminviewforum" element={<ViewForum />}></Route>
+            <Route path="/adminviewpoll" element={<ViewPoll />}></Route>
             <Route path="/adminaddnewdiscussion" element={<AddNewDiscussion />}></Route>
             <Route path="/admindiscussiontopic" element={<DiscussionTopic />}></Route>
             
@@ -217,6 +221,7 @@ function App() {
             <Route path="/volunteerCoordinatedEvents" element={<CoordinatedEvents />}></Route>
 
             <Route path="/volunteerforumpoll" element={<Forumpoll />}></Route>
+            <Route path="/volunteervpoll" element={<VPoll/>}></Route>
 
           </Routes>
         </BrowserRouter>
