@@ -32,7 +32,7 @@
   border: none;
   background-color: rgb(255, 255, 255);
   color: #145369 !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   width: 120px;
   height: 40px;
   margin-right: 20px;
@@ -43,10 +43,10 @@
 
 #h-button2 {
   background-color: #145369;
-  color: #ffffff;
+  color: #ffffff !important;
   border-color: #ffffff;
   border-radius: 4px;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   width: 120px;
   height: 40px;
   margin-right: 20px;
