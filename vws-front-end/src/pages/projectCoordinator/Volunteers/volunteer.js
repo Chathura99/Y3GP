@@ -26,7 +26,7 @@ export default function PcVolunteers() {
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Accepted
+          Check
         </button>
       ),
     },
@@ -45,11 +45,11 @@ export default function PcVolunteers() {
           id="submit"
           name="submit"
           className="btn p-1"
-          style={{backgroundColor:"#BE4D25",border:"none"}}
+          style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Rejected
+          Check
         </button>
       ),
     },
