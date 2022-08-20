@@ -126,8 +126,8 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                   
-                   <h4 className='footer-end'>2020 All Rights Reserved © Sasnaka Sansada</h4>
+                    <hr className="f-hr"></hr>
+                    <h4 className='footer-end'>2020 All Rights Reserved © Sasnaka Sansada</h4>
                 </div>
 
             </div>

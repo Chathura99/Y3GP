@@ -55,13 +55,16 @@
 
 #about-right-H2 {
     color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 20px;
 
 }
 
 #about-right-H1 {
     color: #ffffff;
+    margin-bottom: 20px;
     font-weight: 900;
-    font-size: 30px;
+    font-size: 28px;
     text-align: center;
 }
 
