@@ -4,7 +4,7 @@
     background-color: rgb(255, 255, 255);
 }
 
-#inner-cont-event{
+#inner-cont-event {
     margin-left: 20px;
     background-color: #ffffff;
     margin-right: 20px;
@@ -13,12 +13,14 @@
 .eventH1 {
     color: #145369;
     font-weight: 900;
-    font-size: 30px;
+    font-size: 28px;
     text-align: center;
 }
 
 .eventH4 {
     color: #145369;
+    font-size: 20px;
+    text-align: center;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
@@ -42,6 +44,7 @@
 
 #event-card-title {
     color: #000000;
+    font-size: 16px;
     font-weight: 700;
 }
 
@@ -56,10 +59,18 @@
     margin-right: 40px;
 }
 
-#seemore3{
+#event-card-text {
+    font-size: 14px;
+    color: #000000;
+    font-weight: 500;
+}
+
+
+#seemore3 {
     color: #145369;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
+    letter-spacing: 1px;
     font-weight: 800;
     float: right;
     margin-right: 20px;
