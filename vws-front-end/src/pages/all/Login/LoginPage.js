@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import Loading from "../../../utilities/Loading/Loading";
+import { ArrowBack } from "@material-ui/icons";
 
 import {
   authenticate,
@@ -95,6 +96,7 @@ const LoginPage = ({ loading, error, ...props }) => {
       <Loading change={[popup]} time={200}/>
       <div className="global-container">
         <div className="login-form">
+          
           <div
             style={{
               backgroundColor: "rgba(255,255,255,0.2)",
@@ -104,6 +106,10 @@ const LoginPage = ({ loading, error, ...props }) => {
             }}
           >
             <div className="card-body">
+            <Link to="/" >
+                    <ArrowBack id="backarrow" />
+            </Link>
+            
               <h2 className="card-title">Login</h2>
               <hr
                 style={{
