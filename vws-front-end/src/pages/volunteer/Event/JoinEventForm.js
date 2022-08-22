@@ -16,7 +16,7 @@ export default function JoinEventForm() {
         aria-hidden="true"
       >
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
+          <div class="modal-content" style={{width:"70%",marginLeft:"100px"}}>
            
               
               <button
@@ -32,8 +32,8 @@ export default function JoinEventForm() {
               <form onSubmit={""} style={{marginTop:0}}>
                
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2" style={{textAlign:"center",fontSize:40,marginTop:-40,color:"#96BE25"}}>Successfull !!!</h4>
-                    <h6 className="mb-2" style={{textAlign:"center",fontSize:20,color:"#A6A6A6"}}>Requested to join</h6>
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:30,marginTop:-40,color:"black"}}>Are You Sure ?</h4>
+                    
                   </div>
 
                   
@@ -53,7 +53,19 @@ export default function JoinEventForm() {
                 style={{backgroundColor:"#96BE25",border:"none",fontSize:15}}
                 
               >
-                OK
+                Yes
+              </button>
+              <button
+                type="button"
+                id="submit"
+                name="submit"
+                data-dismiss="modal"
+                
+                className="btn p-1"
+                style={{backgroundColor:"#BE4D25",marginLeft:"10px", border:"none",fontSize:15}}
+                
+              >
+                No
               </button>
                         
                       
