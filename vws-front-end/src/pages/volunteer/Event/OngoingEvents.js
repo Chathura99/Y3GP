@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import MapFormPopUp from './MapFormPopUp';
 import JoinEventForm from './JoinEventForm';
 import NewTable from '../../../utilities/Table/NewTable';
+import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
 
 
 
