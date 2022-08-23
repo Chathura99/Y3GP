@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
-import Table from "../../../utilities/Table/Table";
+// import Table from "../../../utilities/Table/Table";
+import NewTable from "../../../utilities/Table/NewTable.js";
 import { red } from "@mui/material/colors";
 // import EditProject from "./EditProject";
 import "./Summary.css";
@@ -16,8 +17,10 @@ export default function EventSummary() {
       window.location.href = "/";
     }
   };
-  const [onGoingProjectData, setOnGoingProjectData] = useState([
-    {
+  
+      // new table
+      const [ProjectsData, setProjectsData] = useState([
+        {
       eventId: "E001",
       category: "Ganitha Saviya",
       coordinator: "Hazeen Ram",
@@ -48,7 +51,7 @@ export default function EventSummary() {
       coordinator: "Chamath Shanuka",
       district: "Colombo",
       startOn: "2019-12-01",
-      endsOn:"2020-01-21",
+      endOn:"2020-01-21",
       action: (
         <button
           type="button"
@@ -67,17 +70,28 @@ export default function EventSummary() {
         </button>
       ),
     },
-  ]);
-
-  const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "category", label: "CATEGORY" },
-    { id: "coordinator", label: "COORDINATOR" },
-    { id: "district", label: "DISTRICT" },
-    { id: "startOn", label: "START ON" },
-    { id: "endOn", label: "END ON" },
-    { id: "action", label: "ACTION" },
-  ]);
+       ]);
+    
+    const data = useMemo(
+    () => ProjectsData  )
+    
+      const ProjectsHeadings=useMemo(
+        () => [
+         
+          
+          { accessor: "eventId", Header: "EVENT ID"  },
+          { accessor: "category", Header: "CATEGORY"},
+          { accessor: "coordinator",Header: "COORDINATOR" },
+          { accessor: "district", Header: "DISTRICT" },
+          { accessor: "startOn",Header: "START ON" },
+          { accessor: "endOn", Header: "END ON"},
+          { accessor: "action", Header: "ACTION"},
+          
+          
+        ],
+        []
+      )
+      // line chart
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
@@ -189,13 +203,25 @@ export default function EventSummary() {
                     </form>
                   
                 </div>
-                <div className="row gutters " id="row" >
-                  <Table
-                    rows={onGoingProjectData}
-                    headCells={onGoingProjectTableHead}
-                    
-                  />
-                </div>
+                
+                <div id="eventleftside">
+                    <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
+                
+
+                        <div className="row gutters mt-3">
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div className="card h-100" id="contentcard">
+                                    <div className="card-body " >                          
+                                          <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div> 
+                {/* <div className="row gutters " id="row" >
+                  <NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                </div> */}
               </div>
             </div>
           </div>

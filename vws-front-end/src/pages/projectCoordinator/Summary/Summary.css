@@ -93,36 +93,9 @@
    padding-top: 5px;
     /* margin-bottom: 20px;
     margin-top: 20px; */
-    
+
     background: #2596BA;
     color:white;
     border: none;
     border-radius: 5px;
 }
-#row{
-    width: 100%;
-    /* background-color: aquamarine; */
-    padding: 0;
-}
-#eventleftside{
-    padding-top: 15px; 
-    padding-bottom: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 90%;
-    height: auto;
-    /* float: left; */
-    /* background-color: aquamarine; */
- }
- #Eblaa{
-    width: 97%;
-    
-    float: right;
-    padding: 0;
-    /* margin-top: 10px; */
-    margin-right: 1%;
-    margin-left: 0;
-    
-
- }

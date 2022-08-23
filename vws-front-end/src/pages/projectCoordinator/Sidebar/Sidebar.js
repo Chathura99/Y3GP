@@ -216,29 +216,89 @@ export default function Sidebar(page) {
                 </Link>
               </li>
 
+
+
               <li
                 className={selected === 7 ? "active" : ""}
                 onClick={() => {
                   highLight(7);
                 }}
               >
-                <Link to="/pcforum">
-                  <i className="fa fa-comments ml-3 mr-4"></i>Forum | Poll
-                </Link>
+                <a
+                  href="#forumSubmenu"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  className="dropdown-toggle"
+                >
+                  <i className="fa fa-calendar-plus-o ml-3 mr-4"></i>Forum | Poll
+                </a>
+                <ul className="collapse list-unstyled" id="forumSubmenu">
+                  <li className="ml-5">
+                    <Link to="/PcForum" className="p-1">
+                      <div
+                        className={linkdark === 7.1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(7.1);
+                        }}
+                      >Forum</div>
+                    </Link>
+                  </li>
+                  <li className="ml-5">
+                    <Link to="/PcPoll" className="p-1">
+                      <div
+                        className={linkdark === 7.2 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(7.2);
+                        }}
+                      >Poll</div>
+                    </Link>
+                  </li>
+                </ul>
               </li>
+
+
+
+
 
               <li
                 className={selected === 8 ? "active" : ""}
                 onClick={() => {
-                  highLight(8);
+                    highLight(8);
                 }}
               >
-                <Link to="/pcsummary">
-                  <i className="fa fa-bar-chart ml-3 mr-4"></i>Summary
-                </Link>
-              </li>
 
-            </ul>
+ <a
+                  href="#summarySubmenu"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  className="dropdown-toggle"
+                >
+                  <i className="fa fa-calendar-plus-o ml-3 mr-4"></i>Summary
+                </a>
+                <ul className="collapse list-unstyled" id="summarySubmenu">
+                  <li className="ml-5">
+                    <Link to="/PcEventSummary" className="p-1">
+                      <div
+                        className={linkdark === 8.1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(8.1);
+                        }}
+                      >Event Summary</div>
+                    </Link>
+                  </li>
+                  <li className="ml-5">
+                    <Link to="/PcProjectSummary" className="p-1">
+                      <div
+                        className={linkdark === 8.2 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(8.2);
+                        }}
+                      >Project Summary</div>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+</ul>
 
             <div className="footer"></div>
           </div>

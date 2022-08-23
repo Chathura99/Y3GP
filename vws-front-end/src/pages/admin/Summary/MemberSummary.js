@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
+import NewTable from "../../../utilities/Table/NewTable.js";
 import Table from "../../../utilities/Table/Table";
 import { red } from "@mui/material/colors";
 // import EditProject from "./EditProject";
@@ -16,7 +17,9 @@ export default function MemberSummary() {
       window.location.href = "/";
     }
   };
-  const [onGoingProjectData, setOnGoingProjectData] = useState([
+  
+  // new table
+  const [ProjectsData, setProjectsData] = useState([
     {
       userid: "V001",
       name: "Hazeen Ram",
@@ -69,18 +72,28 @@ export default function MemberSummary() {
         </button>
       ),
     },
-  ]);
+   ]);
 
-  const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "userid", label: "User ID" },
-    { id: "name", label: "NAME" },
-    { id: "email", label: "EMAIL" },
-    { id: "phone", label: "PHONE" },
-    { id: "district", label: "DISTRICT" },
-    { id: "joineddate", label: "JOINED DATE" },
-    { id: "position", label: "POSITION" },
-    { id: "status", label: "STATUS" },
-  ]);
+const data = useMemo(
+() => ProjectsData  )
+
+  const ProjectsHeadings=useMemo(
+    () => [
+     
+      
+      { accessor: "userid", Header: "User ID"  },
+      { accessor: "name", Header: "NAME"},
+      { accessor: "email",Header: "E MAIL" },
+      { accessor: "phone", Header: "PHONE" },
+      { accessor: "district", Header: "DISTRICT" },
+      { accessor: "joineddate",Header: "JOINED DATE" },
+      { accessor: "position", Header: "POSITION"},
+      { accessor: "status", Header: "STATUS"},
+      
+      
+    ],
+    []
+  )
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
@@ -192,13 +205,28 @@ export default function MemberSummary() {
                     </form>
                   
                 </div>
-                <div className="row gutters " id="row" >
+                <div id="eventleftside">
+                    <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
+                
+
+                        <div className="row gutters mt-3">
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div className="card h-100" id="contentcard">
+                                    <div className="card-body " >                          
+                                          <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                {/* <div className="row gutters " id="row" >
                   <Table
                     rows={onGoingProjectData}
                     headCells={onGoingProjectTableHead}
                     
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
