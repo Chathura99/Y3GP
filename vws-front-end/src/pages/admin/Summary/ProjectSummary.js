@@ -286,21 +286,7 @@ const data = useMemo(
             </div>
           </div>
         </div>
-        {/* <EditProject /> */}
-                {/* <button
-                  type="button"
-                  class="btn"
-                  data-toggle="modal"
-                  data-target="#editproject"
-                  style={{
-                    backgroundColor: "#96BE25",
-                    border: "none",
-                    marginRight: 0,
-                  }}
-                >
-                  Edit
-                </button>
-                <br></br> */}
+        
       </div>
     </>
   );
