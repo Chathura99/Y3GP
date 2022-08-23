@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
 
-
 export default function NewUser() {
   useEffect(() => {
     checkValidate();
@@ -24,7 +23,6 @@ export default function NewUser() {
     },
   ]);
 
-
   const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
     { accessor: "id", Header: "REQUEST ID" },
     { accessor: "name", Header: "NAME" },
@@ -32,6 +30,22 @@ export default function NewUser() {
     { accessor: "phone", Header: "PHONE" },
     { accessor: "date", Header: "DATE" },
   ]);
+  const [selecteJoinRequestsData, setSelectedJoinRequestsData] = useState({
+    id: 23,
+    firstName: "Madura",
+    lastName: "Chamodara",
+    email: "mc123@gmail.com",
+    phoneNumber: "0715248569",
+    address: "Polgahawela",
+    universityCollege: "Colombo",
+    district: "Kurunegala",
+    date: null,
+    status: 0,
+    nic: "985475865v",
+    info: "Singing",
+    other: "",
+  });
+
 
   return (
     <>
@@ -88,8 +102,9 @@ export default function NewUser() {
             </div>
           </div>
         </div>
-        <RegisterNewUser />
-
+        <RegisterNewUser
+          data={selecteJoinRequestsData}
+        />
       </div>
     </>
   );

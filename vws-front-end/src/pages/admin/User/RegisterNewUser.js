@@ -7,22 +7,9 @@ import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
 import { signUpApprove } from "../../../services/adminServices/JoinRequestService";
 
-export default function AddAnnouncement() {
-  const [requestData, setRequestData] = useState({
-    id: 23,
-    firstName: "chathu",
-    lastName: "manohara",
-    email: "ccc123@gmail.com",
-    phoneNumber: "0715248569",
-    address: "Polgahawela",
-    universityCollege: "Colombo",
-    district: "Kurunegala",
-    date: null,
-    status: 0,
-    nic: "985475865v",
-    info: "Singing",
-    other: "",
-  });
+export default function AddAnnouncement(data) {
+  // console.log(data.data)
+  const [requestData, setRequestData] = useState(data.data);
 
   // open success/error pop up modals and set display message
   const [popup, setPopUp] = useState("");

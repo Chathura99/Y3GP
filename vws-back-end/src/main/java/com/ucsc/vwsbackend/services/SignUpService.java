@@ -77,7 +77,7 @@ public class SignUpService {
                 "Your initial auto generated password attached with here.\n" +
                 "Please change it into your own password\nPassword : ";
 
-        message.setText(content + pw + "\n" + "Username : "+joinRequest.getFirstName());
+        message.setText(content + pw + "\n" + "Username : "+joinRequest.getFirstName()+joinRequest.getId());
         message.setSubject("Welcome to the VWS!");
         //Update User
         List<Authority> authorityList=new ArrayList<>();
