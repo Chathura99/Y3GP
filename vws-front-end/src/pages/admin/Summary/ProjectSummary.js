@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useMemo } from "react";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
+import NewTable from "../../../utilities/Table/NewTable.js";
 import Table from "../../../utilities/Table/Table";
 import { red } from "@mui/material/colors";
 // import EditProject from "./EditProject";
@@ -16,7 +17,69 @@ export default function ProjectSummary() {
       window.location.href = "/";
     }
   };
-  const [onGoingProjectData, setOnGoingProjectData] = useState([
+  // const [onGoingProjectData, setOnGoingProjectData] = useState([
+  //   {
+  //     projectId: "P001",
+  //     projectname: "Ganitha Saviya",
+  //     description: "asefbrhnkugh dffgd...",
+  //     ideaby: "Hazeen Ram",
+  //     date: "2020-10-21",
+  //     action: (
+  //       <button
+  //         type="button"
+  //         id="submit"
+  //         name="submit"
+  //         className="btn mt-0"
+  //         style={{
+  //           backgroundColor: "#96BE25",
+  //           border: "none",
+  //           marginRight: "2px",
+  //         }}
+  //         // #96BE25,#BE4D25
+  //         // onClick={handleSubmit}
+  //       >
+  //         View
+  //       </button>
+  //     ),
+  //   },
+  //   {
+  //     projectId: "P002",
+  //     projectname: "Re-green Earth",
+  //     description: "weffgbg ghgukm...",
+  //     ideaby: "Chamath Shanuka",
+  //     date: "2019-12-01",
+  //     action: (
+  //       <button
+  //         type="button"
+  //         id="submit"
+  //         name="submit"
+  //         className="btn  mt-0"
+  //         style={{
+  //           backgroundColor: "#96BE25",
+  //           border: "none",
+  //           marginRight: "2px",
+  //         }}
+  //         // #96BE25,#BE4D25
+  //         // onClick={handleSubmit}
+  //       >
+  //         View
+  //       </button>
+  //     ),
+  //   },
+  // ]);
+
+  // const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
+  //   { id: "projectId", label: "PROJECT ID" },
+  //   { id: "projectname", label: "PROJECT NAME" },
+  //   { id: "description", label: "DESCRIPATION" },
+  //   { id: "ideaby", label: "IDEA BY" },
+  //   { id: "date", label: "Date" },
+  //   { id: "action", label: "ACTION" },
+  // ]);
+
+
+  // new table
+  const [ProjectsData, setProjectsData] = useState([
     {
       projectId: "P001",
       projectname: "Ganitha Saviya",
@@ -65,16 +128,27 @@ export default function ProjectSummary() {
         </button>
       ),
     },
-  ]);
+   ]);
 
-  const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "projectId", label: "PROJECT ID" },
-    { id: "projectname", label: "PROJECT NAME" },
-    { id: "description", label: "DESCRIPATION" },
-    { id: "ideaby", label: "IDEA BY" },
-    { id: "date", label: "Date" },
-    { id: "action", label: "ACTION" },
-  ]);
+const data = useMemo(
+() => ProjectsData  )
+
+  const ProjectsHeadings=useMemo(
+    () => [
+     
+      
+      { accessor: "projectId", Header: "PROJECT ID"  },
+      { accessor: "projectname", Header: "PROJECT NAME"},
+      { accessor: "description",Header: "DESCRIPATION" },
+      { accessor: "ideaby", Header: "IDEA BY" },
+      { accessor: "date", Header: "DATE" },
+      { accessor: "action",Header: "ACTION" },
+      
+      
+       
+    ],
+    []
+  )
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
@@ -186,32 +260,33 @@ export default function ProjectSummary() {
                     </form>
                   
                 </div>
-                <div className="row gutters " id="row" >
+                <div id="eventleftside">
+                    <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
+                
+
+                        <div className="row gutters mt-3">
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div className="card h-100" id="contentcard">
+                                    <div className="card-body " >                          
+                                          <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                {/* <div className="row gutters " id="row" >
                   <Table
                     rows={onGoingProjectData}
                     headCells={onGoingProjectTableHead}
                     
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
         </div>
-        {/* <EditProject /> */}
-                {/* <button
-                  type="button"
-                  class="btn"
-                  data-toggle="modal"
-                  data-target="#editproject"
-                  style={{
-                    backgroundColor: "#96BE25",
-                    border: "none",
-                    marginRight: 0,
-                  }}
-                >
-                  Edit
-                </button>
-                <br></br> */}
+        
       </div>
     </>
   );

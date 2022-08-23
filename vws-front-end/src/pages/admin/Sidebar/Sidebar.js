@@ -176,14 +176,14 @@ export default function Sidebar(page) {
                 }}
               >
                 <a
-                  href="#userSubmenu"
+                  href="#forumpollSubmenu"
                   data-toggle="collapse"
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
                   <i className="fa fa-users ml-3 mr-4"></i>Forum | Poll
                 </a>
-                <ul className="collapse list-unstyled" id="userSubmenu">
+                <ul className="collapse list-unstyled" id="forumpollSubmenu">
                   <li className="ml-5">
                     <Link to="/adminforum" className="p-1">
                       <div
