@@ -5,9 +5,11 @@ import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import { getParticularJoinRequestData } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -98,10 +100,22 @@ export default function HomePage() {
     }
   };
 
-  const [selectedId, setSelectedId] = useState(72);
+  const [selectedId, setSelectedId] = useState(0);
   window.onclick = (e) => {
-    console.log(e.target.parentNode.id);
-    // setSelectedId(e.target.parentNode.id)
+    // console.log(e.target.parentNode.id);
+    setSelectedId(e.target.parentNode.id);
+  };
+
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+
+  const set = async () => {
+    var member = await getParticularJoinRequestData(selectedId);
+    setSelectedJoinRequestsData(member.data);
   };
 
   return (
@@ -271,12 +285,7 @@ export default function HomePage() {
                       data-target="#registerUser"
                       data-toggle="modal"
                       onClick={() => {
-                        setSelectedJoinRequestsData(
-                          joinRequestsData.find(
-                            (item) => item.id === selectedId
-                          )
-                          // Object.values(joinRequestsData)[3]
-                        );
+                        set();
                       }}
                     >
                       Register
@@ -286,16 +295,17 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          {console.log(selectedJoinRequestsData)}
+          {console.log("--->" + selectedId)}
 
-          {selectedJoinRequestsData.id && (
+          
+        </div>
+      </div>
+     {selectedJoinRequestsData.id && (
             <RegisterNewUser
               data={selectedJoinRequestsData}
               setSelectedData={setSelectedJoinRequestsData}
             />
           )}
-        </div>
-      </div>
     </>
   );
 }

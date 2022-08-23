@@ -26,3 +26,14 @@ export const signUpApprove = (requestData) => {
     data: requestData,
   });
 };
+
+export const getParticularJoinRequestData= (id) => {
+  console.log("from->"+id);
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getJoinRequestData/${id}`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};

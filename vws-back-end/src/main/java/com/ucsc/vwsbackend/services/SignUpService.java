@@ -66,6 +66,12 @@ public class SignUpService {
         return joinRequestJdbcRepository.getNewRequest();
     }
 
+    public JoinRequest getJoinRequestData(Long id) {
+        return joinRequestJdbcRepository.getData(id);
+    }
+
+
+
     public String signUpApproved(JoinRequest joinRequest){
         SimpleMailMessage message=new SimpleMailMessage();
         message.setFrom("vws.org2022@gmail.com");
