@@ -8,7 +8,6 @@ import { getJoinRequest } from "../../../services/adminServices/JoinRequestServi
 import Loading from "../../../utilities/Loading/Loading";
 import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
-import { DataObjectSharp } from "@mui/icons-material";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -99,7 +98,11 @@ export default function HomePage() {
     }
   };
 
-  const [selectedId, setSelectedId] = useState(22);
+  const [selectedId, setSelectedId] = useState(72);
+  window.onclick = (e) => {
+    console.log(e.target.parentNode.id);
+    // setSelectedId(e.target.parentNode.id)
+  };
 
   return (
     <>
@@ -269,10 +272,10 @@ export default function HomePage() {
                       data-toggle="modal"
                       onClick={() => {
                         setSelectedJoinRequestsData(
-                          // joinRequestsData.find(
-                          //   (item) => item.id === selectedId
-                          // )
-                          Object.values(joinRequestsData)[4]
+                          joinRequestsData.find(
+                            (item) => item.id === selectedId
+                          )
+                          // Object.values(joinRequestsData)[3]
                         );
                       }}
                     >
