@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PopUpMap() {
+export default function popupmap() {
   return (
     <div>
       {/* <button
