@@ -26,7 +26,7 @@ export default function PcMyEvents() {
           data-toggle="modal"
           data-target="#MapForm"
           className="btn p-1"
-          style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+          style={{backgroundColor:"rgb(150 190 37)",border:"none",marginTop: 10,marginBottom: 10}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
@@ -49,7 +49,7 @@ export default function PcMyEvents() {
           data-toggle="modal"
           data-target="#MapForm"
           className="btn p-1"
-          style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+          style={{backgroundColor:"rgb(150 190 37)",border:"none",marginTop: 10,marginBottom: 10}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
