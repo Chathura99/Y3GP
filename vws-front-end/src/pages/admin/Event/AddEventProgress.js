@@ -127,7 +127,9 @@ export default function AddEventProgress() {
                       className="form-control"
                       id="description"
                       name="description"
-                      value="description content . . ."
+                      value="
+                      The second programme of the...
+                      "
                       //   onChange={handleChange}
                       disabled
                     />

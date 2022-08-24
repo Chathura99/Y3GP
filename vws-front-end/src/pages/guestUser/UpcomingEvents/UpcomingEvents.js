@@ -18,9 +18,9 @@ export default function UpcomingEvents() {
                                 alt="..." />
 
                             <div className="card-body" id="event-body">
-                                <h5 className="card-title" id="title-1">Title</h5>
-                                <p className="card-text">Nam sollicitudinortor sit amet libero lobortis semper at et odio. In eu tellus tellus t
-                                    Pellentesque ullamcorper</p>
+                                <h5 className="card-title" id="title-1">Kumbuk Plantation Program At Deduru Oya Reservoir</h5>
+                                <p className="card-text">The 5th episode of Sasnaka Sansada - Re Green Earth programme, will be held on on 11th of September 2022, in Kurunegala, 
+                                along the Wariyapola Natiya - Malagane road by the Deduru Oya reservoir as a Kumbuk plantation and conservation project.</p>
                             </div>
 
                         </div>
