@@ -13,15 +13,15 @@ export default function UpcomingEvents() {
 
                     <div className="card" id="eventcard">
                         <div className="card" id="eventcard-body">
-                            <img src="http://csrbox.org/company/proj_img/1539235300World-Environment-Day.jpg"
+                            <img src="https://sasnaka.org/static/media/home-two.e87aaeb9.jpg"
                                 class="img-fluid" id="center"
                                 alt="..." />
 
                             <div className="card-body" id="event-body">
-                                <h5 className="card-title" id="title-1">Kumbuk Plantation Program</h5>
+                                <h5 className="card-title" id="title-1">Ganitha Saviya</h5>
                                 <p className="card-text">
-                                    The 7th episode of Re Green Earth programme, will be held on 11th of September 2022,
-                                    in Kurunegala, along the Wariyapola Natiya - Malagane road by the Deduru Oya reservoir.
+                                    The Ganitha Saviya  Mathematical seminar programme, will be held on 20th of September 2022,
+                                    in Wijayaba college in Nikawaratiya.
                                 </p>
            
                             </div>
@@ -49,15 +49,15 @@ export default function UpcomingEvents() {
 
                     <div className="card" id="eventcard">
                         <div className="card" id="eventcard-body">
-                            <img src="http://csrbox.org/company/proj_img/1539235300World-Environment-Day.jpg"
+                            <img src="https://sasnaka.org/static/media/home-three.5ea6b759.jpg"
                                 class="img-fluid" id="center"
                                 alt="..." />
 
                             <div className="card-body" id="event-body">
-                                <h5 className="card-title" id="title-1">Kumbuk Plantation Program</h5>
+                                <h5 className="card-title" id="title-1">Sisu Mediya Program</h5>
                                 <p className="card-text">
-                                    The 7th episode of Re Green Earth programme, will be held on 11th of September 2022,
-                                    in Kurunegala, along the Wariyapola Natiya - Malagane road by the Deduru Oya reservoir.
+                                    The 3rd episode of Sisu Mediya programme, will be held on 10th of September 2022,
+                                    in Battaramulla, We hope to select students who have difficulties in economics to new scholarships.
                                 </p>
                             </div>
 
@@ -77,9 +77,8 @@ export default function UpcomingEvents() {
 
                     <div className="card" id="announcementcard">
                         <div className="card-body" id="announcement-body">
-                            <h5 className="card-title" id="title-2">POSTPONED! The Ganitha Saviya Program at Vilgoda Maha Vidyalaya</h5>
-                            <p className="card-text">The Ganitha Saviya mathematical program at Vilgoda Maha Vidyalaya is postponed due to some unavoidable issues.
-                                Further notices will be published here.</p>
+                            <h5 className="card-title" id="title-2">The new project called "Adurata Eliyak" Published</h5>
+                            <p className="card-text">There is a new programme called "Adurata Eliyak" was published in 20th of August 2022</p>
 
                             <div className="d-flex flex-row">
                                 <div className="p-2"><img src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
