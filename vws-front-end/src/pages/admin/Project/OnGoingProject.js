@@ -45,23 +45,7 @@ export default function OnGoingProject() {
       coordinator: "Chamath Sha",
       phone: "+94 70 2542 336",
       startedOn: "2019-12-01",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn  mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Edit
-        </button>
-      ),
+     
     },
   ]);
 
@@ -71,7 +55,6 @@ export default function OnGoingProject() {
     { accessor: "coordinator", Header: "COORDINATOR" },
     { accessor: "phone", Header: "PHONE" },
     { accessor: "startedOn", Header: "STARTED ON" },
-    { accessor: "action", Header: "ACTION" },
   ]);
   const [lineChartData, setLineChartData] = useState([
     [
@@ -118,7 +101,22 @@ export default function OnGoingProject() {
                   
                   <NewTable
                   columns={onGoingProjectTableHead}
-                  data={onGoingProjectData}                 
+                  data={onGoingProjectData}    
+                  action={
+                    <button
+                  type="button"
+                  class="btn"
+                  data-toggle="modal"
+                  data-target="#editproject"
+                  style={{
+                    backgroundColor: "#96BE25",
+                    border: "none",
+                    marginRight: 0,
+                  }}
+                >
+                  Edit
+                </button>
+                  }             
                 />
                 </div>
               </div>

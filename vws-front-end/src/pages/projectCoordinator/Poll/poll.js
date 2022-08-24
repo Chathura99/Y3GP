@@ -6,9 +6,10 @@ import AddForumTopic from "./AddForum";
 import { Link } from "react-router-dom";
 import AddNewPoll from "./AddPoll";
 
-export default function PcForum() {
+export default function PcPoll() {
 
-useEffect(() => {
+
+  useEffect(() => {
     checkValidate();
   }, []);
 
@@ -21,9 +22,10 @@ useEffect(() => {
   const [ProjectsData, setProjectsData] = useState([
     {
       topic: "Blood Donation",
+      starteddate:"2022 07 11",
       last_update: "2022 07 12",
-      replies: "05",
-
+      votes: "25",
+      enddate:"2022 07 13",
 
 
       read: (
@@ -38,7 +40,7 @@ useEffect(() => {
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >
-                <Link to="/adminviewforum" className="sign-up">
+                <Link to="/adminviewpoll" className="sign-up">
                     <b>Read</b>
                   </Link>
               </button>
@@ -78,35 +80,33 @@ const data = useMemo(
     () => [
 
       { accessor: "topic", Header: "TOPIC" },
+      { accessor: "starteddate", Header: "STARTED DATE" },
       { accessor: "last_update", Header: "LAST UPDATE" },
-      { accessor: "replies", Header: "REPLIES" },
+      { accessor: "votes", Header: "VOTES" },
+      { accessor: "enddate", Header: "END DATE" },
       { accessor: "read", Header: "ACTION" },
-
 
     ],
     []
   )
 // poll data
 
-
-
-
   return (
-
- <>
+    <>
     <div  id="maindiv">
-    <div id="leftside">
-      <div className="container-fluid calculated-bodywidth"  id="blaa" style={{paddingLeft:25}}>
+
+            <div id="rightside">
+            <div className="container-fluid calculated-bodywidth" style={{paddingLeft:25}} id="blaaa">
 
 
                 <div className="row gutters mt-3">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
-                            <div className="card-body " >
-                                <h5>Forum</h5>
+                            <div className="card-body ">
+                                <h5>Poll</h5>
 
-                                  <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic">Add New Forum Topic </button>
-                                  <AddForumTopic/>
+                                  <button id='forumbtn' data-toggle="modal" data-target="#AddNewPoll">Add New Poll </button>
+                                  <AddNewPoll/>
 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
 
@@ -118,51 +118,7 @@ const data = useMemo(
                 </div>
             </div>
             </div>
-
             </div>
           </>
   );
 }
-
-
-
-//    <>
-//    <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
-//      <div className="row gutters mt-10">
-//        <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-//          <div className="card h-100" id="contentcard">
-//            <div className="card-body">
-//              <div className="row gutters">Forum | Poll</div>
-//              <div className="row gutters ">line 1</div>
-//              <div className="row gutters">line 2</div>
-//            </div>
-//          </div>
-//        </div>
-//
-//        <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-//          <div className="card h-100" id="contentcard">
-//            <div className="card-body">
-//              <div className="row gutters ">
-//                <h3 className="ml-3">Title</h3>
-//              </div>
-//              <div className="row gutters ">
-//                Content
-//              </div>
-//            </div>
-//          </div>
-//        </div>
-//      </div>
-//
-//      <div className="row gutters mt-3">
-//        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-//          <div className="card h-100" id="contentcard">
-//            <div className="card-body ">
-//             Content
-//            </div>
-//          </div>
-//        </div>
-//      </div>
-//    </div>
-//  </>
-//  )
-//}

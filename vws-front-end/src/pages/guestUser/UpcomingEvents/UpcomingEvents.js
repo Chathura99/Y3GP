@@ -23,6 +23,7 @@ export default function UpcomingEvents() {
                                     The 7th episode of Re Green Earth programme, will be held on 11th of September 2022,
                                     in Kurunegala, along the Wariyapola Natiya - Malagane road by the Deduru Oya reservoir.
                                 </p>
+           
                             </div>
 
                         </div>

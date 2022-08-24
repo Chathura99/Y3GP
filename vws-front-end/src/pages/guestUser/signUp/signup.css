@@ -88,10 +88,17 @@
   padding: 10px;
 }
 
-#formLabel{
+#formLbl{
   color: white;
 }
 
 #submitbtn{
   color: #145369 !important;
+}
+.formerror{
+  color: white;
+}
+
+.btn.btn-primary {
+  margin:0;
 }

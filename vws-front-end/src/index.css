@@ -19,3 +19,6 @@ label {
   color: rgb(146, 145, 145) ;
   font-size: smaller;
 }
+#formLabel{
+  color: gray!important;
+}

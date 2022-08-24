@@ -61,6 +61,9 @@ import PcVolunteers from "./pages/projectCoordinator/Volunteers/volunteer";
 import PcAnnouncements from "./pages/projectCoordinator/Announcement/announcements";
 import PcForum from "./pages/projectCoordinator/Poll/forum";
 import PcSummary from "./pages/projectCoordinator/Summary/summary";
+import PcEventSummary from "./pages/projectCoordinator/Summary/EventSummary";
+import PcProjectSummary from "./pages/projectCoordinator/Summary/ProjectSummary";
+import PcPoll from "./pages/projectCoordinator/Poll/poll";
 import Loading from "./utilities/Loading/Loading";
 // import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 import Event1 from "./pages/guestUser/OurLatestEvents/Event1";
@@ -205,7 +208,9 @@ function App() {
             ></Route>
             <Route path="/pcforum" element={<PcForum />}></Route>
             <Route path="/pcsummary" element={<PcSummary />}></Route>
-
+            <Route path="/pcpoll" element={<PcPoll />}></Route>
+            <Route path="/pceventsummary" element={<PcEventSummary />}></Route>
+            <Route path="/pcprojectsummary" element={<PcProjectSummary />}></Route>
 
 
             {/* volunteer part */}

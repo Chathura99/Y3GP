@@ -49,4 +49,17 @@ public class JoinRequestJdbcRepository {
         System.out.println(joinRequests.get(0).getDate());
         return joinRequests;
     }
+
+    public int updateStatus(long id){
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE join_request " +
+                "SET status = 1 WHERE id = :reqId;";
+
+        namedParameters.addValue("reqId", id);
+
+
+        int rowsAffected = jdbc.update(update, namedParameters);
+        return rowsAffected;
+    }
 }
