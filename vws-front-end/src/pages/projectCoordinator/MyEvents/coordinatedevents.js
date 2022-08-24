@@ -16,21 +16,21 @@ export default function PcCoordinatedEvents() {
                   no_of_members: "13",
                   location: "Nikawaratiya",
 
-                  action: (
-                            <button
-                              type="button"
-                              id="submit"
-                              name="submit"
-                              data-toggle="modal"
-                              data-target="#EditCoordinatedEvent"
-                              className="btn p-1"
-                              style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                              // #96BE25,#BE4D25
-                              // onClick={handleSubmit}
-                            >
-                              EDIT
-                            </button>
-                          ),
+//                  action: (
+//                            <button
+//                              type="button"
+//                              id="submit"
+//                              name="submit"
+//                              data-toggle="modal"
+//                              data-target="#EditCoordinatedEvent"
+//                              className="btn p-1"
+//                              style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
+//                              // #96BE25,#BE4D25
+//                              // onClick={handleSubmit}
+//                            >
+//                              EDIT
+//                            </button>
+//                          ),
           },
           {
                   event_id: "E002",
@@ -41,21 +41,21 @@ export default function PcCoordinatedEvents() {
                   no_of_members: "8",
                   location: "Horana",
 
-                  action: (
-                    <button
-                      type="button"
-                      id="submit"
-                      name="submit"
-                      data-toggle="modal"
-                      data-target="#EditCoordinatedEvent"
-                      className="btn p-1"
-                      style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                      // #96BE25,#BE4D25
-                      // onClick={handleSubmit}
-                    >
-                      EDIT
-                    </button>
-                  ),
+//                  action: (
+//                    <button
+//                      type="button"
+//                      id="submit"
+//                      name="submit"
+//                      data-toggle="modal"
+//                      data-target="#EditCoordinatedEvent"
+//                      className="btn p-1"
+//                      style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
+//                      // #96BE25,#BE4D25
+//                      // onClick={handleSubmit}
+//                    >
+//                      EDIT
+//                    </button>
+//                  ),
     },
   ]);
 
@@ -67,7 +67,7 @@ export default function PcCoordinatedEvents() {
       { accessor: "enddate", Header: "ENDS ON" },
       { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
       { accessor: "location", Header: "LOCATION" },
-      { accessor: "action", Header: "EDIT" },
+//      { accessor: "action", Header: "EDIT" },
 
   ]);
 

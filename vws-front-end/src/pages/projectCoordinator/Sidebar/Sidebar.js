@@ -203,18 +203,6 @@ export default function Sidebar(page) {
                 </Link>
               </li>
 
-              <li
-                className={selected === 6 ? "active" : ""}
-                onClick={() => {
-                  highLight(6);
-                }}
-              >
-                <Link to="/pcannouncements">
-                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Announcements
-                </Link>
-              </li>
-
-
 
               <li
                 className={selected === 7 ? "active" : ""}
