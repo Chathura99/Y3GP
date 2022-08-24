@@ -1,8 +1,10 @@
 package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.dto.Profile;
+import com.ucsc.vwsbackend.dto.userPassword;
 import com.ucsc.vwsbackend.entities.User;
 import com.ucsc.vwsbackend.repository.userDao.UserRepository;
+import com.ucsc.vwsbackend.services.PasswordService;
 import com.ucsc.vwsbackend.services.VolunteerService;
 import com.ucsc.vwsbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordService passwordService;
+
     @GetMapping("/test")
     public String test(){
         return "Test from UserController!";
@@ -43,6 +48,15 @@ public class UserController {
     @PostMapping("/registerUser/{id}")
     public User registerUser(@PathVariable Long id){
         return volunteerService.registerUser(id);
+    }
+
+    @PutMapping("/updateProfile/{role}")
+    public long updateProfile(@RequestBody Profile profile,@PathVariable String role){
+        return userService.updateProfile(profile,role);
+    }
+    @PutMapping("/changePassword/{id}")
+    public long changePassword(@RequestBody userPassword userPassword,@PathVariable Long id){
+        return passwordService.changePassword(userPassword,id);
     }
 
 

@@ -1,11 +1,11 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 export default function AddAnnouncement() {
   const [ann, setAnn] = useState({
     title: "",
     category: "",
-    content:"",
-    file:"",
+    content: "",
+    file: "",
   });
 
   const handleChange = (e) => {

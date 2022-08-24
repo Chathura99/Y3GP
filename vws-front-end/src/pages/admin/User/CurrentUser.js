@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PieChart from "../../../utilities/Charts/PieChart";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
-import Table from "../../../utilities/Table/Table";
+import NewTable from "../../../utilities/Table/NewTable";
 
 export default function CurrentUser() {
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function CurrentUser() {
       window.location.href = "/";
     }
   };
-  const [previousEventData, setPreviousEventData] = useState([
+  const [currentUserTableData, setCurrentUserTableData] = useState([
     {
       userID: "E001",
       email: "namal@gmail.com",
@@ -44,27 +44,27 @@ export default function CurrentUser() {
     },
   ]);
 
-  const [previousEventTableHead, setPreviousEventTableHead] = useState([
-    { id: "userID", label: "USER ID" },
-    { id: "email", label: "EMAIL" },
-    { id: "name", label: "NAME" },
-    { id: "phone", label: "PHONE" },
-    { id: "joinDate", label: "JOIN DATE" },
-    { id: "university", label: "UNIVERSITY" },
-    { id: "position", label: "POSITION" },
-    { id: "district", label: "LOCATION" },
-    { id: "status", label: "STATUS" },
+  const [currentUserTableHead, setCurrentUserTableHead] = useState([
+    { accessor: "userID", Header: "USER ID" },
+    { accessor: "email", Header: "EMAIL" },
+    { accessor: "name", Header: "NAME" },
+    { accessor: "phone", Header: "PHONE" },
+    { accessor: "joinDate", Header: "JOIN DATE" },
+    { accessor: "university", Header: "UNIVERSITY" },
+    { accessor: "position", Header: "POSITION" },
+    { accessor: "district", Header: "LOCATION" },
+    { accessor: "status", Header: "STATUS" },
   ]);
 
-  const [pieChartData,setPieChartData] = useState([
+  const [pieChartData, setPieChartData] = useState([
     ["User", "Count"],
     ["Volunteer", 750],
     ["Project Coordinator", 21],
     ["Admin", 2],
   ]);
 
-  const [lineChartData,setLineChartData] = useState([
-    ["Month", "ADMIN", "Volunteer","Project Coordinator"],
+  const [lineChartData, setLineChartData] = useState([
+    ["Month", "ADMIN", "Volunteer", "Project Coordinator"],
     ["Jan", 1, 400, 15],
     ["Feb", 1, 420, 15],
     ["Mar", 2, 420, 15],
@@ -79,9 +79,11 @@ export default function CurrentUser() {
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <div className="row gutters"><h5>Current User</h5></div>
+                <div className="row gutters">
+                  <h5>Current User</h5>
+                </div>
                 <div className="row gutters ">
-                  <PieChart data={pieChartData}/>
+                  <PieChart data={pieChartData} />
                 </div>
               </div>
             </div>
@@ -105,10 +107,11 @@ export default function CurrentUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <Table
-                  rows={previousEventData}
-                  headCells={previousEventTableHead}
-                  tableName={"Current Users"}
+                <h5>Current Users</h5>
+
+                <NewTable
+                  columns={currentUserTableHead}
+                  data={currentUserTableData}
                 />
               </div>
             </div>

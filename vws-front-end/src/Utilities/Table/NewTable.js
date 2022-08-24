@@ -1,8 +1,7 @@
-import { Divider } from "@material-ui/core";
 import React, { useEffect, useMemo, useRef, forwardRef } from "react";
 import { useTable, usePagination, useRowSelect, useSortBy } from "react-table";
 import "./newtable.css";
-export default function NewTable({ columns, data }) {
+export default function NewTable({ columns, data, setSelectedData, action }) {
   const IndeterminateCheckbox = forwardRef(
     ({ indeterminate, ...rest }, ref) => {
       const defaultRef = useRef();
@@ -48,30 +47,30 @@ export default function NewTable({ columns, data }) {
     },
     useSortBy,
     usePagination,
-    useRowSelect,
-    (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllPageRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
-            </div>
-          ),
+    useRowSelect
+    // (hooks) => {
+    //   hooks.visibleColumns.push((columns) => [
+    //     {
+    //       id: "selection",
+    //       Header: ({ getToggleAllPageRowsSelectedProps }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
+    //         </div>
+    //       ),
 
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
-    }
+    //       Cell: ({ row }) => (
+    //         <div>
+    //           <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+    //         </div>
+    //       ),
+    //     },
+    //     ...columns,
+    //   ]);
+    // }
   );
 
   return (
-    <div  style={{ overflowX: "scroll" }}>
+    <div style={{ overflowX: "scroll", margin: "auto" }}>
       {console.log(
         pageIndex,
         pageSize,
@@ -79,7 +78,7 @@ export default function NewTable({ columns, data }) {
         canNextPage,
         canPreviousPage
       )}
-      <table {...getTableProps()}  style={{ overflowX: "scroll" }}>
+      <table {...getTableProps()} style={{ overflowX: "scroll" }}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -87,6 +86,7 @@ export default function NewTable({ columns, data }) {
                 <th
                   className="tablehead"
                   {...column.getHeaderProps(column.getSortByToggleProps())}
+                  style={{ paddingRight: "20px" }}
                 >
                   {column.render("Header")}
                   <span style={{}}>
@@ -110,6 +110,7 @@ export default function NewTable({ columns, data }) {
                   </span>
                 </th>
               ))}
+              {!action == "" && <th className="tablehead">ACTION</th>}
             </tr>
           ))}
         </thead>
@@ -123,6 +124,7 @@ export default function NewTable({ columns, data }) {
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
+                <td>{!action == "" && action}</td>
               </tr>
             );
           })}
@@ -183,9 +185,10 @@ export default function NewTable({ columns, data }) {
             ))}
           </select>
           {console.log(selectedRowIds)}
-          {console.log(selectedFlatRows.map((d) => d.original))}
+          {selectedFlatRows.map((d) => setSelectedData(d.original))}
         </div>
       </div>
+      {/* <button onClick={()=>setSelectedData()}>Set Selected</button> */}
     </div>
   );
 }

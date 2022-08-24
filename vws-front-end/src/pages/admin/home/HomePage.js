@@ -38,12 +38,12 @@ export default function HomePage() {
   ]);
 
   const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "project", label: "PROJECT NAME" },
-    { id: "place", label: "PLACE" },
-    { id: "member", label: "MEMBERS" },
-    { id: "coordinator", label: "COORDINATOR" },
-    { id: "date", label: "DATE" },
+    { accessor: "eventId", Header: "EVENT ID" },
+    { accessor: "project", Header: "PROJECT NAME" },
+    { accessor: "place", Header: "PLACE" },
+    { accessor: "member", Header: "MEMBERS" },
+    { accessor: "coordinator", Header: "COORDINATOR" },
+    { accessor: "date", Header: "DATE" },
   ]);
 
   const [pieChartData, setPieChartData] = useState([
@@ -53,6 +53,23 @@ export default function HomePage() {
   ]);
 
   const [joinRequestsData, setJoinRequestsData] = useState([]);
+  const [selectedJoinRequestsData, setselectedJoinRequestsData] = useState(
+    {
+      // firstName: "chathura",
+      // lastName: "manohara",
+      // email: "c@gmail.com",
+      // phoneNumber: "0715248569",
+      // address: "Polgahawela",
+      // universityCollege: "Colombo",
+      // district: "Kurunegala",
+      // date: "2021-10-11",
+      // status: 0,
+      // nic: "985475865v",
+      // info: "Singing",
+      // other: "",
+    },
+    []
+  );
 
   // const data = useMemo(() => joinRequestsData);
 
@@ -87,27 +104,7 @@ export default function HomePage() {
   const getRequest = async () => {
     const res = await getJoinRequest();
     console.log(res.data);
-    setJoinRequestsData([
-      ...res.data,
-      // {status: (
-      //   <button
-      //     type="button"
-      //     id="submit"
-      //     name="submit"
-      //     className="btn mt-0"
-      //     style={{
-      //       backgroundColor: "#96BE25",
-      //       border: "none",
-      //       marginRight: "2px",
-      //     }}
-      //     // #96BE25,#BE4D25
-      //     // onClick={handleSubmit}
-      //   >
-      //     Approve
-      //   </button>
-      // )},
-    
-    ]);
+    setJoinRequestsData([...res.data]);
   };
 
   const checkValidate = async () => {
@@ -215,13 +212,13 @@ export default function HomePage() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters">
-                  {/* <h5>Upcoming Events</h5> */}
+                  <h5 style={{ paddingLeft: "30px" }}>Upcoming Events</h5>
                 </div>
                 <div className="row gutters ">
-                  <Table
-                    rows={upComingEventsData}
-                    headCells={upComingEventsTableHead}
-                    tableName={"Up Coming Events"}
+                  <NewTable
+                    columns={upComingEventsTableHead}
+                    data={upComingEventsData}
+                    setSelectedData={setselectedJoinRequestsData}
                   />
                 </div>
               </div>
@@ -269,11 +266,32 @@ export default function HomePage() {
                 <NewTable
                   columns={joinRequestsTableHead}
                   data={joinRequestsData}
+                  setSelectedData={setselectedJoinRequestsData}
+                  action={
+                    <button
+                      type="button"
+                      id="submit"
+                      name="submit"
+                      className="btn mt-0"
+                      style={{
+                        backgroundColor: "#96BE25",
+                        border: "none",
+                        marginRight: "2px",
+                      }}
+                      data-target="#registerUser"
+                      data-toggle="modal"
+                    >
+                      Register
+                    </button>
+                  }
                 />
+                {console.log(selectedJoinRequestsData)}
               </div>
             </div>
           </div>
-          <RegisterNewUser />
+
+          <RegisterNewUser data={selectedJoinRequestsData} />
+
           <button
             type="button"
             class="btn btn-primary"

@@ -2,8 +2,9 @@ import React, { useState, useEffect,useMemo } from "react";
 import EnhancedTable from "../../../utilities/Table/ForumTable";
 import "./Forum.css"
 import NewTable from "../../../utilities/Table/NewTable.js";
-
-
+import AddForumTopic from "./AddForumTopic";
+import { Link } from "react-router-dom";
+import AddNewPoll from "./AddNewPoll";
 
 export default function Forum() {
   
@@ -38,7 +39,9 @@ export default function Forum() {
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >
-                Read
+                <Link to="/adminviewforum" className="sign-up">
+                    <b>Read</b>
+                  </Link>
               </button>
             ),
             
@@ -99,8 +102,8 @@ const data = useMemo(
                             <div className="card-body " >
                                 <h5>Forum</h5>
                                 
-                                  <button id='forumbtn' data-toggle="modal" data-target="#ProposeProjectForm">Add New Forum Topic </button>
-                                
+                                  <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic">Add New Forum Topic </button>
+                                  <AddForumTopic/>
                                 
                                   <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
                                 
@@ -112,29 +115,7 @@ const data = useMemo(
                 </div>
             </div>
             </div> 
-            <div id="rightside">
-            <div className="container-fluid calculated-bodywidth" style={{paddingLeft:7}} id="blaaa">
-                
-
-                <div className="row gutters mt-3">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div className="card h-100" id="contentcard">
-                            <div className="card-body ">
-                                <h5>Poll</h5>
-                                
-                                  <button id='forumbtn' data-toggle="modal" data-target="#ProposeProjectForm">Add New Poll </button>
-                                
-                                
-                                  <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
-                                
-                                
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
+            
             </div>
           </>
   );

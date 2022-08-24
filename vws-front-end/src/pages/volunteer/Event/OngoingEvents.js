@@ -29,7 +29,7 @@ export default function OngoingEvents() {
       // #96BE25,#BE4D25
       // onClick={handleSubmit}
     >
-      View in Map
+      View
     </button>,
             action: (
                       <button
@@ -66,7 +66,7 @@ export default function OngoingEvents() {
       // #96BE25,#BE4D25
       // onClick={handleSubmit}
     >
-      View in Map
+      View
     </button>,
             action: (
               <button

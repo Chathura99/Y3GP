@@ -1,7 +1,8 @@
 import React, { useEffect,useState } from 'react';
-import Table from "../../../utilities/Table/Table";
+import NewTable from '../../../utilities/Table/NewTable';
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import { LineChart } from './../../../utilities/Charts/LineChart';
+import { useMemo } from 'react';
 
 export default function PcCompletedEvents() {
 
@@ -25,7 +26,7 @@ export default function PcCompletedEvents() {
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Accepted
+          Details
         </button>
       ),
     },
@@ -44,25 +45,47 @@ export default function PcCompletedEvents() {
           id="submit"
           name="submit"
           className="btn btn-primary p-1"
-          style={{backgroundColor:"#BE4D25",border:"none"}}
+          style={{backgroundColor:"#96BE25",border:"none"}}
           // #96BE25,#BE4D25
           // onClick={handleSubmit}
         >
-          Rejected
+          Details
         </button>
       ),
     },
   ]);
 
   const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-    { id: "event_id", label: "Event ID" },
-    { id: "category", label: "Category" },
-    { id: "event_coordinator", label: "Event Coordinator" },
-    { id: "startdate", label: "Starts On" },
-    { id: "enddate", label: "Ends On" },
-    { id: "no_of_members", label: "No. of Members" },
-    { id: "location", label: "Location" },
-    { id: "action", label: "Action" },
+          { accessor: "event_id", Header: "EVENT ID" },
+          { accessor: "category", Header: "CATEGORY" },
+          { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
+          { accessor: "startdate", Header: "STARTS ON" },
+          { accessor: "enddate", Header: "ENDS ON" },
+          { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
+          { accessor: "location", Header: "LOCATION" },
+          { accessor: "action", Header: "EVENT DETAILS" },
+
+  ]);
+
+const [lineChartData, setLineChartData] = useState([
+    [
+      "Month",
+      "Ganitha Saviya",
+      "Regreen Earth",
+
+    ],
+    ["Jan", 100, 40],
+    ["Feb", 150, 100],
+    ["Mar", 120, 60],
+    ["Apr", 250, 20],
+    ["May", 300, 80],
+    ["Jun", 200, 150],
+  ]);
+
+  const [donutChartData, setDonutChartData] = useState([
+    ["Project", "Count"],
+    ["Ganitha Saviya", 11],
+    ["Re-Green Earth", 2],
 
   ]);
 
@@ -90,7 +113,7 @@ export default function PcCompletedEvents() {
                   <h5 className="ml-3">Completed Event Summary</h5>
                 </div>
                 <div className="row gutters ">
-                <DonutChart />
+                <DonutChart data={donutChartData}/>
                 </div>
               </div>
             </div>
@@ -99,7 +122,7 @@ export default function PcCompletedEvents() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters"><h5 className="ml-3">My Participations</h5>
-                <LineChart />
+                <LineChart data={lineChartData}/>
                  </div>
                 
                 
@@ -112,8 +135,10 @@ export default function PcCompletedEvents() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
+
               <h5>Completed Events</h5>
-                                <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
+              <br></br><NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData}/>
+
               </div>
             </div>
           </div>

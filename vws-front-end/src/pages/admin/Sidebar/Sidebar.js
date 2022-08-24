@@ -175,10 +175,51 @@ export default function Sidebar(page) {
                   highLight(6);
                 }}
               >
+                <a
+                  href="#userSubmenu"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  className="dropdown-toggle"
+                >
+                  <i className="fa fa-users ml-3 mr-4"></i>Forum | Poll
+                </a>
+                <ul className="collapse list-unstyled" id="userSubmenu">
+                  <li className="ml-5">
+                    <Link to="/adminforum" className="p-1">
+                      <div
+                        className={linkdark === 6.1 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(6.1);
+                        }}
+                      >
+                        Forum
+                      </div>
+                    </Link>
+                  </li>
+                  <li className="ml-5">
+                    <Link to="/adminpoll" className="p-1">
+                      <div
+                        className={linkdark === 6.2 ? "linkdark" : ""}
+                        onClick={() => {
+                          setLinkdark(6.2);
+                        }}
+                      >
+                        Poll
+                      </div>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+              {/* <li
+                className={selected === 6 ? "active" : ""}
+                onClick={() => {
+                  highLight(6);
+                }}
+              >
                 <Link to="/adminforum">
                   <i className="fa fa-comments ml-3 mr-4"></i>Forum | Poll
                 </Link>
-              </li>
+              </li> */}
               <li
                 className={selected === 7 ? "active" : ""}
                 onClick={() => {

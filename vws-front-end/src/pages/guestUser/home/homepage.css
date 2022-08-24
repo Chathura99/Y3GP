@@ -32,7 +32,7 @@
   border: none;
   background-color: rgb(255, 255, 255);
   color: #145369 !important;
-  font-weight: 600;
+  font-weight: 700 !important;
   width: 120px;
   height: 40px;
   margin-right: 20px;
@@ -43,10 +43,10 @@
 
 #h-button2 {
   background-color: #145369;
-  color: #ffffff;
+  color: #ffffff !important;
   border-color: #ffffff;
   border-radius: 4px;
-  font-weight: 600;
+  font-weight: 700 !important;
   width: 120px;
   height: 40px;
   margin-right: 20px;
@@ -58,13 +58,14 @@
 
 #right-H2 {
   color: #ffffff;
-
+  font-size: 20px;
+  font-weight: 400;
 }
 
 #right-H1 {
   color: #ffffff;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 28px;
 }
 
 

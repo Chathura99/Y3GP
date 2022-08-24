@@ -4,7 +4,7 @@ import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 // import Card from "react-bootstrap/Card";
-import NewTable from './../../../utilities/Table/NewTable';
+import NewTable from '../../../utilities/Table/NewTable';
 import { useMemo } from 'react';
 
 

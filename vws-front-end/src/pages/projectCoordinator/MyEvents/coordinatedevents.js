@@ -1,69 +1,81 @@
 import React, { useEffect,useState } from 'react';
-import Table from "../../../utilities/Table/Table";
+import NewTable from '../../../utilities/Table/NewTable';
 import PieChart from './../../../utilities/Charts/PieChart';
+import PopUpEdit from './popupedit';
+import { useMemo } from 'react';
 
 export default function PcCoordinatedEvents() {
 
   const [upcomingEventsData, setUpComingEventsData] = useState([
     {
       event_id: "E001",
-      category: "Ganitha Saviya",
-      event_coordinator: "Ravindu",
-      startdate: "2022 09 12",
-      enddate: "2022 09 14",
-      no_of_members: "13",
-      location: "Nikawaratiya",
-      
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Accepted
-        </button>
-      ),
-    },
-    {
-      event_id: "E002",
-      category: "Re-green Earth",
-      event_coordinator: "Sadaru",
-      startdate: "2022 09 02",
-      enddate: "2022 09 04",
-      no_of_members: "8",
-      location: "Horana",
-      
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1"
-          style={{backgroundColor:"#BE4D25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Rejected
-        </button>
-      ),
+                  category: "Ganitha Saviya",
+                  event_coordinator: "Ravindu",
+                  startdate: "2022 09 12",
+                  enddate: "2022 09 14",
+                  no_of_members: "13",
+                  location: "Nikawaratiya",
+
+                  action: (
+                            <button
+                              type="button"
+                              id="submit"
+                              name="submit"
+                              data-toggle="modal"
+                              data-target="#EditCoordinatedEvent"
+                              className="btn p-1"
+                              style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
+                              // #96BE25,#BE4D25
+                              // onClick={handleSubmit}
+                            >
+                              EDIT
+                            </button>
+                          ),
+          },
+          {
+                  event_id: "E002",
+                  category: "Re-green Earth",
+                  event_coordinator: "Sadaru",
+                  startdate: "2022 09 02",
+                  enddate: "2022 09 04",
+                  no_of_members: "8",
+                  location: "Horana",
+
+                  action: (
+                    <button
+                      type="button"
+                      id="submit"
+                      name="submit"
+                      data-toggle="modal"
+                      data-target="#EditCoordinatedEvent"
+                      className="btn p-1"
+                      style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
+                      // #96BE25,#BE4D25
+                      // onClick={handleSubmit}
+                    >
+                      EDIT
+                    </button>
+                  ),
     },
   ]);
 
   const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-    { id: "event_id", label: "Event ID" },
-    { id: "category", label: "Category" },
-    { id: "event_coordinator", label: "Event Coordinator" },
-    { id: "startdate", label: "Starts On" },
-    { id: "enddate", label: "Ends On" },
-    { id: "no_of_members", label: "No. of Members" },
-    { id: "location", label: "Location" },
-    { id: "action", label: "Action" },
+      { accessor: "event_id", Header: "EVENT ID" },
+      { accessor: "category", Header: "CATEGORY" },
+      { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
+      { accessor: "startdate", Header: "STARTS ON" },
+      { accessor: "enddate", Header: "ENDS ON" },
+      { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
+      { accessor: "location", Header: "LOCATION" },
+      { accessor: "action", Header: "EDIT" },
 
   ]);
+
+  const [pieChartData, setPieChartData] = useState([
+          ["Event", "Completed precentage"],
+          ["Ganitha Saviya", 60],
+          ["Re-green Earth", 40],
+        ]);
 
 useEffect(() => {
     checkValidate();
@@ -85,7 +97,7 @@ return (
                     <div className="card h-100" id="contentcard">
                         <div className="card-body ">
                         <h5>Event Progres</h5>
-                            <PieChart />
+                            <PieChart data={pieChartData}/>
                         </div>
                     </div>
                 </div>
@@ -96,7 +108,9 @@ return (
                     <div className="card h-100" id="contentcard">
                         <div className="card-body ">
                         <h5>Coordinated Events</h5>
-                            <Table rows={upcomingEventsData} headCells={UpcomingEventsHeadings} />
+                        <br></br><NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData}/>
+                        <PopUpEdit />
+
                         </div>
                     </div>
                 </div>

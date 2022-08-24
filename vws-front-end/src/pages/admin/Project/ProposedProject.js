@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table from "../../../utilities/Table/Table";
+import NewTable from "../../../utilities/Table/NewTable";
 import TopFormPopUp from "../../../utilities/PopUps/TopFormPopUp";
 import MidFormPopUp from "../../../utilities/PopUps/MidFormPopUp";
 import Initializeproject from "./InitializeProject";
@@ -18,7 +18,7 @@ export default function ProposedProject() {
   const [proposedProjectData, setProposedProjectData] = useState([
     {
       projectName: "Adurata Eliyak",
-      proposedPerson: "Yashodha Subhasinghe",
+      proposedPerson: "Yashodha",
       phone: "+94 76 7845 111",
       proposedDate: "2020-10-21",
       forum: (
@@ -59,12 +59,12 @@ export default function ProposedProject() {
   ]);
 
   const [proposedProjectTableHead, setProposedProjectTableHead] = useState([
-    { id: "projectName", label: "PROJECT NAME" },
-    { id: "proposedPerson", label: "PROPOSED PERSON" },
-    { id: "phone", label: "PHONE" },
-    { id: "proposedDate", label: "PROPOSED DATE" },
-    { id: "forum", label: "FORUM" },
-    { id: "initialize", label: "INITIALIZE" },
+    { accessor: "projectName", Header: "PROJECT NAME" },
+    { accessor: "proposedPerson", Header: "PROPOSED PERSON" },
+    { accessor: "phone", Header: "PHONE" },
+    { accessor: "proposedDate", Header: "PROPOSED DATE" },
+    { accessor: "forum", Header: "FORUM" },
+    { accessor: "initialize", Header: "INITIALIZE" },
   ]);
   return (
     <>
@@ -74,11 +74,11 @@ export default function ProposedProject() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters "></div>
+                <h5 style={{ paddingLeft: "30px" }}>Proposed Projects</h5>
                 <div className="row gutters ">
-                  <Table
-                    rows={proposedProjectData}
-                    headCells={proposedProjectTableHead}
-                    tableName={"Proposed Projects"}
+                  <NewTable
+                    columns={proposedProjectTableHead}
+                    data={proposedProjectData}
                   />
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function ProposedProject() {
                   Initialize
                 </button>
                 <br></br>
-                sample button for pop ups, get from here...
+                {/* sample button for pop ups, get from here...
                 <TopFormPopUp />
                 <MidFormPopUp />
                 <button
@@ -123,7 +123,7 @@ export default function ProposedProject() {
                   data-target="#exampleModal"
                 >
                   Upper
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
