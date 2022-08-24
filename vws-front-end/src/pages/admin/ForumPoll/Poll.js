@@ -29,6 +29,7 @@ export default function Forum() {
             
             
       read: (
+        <Link to="/adminviewpoll" className="sign-up">
               <button
                 type="button"
                 id="submit"
@@ -40,10 +41,11 @@ export default function Forum() {
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >
-                <Link to="/adminviewpoll" className="sign-up">
+                
                     <b>Read</b>
-                  </Link>
+                  
               </button>
+              </Link>
             ),
             
           },
