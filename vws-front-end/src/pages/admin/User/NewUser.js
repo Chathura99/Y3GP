@@ -19,7 +19,14 @@ export default function NewUser() {
       name: "Chathura Manohara",
       nic: "998547521v",
       phone: "+94 75 025 1451",
-      date: "2022 09 12",
+      date: "2022 08 20",
+    },
+    {
+      id: "R002",
+      name: "Chamod Attanage",
+      nic: "998485521v",
+      phone: "+94 75 025 7854",
+      date: "2022 08 11",
     },
   ]);
 

@@ -47,6 +47,15 @@ export default function OnGoingProject() {
       startedOn: "2019-12-01",
      
     },
+    ,
+    {
+      projectId: "P003",
+      projectName: "Sidu Mediya",
+      coordinator: "Bawantha Ranasin",
+      phone: "+94 70 2542 336",
+      startedOn: "2019-12-01",
+     
+    },
   ]);
 
   const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
@@ -124,7 +133,7 @@ export default function OnGoingProject() {
           </div>
         </div>
         <EditProject />
-                <button
+                {/* <button
                   type="button"
                   class="btn"
                   data-toggle="modal"
@@ -136,7 +145,7 @@ export default function OnGoingProject() {
                   }}
                 >
                   Edit
-                </button>
+                </button> */}
                 <br></br>
       </div>
     </>

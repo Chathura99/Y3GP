@@ -18,7 +18,7 @@ export default function ProposedProject() {
   const [proposedProjectData, setProposedProjectData] = useState([
     {
       projectName: "Adurata Eliyak",
-      proposedPerson: "Yashodha",
+      proposedPerson: "Yashodha Subha.",
       phone: "+94 76 7845 111",
       proposedDate: "2020-10-21",
       forum: (
@@ -36,6 +36,30 @@ export default function ProposedProject() {
           // onClick={handleSubmit}
         >
           Check
+        </button>
+      ),
+      
+    },
+    {
+      projectName: "Dedunnata Pata",
+      proposedPerson: "Ravindu Meda.",
+      phone: "+94 76 7845 111",
+      proposedDate: "2020-10-21",
+      forum: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#BE4D25",
+            border: "none",
+            marginRight: "2px",
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          ADD
         </button>
       ),
       
