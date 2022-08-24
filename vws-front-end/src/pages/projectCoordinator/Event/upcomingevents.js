@@ -12,7 +12,7 @@ export default function PcUpcomingEvents() {
     {
       project_id: "E001",
       project_name: "Ganitha Saviya",
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      description: "Event to upscale the mathematical knowledge of school children.",
       coordinator: "Ravindu",
       startdate: "2022 09 14",
       // no_of_members: "13",
@@ -35,7 +35,7 @@ export default function PcUpcomingEvents() {
     {
       project_id: "E002",
       project_name: "Widyawa Mulasita",
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      description: "Event to upscale the Scientific knowledge of school children.",
       coordinator: "Tharindu",
       startdate: "2022 09 14",
       // no_of_members: "8",
