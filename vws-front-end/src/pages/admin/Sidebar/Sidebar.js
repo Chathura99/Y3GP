@@ -51,11 +51,9 @@ export default function Sidebar(page) {
       <div className="wrapper d-flex align-items-stretch">
         <nav id="sidebar" className={isActive}>
           <div className="p-2 pt-3">
-            <a
-              href={""}
-              className="img logo"
-              style={{ backgroundImage: "./sss.png" }}
-            ></a>
+            <div className="sidebar-logo">
+            
+            </div>
             <ul className="list-unstyled components mb-5">
               <li
                 className={selected === 1 ? "active" : ""}

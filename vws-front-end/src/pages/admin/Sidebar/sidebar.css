@@ -138,6 +138,19 @@ h5,
 #sidebar .logo span {
   display: block;
 }
+.sidebar-logo {
+  width: 180px;
+  height: 76px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background: url("../../../../public/images/Sasnaka-logo.png");
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
 
 #sidebar ul.components {
   padding: 0;
