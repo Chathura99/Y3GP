@@ -53,11 +53,9 @@ export default function Sidebar(page) {
       <div className="wrapper d-flex align-items-stretch">
         <nav id="sidebar" className={isActive}>
           <div className="p-2 pt-3">
-            <a
-              href={""}
-              className="img logo"
-              style={{ backgroundImage: "./sss.png" }}
-            ></a>
+          <div className="sidebar-logo">
+            
+            </div>
             <ul className="list-unstyled components mb-5">
               <li
                 className={selected === 1 ? "active" : ""}
@@ -204,18 +202,6 @@ export default function Sidebar(page) {
                   <i className="fa fa-users ml-3 mr-4"></i>Volunteers
                 </Link>
               </li>
-
-              <li
-                className={selected === 6 ? "active" : ""}
-                onClick={() => {
-                  highLight(6);
-                }}
-              >
-                <Link to="/pcannouncements">
-                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Announcements
-                </Link>
-              </li>
-
 
 
               <li

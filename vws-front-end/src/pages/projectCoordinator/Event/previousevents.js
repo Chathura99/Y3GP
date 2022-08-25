@@ -7,48 +7,48 @@ export default function PcPreviousEvents() {
     {
       project_id: "E001",
       project_name: "Ganitha Saviya",
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      description: "Event to upscale the mathematical knowledge of school children.",
       coordinator: "Ravindu",
       startdate: "2022 09 14",
       // no_of_members: "13",
       // location: "Nikawaratiya",
       
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Coordinate
-        </button>
-      ),
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Coordinate
+//        </button>
+//      ),
     },
     {
       project_id: "E002",
-      project_name: "Widyawa Mulasita",
-      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      project_name: "Go Green",
+      description: "Event which was done inorder to save trees in Sri Lankan forests",
       coordinator: "Tharindu",
       startdate: "2022 09 14",
       // no_of_members: "8",
       // location: "Horana",
       
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Coordinate
-        </button>
-      ),
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Coordinate
+//        </button>
+//      ),
     },
   ]);
 
@@ -60,7 +60,7 @@ export default function PcPreviousEvents() {
     { accessor: "startdate", Header: "Start Date" },
     // { id: "no_of_members", label: "Coordinate Events" },
     // { id: "location", label: "Location" },
-    { accessor: "action", Header: "Action" },
+//    { accessor: "action", Header: "Action" },
 
   ]);
 

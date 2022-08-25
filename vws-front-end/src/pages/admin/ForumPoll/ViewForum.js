@@ -64,6 +64,7 @@ export default function ViewForum() {
               
               
         action: (
+          < Link to="/admindiscussiontopic" className="sign-up">
                 <button
                   type="button"
                   id="submit"
@@ -76,10 +77,11 @@ export default function ViewForum() {
                   // #96BE25,#BE4D25
                   // onClick={handleSubmit}
                 >
-                < Link to="/admindiscussiontopic" className="sign-up">
+                
                     <b>Read</b>
-                  </Link>
+                  
                 </button>
+                </Link>
                 
               ),
               // action: (
