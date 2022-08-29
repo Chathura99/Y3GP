@@ -49,6 +49,11 @@ form {
   border-radius: 25px;
 }
 
+#backarrow{
+  margin-top: -10px;
+  margin-left: -20px;
+  color: white;
+}
 .sign-up {
   text-align: center;
   

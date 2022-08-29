@@ -13,7 +13,7 @@ export default function ContactUs() {
                     Your comments and suggestions will enable us serve the world better.</p>
 
                 <div className="input-group mb-3" id="input-feedback-cont">
-                    <input type="text" className="form-control" id="input-feedback" placeholder="Enter Your Feedback" aria-label="Enter Your Feedback" aria-describedby="basic-addon2" />
+                    <input type="text" className="form-control" id="input-feedback" placeholder="Recipient's username" aria-label="Enter Your Feedback" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
                         <button className="btn" id="input-feedback-btn" type="button">SEND</button>
                     </div>

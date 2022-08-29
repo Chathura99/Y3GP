@@ -5,9 +5,11 @@ import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import { getParticularJoinRequestData } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -53,23 +55,7 @@ export default function HomePage() {
   ]);
 
   const [joinRequestsData, setJoinRequestsData] = useState([]);
-  const [selectedJoinRequestsData, setselectedJoinRequestsData] = useState(
-    {
-      // firstName: "chathura",
-      // lastName: "manohara",
-      // email: "c@gmail.com",
-      // phoneNumber: "0715248569",
-      // address: "Polgahawela",
-      // universityCollege: "Colombo",
-      // district: "Kurunegala",
-      // date: "2021-10-11",
-      // status: 0,
-      // nic: "985475865v",
-      // info: "Singing",
-      // other: "",
-    },
-    []
-  );
+  const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
 
   // const data = useMemo(() => joinRequestsData);
 
@@ -112,6 +98,24 @@ export default function HomePage() {
     if (!y) {
       window.location.href = "/";
     }
+  };
+
+  const [selectedId, setSelectedId] = useState(0);
+  window.onclick = (e) => {
+    // console.log(e.target.parentNode.id);
+    setSelectedId(e.target.parentNode.id);
+  };
+
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+
+  const set = async () => {
+    var member = await getParticularJoinRequestData(selectedId);
+    setSelectedJoinRequestsData(member.data);
   };
 
   return (
@@ -218,7 +222,7 @@ export default function HomePage() {
                   <NewTable
                     columns={upComingEventsTableHead}
                     data={upComingEventsData}
-                    setSelectedData={setselectedJoinRequestsData}
+                    setSelectedData={setSelectedJoinRequestsData}
                   />
                 </div>
               </div>
@@ -266,7 +270,7 @@ export default function HomePage() {
                 <NewTable
                   columns={joinRequestsTableHead}
                   data={joinRequestsData}
-                  setSelectedData={setselectedJoinRequestsData}
+                  setSelectedData={setSelectedJoinRequestsData}
                   action={
                     <button
                       type="button"
@@ -280,28 +284,44 @@ export default function HomePage() {
                       }}
                       data-target="#registerUser"
                       data-toggle="modal"
+                      onClick={() => {
+                        set();
+                      }}
                     >
                       Register
                     </button>
                   }
                 />
-                {console.log(selectedJoinRequestsData)}
               </div>
             </div>
           </div>
+          {console.log("--->" + selectedId)}
 
-          <RegisterNewUser data={selectedJoinRequestsData} />
-
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#registerUser"
-          >
-            Register
-          </button>
+          
         </div>
       </div>
+     {selectedJoinRequestsData.id && (
+            <RegisterNewUser
+              data={selectedJoinRequestsData}
+              setSelectedData={setSelectedJoinRequestsData}
+            />
+          )}
     </>
   );
 }
+
+//   {
+//     id: 72,
+//     firstName: "chathura",
+//     lastName: "manohara",
+//     email: "cms@gmail.com",
+//     phoneNumber: "0715248569",
+//     address: "Polgahawela",
+//     universityCollege: "Colombo",
+//     district: "Kurunegala",
+//     date: "2021-10-11",
+//     status: 0,
+//     nic: "985475865v",
+//     info: "Singing",
+//     other: "",
+//   }

@@ -29,8 +29,8 @@ export default function Event() {
     {
       eventId: "E001",
       category: "Ganitha Saviya",
-      eventCoordinator: "Lasith Gun",
-      phone: "+94 75 4785 123",
+      eventCoordinator: "Lasith Gunarath..",
+      phone: "0754785123",
       startsOn: "2020-10-21",
       endsOn: "2020-10-22",
       noOfMembers: 10,
@@ -51,6 +51,36 @@ export default function Event() {
           // onClick={handleSubmit}
         >
           Cancelled
+        </button>
+      ),
+    },
+    {
+      eventId: "E002",
+      category: "Re-green earth",
+      eventCoordinator: "Malik Wijesu..",
+      phone: "0712584568",
+      startsOn: "2020-10-21",
+      endsOn: "2020-10-22",
+      noOfMembers: 10,
+      location: "Dambadeniya",
+      status: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          data-toggle="modal"
+          data-target="#addeventprogress"
+          style={{
+            backgroundColor: "#96BE25",
+            border: "none",
+            marginRight: 0,
+            padding: "6px",
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Complete
         </button>
       ),
     },
@@ -115,14 +145,14 @@ export default function Event() {
           </div>
         </div>
         <AddEventProgress />
-        <button
+        {/* <button
           type="button"
           class="btn btn-primary"
           data-toggle="modal"
           data-target="#addeventprogress"
         >
           Progress
-        </button>
+        </button> */}
       </div>
     </>
   );

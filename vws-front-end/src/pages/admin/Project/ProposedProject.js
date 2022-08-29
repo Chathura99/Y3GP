@@ -38,23 +38,7 @@ export default function ProposedProject() {
           Check
         </button>
       ),
-      initialize: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Initialize
-        </button>
-      ),
+      
     },
   ]);
 
@@ -64,7 +48,6 @@ export default function ProposedProject() {
     { accessor: "phone", Header: "PHONE" },
     { accessor: "proposedDate", Header: "PROPOSED DATE" },
     { accessor: "forum", Header: "FORUM" },
-    { accessor: "initialize", Header: "INITIALIZE" },
   ]);
   return (
     <>
@@ -79,6 +62,21 @@ export default function ProposedProject() {
                   <NewTable
                     columns={proposedProjectTableHead}
                     data={proposedProjectData}
+                    action={
+                      <button
+                        type="button"
+                        class="btn"
+                        data-toggle="modal"
+                        data-target="#initializeproject"
+                        style={{
+                          backgroundColor: "#96BE25",
+                          border: "none",
+                          marginRight: 0,
+                        }}
+                      >
+                        Initialize
+                      </button>
+                    }
                   />
                 </div>
               </div>
@@ -91,19 +89,7 @@ export default function ProposedProject() {
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
                 <Initializeproject />
-                <button
-                  type="button"
-                  class="btn"
-                  data-toggle="modal"
-                  data-target="#initializeproject"
-                  style={{
-                    backgroundColor: "#96BE25",
-                    border: "none",
-                    marginRight: 0,
-                  }}
-                >
-                  Initialize
-                </button>
+
                 <br></br>
                 {/* sample button for pop ups, get from here...
                 <TopFormPopUp />

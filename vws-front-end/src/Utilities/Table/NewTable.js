@@ -71,14 +71,14 @@ export default function NewTable({ columns, data, setSelectedData, action }) {
 
   return (
     <div style={{ overflowX: "scroll", margin: "auto" }}>
-      {console.log(
+      {/* {console.log(
         pageIndex,
         pageSize,
         pageCount,
         canNextPage,
         canPreviousPage
-      )}
-      <table {...getTableProps()} style={{ overflowX: "scroll" }}>
+      )} */}
+      <table {...getTableProps()} style={{ overflowX: "scroll" }} id="table">
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -117,14 +117,16 @@ export default function NewTable({ columns, data, setSelectedData, action }) {
         <tbody {...getTableBodyProps()}>
           {page.map((row, i) => {
             prepareRow(row);
+            // console.log(Object.values(row.original)[0]);
+            // row.original.id
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} id={Object.values(row.original)[0]}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
-                <td>{!action == "" && action}</td>
+                <td id={Object.values(row.original)[0]}>{!action == "" && action}</td>
               </tr>
             );
           })}
@@ -184,11 +186,19 @@ export default function NewTable({ columns, data, setSelectedData, action }) {
               </option>
             ))}
           </select>
-          {console.log(selectedRowIds)}
-          {selectedFlatRows.map((d) => setSelectedData(d.original))}
+          {/* {console.log(selectedRowIds)} */}
+          {/* {selectedFlatRows.map((d) => setSelectedData(d.original))} */}
         </div>
       </div>
-      {/* <button onClick={()=>setSelectedData()}>Set Selected</button> */}
+      {/* <button
+        onClick={() =>
+          setSelectedData(
+            data[1]
+          )
+        }
+      >
+        Set Selected
+      </button> */}
     </div>
   );
 }

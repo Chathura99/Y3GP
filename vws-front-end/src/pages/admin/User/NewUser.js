@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
+
 export default function NewUser() {
   useEffect(() => {
     checkValidate();
@@ -19,23 +20,6 @@ export default function NewUser() {
       nic: "998547521v",
       phone: "+94 75 025 1451",
       date: "2022 09 12",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Rejister
-        </button>
-      ),
     },
   ]);
 
@@ -45,12 +29,28 @@ export default function NewUser() {
     { accessor: "nic", Header: "NIC" },
     { accessor: "phone", Header: "PHONE" },
     { accessor: "date", Header: "DATE" },
-    { accessor: "status", Header: "STATUS" },
   ]);
+  const [selecteJoinRequestsData, setSelectedJoinRequestsData] = useState({
+    id: 23,
+    firstName: "Madura",
+    lastName: "Chamodara",
+    email: "mc123@gmail.com",
+    phoneNumber: "0715248569",
+    address: "Polgahawela",
+    universityCollege: "Colombo",
+    district: "Kurunegala",
+    date: null,
+    status: 0,
+    nic: "985475865v",
+    info: "Singing",
+    other: "",
+  });
+
+
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
-        <div className="row gutters mt-10">
+        {/* <div className="row gutters mt-10">
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
@@ -71,31 +71,40 @@ export default function NewUser() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="row gutters mt-3">
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-              <h5>New Users</h5>
+                <h5>New Users</h5>
 
                 <NewTable
                   columns={joinRequestsTableHead}
-                  data={joinRequestsData}                 
+                  data={joinRequestsData}
+                  action={
+                    <button
+                      type="button"
+                      class="btn"
+                      data-toggle="modal"
+                      data-target="#registerUser"
+                      style={{
+                        backgroundColor: "#96BE25",
+                        border: "none",
+                        marginRight: "2px",
+                      }}
+                    >
+                      Register
+                    </button>
+                  }
                 />
               </div>
             </div>
           </div>
         </div>
-        <RegisterNewUser />
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          data-target="#registerUser"
-        >
-          Register
-        </button>
+        <RegisterNewUser
+          data={selecteJoinRequestsData}
+        />
       </div>
     </>
   );

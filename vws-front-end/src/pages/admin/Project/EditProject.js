@@ -57,7 +57,7 @@ export default function EditProject() {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Current Coordinator : Malik Wijesuriya</small>
+                  <small>Current Coordinator : 	Hazeen Ram</small>
                   <br></br>
                   <small>Phone : 0712584568</small>
                 </div>
@@ -102,7 +102,7 @@ export default function EditProject() {
                     value="Kamal Silva"
                     //   onChange={handleChange}
                     >
-                        <option>Namal Priyan</option>
+                        <option>	Hazeen Ram</option>
                         <option>Lasitha Nawarathne</option>
                     </select>
                   </div>
@@ -167,7 +167,7 @@ export default function EditProject() {
 
                         // onClick=
                       >
-                        Create
+                        Save
                       </button>
                     </div>
                   </div>
