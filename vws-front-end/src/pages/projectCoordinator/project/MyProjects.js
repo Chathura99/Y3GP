@@ -92,7 +92,7 @@ export default function PcMyProject() {
     { accessor: "startdate", Header: "Start Date" },
     // { id: "no_of_members", label: "Coordinate Events" },
     // { id: "location", label: "Location" },
-    { accessor: "action", Header: "Action" },
+    { accessor: "action", Header: "Status" },
 
   ]);
 
