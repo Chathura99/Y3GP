@@ -16,13 +16,23 @@ export default function Event() {
   const [upComingEventData, setUpComingEventData] = useState([
     {
       eventId: "E015",
-      category: "Adurata Eliyak",
-      eventCoordinator: "Yashodha Sub",
+      category: "Ganitha Saviya",
+      eventCoordinator: "Yashodha Sub.",
       phone: "+94 71 5486 957",
       startsOn: "2020-10-21",
       endsOn: "2020-10-21",
-      noOfMembers: "2020-10-21",
-      location: "2020-10-21",
+      noOfMembers: "10",
+      location: "Nikaweratiya",
+    },
+    {
+      eventId: "E016",
+      category: "Ganitha Saviya",
+      eventCoordinator: "Sumudu Per.",
+      phone: "+94 70 1116 957",
+      startsOn: "2020-11-21",
+      endsOn: "2020-10-21",
+      noOfMembers: "25",
+      location: "Hambantota",
     },
   ]);
   const [previousEventData, setPreviousEventData] = useState([

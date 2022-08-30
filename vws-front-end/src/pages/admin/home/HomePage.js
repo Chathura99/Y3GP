@@ -65,10 +65,10 @@ export default function HomePage() {
       { accessor: "firstName", Header: "NAME" },
       { accessor: "nic", Header: "NIC" },
       { accessor: "phoneNumber", Header: "PHONE" },
-      { accessor: "date", Header: "DATE" },
+      // { accessor: "date", Header: "DATE" },
       { accessor: "district", Header: "DISTRICT" },
       { accessor: "universityCollege", Header: "UNIVERSITY" },
-      { accessor: "status", Header: "STATUS" },
+      // { accessor: "status", Header: "STATUS" },
     ],
     []
   );

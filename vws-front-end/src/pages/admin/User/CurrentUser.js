@@ -41,6 +41,112 @@ export default function CurrentUser() {
           Active
         </button>
       ),
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#BE4D25",
+            border: "none",
+            marginRight: 0,
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Remove
+        </button>
+      ),
+      
+    },
+    {
+      userID: "E001",
+      email: "rm@gmail.com",
+      name: "Ravindu Medagama",
+      phone: "+94 75 4785 123",
+      joinDate: "2020-10-21",
+      university: "COlombo",
+      position: "Volunteer",
+      district: "Bandaragama",
+      status: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#96BE25",
+            border: "none",
+            marginRight: 0,
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Active
+        </button>
+      ),
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#BE4D25",
+            border: "none",
+            marginRight: 0,
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Remove
+        </button>
+      ),
+    },
+    {
+      userID: "E001",
+      email: "mw@gmail.com",
+      name: "Malik Wijesuriya",
+      phone: "+94 75 4785 123",
+      joinDate: "2020-10-21",
+      university: "COlombo",
+      position: "Project Coordinator",
+      district: "Panadura",
+      status: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#96BE25",
+            border: "none",
+            marginRight: 0,
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Active
+        </button>
+      ),
+      action: (
+        <button
+          type="button"
+          id="submit"
+          name="submit"
+          className="btn mt-0"
+          style={{
+            backgroundColor: "#BE4D25",
+            border: "none",
+            marginRight: 0,
+          }}
+          // #96BE25,#BE4D25
+          // onClick={handleSubmit}
+        >
+          Remove
+        </button>
+      ),
     },
   ]);
 
@@ -54,6 +160,8 @@ export default function CurrentUser() {
     { accessor: "position", Header: "POSITION" },
     { accessor: "district", Header: "LOCATION" },
     { accessor: "status", Header: "STATUS" },
+    { accessor: "action", Header: "ACTION" },
+
   ]);
 
   const [pieChartData, setPieChartData] = useState([
