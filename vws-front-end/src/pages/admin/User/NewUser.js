@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import NewTable from "../../../utilities/Table/NewTable";
+// component
 import RegisterNewUser from "./RegisterNewUser";
-import MaterialTable from "material-table";
-import Save from "@material-ui/icons/Save";
-import Delete from "@material-ui/icons/Delete";
-import Search from "@material-ui/icons/Search";
+// service access
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import { deleteRequest } from "../../../services/adminServices/JoinRequestService";
-
+// popups
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 
 export default function NewUser() {
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function NewUser() {
 
   const saveSelectedRequest = () => {
     console.log("saved");
-    //
+    //To Do
   };
   const deleteSelectedRequest = () => {
     console.log("deleted " + selectedJoinRequestsData.id);
@@ -75,13 +75,17 @@ export default function NewUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <h5>New Users</h5>
+                
                 <MaterialTable
-                  title=""
+                  components={{
+                    Container: (props) => <Paper {...props} elevation={0} />,
+                  }}
+                  options={{ actionsColumnIndex: -1 }}
+                  title="New Users"
                   columns={[
                     { title: "REQUEST ID", field: "id" },
-                    { title: "first Name", field: "firstName" },
-                    { title: "Last Name", field: "lastName" },
+                    { title: "FIRST NAME", field: "firstName" },
+                    { title: "LAST NAME", field: "lastName" },
                     { title: "NIC", field: "nic" },
                     { title: "PHONE", field: "phoneNumber" },
                     { title: "DATE", field: "date" },
@@ -90,16 +94,22 @@ export default function NewUser() {
                   data={joinRequestsData}
                   actions={[
                     {
-                      icon: Save,
-                      tooltip: "Save User",
-                      onClick: (event, rowData) => {
-                        setSelectedJoinRequestsData(rowData);
-                        setSelected(true);
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#BE4D25",
+                              border: "none",
+                              // marginRight: "2px",
+                            }}
+                          >
+                            Remove
+                          </button>
+                        );
                       },
-                    },
-                    {
-                      icon: Delete,
-                      tooltip: "Delete User",
+                      // tooltip: "Remove Request",
                       onClick: (event, rowData) => {
                         setSelectedJoinRequestsData(rowData);
                         {
@@ -112,6 +122,27 @@ export default function NewUser() {
                             rowData.id
                         );
                       },
+                    },
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#96BE25",
+                              border: "none",
+                            }}
+                          >
+                            Register
+                          </button>
+                        );
+                      },
+                      onClick: (event, rowData) => {
+                        setSelectedJoinRequestsData(rowData);
+                        setSelected(true);
+                      },
+                      // tooltip: "Register User",
                     },
                   ]}
                 />
