@@ -139,4 +139,8 @@ public class SignUpService {
         authority.setRoleDescription(roleDescription);
         return authority;
     }
+
+    public int deleteRequest(Long id) {
+        return joinRequestJdbcRepository.deleteRequest(id);
+    }
 }

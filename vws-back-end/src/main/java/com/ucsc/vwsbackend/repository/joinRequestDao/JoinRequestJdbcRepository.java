@@ -1,6 +1,5 @@
 package com.ucsc.vwsbackend.repository.joinRequestDao;
 
-import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
 import com.ucsc.vwsbackend.entities.JoinRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -61,5 +60,15 @@ public class JoinRequestJdbcRepository {
 
         int rowsAffected = jdbc.update(update, namedParameters);
         return rowsAffected;
+    }
+
+    public int deleteRequest(Long id) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String delete = "DELETE FROM join_request WHERE id = :id;";
+
+        namedParameters.addValue("id", id);
+
+        return jdbc.update(delete, namedParameters);
     }
 }
