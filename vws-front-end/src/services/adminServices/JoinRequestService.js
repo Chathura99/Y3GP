@@ -37,3 +37,14 @@ export const getParticularJoinRequestData= (id) => {
     },
   });
 };
+
+export const deleteRequest = (id) => {
+  return axios({
+    method: "DELETE",
+    url: `${USER_URL}/deleteRequest/${id}`,
+    headers: {
+    Authorization: "Bearer " + getToken(),
+  },
+  });
+  
+};

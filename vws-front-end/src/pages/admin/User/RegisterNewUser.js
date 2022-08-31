@@ -7,9 +7,9 @@ import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
 import { signUpApprove } from "../../../services/adminServices/JoinRequestService";
 
-export default function AddAnnouncement(data) {
+export default function AddAnnouncement(props) {
   // console.log(data.data)
-  const [requestData, setRequestData] = useState(data.data);
+  const [requestData, setRequestData] = useState(props.data);
 
   // open success/error pop up modals and set display message
   const [popup, setPopUp] = useState("");
@@ -47,12 +47,13 @@ export default function AddAnnouncement(data) {
   return (
     <div>
       <div
-        class="modal fade"
+        class="modal fade show"
         id="registerUser"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        style={{ display: "block" }}
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -65,6 +66,7 @@ export default function AddAnnouncement(data) {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={()=>props.setSelected(false)}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -292,6 +294,9 @@ export default function AddAnnouncement(data) {
                           type="submit"
                           name="submit"
                           class="btn btn-primary btn-sm"
+                          onClick={()=>{
+                            props.saveRequest()
+                          }}
                         >
                           Register
                         </button>
@@ -304,6 +309,8 @@ export default function AddAnnouncement(data) {
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
+
       {popup === "success" && (
         <SuccessPopUp message={message} closePopUp={closePopUp} />
       )}
