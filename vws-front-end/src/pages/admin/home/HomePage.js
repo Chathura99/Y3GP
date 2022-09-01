@@ -10,6 +10,9 @@ import Loading from "../../../utilities/Loading/Loading";
 import NewTable from "../../../utilities/Table/NewTable";
 import RegisterNewUser from "./RegisterNewUser";
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 
 export default function HomePage() {
   const [upComingEventsData, setUpComingEventsData] = useState([
@@ -39,14 +42,6 @@ export default function HomePage() {
     },
   ]);
 
-  const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
-    { accessor: "eventId", Header: "EVENT ID" },
-    { accessor: "project", Header: "PROJECT NAME" },
-    { accessor: "place", Header: "PLACE" },
-    { accessor: "member", Header: "MEMBERS" },
-    { accessor: "coordinator", Header: "COORDINATOR" },
-    { accessor: "date", Header: "DATE" },
-  ]);
 
   const [pieChartData, setPieChartData] = useState([
     ["Task", "votes"],
@@ -56,22 +51,6 @@ export default function HomePage() {
 
   const [joinRequestsData, setJoinRequestsData] = useState([]);
   const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
-
-  // const data = useMemo(() => joinRequestsData);
-
-  const joinRequestsTableHead = useMemo(
-    () => [
-      { accessor: "id", Header: "REQ_ID" },
-      { accessor: "firstName", Header: "NAME" },
-      { accessor: "nic", Header: "NIC" },
-      { accessor: "phoneNumber", Header: "PHONE" },
-      // { accessor: "date", Header: "DATE" },
-      { accessor: "district", Header: "DISTRICT" },
-      { accessor: "universityCollege", Header: "UNIVERSITY" },
-      // { accessor: "status", Header: "STATUS" },
-    ],
-    []
-  );
 
   const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
@@ -100,22 +79,13 @@ export default function HomePage() {
     }
   };
 
-  const [selectedId, setSelectedId] = useState(0);
-  window.onclick = (e) => {
-    // console.log(e.target.parentNode.id);
-    setSelectedId(e.target.parentNode.id);
-  };
+  const [selected, setSelected] = useState(false);
 
   const [popup, setPopUp] = useState("");
   const [message, setMessage] = useState("");
   // close pop up modal
   const closePopUp = () => {
     setPopUp("");
-  };
-
-  const set = async () => {
-    var member = await getParticularJoinRequestData(selectedId);
-    setSelectedJoinRequestsData(member.data);
   };
 
   return (
@@ -215,16 +185,49 @@ export default function HomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                <div className="row gutters">
-                  <h5 style={{ paddingLeft: "30px" }}>Upcoming Events</h5>
-                </div>
-                <div className="row gutters ">
-                  <NewTable
-                    columns={upComingEventsTableHead}
+                
+              
+
+                  <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Upcoming Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID", minWidth:"120px" },
+                      { field: "project", title: "PROJECT NAME", minWidth:"150px" },
+                      { field: "place", title: "PLACE" },
+                      { field: "member", title: "MEMBERS" },
+                      { field: "coordinator", title: "COORDINATOR" },
+                      { field: "date", title: "DATE", minWidth:"100px" },
+                    ]}
                     data={upComingEventsData}
-                    setSelectedData={setSelectedJoinRequestsData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              More...
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          setSelectedJoinRequestsData(rowData);
+                          setSelected(true);
+                        },
+                        // tooltip: "Register User",
+                      },
+                    ]}
                   />
-                </div>
+                
               </div>
             </div>
           </div>
@@ -239,6 +242,7 @@ export default function HomePage() {
                 </div>
                 <div className="row gutters ">
                   <DonutChart data={donutChartData} />
+                  Project Occuring details . . .
                 </div>
               </div>
             </div>
@@ -265,47 +269,57 @@ export default function HomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <h5>Join Requests</h5>
-
-                <NewTable
-                  columns={joinRequestsTableHead}
+                <MaterialTable
+                  components={{
+                    Container: (props) => <Paper {...props} elevation={0} />,
+                  }}
+                  options={{ actionsColumnIndex: -1 }}
+                  title="Join Requests"
+                  columns={[
+                    { title: "REQUEST ID", field: "id" },
+                    { title: "FIRST NAME", field: "firstName" },
+                    { title: "LAST NAME", field: "lastName" },
+                    { title: "NIC", field: "nic" },
+                    { title: "PHONE", field: "phoneNumber" },
+                    { title: "DATE", field: "date" },
+                    { title: "DISTRICT", field: "district" },
+                  ]}
                   data={joinRequestsData}
-                  setSelectedData={setSelectedJoinRequestsData}
-                  action={
-                    <button
-                      type="button"
-                      id="submit"
-                      name="submit"
-                      className="btn mt-0"
-                      style={{
-                        backgroundColor: "#96BE25",
-                        border: "none",
-                        marginRight: "2px",
-                      }}
-                      data-target="#registerUser"
-                      data-toggle="modal"
-                      onClick={() => {
-                        set();
-                      }}
-                    >
-                      Register
-                    </button>
-                  }
+                  actions={[
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#96BE25",
+                              border: "none",
+                            }}
+                          >
+                            Register
+                          </button>
+                        );
+                      },
+                      onClick: (event, rowData) => {
+                        setSelectedJoinRequestsData(rowData);
+                        setSelected(true);
+                      },
+                      // tooltip: "Register User",
+                    },
+                  ]}
                 />
               </div>
             </div>
           </div>
-          {console.log("--->" + selectedId)}
-
-          
         </div>
       </div>
-     {selectedJoinRequestsData.id && (
-            <RegisterNewUser
-              data={selectedJoinRequestsData}
-              setSelectedData={setSelectedJoinRequestsData}
-            />
-          )}
+      {selectedJoinRequestsData.id && (
+        <RegisterNewUser
+          data={selectedJoinRequestsData}
+          setSelectedData={setSelectedJoinRequestsData}
+        />
+      )}
     </>
   );
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import NewTable from "../../../utilities/Table/NewTable";
 import AddEventProgress from "./AddEventProgress";
-
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 export default function Event() {
   useEffect(() => {
     checkValidate();
@@ -13,6 +15,8 @@ export default function Event() {
       window.location.href = "/";
     }
   };
+  const [selected, setSelected] = useState(false);
+
   const [upComingEventData, setUpComingEventData] = useState([
     {
       eventId: "E015",
@@ -45,24 +49,7 @@ export default function Event() {
       endsOn: "2020-10-22",
       noOfMembers: 10,
       location: "Nuwara Eliya",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#BE4D25",
-            border: "none",
-            marginRight: 0,
-            padding: "6px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Cancelled
-        </button>
-      ),
+      status: "Cancelled",
     },
     {
       eventId: "E002",
@@ -73,51 +60,10 @@ export default function Event() {
       endsOn: "2020-10-22",
       noOfMembers: 10,
       location: "Dambadeniya",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          data-toggle="modal"
-          data-target="#addeventprogress"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: 0,
-            padding: "6px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Complete
-        </button>
-      ),
+      status: "Completed",
     },
   ]);
 
-  const [previousEventTableHead, setPreviousEventTableHead] = useState([
-    { accessor: "eventId", Header: "EVENT ID" },
-    { accessor: "category", Header: "CATEGORY" },
-    { accessor: "eventCoordinator", Header: "COORDINATOR" },
-    { accessor: "phone", Header: "PHONE" },
-    { accessor: "startsOn", Header: "STARTS ON" },
-    { accessor: "endsOn", Header: "ENDS ON" },
-    { accessor: "noOfMembers", Header: "NO OF MEMBERS" },
-    { accessor: "location", Header: "LOCATION" },
-    { accessor: "status", Header: "STATUS" },
-  ]);
-
-  const [upComingEventTableHead, setupComingEventTableHead] = useState([
-    { accessor: "eventId", Header: "EVENT ID" },
-    { accessor: "category", Header: "CATEGORY" },
-    { accessor: "eventCoordinator", Header: "COORDINATOR" },
-    { accessor: "phone", Header: "PHONE" },
-    { accessor: "startsOn", Header: "STARTS ON" },
-    { accessor: "endsOn", Header: "ENDS ON" },
-    { accessor: "noOfMembers", Header: "NO OF MEMBERS" },
-    { accessor: "location", Header: "LOCATION" },
-  ]);
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -126,11 +72,50 @@ export default function Event() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters "></div>
-                <h5>Upcoming Events</h5>
-                <div className="row gutters ">
-                  <NewTable
-                    columns={upComingEventTableHead}
+                <div
+                  className="row gutters "
+                  style={{ justifyContent: "center" }}
+                >
+                  <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Upcoming Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID" },
+                      { field: "category", title: "CATEGORY" },
+                      { field: "eventCoordinator", title: "COORDINATOR" },
+                      { field: "phone", title: "PHONE" },
+                      { field: "startsOn", title: "STARTS ON" },
+                      { field: "endsOn", title: "ENDS ON" },
+                      { field: "noOfMembers", title: "NO OF MEMBERS" },
+                      { field: "location", title: "LOCATION" },
+                    ]}
                     data={upComingEventData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              Details
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          // setSelectedJoinRequestsData(rowData);
+                          // setSelected(true);
+                        },
+                        // tooltip: "Register User",
+                      },
+                    ]}
                   />
                 </div>
               </div>
@@ -143,26 +128,65 @@ export default function Event() {
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters "></div>
-                <h5>Previous Events</h5>
-                <div className="row gutters ">
-                  <NewTable
-                    columns={previousEventTableHead}
+                {/* <h5>Previous Events</h5> */}
+                <div
+                  className="row gutters "
+                  style={{ justifyContent: "center" }}
+                >
+                  <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Previous Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID" },
+                      { field: "category", title: "CATEGORY" },
+                      { field: "eventCoordinator", title: "COORDINATOR" },
+                      { field: "phone", title: "PHONE" },
+                      { field: "startsOn", title: "STARTS ON" },
+                      { field: "endsOn", title: "ENDS ON" },
+                      { field: "noOfMembers", title: "NO OF MEMBERS" },
+                      { field: "location", title: "LOCATION" },
+                      { field: "status", title: "STATUS" },
+                    ]}
                     data={previousEventData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              Details
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          // setSelectedJoinRequestsData(rowData);
+                          setSelected(true);
+                        },
+                        // tooltip: "Register User",
+                      },
+                    ]}
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <AddEventProgress />
-        {/* <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          data-target="#addeventprogress"
-        >
-          Progress
-        </button> */}
+
+        {selected && (
+          <AddEventProgress 
+          setSelected={setSelected}
+          />
+        )}
+        
       </div>
     </>
   );

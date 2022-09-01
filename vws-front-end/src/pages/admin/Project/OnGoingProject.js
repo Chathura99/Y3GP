@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
-import NewTable from "../../../utilities/Table/NewTable";
 import EditProject from "./EditProject";
-
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 export default function OnGoingProject() {
   useEffect(() => {
     checkValidate();
@@ -21,23 +22,6 @@ export default function OnGoingProject() {
       coordinator: "Hazeen Ram",
       phone: "+94 76 7845 111",
       startedOn: "2020-10-21",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Edit
-        </button>
-      ),
     },
     {
       projectId: "P002",
@@ -45,26 +29,16 @@ export default function OnGoingProject() {
       coordinator: "Chamath Sha",
       phone: "+94 70 2542 336",
       startedOn: "2019-12-01",
-     
     },
-    ,
     {
       projectId: "P003",
       projectName: "Sidu Mediya",
       coordinator: "Bawantha Ranasin",
       phone: "+94 70 2542 336",
       startedOn: "2019-12-01",
-     
     },
   ]);
 
-  const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { accessor: "projectId", Header: "PROJECT ID" },
-    { accessor: "projectName", Header: "PROJECT NAME" },
-    { accessor: "coordinator", Header: "COORDINATOR" },
-    { accessor: "phone", Header: "PHONE" },
-    { accessor: "startedOn", Header: "STARTED ON" },
-  ]);
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
@@ -81,6 +55,8 @@ export default function OnGoingProject() {
     ["May", 300, 4, 18, 1, 1],
     ["Jun", 200, 5, 20, 1, 1],
   ]);
+  const [selected, setSelected] = useState(false);
+
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -93,6 +69,8 @@ export default function OnGoingProject() {
                 </div>
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
+                  This chat shows . . .
+
                 </div>
               </div>
             </div>
@@ -103,50 +81,58 @@ export default function OnGoingProject() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <div className="row gutters "></div>
-                <h5 style={{paddingLeft:"30px"}}>Ongoing Projects</h5>
-
-                <div className="row gutters ">
-                  
-                  <NewTable
-                  columns={onGoingProjectTableHead}
-                  data={onGoingProjectData}    
-                  action={
-                    <button
-                  type="button"
-                  class="btn"
-                  data-toggle="modal"
-                  data-target="#editproject"
-                  style={{
-                    backgroundColor: "#96BE25",
-                    border: "none",
-                    marginRight: 0,
-                  }}
+                <div
+                  className="row gutters "
+                  style={{ justifyContent: "center" }}
                 >
-                  Edit
-                </button>
-                  }             
-                />
+                  <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Ongoing Projects"
+                    columns={[
+                      { field: "projectId", title: "PROJECT ID" },
+                      { field: "projectName", title: "PROJECT NAME" },
+                      { field: "coordinator", title: "COORDINATOR" },
+                      { field: "phone", title: "PHONE" },
+                      { field: "startedOn", title: "STARTED ON" },
+                    ]}
+                    data={onGoingProjectData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              Edit
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          // setSelectedJoinRequestsData(rowData);
+                          setSelected(true);
+                        },
+                        // tooltip: "Register User",
+                      },
+                    ]}
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <EditProject />
-                {/* <button
-                  type="button"
-                  class="btn"
-                  data-toggle="modal"
-                  data-target="#editproject"
-                  style={{
-                    backgroundColor: "#96BE25",
-                    border: "none",
-                    marginRight: 0,
-                  }}
-                >
-                  Edit
-                </button> */}
-                <br></br>
+
+        {selected && <EditProject setSelected={setSelected} />}
+
+        <br></br>
       </div>
     </>
   );

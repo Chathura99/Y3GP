@@ -1,25 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Initializeproject() {
-  //   const [requestData, setRequestData] = useState(
-  //     {
-  //       firstName: "chathura",
-  //       lastName: "manohara",
-  //       email: "c@gmail.com",
-  //       phoneNumber: "0715248569",
-  //       address: "Polgahawela",
-  //       universityCollege: "Colombo",
-  //       district: "Kurunegala",
-  //       date: "2021-10-11",
-  //       status: 0,
-  //       nic: "985475865v",
-  //       info: "Singing",
-  //       other: "",
-  //     },
-  //     []
-  //   );
-
+export default function Initializeproject(props) {
   const handleChange = (e) => {
     // e.persist();
     // console.log(e.target.name + "-" + e.target.value);
@@ -32,12 +14,13 @@ export default function Initializeproject() {
   return (
     <div>
       <div
-        class="modal fade"
+        class="modal fade show"
         id="initializeproject"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        style={{ display: "block" }}
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -48,8 +31,9 @@ export default function Initializeproject() {
               <button
                 type="button"
                 class="close"
-                data-dismiss="modal"
-                aria-label="Close"
+                onClick={() => {
+                  props.setSelected(false);
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -149,37 +133,38 @@ export default function Initializeproject() {
                     />
                   </div>
                 </div>
+              </div>
 
-                <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div className="text-center mt-3 ">
-                      <Link to="/adminproposedproject">
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          class="btn btn-secondary btn-sm"
-                          data-dismiss="modal"
-                aria-label="Close"
-                        >
-                          Cancel
-                        </button>
-                      </Link>
-
+              <div className="row gutters">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div className="text-center mt-3 ">
+                    <Link to="/adminproposedproject">
                       <button
-                        type="submit"
+                        type="button"
+                        id="submit"
                         name="submit"
-                        class="btn btn-primary btn-sm"
-                        //   {...(Object.keys(errors).length === true)}
-                        //   style={{backgroundColor:"white"}}
-
-                        title="Please fill the form correctly!"
-
-                        // onClick=
+                        class="btn btn-secondary btn-sm"
+                        onClick={() => {
+                          props.setSelected(false);
+                        }}
                       >
-                        Create
+                        Cancel
                       </button>
-                    </div>
+                    </Link>
+
+                    <button
+                      type="submit"
+                      name="submit"
+                      class="btn btn-primary btn-sm"
+                      //   {...(Object.keys(errors).length === true)}
+                      //   style={{backgroundColor:"white"}}
+
+                      title="Please fill the form correctly!"
+
+                      // onClick=
+                    >
+                      Create
+                    </button>
                   </div>
                 </div>
               </div>
@@ -187,6 +172,7 @@ export default function Initializeproject() {
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
     </div>
   );
 }

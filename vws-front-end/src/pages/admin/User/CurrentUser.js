@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import PieChart from "../../../utilities/Charts/PieChart";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
 import NewTable from "../../../utilities/Table/NewTable";
-
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 export default function CurrentUser() {
   useEffect(() => {
     checkValidate();
@@ -16,7 +18,7 @@ export default function CurrentUser() {
   };
   const [currentUserTableData, setCurrentUserTableData] = useState([
     {
-      userID: "E001",
+      userID: "1",
       email: "namal@gmail.com",
       name: "Namal rathnaweera",
       phone: "+94 75 4785 123",
@@ -24,44 +26,10 @@ export default function CurrentUser() {
       university: "Peradeniya",
       position: "Volunteer",
       district: "Kandy",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Active
-        </button>
-      ),
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#BE4D25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Remove
-        </button>
-      ),
-      
+      status: "Active",
     },
     {
-      userID: "E001",
+      userID: "2",
       email: "rm@gmail.com",
       name: "Ravindu Medagama",
       phone: "+94 75 4785 123",
@@ -69,99 +37,8 @@ export default function CurrentUser() {
       university: "COlombo",
       position: "Volunteer",
       district: "Bandaragama",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Active
-        </button>
-      ),
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#BE4D25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Remove
-        </button>
-      ),
+      status: "Active",
     },
-    {
-      userID: "E001",
-      email: "mw@gmail.com",
-      name: "Malik Wijesuriya",
-      phone: "+94 75 4785 123",
-      joinDate: "2020-10-21",
-      university: "COlombo",
-      position: "Project Coordinator",
-      district: "Panadura",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Active
-        </button>
-      ),
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#BE4D25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Remove
-        </button>
-      ),
-    },
-  ]);
-
-  const [currentUserTableHead, setCurrentUserTableHead] = useState([
-    { accessor: "userID", Header: "USER ID" },
-    { accessor: "email", Header: "EMAIL" },
-    { accessor: "name", Header: "NAME" },
-    { accessor: "phone", Header: "PHONE" },
-    { accessor: "joinDate", Header: "JOIN DATE" },
-    { accessor: "university", Header: "UNIVERSITY" },
-    { accessor: "position", Header: "POSITION" },
-    { accessor: "district", Header: "LOCATION" },
-    { accessor: "status", Header: "STATUS" },
-    { accessor: "action", Header: "ACTION" },
-
   ]);
 
   const [pieChartData, setPieChartData] = useState([
@@ -192,6 +69,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <PieChart data={pieChartData} />
+                  This chat shows . . .
                 </div>
               </div>
             </div>
@@ -205,6 +83,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
+                  This chat shows . . .
                 </div>
               </div>
             </div>
@@ -215,11 +94,51 @@ export default function CurrentUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <h5>Current Users</h5>
-
-                <NewTable
-                  columns={currentUserTableHead}
+                <MaterialTable
+                  components={{
+                    Container: (props) => <Paper {...props} elevation={0} />,
+                  }}
+                  options={{ actionsColumnIndex: -1 }}
+                  title="Current Users"
+                  columns={[
+                    { field: "userID", title: "USER ID" },
+                    { field: "email", title: "EMAIL" },
+                    { field: "name", title: "NAME" },
+                    { field: "phone", title: "PHONE" },
+                    {
+                      field: "joinDate",
+                      title: "JOIN DATE",
+                      minWidth: "120px",
+                    },
+                    { field: "university", title: "UNIVERSITY" },
+                    { field: "position", title: "POSITION" },
+                    { field: "district", title: "LOCATION" },
+                    { field: "status", title: "STATUS" },
+                  ]}
                   data={currentUserTableData}
+                  actions={[
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#BE4D25",
+                              border: "none",
+                            }}
+                          >
+                           Remove
+                          </button>
+                        );
+                      },
+                      onClick: (event, rowData) => {
+                        // setSelectedJoinRequestsData(rowData);
+                        // setSelected(true);
+                      },
+                      // tooltip: "Register User",
+                    },
+                  ]}
                 />
               </div>
             </div>

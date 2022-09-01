@@ -1,25 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function EditProject() {
-  //   const [requestData, setRequestData] = useState(
-  //     {
-  //       firstName: "chathura",
-  //       lastName: "manohara",
-  //       email: "c@gmail.com",
-  //       phoneNumber: "0715248569",
-  //       address: "Polgahawela",
-  //       universityCollege: "Colombo",
-  //       district: "Kurunegala",
-  //       date: "2021-10-11",
-  //       status: 0,
-  //       nic: "985475865v",
-  //       info: "Singing",
-  //       other: "",
-  //     },
-  //     []
-  //   );
-
+export default function EditProject(props) {
   const handleChange = (e) => {
     // e.persist();
     // console.log(e.target.name + "-" + e.target.value);
@@ -32,12 +14,14 @@ export default function EditProject() {
   return (
     <div>
       <div
-        class="modal fade"
+        class="modal fade show"
         id="editproject"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        style={{ display: "block" }}
+
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -50,6 +34,9 @@ export default function EditProject() {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={()=>{
+                  props.setSelected(false)
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -57,7 +44,7 @@ export default function EditProject() {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Current Coordinator : 	Hazeen Ram</small>
+                  <small>Current Coordinator : Hazeen Ram</small>
                   <br></br>
                   <small>Phone : 0712584568</small>
                 </div>
@@ -95,15 +82,15 @@ export default function EditProject() {
                       onChange={handleChange}
                     /> */}
                     <select
-                    type="text"
-                    className="form-control"
-                    id="projectCoordinator"
-                    name="projectCoordinator"
-                    value="Kamal Silva"
-                    //   onChange={handleChange}
+                      type="text"
+                      className="form-control"
+                      id="projectCoordinator"
+                      name="projectCoordinator"
+                      value="Kamal Silva"
+                      //   onChange={handleChange}
                     >
-                        <option>	Hazeen Ram</option>
-                        <option>Lasitha Nawarathne</option>
+                      <option> Hazeen Ram</option>
+                      <option>Lasitha Nawarathne</option>
                     </select>
                   </div>
                 </div>
@@ -143,14 +130,15 @@ export default function EditProject() {
                 <div className="row gutters">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="text-center mt-3 ">
-                      <Link to="/adminproposedproject">
+                      <Link to="/adminongoingproject">
                         <button
                           type="button"
                           id="submit"
                           name="submit"
                           class="btn btn-secondary btn-sm"
-                          data-dismiss="modal"
-                aria-label="Close"
+                          onClick={()=>{
+                            props.setSelected(false)
+                          }}
                         >
                           Cancel
                         </button>
@@ -177,6 +165,7 @@ export default function EditProject() {
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
     </div>
   );
 }
