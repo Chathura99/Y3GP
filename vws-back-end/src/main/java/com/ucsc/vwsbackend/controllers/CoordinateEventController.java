@@ -1,15 +1,13 @@
 package com.ucsc.vwsbackend.controllers;
 
-import com.ucsc.vwsbackend.dto.AnnouncementInfo;
-import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
-import com.ucsc.vwsbackend.entities.Announcement;
+
 import com.ucsc.vwsbackend.entities.Event;
-import com.ucsc.vwsbackend.services.AnnouncementService;
+
 import com.ucsc.vwsbackend.services.CoordinateEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 //@RequestMapping("/api/v1")
