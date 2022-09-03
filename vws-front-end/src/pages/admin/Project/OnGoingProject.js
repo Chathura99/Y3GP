@@ -4,9 +4,13 @@ import EditProject from "./EditProject";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
+// services
+import { getOngoingProjects } from "../../../services/projectServices/projectService";
+
 export default function OnGoingProject() {
   useEffect(() => {
     checkValidate();
+    getOngoingProjectDetails();
   }, []);
 
   const checkValidate = async () => {
@@ -15,29 +19,14 @@ export default function OnGoingProject() {
       window.location.href = "/";
     }
   };
-  const [onGoingProjectData, setOnGoingProjectData] = useState([
-    {
-      projectId: "P001",
-      projectName: "Ganitha Saviya",
-      coordinator: "Hazeen Ram",
-      phone: "+94 76 7845 111",
-      startedOn: "2020-10-21",
-    },
-    {
-      projectId: "P002",
-      projectName: "Re-green Earth",
-      coordinator: "Chamath Sha",
-      phone: "+94 70 2542 336",
-      startedOn: "2019-12-01",
-    },
-    {
-      projectId: "P003",
-      projectName: "Sidu Mediya",
-      coordinator: "Bawantha Ranasin",
-      phone: "+94 70 2542 336",
-      startedOn: "2019-12-01",
-    },
-  ]);
+
+  const getOngoingProjectDetails = async () => {
+    const res = await getOngoingProjects();
+    // console.log(res.data);
+    setOnGoingProjectData(res.data);
+  };
+  const [onGoingProjectData, setOnGoingProjectData] = useState([]);
+  const [selectedProject, setSelectedProject] = useState({});
 
   const [lineChartData, setLineChartData] = useState([
     [
@@ -70,7 +59,6 @@ export default function OnGoingProject() {
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
                   This chat shows . . .
-
                 </div>
               </div>
             </div>
@@ -93,10 +81,18 @@ export default function OnGoingProject() {
                     title="Ongoing Projects"
                     columns={[
                       { field: "projectId", title: "PROJECT ID" },
-                      { field: "projectName", title: "PROJECT NAME" },
-                      { field: "coordinator", title: "COORDINATOR" },
-                      { field: "phone", title: "PHONE" },
-                      { field: "startedOn", title: "STARTED ON" },
+                      {
+                        field: "name",
+                        title: "PROJECT NAME",
+                        minWidth: "150px",
+                      },
+                      { field: "firstName", title: "COORDINATOR" },
+                      { field: "phoneNumber", title: "PHONE" },
+                      {
+                        field: "startDate",
+                        title: "STARTED ON",
+                        minWidth: "150px",
+                      },
                     ]}
                     data={onGoingProjectData}
                     actions={[
@@ -117,7 +113,7 @@ export default function OnGoingProject() {
                           );
                         },
                         onClick: (event, rowData) => {
-                          // setSelectedJoinRequestsData(rowData);
+                          setSelectedProject(rowData);
                           setSelected(true);
                         },
                         // tooltip: "Register User",
@@ -130,7 +126,9 @@ export default function OnGoingProject() {
           </div>
         </div>
 
-        {selected && <EditProject setSelected={setSelected} />}
+        {selected && (
+          <EditProject setSelected={setSelected} data={selectedProject} />
+        )}
 
         <br></br>
       </div>
