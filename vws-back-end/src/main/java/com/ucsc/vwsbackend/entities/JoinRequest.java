@@ -2,9 +2,10 @@ package com.ucsc.vwsbackend.entities;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Table(name="join_request")
 @Entity
@@ -16,14 +17,6 @@ public class JoinRequest {
 
     @Column(name = "nic")
     private String nic;
-
-    public String getNic() {
-        return nic;
-    }
-
-    public void setNic(String nic) {
-        this.nic = nic;
-    }
 
     @Column(name = "first_name")
     private String firstName;
@@ -48,7 +41,8 @@ public class JoinRequest {
 
     @Column(name = "requested_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime date;
+    @CreationTimestamp
+    private Date date;
 
     @Column(name="status")
     private int status;
@@ -120,11 +114,11 @@ public class JoinRequest {
         this.district = district;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

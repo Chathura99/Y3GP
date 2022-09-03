@@ -1,7 +1,7 @@
 package com.ucsc.vwsbackend.entities;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Table(name = "volunteer")
 @Entity
@@ -28,8 +28,9 @@ public class Volunteer {
     @Column(name = " district")
     private String  district;
 
+
     @Column(name = "requested_date")
-    private LocalDateTime date;
+    private Date date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
@@ -88,11 +89,11 @@ public class Volunteer {
         this.district = district;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
