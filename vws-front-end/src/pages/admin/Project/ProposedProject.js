@@ -7,7 +7,7 @@ import Initializeproject from "./InitializeProject";
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 // service
-import { getProposedProject } from "../../../services/projectServices/projectService";
+import { getProposedProject } from "../../../services/ProjectServices/ProjectService";
 
 export default function ProposedProject() {
   useEffect(() => {
