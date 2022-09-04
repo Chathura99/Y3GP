@@ -4,7 +4,6 @@ import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
-import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import { getParticularJoinRequestData } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 import NewTable from "../../../utilities/Table/NewTable";
@@ -13,35 +12,16 @@ import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
+// service
+import { getUpcomingEvents } from "../../../services/eventServices/eventService";
+import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 
 export default function HomePage() {
-  const [upComingEventsData, setUpComingEventsData] = useState([
-    {
-      eventId: "E001",
-      project: "Ganitha Saviya",
-      place: "Kurunegala",
-      member: 25,
-      coordinator: "Ravindu Prabasha",
-      date: "2022 09 12",
-    },
-    {
-      eventId: "E002",
-      project: "Re-green Earth",
-      place: "Kaduruwela",
-      member: 100,
-      coordinator: "Namal Upendra",
-      date: "2022 09 25",
-    },
-    {
-      eventId: "E003",
-      project: "Re-green Earth",
-      place: "Matara",
-      member: 130,
-      coordinator: "Sahan Kalhara",
-      date: "2022 09 25",
-    },
-  ]);
 
+ 
+  const [upComingEventsData, setUpComingEventsData] = useState([
+
+  ]);
 
   const [pieChartData, setPieChartData] = useState([
     ["Task", "votes"],
@@ -64,12 +44,18 @@ export default function HomePage() {
   useEffect(() => {
     checkValidate();
     getRequest();
+    upcomingEvent();
   }, []);
 
   const getRequest = async () => {
     const res = await getJoinRequest();
     console.log(res.data);
     setJoinRequestsData([...res.data]);
+  };
+
+  const upcomingEvent = async () => {
+    const res = await getUpcomingEvents();
+    setUpComingEventsData(res.data);
   };
 
   const checkValidate = async () => {
@@ -185,49 +171,49 @@ export default function HomePage() {
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
-                
-              
-
-                  <MaterialTable
-                    components={{
-                      Container: (props) => <Paper {...props} elevation={0} />,
-                    }}
-                    options={{ actionsColumnIndex: -1 }}
-                    title="Upcoming Events"
-                    columns={[
-                      { field: "eventId", title: "EVENT ID", minWidth:"120px" },
-                      { field: "project", title: "PROJECT NAME", minWidth:"150px" },
-                      { field: "place", title: "PLACE" },
-                      { field: "member", title: "MEMBERS" },
-                      { field: "coordinator", title: "COORDINATOR" },
-                      { field: "date", title: "DATE", minWidth:"100px" },
-                    ]}
-                    data={upComingEventsData}
-                    actions={[
-                      {
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              className="btn mt-0"
-                              style={{
-                                backgroundColor: "#96BE25",
-                                border: "none",
-                              }}
-                            >
-                              More...
-                            </button>
-                          );
-                        },
-                        onClick: (event, rowData) => {
-                          setSelectedJoinRequestsData(rowData);
-                          setSelected(true);
-                        },
-                        // tooltip: "Register User",
+                <MaterialTable
+                  components={{
+                    Container: (props) => <Paper {...props} elevation={0} />,
+                  }}
+                  options={{ actionsColumnIndex: -1 }}
+                  title="Upcoming Events"
+                  columns={[
+                    { field: "eventId", title: "EVENT ID", minWidth: "120px" },
+                    {
+                      field: "category",
+                      title: "PROJECT NAME",
+                      minWidth: "150px",
+                    },
+                    { field: "place", title: "PLACE" },
+                    { field: "noOfVolunteers", title: "MEMBERS" },
+                    { field: "name", title: "COORDINATOR" },
+                    { field: "startDate", title: "DATE", minWidth: "100px" },
+                  ]}
+                  data={upComingEventsData}
+                  actions={[
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#96BE25",
+                              border: "none",
+                            }}
+                          >
+                            More...
+                          </button>
+                        );
                       },
-                    ]}
-                  />
-                
+                      onClick: (event, rowData) => {
+                        setSelectedJoinRequestsData(rowData);
+                        setSelected(true);
+                      },
+                      // tooltip: "Register User",
+                    },
+                  ]}
+                />
               </div>
             </div>
           </div>
