@@ -10,6 +10,7 @@ export default function EditProject(props) {
     //   [e.target.name]: e.target.value,
     // }));
   };
+  const [selectedProject, setSelectedProject] = useState(props.data);
 
   return (
     <div>
@@ -21,7 +22,6 @@ export default function EditProject(props) {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
         style={{ display: "block" }}
-
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -34,8 +34,8 @@ export default function EditProject(props) {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
-                onClick={()=>{
-                  props.setSelected(false)
+                onClick={() => {
+                  props.setSelected(false);
                 }}
               >
                 <span aria-hidden="true">&times;</span>
@@ -44,12 +44,15 @@ export default function EditProject(props) {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Current Coordinator : Hazeen Ram</small>
+                  <small>
+                    Current Coordinator : {selectedProject.firstName}{" "}
+                    {selectedProject.lastName}
+                  </small>
                   <br></br>
-                  <small>Phone : 0712584568</small>
+                  <small>Phone : {selectedProject.phoneNumber}</small>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Date : 2021-09-12</small>
+                  <small>Start Date : {selectedProject.startDate}</small>
                 </div>
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -62,7 +65,7 @@ export default function EditProject(props) {
                       className="form-control"
                       id="projectname"
                       name="projectname"
-                      value="Ganitha Saviya"
+                      value={selectedProject.name}
                       //   onChange={handleChange}
                     />
                   </div>
@@ -86,10 +89,10 @@ export default function EditProject(props) {
                       className="form-control"
                       id="projectCoordinator"
                       name="projectCoordinator"
-                      value="Kamal Silva"
+                      value={selectedProject.firstName}
                       //   onChange={handleChange}
                     >
-                      <option> Hazeen Ram</option>
+                      <option>{selectedProject.firstName}</option>
                       <option>Lasitha Nawarathne</option>
                     </select>
                   </div>
@@ -105,7 +108,7 @@ export default function EditProject(props) {
                       className="form-control"
                       id="description"
                       name="description"
-                      value="The mathematical seminar for GCE(OL) students in Srilanka"
+                      value={selectedProject.description}
                       //   onChange={handleChange}
                     />
                   </div>
@@ -121,7 +124,7 @@ export default function EditProject(props) {
                       className="form-control"
                       id="eventPerYear"
                       name="eventPerYear"
-                      value="6"
+                      value={selectedProject.eventPerYear}
                       //   onChange={handleChange}
                     />
                   </div>
@@ -136,8 +139,8 @@ export default function EditProject(props) {
                           id="submit"
                           name="submit"
                           class="btn btn-secondary btn-sm"
-                          onClick={()=>{
-                            props.setSelected(false)
+                          onClick={() => {
+                            props.setSelected(false);
                           }}
                         >
                           Cancel

@@ -66,7 +66,7 @@ export default function AddAnnouncement(props) {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
-                onClick={()=>props.setSelected(false)}
+                onClick={() => props.setSelected(false)}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -273,34 +273,33 @@ export default function AddAnnouncement(props) {
                       />
                     </div>
                   </div>
-</div>
-                  <div className="row gutters">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <div className="text-center mt-3 ">
-                        <Link to="/adminhome">
-                          <button
-                            type="button"
-                            id="submit"
-                            name="submit"
-                            class="btn btn-secondary btn-sm"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            Cancel
-                          </button>
-                        </Link>
-
+                </div>
+                <div className="row gutters">
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="text-center mt-3 ">
+                      <Link to="/adminhome">
                         <button
-                          type="submit"
+                          type="button"
+                          id="submit"
                           name="submit"
-                          class="btn btn-primary btn-sm"
+                          class="btn btn-secondary btn-sm"
+                          data-dismiss="modal"
+                          aria-label="Close"
                         >
-                          Register
+                          Cancel
                         </button>
-                      </div>
+                      </Link>
+
+                      <button
+                        type="submit"
+                        name="submit"
+                        class="btn btn-primary btn-sm"
+                      >
+                        Register
+                      </button>
                     </div>
                   </div>
-                
+                </div>
               </form>
             </div>
           </div>

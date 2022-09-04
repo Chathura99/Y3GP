@@ -11,6 +11,8 @@ export default function Initializeproject(props) {
     // }));
   };
 
+  const [selectedProject, setSelectedProject] = useState(props.data);
+  //  console.log(selectedProject)
   return (
     <div>
       <div
@@ -41,12 +43,15 @@ export default function Initializeproject(props) {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Proposed Person : Malik Wijesuriya</small>
+                  <small>
+                    Proposed Person : {selectedProject.firstName}{" "}
+                    {selectedProject.lastName}{" "}
+                  </small>
                   <br></br>
-                  <small>Phone : 0712584568</small>
+                  <small>Phone : {selectedProject.phoneNumber}</small>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Date : 2021-09-12</small>
+                  <small>Date : {selectedProject.proposedDate}</small>
                 </div>
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -59,7 +64,7 @@ export default function Initializeproject(props) {
                       className="form-control"
                       id="projectname"
                       name="projectname"
-                      value="Adurata Eliyak"
+                      value={selectedProject.name}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -69,14 +74,14 @@ export default function Initializeproject(props) {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group">
                     <label for="projectCoordinator" id="formLabel">
-                      Project Coordinator
+                      Proposed Person
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="projectCoordinator"
                       name="projectCoordinator"
-                      value="Kamal Silva"
+                      value={selectedProject.firstName}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -93,7 +98,7 @@ export default function Initializeproject(props) {
                       className="form-control"
                       id="description"
                       name="description"
-                      value="Target person : like. . ."
+                      value={selectedProject.description}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -110,7 +115,7 @@ export default function Initializeproject(props) {
                       className="form-control"
                       id="eventPerYear"
                       name="eventPerYear"
-                      value="6"
+                      value={selectedProject.eventPerYear}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -127,7 +132,7 @@ export default function Initializeproject(props) {
                       className="form-control"
                       id="other"
                       name="other"
-                      value="Anuradhapura"
+                      value="There is ..."
                       //   onChange={handleChange}
                       disabled
                     />

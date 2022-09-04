@@ -6,9 +6,13 @@ import Initializeproject from "./InitializeProject";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
+// service
+import { getProposedProject } from "../../../services/ProjectServices/ProjectService";
+
 export default function ProposedProject() {
   useEffect(() => {
     checkValidate();
+    getProposedProjectData();
   }, []);
 
   const checkValidate = async () => {
@@ -17,14 +21,15 @@ export default function ProposedProject() {
       window.location.href = "/";
     }
   };
-  const [proposedProjectData, setProposedProjectData] = useState([
-    {
-      projectName: "Adurata Eliyak",
-      proposedPerson: "Yashodha Subha.",
-      phone: "+94 76 7845 111",
-      proposedDate: "2020-10-21",
-    },
-  ]);
+
+  const getProposedProjectData = async () => {
+    const res = await getProposedProject();
+    console.log(res.data);
+    setProposedProjectData(res.data);
+  };
+  const [proposedProjectData, setProposedProjectData] = useState([]);
+  const [selectedProject, setSelectedProject] = useState({});
+
   const [selected, setSelected] = useState(false);
 
   return (
@@ -39,26 +44,6 @@ export default function ProposedProject() {
                   className="row gutters "
                   style={{ justifyContent: "center" }}
                 >
-                  {/* <NewTable
-                    columns={proposedProjectTableHead}
-                    data={proposedProjectData}
-                    action={
-                      <button
-                        type="button"
-                        class="btn"
-                        data-toggle="modal"
-                        data-target="#initializeproject"
-                        style={{
-                          backgroundColor: "#96BE25",
-                          border: "none",
-                          marginRight: 0,
-                        }}
-                      >
-                        Initialize
-                      </button>
-                    }
-                  /> */}
-
                   <MaterialTable
                     components={{
                       Container: (props) => <Paper {...props} elevation={0} />,
@@ -66,9 +51,9 @@ export default function ProposedProject() {
                     options={{ actionsColumnIndex: -1 }}
                     title="Proposed Projects"
                     columns={[
-                      { field: "projectName", title: "PROJECT NAME" },
-                      { field: "proposedPerson", title: "PROPOSED PERSON" },
-                      { field: "phone", title: "PHONE" },
+                      { field: "name", title: "PROJECT NAME" },
+                      { field: "firstName", title: "PROPOSED PERSON" },
+                      { field: "phoneNumber", title: "PHONE" },
                       { field: "proposedDate", title: "PROPOSED DATE" },
                     ]}
                     data={proposedProjectData}
@@ -84,7 +69,6 @@ export default function ProposedProject() {
                                 border: "none",
                                 marginRight: 0,
                               }}
-
                             >
                               Check
                             </button>
@@ -93,7 +77,7 @@ export default function ProposedProject() {
                         onClick: (event, rowData) => {
                           // setSelectedJoinRequestsData(rowData);
                           // setSelected(true);
-                          window.location.href = "/adminforum"
+                          window.location.href = "/adminforum";
                           console.log("selected!");
                         },
                         // tooltip: "Register User",
@@ -115,9 +99,8 @@ export default function ProposedProject() {
                           );
                         },
                         onClick: (event, rowData) => {
-                          // setSelectedJoinRequestsData(rowData);
+                          setSelectedProject(rowData);
                           setSelected(true);
-                          console.log("selected!");
                         },
                         // tooltip: "Register User",
                       },
@@ -133,7 +116,12 @@ export default function ProposedProject() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                {selected && <Initializeproject setSelected={setSelected} />}
+                {selected && (
+                  <Initializeproject
+                    data={selectedProject}
+                    setSelected={setSelected}
+                  />
+                )}
 
                 <br></br>
                 {/* sample button for pop ups, get from here...

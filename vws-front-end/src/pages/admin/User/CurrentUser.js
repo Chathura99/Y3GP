@@ -5,9 +5,13 @@ import NewTable from "../../../utilities/Table/NewTable";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
+// service
+import { getUsers } from "../../../services/userService";
+
 export default function CurrentUser() {
   useEffect(() => {
     checkValidate();
+    getCurrentUsers();
   }, []);
 
   const checkValidate = async () => {
@@ -16,30 +20,13 @@ export default function CurrentUser() {
       window.location.href = "/";
     }
   };
-  const [currentUserTableData, setCurrentUserTableData] = useState([
-    {
-      userID: "1",
-      email: "namal@gmail.com",
-      name: "Namal rathnaweera",
-      phone: "+94 75 4785 123",
-      joinDate: "2020-10-21",
-      university: "Peradeniya",
-      position: "Volunteer",
-      district: "Kandy",
-      status: "Active",
-    },
-    {
-      userID: "2",
-      email: "rm@gmail.com",
-      name: "Ravindu Medagama",
-      phone: "+94 75 4785 123",
-      joinDate: "2020-10-21",
-      university: "COlombo",
-      position: "Volunteer",
-      district: "Bandaragama",
-      status: "Active",
-    },
-  ]);
+
+  const getCurrentUsers = async () => {
+    const res = await getUsers();
+    console.log(res.data);
+    setCurrentUserTableData(res.data);
+  };
+  const [currentUserTableData, setCurrentUserTableData] = useState([]);
 
   const [pieChartData, setPieChartData] = useState([
     ["User", "Count"],
@@ -101,19 +88,28 @@ export default function CurrentUser() {
                   options={{ actionsColumnIndex: -1 }}
                   title="Current Users"
                   columns={[
-                    { field: "userID", title: "USER ID" },
+                    { field: "id", title: "USER ID", minWidth: "100px" },
                     { field: "email", title: "EMAIL" },
-                    { field: "name", title: "NAME" },
-                    { field: "phone", title: "PHONE" },
                     {
-                      field: "joinDate",
+                      field: "firstName",
+                      title: "FIRST NAME",
+                      minWidth: "130px",
+                    },
+                    {
+                      field: "lastName",
+                      title: "LAST NAME",
+                      minWidth: "120px",
+                    },
+                    { field: "phoneNumber", title: "PHONE" },
+                    {
+                      field: "createdAt",
                       title: "JOIN DATE",
                       minWidth: "120px",
                     },
-                    { field: "university", title: "UNIVERSITY" },
-                    { field: "position", title: "POSITION" },
-                    { field: "district", title: "LOCATION" },
-                    { field: "status", title: "STATUS" },
+                    // { field: "university", title: "UNIVERSITY" },
+                    // { field: "position", title: "POSITION" },
+                    // { field: "district", title: "LOCATION" },
+                    { field: "enabled", title: "STATUS" },
                   ]}
                   data={currentUserTableData}
                   actions={[
@@ -128,7 +124,28 @@ export default function CurrentUser() {
                               border: "none",
                             }}
                           >
-                           Remove
+                            Remove
+                          </button>
+                        );
+                      },
+                      onClick: (event, rowData) => {
+                        // setSelectedJoinRequestsData(rowData);
+                        // setSelected(true);
+                      },
+                      // tooltip: "Register User",
+                    },
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#96BE25",
+                              border: "none",
+                            }}
+                          >
+                            More .
                           </button>
                         );
                       },

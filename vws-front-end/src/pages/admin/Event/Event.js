@@ -163,7 +163,7 @@ export default function Event() {
                                 border: "none",
                               }}
                             >
-                              Details
+                              Progress
                             </button>
                           );
                         },
@@ -181,12 +181,7 @@ export default function Event() {
           </div>
         </div>
 
-        {selected && (
-          <AddEventProgress 
-          setSelected={setSelected}
-          />
-        )}
-        
+        {selected && <AddEventProgress setSelected={setSelected} />}
       </div>
     </>
   );
