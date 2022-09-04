@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Table(name = "volunteer")
 @Entity
@@ -35,6 +36,9 @@ public class Volunteer {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     User user;
+
+    @OneToMany(mappedBy = "volunteer")
+    Set<ParticipateEvent> participations;
 
 
     public Volunteer() {
@@ -103,5 +107,13 @@ public class Volunteer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<ParticipateEvent> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(Set<ParticipateEvent> participations) {
+        this.participations = participations;
     }
 }
