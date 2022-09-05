@@ -4,9 +4,17 @@ import AddEventProgress from "./AddEventProgress";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
+// services
+import {
+  getUpcomingEvents,
+  getPreviousEvents,
+} from "../../../services/eventServices/eventService";
+
 export default function Event() {
   useEffect(() => {
     checkValidate();
+    upcomingEvent();
+    previousEvent();
   }, []);
 
   const checkValidate = async () => {
@@ -15,54 +23,20 @@ export default function Event() {
       window.location.href = "/";
     }
   };
+
+  const previousEvent = async () => {
+    const res = await getPreviousEvents();
+    setPreviousEventData(res.data);
+  };
+
+  const upcomingEvent = async () => {
+    const res = await getUpcomingEvents();
+    setUpComingEventData(res.data);
+  };
   const [selected, setSelected] = useState(false);
 
-  const [upComingEventData, setUpComingEventData] = useState([
-    {
-      eventId: "E015",
-      category: "Ganitha Saviya",
-      eventCoordinator: "Yashodha Sub.",
-      phone: "+94 71 5486 957",
-      startsOn: "2020-10-21",
-      endsOn: "2020-10-21",
-      noOfMembers: "10",
-      location: "Nikaweratiya",
-    },
-    {
-      eventId: "E016",
-      category: "Ganitha Saviya",
-      eventCoordinator: "Sumudu Per.",
-      phone: "+94 70 1116 957",
-      startsOn: "2020-11-21",
-      endsOn: "2020-10-21",
-      noOfMembers: "25",
-      location: "Hambantota",
-    },
-  ]);
-  const [previousEventData, setPreviousEventData] = useState([
-    {
-      eventId: "E001",
-      category: "Ganitha Saviya",
-      eventCoordinator: "Lasith Gunarath..",
-      phone: "0754785123",
-      startsOn: "2020-10-21",
-      endsOn: "2020-10-22",
-      noOfMembers: 10,
-      location: "Nuwara Eliya",
-      status: "Cancelled",
-    },
-    {
-      eventId: "E002",
-      category: "Re-green earth",
-      eventCoordinator: "Malik Wijesu..",
-      phone: "0712584568",
-      startsOn: "2020-10-21",
-      endsOn: "2020-10-22",
-      noOfMembers: 10,
-      location: "Dambadeniya",
-      status: "Completed",
-    },
-  ]);
+  const [upComingEventData, setUpComingEventData] = useState([]);
+  const [previousEventData, setPreviousEventData] = useState([]);
 
   return (
     <>
@@ -85,12 +59,12 @@ export default function Event() {
                     columns={[
                       { field: "eventId", title: "EVENT ID" },
                       { field: "category", title: "CATEGORY" },
-                      { field: "eventCoordinator", title: "COORDINATOR" },
-                      { field: "phone", title: "PHONE" },
-                      { field: "startsOn", title: "STARTS ON" },
-                      { field: "endsOn", title: "ENDS ON" },
-                      { field: "noOfMembers", title: "NO OF MEMBERS" },
-                      { field: "location", title: "LOCATION" },
+                      { field: "name", title: "COORDINATOR" },
+                      { field: "phoneNumber", title: "PHONE" },
+                      { field: "startDate", title: "STARTS ON" },
+                      { field: "endDate", title: "ENDS ON" },
+                      { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      { field: "place", title: "LOCATION" },
                     ]}
                     data={upComingEventData}
                     actions={[
@@ -142,12 +116,12 @@ export default function Event() {
                     columns={[
                       { field: "eventId", title: "EVENT ID" },
                       { field: "category", title: "CATEGORY" },
-                      { field: "eventCoordinator", title: "COORDINATOR" },
-                      { field: "phone", title: "PHONE" },
-                      { field: "startsOn", title: "STARTS ON" },
-                      { field: "endsOn", title: "ENDS ON" },
-                      { field: "noOfMembers", title: "NO OF MEMBERS" },
-                      { field: "location", title: "LOCATION" },
+                      { field: "name", title: "COORDINATOR" },
+                      { field: "phoneNumber", title: "PHONE" },
+                      { field: "startDate", title: "STARTED ON" },
+                      { field: "endDate", title: "ENDS ON" },
+                      { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      { field: "place", title: "LOCATION" },
                       { field: "status", title: "STATUS" },
                     ]}
                     data={previousEventData}
