@@ -5,7 +5,7 @@ import EditProject from "./EditProject";
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 // services
-import { getOngoingProjects } from "../../../services/ProjectServices/ProjectService";
+import { getOngoingProjects } from "../../../services/projectServices/projectService";
 
 export default function OnGoingProject() {
   useEffect(() => {
