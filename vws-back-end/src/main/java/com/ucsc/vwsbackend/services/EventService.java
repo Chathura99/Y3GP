@@ -1,5 +1,6 @@
 package com.ucsc.vwsbackend.services;
 
+import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.entities.Event;
@@ -12,6 +13,7 @@ import java.util.List;
 public class EventService {
 
     @Autowired
+    static
     EventJdbcRepository eventJdbcRepository;
     public  List<EventDetail> getUpcomingEvents() {
         return eventJdbcRepository.getUpcomingEvents();
@@ -23,7 +25,34 @@ public class EventService {
 
     }
 
+
+
 //    public  List<List<Event>> getPreviousEvents() {
 //
 //    }
+
+
+    // Volunteer
+
+    public static long addCoordinatedEvents(Event event){
+        return eventJdbcRepository.addCoordinatedEvents(event);
+    }
+
+    public  List<EventDetail> getCoordinatedEvents() {
+        return eventJdbcRepository.getCoordinatedEvents();
+    }
+
+    public  List<EventDetail> getApprovedCoordinatedEvents() {
+        return eventJdbcRepository.getApprovedCoordinatedEvents();
+    }
+
+
+    public static long updateCoordinatedEventStatus(Event event) {
+        return eventJdbcRepository.updateCoordinatedEventStatus(event);
+    }
+
+    public Event getCoordinatedEventById(long id) {
+        return eventJdbcRepository.getCoordinatedEventById(id);
+    }
+
 }
