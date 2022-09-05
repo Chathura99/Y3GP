@@ -40,6 +40,13 @@ public class Event {
     @Column(name = "place")
     private String place;
 
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    @Column(name = "coordinate")
+    private String coordinate;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
     Project project;
