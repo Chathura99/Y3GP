@@ -34,6 +34,10 @@ public class EventService {
 
     // Volunteer
 
+    public  List<EventDetail> getOngoingEvents() {
+        return eventJdbcRepository.getOngoingEvents();
+    }
+
     public static long addCoordinatedEvents(Event event){
         return eventJdbcRepository.addCoordinatedEvents(event);
     }
