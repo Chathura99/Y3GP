@@ -15,8 +15,13 @@ public class Event {
     @Column(name = "event_id")
     private Long eventId;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "volunteer_id")
+    Volunteer volunteer;
+
+    public Volunteer getVolunteer() {
+        return volunteer;
+    }
 
     @Column(name = "no_of_volunteers")
     private Integer noOfVolunteers;
@@ -35,6 +40,13 @@ public class Event {
     @Column(name = "place")
     private String place;
 
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    @Column(name = "coordinate")
+    private String coordinate;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
     Project project;
@@ -46,9 +58,7 @@ public class Event {
         return eventId;
     }
 
-    public String getName() {
-        return name;
-    }
+
 
     public Integer getNoOfVolunteers() {
         return noOfVolunteers;
@@ -71,9 +81,7 @@ public class Event {
         this.eventId = eventId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
     public void setNoOfVolunteers(Integer noOfVolunteers) {
         this.noOfVolunteers = noOfVolunteers;

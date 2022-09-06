@@ -56,12 +56,12 @@ public class EventJdbcRepository {
                 new MapSqlParameterSource();
 
         String query ="INSERT INTO event " +
-                "(name, place,start_date, end_date,no_of_volunteers, project_id) " +
+                "(volunteer_id, place,start_date, end_date,no_of_volunteers, project_id) " +
                 "values (:name, :place, :start_date, :end_date, :no_of_volunteers, :project_id )";
 
 
 
-        namedParameters.addValue("name", event.getName());
+        namedParameters.addValue("name", event.getVolunteer());
         namedParameters.addValue("place", event.getPlace());
         namedParameters.addValue("start_date", event.getStartDate());
         namedParameters.addValue("end_date", event.getEndDate());
