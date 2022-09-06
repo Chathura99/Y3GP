@@ -25,3 +25,23 @@ export const getPreviousEvents = () => {
     });
   };
 
+  export const getOngoingEvents = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getOngoingEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+
+  export const getCoordinatedEvents = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getCoordinatedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+
