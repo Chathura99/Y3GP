@@ -54,6 +54,14 @@ public class Event {
     @OneToMany(mappedBy = "event")
     Set<ParticipateEvent> participations;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_coordinator_id")
+    ProjectCoordinator projectCoordinator;
+
+    public ProjectCoordinator getProjectCoordinator() {
+        return projectCoordinator;
+    }
+
     public Long getEventId() {
         return eventId;
     }

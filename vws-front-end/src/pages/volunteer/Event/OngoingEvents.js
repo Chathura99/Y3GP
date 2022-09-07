@@ -4,109 +4,22 @@ import MapFormPopUp from './MapFormPopUp';
 import JoinEventForm from './JoinEventForm';
 import NewTable from '../../../utilities/Table/NewTable';
 import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
-
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+// services
+import { getOngoingEvents } from './../../../services/eventServices/eventService';
 
 
 export default function OngoingEvents() {
   
   
-  const [upcomingEventsData, setUpComingEventsData] = useState([
-    {
-            event_id: "E001",
-            category: "Ganitha Saviya",
-            event_coordinator: "Ravindu",
-            startdate: "2022 09 12",
-            enddate: "2022 09 14",
-            no_of_members: "13",
-            location: 
-            <button
-      type="button"
-      id="submit"
-      name="submit"
-      data-toggle="modal"
-      data-target="#MapForm"
-      className="btn p-1"
-      style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-      // #96BE25,#BE4D25
-      // onClick={handleSubmit}
-    >
-      View
-    </button>,
-            action: (
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        data-toggle="modal"
-                        data-target="#JoinEventForm"
-                        className="btn p-1"
-                        style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                        // #96BE25,#BE4D25
-                        // onClick={handleSubmit}
-                      >
-                        JOIN
-                      </button>
-                    ),
-    },
-    {
-            event_id: "E002",
-            category: "Re-green Earth",
-            event_coordinator: "Sadaru",
-            startdate: "2022 09 02",
-            enddate: "2022 09 04",
-            no_of_members: "8",
-            location: 
-            <button
-      type="button"
-      id="submit"
-      name="submit"
-      data-toggle="modal"
-      data-target="#MapForm"
-      className="btn p-1"
-      style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-      // #96BE25,#BE4D25
-      // onClick={handleSubmit}
-    >
-      View
-    </button>,
-            action: (
-              <button
-                type="button"
-                id="submit"
-                name="submit"
-                data-toggle="modal"
-                data-target="#JoinEventForm"
-                className="btn p-1"
-                style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                // #96BE25,#BE4D25
-                // onClick={handleSubmit}
-              >
-                JOIN
-              </button>
-            ),
-    }
-  ]);
+  
 
-const data = useMemo(
-() => upcomingEventsData  )
-
-  const UpcomingEventsHeadings=useMemo(
-    () => [
-     
-      { accessor: "event_id", Header: "EVENT ID" },
-      { accessor: "category", Header: "CATEGORY" },
-      { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
-      { accessor: "startdate", Header: "STARTS ON" },
-      { accessor: "enddate", Header: "ENDS ON" },
-      { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
-      { accessor: "location", Header: "LOCATION" },
-      { accessor: "action", Header: "JOIN" },
-    ],
-    []
-  )
 
     useEffect(() => {
         checkValidate();
+        getOngoingEventDetails();
     }, []);
 
     const checkValidate = async () => {
@@ -115,6 +28,17 @@ const data = useMemo(
             window.location.href = "/";
         }
     };
+
+    const getOngoingEventDetails = async () => {
+      const res = await getOngoingEvents();
+      // console.log(res.data);
+      setOnGoingEventData(res.data);
+    };
+
+    const [onGoingEventData, setOnGoingEventData] = useState([]);
+    const [selected, setSelected] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState({});
+
     return (
         <>
         
@@ -126,8 +50,106 @@ const data = useMemo(
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
                             <h5>Ongoing Events</h5><br></br>
+                            <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Ongoing Events"
+                    columns={[
+                      {
+                        field: "event_id",
+                        title: "EVENT ID",
+                        
+                      },
+                      {
+                        field: "category",
+                        title: "CATEGORY",
+                      },
+                      { field: "firstName", title: "EVENT COORDINATOR" },
+                      
+                      {
+                        field: "start_date",
+                        title: "STARTED ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "end_date",
+                        title: "ENDS ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "no_of_volunteers",
+                        title: "NO.OF.VOLUNTEERS",
+                      },
+                      
+                    ]}
+                    data={onGoingEventData}
+                    actions={[
+                      {
+                        
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              data-toggle="modal"
+                              data-target="#CoordinateEventForm"
+                              style={{
+                                backgroundColor: "#2596BE",
+                                width: "6rem",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              View
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          setSelectedEvent(rowData);
+                          setSelected(true);
+                        },
+                        tooltip: "Coordinate Event",
+                      },
+
+                      {
+                        
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                width: "6rem",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              Join
+                            </button>
+                          );
+                        },
+                        // onClick: (event, rowData) => {
+                        //   setSelectedProject(rowData);
+                        //   setSelected(true);
+                        // },
+                        tooltip: "Project Details",
+                      },
+                      
+                    ]}
+
+                    
+
+                    
+
+                    
+                  />
+                  {/* {selected && (
+          // <CoordinateEventForm setSelected={setSelected} data={coordinateEventToProject}/>
+        )} */}
                             
-                            <NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData}/>
                                 
                                 <JoinEventForm />
                                 <MapFormPopUp />

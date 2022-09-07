@@ -30,6 +30,11 @@ public class EventController {
 
     //Volunteer
 
+    @GetMapping("/getOngoingEvents")
+    public List<EventDetail> getOngoingEvents() {
+        return eventService.getOngoingEvents();
+    }
+
     @GetMapping("/getCoordinatedEventById/{id}")
     public Event getCoordinatedEventById(@PathVariable(value = "id") long id) {
         return eventService.getCoordinatedEventById(id);
