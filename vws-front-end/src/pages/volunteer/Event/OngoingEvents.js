@@ -66,7 +66,7 @@ export default function OngoingEvents() {
                         field: "category",
                         title: "CATEGORY",
                       },
-                      { field: "firstName", title: "EVENT COORDINATOR" },
+                      { field: "first_name", title: "EVENT COORDINATOR" },
                       
                       {
                         field: "start_date",
