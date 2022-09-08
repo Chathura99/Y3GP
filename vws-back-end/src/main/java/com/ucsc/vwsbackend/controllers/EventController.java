@@ -35,6 +35,11 @@ public class EventController {
         return eventService.getOngoingEvents();
     }
 
+    @GetMapping("/getCompletedEvents")
+    public List<EventDetail> getCompletedEvents() {
+        return eventService.getCompletedEvents();
+    }
+
     @GetMapping("/getCoordinatedEventById/{id}")
     public Event getCoordinatedEventById(@PathVariable(value = "id") long id) {
         return eventService.getCoordinatedEventById(id);
