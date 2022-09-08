@@ -13,7 +13,6 @@ import java.util.List;
 public class EventService {
 
     @Autowired
-    static
     EventJdbcRepository eventJdbcRepository;
     public  List<EventDetail> getUpcomingEvents() {
         return eventJdbcRepository.getUpcomingEvents();
@@ -26,19 +25,13 @@ public class EventService {
     }
 
 
-
-//    public  List<List<Event>> getPreviousEvents() {
-//
-//    }
-
-
     // Volunteer
 
     public  List<EventDetail> getOngoingEvents() {
         return eventJdbcRepository.getOngoingEvents();
     }
 
-    public static long addCoordinatedEvents(Event event){
+    public long addCoordinatedEvents(Event event){
         return eventJdbcRepository.addCoordinatedEvents(event);
     }
 
@@ -51,7 +44,7 @@ public class EventService {
     }
 
 
-    public static long updateCoordinatedEventStatus(Event event) {
+    public long updateCoordinatedEventStatus(Event event) {
         return eventJdbcRepository.updateCoordinatedEventStatus(event);
     }
 

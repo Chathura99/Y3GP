@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class EventJdbcRepository {
     @Autowired
-    protected static NamedParameterJdbcTemplate jdbc;
+    protected NamedParameterJdbcTemplate jdbc;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -32,6 +32,7 @@ public class EventJdbcRepository {
     }
 
     public List<EventDetail> getPreviousEvents() {
+        System.out.println("bghfghcbnvnbvnbv-----vhgvhbvbjn");
         String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name,v.volunteer_id,u.phone_number from event as e " +
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
@@ -39,6 +40,7 @@ public class EventJdbcRepository {
                 "where e.start_date< CURDATE()";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
+
         return events;
     }
 
@@ -63,7 +65,7 @@ public class EventJdbcRepository {
     }
 
 
-    public static int addCoordinatedEvents(Event event) {
+    public int addCoordinatedEvents(Event event) {
 
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
@@ -108,7 +110,7 @@ public class EventJdbcRepository {
     }
 
     // approve coordinated events
-    public static int updateCoordinatedEventStatus(Event eventId){
+    public int updateCoordinatedEventStatus(Event eventId){
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
         String update = "UPDATE event " +
@@ -126,7 +128,6 @@ public class EventJdbcRepository {
                 new MapSqlParameterSource();
 
         String query ="SELECT * from event where ann_id = ?";
-
 
         Event event = (Event) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(Event.class));
         return event;
