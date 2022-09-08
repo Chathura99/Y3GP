@@ -108,7 +108,7 @@ export default function OngoingEvents() {
                           setSelectedEvent(rowData);
                           setSelected(true);
                         },
-                        tooltip: "Coordinate Event",
+                        tooltip: "View Location",
                       },
 
                       {
@@ -133,7 +133,7 @@ export default function OngoingEvents() {
                         //   setSelectedProject(rowData);
                         //   setSelected(true);
                         // },
-                        tooltip: "Project Details",
+                        tooltip: "Join to Event",
                       },
                       
                     ]}
