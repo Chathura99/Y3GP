@@ -1,8 +1,6 @@
 import React, { useEffect,useState } from 'react';
-import { useMemo } from 'react';
 import MapFormPopUp from './MapFormPopUp';
 import JoinEventForm from './JoinEventForm';
-import NewTable from '../../../utilities/Table/NewTable';
 import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
 // for remove box shadow
 import { Paper } from "@material-ui/core";
@@ -58,7 +56,7 @@ export default function OngoingEvents() {
                     title="Ongoing Events"
                     columns={[
                       {
-                        field: "event_id",
+                        field: "eventId",
                         title: "EVENT ID",
                         
                       },
@@ -66,21 +64,21 @@ export default function OngoingEvents() {
                         field: "category",
                         title: "CATEGORY",
                       },
-                      { field: "first_name", title: "EVENT COORDINATOR" },
+                      { field: "name", title: "COORDINATOR" },
                       
                       {
-                        field: "start_date",
+                        field: "startDate",
                         title: "STARTED ON",
                         minWidth: "150px",
                       },
                       {
-                        field: "end_date",
+                        field: "endDate",
                         title: "ENDS ON",
                         minWidth: "150px",
                       },
                       {
-                        field: "no_of_volunteers",
-                        title: "NO.OF.VOLUNTEERS",
+                        field: "noOfVolunteers",
+                        title: "NO OF MEMBERS",
                       },
                       
                     ]}
