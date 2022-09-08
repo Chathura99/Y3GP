@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import { addAnnouncement } from "../../../services/announcementServices/announcementServices";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import Loading from "../../../utilities/Loading/Loading";
 
 export default function AddAnnouncement() {
   const [ann, setAnn] = useState({
     title: "",
     category: "",
     content: "",
+    userId:5,
     file: "",
   });
 
@@ -15,6 +21,33 @@ export default function AddAnnouncement() {
       ...ann,
       [e.target.name]: e.target.value,
     }));
+  };
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Publish new announcement!");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addAnnouncement(ann)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
   };
 
   return (
@@ -43,7 +76,7 @@ export default function AddAnnouncement() {
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""}>
+              <form onSubmit={confirm}>
                 <div className="row gutters ">
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
@@ -115,22 +148,20 @@ export default function AddAnnouncement() {
                     <div className="text-center mt-3 ">
                       <div class="modal-footer justify-content-center ">
                         <button
-                          type="button"
-                          id="submit"
-                          name="submit"
+                          type="button"                         
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
+                         
                         >
                           Cancel
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          // onClick={handleSubmit}
                         >
-                          Update
+                          Add
                         </button>
                       </div>
                     </div>
@@ -141,6 +172,19 @@ export default function AddAnnouncement() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -21,7 +22,6 @@ public class AnnouncementJdbcRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-//    NamedParameterJdbcTemplate
     public List<AnnouncementWithAuthor> getWithAuthor(String category) {
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
@@ -64,7 +64,7 @@ public class AnnouncementJdbcRepository {
 
         namedParameters.addValue("category", announcementInfo.getCategory());
         namedParameters.addValue("content", announcementInfo.getContent());
-        namedParameters.addValue("date", announcementInfo.getDate());
+        namedParameters.addValue("date", LocalDateTime.now());
         namedParameters.addValue("title", announcementInfo.getTitle());
         namedParameters.addValue("user_id", announcementInfo.getUserId());
 
@@ -95,7 +95,7 @@ public class AnnouncementJdbcRepository {
                 "FROM announcement as a " +
                 "INNER JOIN user as u ON a.user_id = u.id " +
                 "INNER JOIN user_authority as ua ON u.id = ua.user_id " +
-                "INNER JOIN authority as auth ON auth.id = ua.user_id";
+                "INNER JOIN authority as auth ON auth.id = ua.user_id ORDER BY date DESC";
 
         List<AnnouncementWithAuthor> announcementWithAuthor = jdbc.query(query, new BeanPropertyRowMapper<AnnouncementWithAuthor>(AnnouncementWithAuthor.class));
         return announcementWithAuthor;
@@ -109,7 +109,7 @@ public class AnnouncementJdbcRepository {
                 "FROM announcement as a " +
                 "INNER JOIN user as u ON a.user_id = u.id " +
                 "INNER JOIN user_authority as ua ON u.id = ua.user_id " +
-                "INNER JOIN authority as auth ON auth.id = ua.user_id where ann_id = ?";
+                "INNER JOIN authority as auth ON auth.id = ua.user_id where ann_id = ? ORDER BY date DESC";
 
         AnnouncementWithAuthor ann = (AnnouncementWithAuthor) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(AnnouncementWithAuthor.class));
         return ann;
