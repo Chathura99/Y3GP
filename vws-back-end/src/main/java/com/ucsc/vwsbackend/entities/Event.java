@@ -56,10 +56,10 @@ public class Event {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "event_coordinator_id")
-    ProjectCoordinator projectCoordinator;
+    EventCoordinator eventCoordinator;
 
-    public ProjectCoordinator getProjectCoordinator() {
-        return projectCoordinator;
+    public EventCoordinator getEventCoordinator() {
+        return eventCoordinator;
     }
 
     public Long getEventId() {
