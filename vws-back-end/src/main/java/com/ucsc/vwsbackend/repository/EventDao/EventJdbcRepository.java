@@ -1,6 +1,6 @@
 package com.ucsc.vwsbackend.repository.EventDao;
 
-import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
+
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +60,7 @@ public class EventJdbcRepository {
                 "INNER JOIN user as u ON u.id=v.id " +
                 "and e.status=1";
 
-        List<EventDetail> events = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
+        List<EventDetail> events = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
     }
 
