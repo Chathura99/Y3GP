@@ -21,7 +21,8 @@ public class EventJdbcRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<EventDetail> getUpcomingEvents() {
-        String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name,v.volunteer_id,u.phone_number from event as e " +
+        String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name," +
+                "v.volunteer_id,u.phone_number from event as e " +
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
@@ -54,11 +55,11 @@ public class EventJdbcRepository {
     public List<EventDetail> getOngoingEvents() {
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 
-        String query ="SELECT * FROM event as e " +
+        String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name FROM event as e " +
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=p.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "and e.status=1";
+                "where e.start_date< CURDATE() AND CURDATE() < e.end_date AND e.status=1";
 
         List<EventDetail> events = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
@@ -103,7 +104,7 @@ public class EventJdbcRepository {
     public List<EventDetail> getApprovedCoordinatedEvents() {
 
         String query ="SELECT * from event as e INNER JOIN project as p ON e.project_id=p.project_id" +
-                "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id INNER JOIN user as u ON u.id=v.id where status=1";
+                "INNER JOIN volunteer as v ON v.volunteer_id=e.event_coordinator_id INNER JOIN user as u ON u.id=ec.id where status=1";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;

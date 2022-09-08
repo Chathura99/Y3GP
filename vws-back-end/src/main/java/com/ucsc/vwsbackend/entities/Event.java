@@ -16,7 +16,7 @@ public class Event {
     private Long eventId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "volunteer_id")
+    @JoinColumn(name = "event_coordinator_id")
     Volunteer volunteer;
 
     public Volunteer getVolunteer() {
@@ -54,13 +54,7 @@ public class Event {
     @OneToMany(mappedBy = "event")
     Set<ParticipateEvent> participations;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "event_coordinator_id")
-    ProjectCoordinator projectCoordinator;
 
-    public ProjectCoordinator getProjectCoordinator() {
-        return projectCoordinator;
-    }
 
     public Long getEventId() {
         return eventId;
