@@ -45,3 +45,23 @@ export const getPreviousEvents = () => {
     });
   };
 
+  export const getApprovedCoordinatedEvents = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getApprovedCoordinatedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+
+  export const getCompletedEvents = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getCompletedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+

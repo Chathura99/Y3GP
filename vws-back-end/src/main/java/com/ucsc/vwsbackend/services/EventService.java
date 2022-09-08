@@ -31,6 +31,10 @@ public class EventService {
         return eventJdbcRepository.getOngoingEvents();
     }
 
+    public  List<EventDetail> getCompletedEvents() {
+        return eventJdbcRepository.getCompletedEvents();
+    }
+
     public long addCoordinatedEvents(Event event){
         return eventJdbcRepository.addCoordinatedEvents(event);
     }
