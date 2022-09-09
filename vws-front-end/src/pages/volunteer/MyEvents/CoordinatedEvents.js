@@ -63,7 +63,7 @@ export default function CoordinatedEvents() {
                       Container: (props) => <Paper {...props} elevation={0} />,
                     }}
                     options={{ actionsColumnIndex: -1 }}
-                    title="Ongoing Events"
+                    title="Coordinated Events"
                     columns={[
                       {
                         field: "eventId",
@@ -108,7 +108,7 @@ export default function CoordinatedEvents() {
                               data-toggle="modal"
                               data-target="#CoordinateEventForm"
                               style={{
-                                backgroundColor: "#2596BE",
+                                backgroundColor: "#96BE25",
                                 width: "6rem",
                                 border: "none",
                                 marginRight: 0,
@@ -122,7 +122,7 @@ export default function CoordinatedEvents() {
                           setApprovedCoordinatedEventData(rowData);
                           setSelected(true);
                         },
-                        tooltip: "View Location",
+                        tooltip: "Edit Details",
                       },
 
                      

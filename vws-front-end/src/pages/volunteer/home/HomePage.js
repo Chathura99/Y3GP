@@ -4,54 +4,15 @@ import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 // import Card from "react-bootstrap/Card";
-import NewTable from '../../../utilities/Table/NewTable';
-import { useMemo } from 'react';
+
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 import { getAnnouncement } from './../../../services/announcementServices/announcementServices';
+import { getUpcomingEvents } from './../../../services/eventServices/eventService';
 
 
 export default function HomePage() {
-  const [upcomingEventsData, setUpComingEventsData] = useState([
-    {
-            event_id: "E001",
-            category: "Ganitha Saviya",
-            event_coordinator: "Ravindu",
-            startdate: "2022 09 12",
-            enddate: "2022 09 14",
-            no_of_members: "13",
-            location: "Nikawaratiya",
-            
-            
-    },
-    {
-            event_id: "E002",
-            category: "Re-green Earth",
-            event_coordinator: "Sadaru",
-            startdate: "2022 09 02",
-            enddate: "2022 09 04",
-            no_of_members: "8",
-            location: "Horana",
-            
-            
-    }
-  ]);
-
-const data = useMemo(
-() => upcomingEventsData  )
-
-  const UpcomingEventsHeadings=useMemo(
-    () => [
-     
-      { accessor: "event_id", Header: "EVENT ID" },
-      { accessor: "category", Header: "CATEGORY" },
-      { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
-      { accessor: "startdate", Header: "STARTS ON" },
-      { accessor: "enddate", Header: "ENDS ON" },
-      { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
-      { accessor: "location", Header: "LOCATION" },
-     
-    ],
-    []
-  )
+  
   const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
     ["Ganitha Saviya", 11],
@@ -68,6 +29,7 @@ const data = useMemo(
   useEffect(() => {
     checkValidate();
     readAnnouncement();
+    upcomingEvent();
 }, []);
 
 const checkValidate = async () => {
@@ -83,6 +45,14 @@ const readAnnouncement = async () => {
   setAnnouncement(res.data);
 };
  
+const upcomingEvent = async () => {
+  const res = await getUpcomingEvents();
+  setUpComingEventData(res.data);
+};
+const [selected, setSelected] = useState(false);
+
+const [upComingEventData, setUpComingEventData] = useState([]);
+
 const [announcement, setAnnouncement] = useState([]);
   const [selectedAnnouncementId, setSelectedAnnouncementId] = useState("");
 
@@ -365,7 +335,46 @@ const [announcement, setAnnouncement] = useState([]);
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
                 <h5>Upcoming Events</h5><br></br>
-                <NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData} />
+                <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Upcoming Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID" },
+                      { field: "category", title: "CATEGORY" },
+                      { field: "name", title: "COORDINATOR" },
+                      { field: "startDate", title: "STARTS ON" },
+                      { field: "endDate", title: "ENDS ON" },
+                      { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      { field: "place", title: "LOCATION" },
+                    ]}
+                    data={upComingEventData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              View
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          // setSelectedJoinRequestsData(rowData);
+                          // setSelected(true);
+                        },
+                         tooltip: "View Location",
+                      },
+                    ]}
+                  />
               </div>
             </div>
           </div>
