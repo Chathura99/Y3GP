@@ -30,7 +30,7 @@ export default function CompletedEvents() {
 
   const [selected, setSelected] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState({});
-  const [CompletedEventData, setCompletedEventData] = useState({});
+  const [completedEventData, setCompletedEventData] = useState({});
 
   const [lineChartData, setLineChartData] = useState([
     [
@@ -105,7 +105,7 @@ export default function CompletedEvents() {
                       { field: "noOfVolunteers", title: "NO OF MEMBERS" },
                       { field: "place", title: "LOCATION" },
                     ]}
-                    // data={CompletedEventData}
+                    // data={completedEventData}
                     actions={[
                       {
                         icon: () => {
