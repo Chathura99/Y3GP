@@ -65,7 +65,7 @@ export default function EditAnnouncement(props) {
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-        style={{ display: "block" }}
+        style={{ display: "block"}}
 
       >
         <div class="modal-dialog" role="document">

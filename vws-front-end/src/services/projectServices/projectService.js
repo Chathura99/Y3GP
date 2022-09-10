@@ -24,3 +24,36 @@ export const getProposedProject = () => {
     },
   });
 };
+
+export const getVolunteer = () => {
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getAllVolunteers`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
+export const editProject = (pro) => {
+  return axios({
+    method: "PUT",
+    url: `${USER_URL}/editProject`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data : pro
+  });
+};
+
+export const initializeProject = (pro) => {
+  return axios({
+    method: "POST",
+    url: `${USER_URL}/initializeProject`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data : pro
+  });
+};
+

@@ -112,6 +112,7 @@ public class SignUpService {
         volunteer.setUser(user);
         volunteer.setFirstName(joinRequest.getFirstName());
         volunteer.setLastName(joinRequest.getLastName());
+        volunteer.setCoordinatorOrNot(0);
 
         volunteerRepository.save(volunteer);
         joinRequestJdbcRepository.updateStatus(joinRequest.getId());
