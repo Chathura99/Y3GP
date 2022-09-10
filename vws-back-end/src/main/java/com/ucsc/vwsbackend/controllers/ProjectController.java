@@ -1,6 +1,8 @@
 package com.ucsc.vwsbackend.controllers;
 
+import com.ucsc.vwsbackend.dto.AnnouncementInfo;
 import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
+import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.dto.ProposedProjectdetails;
 import com.ucsc.vwsbackend.entities.Announcement;
@@ -31,6 +33,11 @@ public class ProjectController {
         return projectService.getProposedProjects();
     }
 
+<<<<<<< HEAD
+    @PostMapping("/addProposedProjects")
+    public long addProposedProjects(@RequestBody NewProjectDetail newProjectDetail){
+        return projectService.addProposedProjects(newProjectDetail);
+=======
     @PutMapping("/editProject")
     public long editProject(@RequestBody ProjectDetail projectDetail){
         return projectService.editProject(projectDetail);
@@ -44,5 +51,6 @@ public class ProjectController {
     @PostMapping("/initializeProject")
     public String initializeProject(@RequestBody ProposedProjectdetails proposedProjectdetails){
         return projectService.initializeProject(proposedProjectdetails);
+>>>>>>> main
     }
 }

@@ -1,5 +1,11 @@
 package com.ucsc.vwsbackend.services;
 
+<<<<<<< HEAD
+import com.ucsc.vwsbackend.dto.AnnouncementInfo;
+import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
+import com.ucsc.vwsbackend.dto.NewProjectDetail;
+=======
+>>>>>>> main
 import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.dto.ProposedProjectdetails;
 import com.ucsc.vwsbackend.dto.VolunteerUpgrade;
@@ -29,6 +35,10 @@ public class ProjectService {
         return projectJdbcRepository.getProposedProjects();
     }
 
+<<<<<<< HEAD
+    public long addProposedProjects(NewProjectDetail newProjectDetail){
+        return projectJdbcRepository.addProposedProjects(newProjectDetail);
+=======
     public long editProject(ProjectDetail projectDetail) {
 //      get new volunteer data
         VolunteerUpgrade volunteerUpgrade=projectJdbcRepository.getNewCoordinatorData(projectDetail.getCoordinatorId());
@@ -100,5 +110,6 @@ public class ProjectService {
 
 
         return proposedProjectdetails.getName()+" project added Successful!";
+>>>>>>> main
     }
 }

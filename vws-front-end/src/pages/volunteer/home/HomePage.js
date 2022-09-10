@@ -203,95 +203,13 @@ const [announcement, setAnnouncement] = useState([]);
                             </a>
                           </div> */}
                         </p>
-                        <i
-                          className="fa fa-edit"
-                          id="edit"
-                          data-toggle="modal"
-                          data-target="#editAnnouncement"
-                          onClick={()=>{
-                            setSelectedAnnouncementId(1)
-                          }}
-                        ></i>
+                       
                       </div>
                     </div>
                   </div>
                 ))}
                 </div>
-                  {/* <div className="card">
-                  <div className="card-header" id="head">
-                    <ul className="nav ">
-                      <li className="nav-item">
-                        <a className="nav-link" href="#">
-                          <img
-                            id="profielimg"
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
-                          ></img>
-                        </a>
-                      </li>
-                      <li
-                        className="nav-item"
-                        id="details"
-                        style={{ marginTop: "8px" }}
-                      >
-                        <a className="nav-link" style={{color:"black"}}><b>R.R. Rathnayake</b></a>
-                        <a className="nav-link">ADMIN 2021-10-21 12:12</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="card-body" id="body">
-                    <h6 className="card-title" style={{ color: "black" }}>
-                
-                    </h6>
-                    <p className="card-text" style={{ marginTop: "-25px" }}>
-                    The second programme of the Sasnaka Sansada "Sisu Mediya" project 2021, which aims to develop the infrastructure of schools with various needs in the island, was successfully held on 24th April at Kosgama Maha Vidyalaya in the Wattegama Education Zone in the Kandy District.
-                    </p>
-                    <p className="card-text"style={{ marginTop: "-10px" }}>
-                      <div className="pdfFiles">
-                        
-                        <h6 style={{textAlign: "right",fontSize: 12,color:"#2596BE"}}>View more...</h6>
-                      </div>
-                    </p>
-                    
-                  </div>
-                </div> */}
-                {/* <div className="card">
-                  <div className="card-header" id="head">
-                    <ul className="nav ">
-                      <li className="nav-item">
-                        <a className="nav-link" href="#">
-                          <img
-                            id="profielimg"
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
-                          ></img>
-                        </a>
-                      </li>
-                      <li
-                        className="nav-item"
-                        id="details"
-                        style={{ marginTop: "8px" }}
-                      >
-                        <a className="nav-link" style={{color:"black"}}><b>R.R. Rathnayake</b></a>
-                        <a className="nav-link">ADMIN 2021-10-21 12:12</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="card-body" id="body">
-                    <h6 className="card-title" style={{ color: "black" }}>
-                
-                    </h6>
-                    <p className="card-text" style={{ marginTop: "-25px" }}>
-                    The 5th episode of Sasnaka Sansada - Re Green Earth programme, was successfully concluded on 11th of April 2021, in Kurunegala, along the Wariyapola Natiya - Malagane road by the Deduru Oya reservoir as a Kumbuk plantation and conservation project.
-                    </p>
-                    <p className="card-text" style={{ marginTop: "-10px" }}>
-                      <div className="pdfFiles">
-                       
-                        <h6 style={{textAlign: "right",fontSize: 12,color:"#2596BE"}}>View more...</h6>
-                      </div>
-                    </p>
-                    
-                  </div>
-                </div> */}
-                  {/* <Table rows={tableData} /> */}
+                 
                   
                 </div>
               </div>
