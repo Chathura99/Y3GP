@@ -36,9 +36,7 @@ public class ProjectService {
     }
 
 
-    public long addProposedProjects(NewProjectDetail newProjectDetail) {
-        return projectJdbcRepository.addProposedProjects(newProjectDetail);
-    }
+
 
     public long editProject(ProjectDetail projectDetail) {
 //      get new volunteer data
@@ -112,6 +110,11 @@ public class ProjectService {
 
         return proposedProjectdetails.getName() + " project added Successful!";
 
+    }
+
+    //Volunteer-Malik
+    public long addProposedProjects(NewProjectDetail newProjectDetail) {
+        return projectJdbcRepository.addProposedProjects(newProjectDetail);
     }
 
 }

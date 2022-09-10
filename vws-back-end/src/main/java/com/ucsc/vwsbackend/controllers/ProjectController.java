@@ -34,10 +34,7 @@ public class ProjectController {
     }
 
 
-    @PostMapping("/addProposedProjects")
-    public long addProposedProjects(@RequestBody NewProjectDetail newProjectDetail) {
-        return projectService.addProposedProjects(newProjectDetail);
-    }
+
 
     @PutMapping("/editProject")
     public long editProject(@RequestBody ProjectDetail projectDetail) {
@@ -53,6 +50,12 @@ public class ProjectController {
     public String initializeProject(@RequestBody ProposedProjectdetails proposedProjectdetails) {
         return projectService.initializeProject(proposedProjectdetails);
 
+    }
+
+    // Volunteer-Malik
+    @PostMapping("/addProposedProjects")
+    public long addProposedProjects(@RequestBody NewProjectDetail newProjectDetail) {
+        return projectService.addProposedProjects(newProjectDetail);
     }
 }
 
