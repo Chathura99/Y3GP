@@ -106,7 +106,7 @@ export default function Projects() {
                             <div className="card-body ">
                                 <h5>Ongoing Projects</h5>
                                 
-                                  <button id='proposenewbtn' data-toggle="modal" data-target="#ProposeProjectForm">+ Propose New Project </button>
+                                  <button id='proposenewbtn' data-toggle="modal" data-target="#addProposedProjects">+ Propose New Project </button>
                                 <h5> </h5>
                                 
                                   <br></br>
