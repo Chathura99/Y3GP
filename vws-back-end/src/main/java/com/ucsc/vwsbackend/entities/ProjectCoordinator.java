@@ -29,9 +29,6 @@ public class ProjectCoordinator {
     @Column(name = " district")
     private String  district;
 
-    @Column(name = "requested_date")
-    private Date date;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     User user;
@@ -87,14 +84,6 @@ public class ProjectCoordinator {
 
     public void setDistrict(String district) {
         this.district = district;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public User getUser() {

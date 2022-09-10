@@ -1,5 +1,7 @@
 package com.ucsc.vwsbackend.entities;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -32,6 +34,10 @@ public class Volunteer {
 
     @Column(name = "requested_date")
     private Date date;
+
+    @Column(name = "coordinator_or_not")
+    @ColumnDefault("0")
+    private long coordinatorOrNot;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
@@ -107,6 +113,14 @@ public class Volunteer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public long getCoordinatorOrNot() {
+        return coordinatorOrNot;
+    }
+
+    public void setCoordinatorOrNot(long coordinatorOrNot) {
+        this.coordinatorOrNot = coordinatorOrNot;
     }
 
     public Set<ParticipateEvent> getParticipations() {
