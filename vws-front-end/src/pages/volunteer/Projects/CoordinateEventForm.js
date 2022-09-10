@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-export default function CoordinateEventForm() {
+
+export default function CoordinateEventForm(props) {
+
+  const [coordinateEventToProject, setcoordinateEventToProject] = useState(props.data);
+
   return (
     <div>
-      {/* <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        Middle
-      </button> */}
+     
 
       <div
         class="modal fade"
@@ -19,6 +17,7 @@ export default function CoordinateEventForm() {
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
+        style={{ display: "block" }}
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -31,26 +30,32 @@ export default function CoordinateEventForm() {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={() => {
+                  props.setSelected(false);
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""} style={{marginTop:0}}>
+              {/* <form onSubmit={""} style={{marginTop:0}}> */}
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>Adurata Eliyak</h4>
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>{coordinateEventToProject.name}</h4>
                   </div>
+
+                 
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
-                      <label for="fullName">Proposed By</label>
+                      <label for="fullName">Proposed By </label>
                       <input
                         type="text"
                         className="form-control"
                         id="proposedBy"
-                        placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
+                        value={coordinateEventToProject.firstName}
+                        
+                        
                         name="firstName"
                         // onChange={handleChange}
                       />
@@ -65,7 +70,7 @@ export default function CoordinateEventForm() {
                         className="form-control"
                         id="date"
                         
-                        // value={profile.email}
+                        value={coordinateEventToProject.start_date}
                         name="email"
                         // onChange={handleChange}
                       />
@@ -79,7 +84,7 @@ export default function CoordinateEventForm() {
                         type="text"
                         className="form-control"
                         id="ProjectName"
-                        placeholder="Enter event name"
+                        value={coordinateEventToProject.name}
                       />
                     </div>
                   </div>
@@ -92,7 +97,7 @@ export default function CoordinateEventForm() {
                         className="form-control"
                         id="date"
                         
-                        // value={profile.email}
+                        value={coordinateEventToProject.end_date}
                         name="email"
                         // onChange={handleChange}
                       />
@@ -108,7 +113,7 @@ export default function CoordinateEventForm() {
                         style={{height:80}}
                         className="form-control"
                         id="description"
-                        placeholder="Enter description"
+                        value={coordinateEventToProject.description}
                       />
                     </div>
                   </div>
@@ -120,7 +125,7 @@ export default function CoordinateEventForm() {
                         type="text"
                         className="form-control"
                         id="ProjectName"
-                        placeholder="Enter volunteer count"
+                        value={coordinateEventToProject.no_of_volunteers}
                       />
                     </div>
                   </div>
@@ -144,15 +149,21 @@ export default function CoordinateEventForm() {
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="text-center mt-3 ">
                       <div class="modal-footer justify-content-center ">
+                      <Link to="/volunteerProjects">
                         <button
                           type="button"
                           id="submit"
                           name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
+                          onClick={() => {
+                            props.setSelected(false);
+                          }}
                         >
                           Cancel
                         </button>
+                        </Link>
+                        
                         <button
                           type="button"
                           id="submit"
@@ -166,7 +177,7 @@ export default function CoordinateEventForm() {
                     </div>
                   </div>
                 </div>
-              </form>
+              {/* </form> */}
             </div>
           </div>
         </div>

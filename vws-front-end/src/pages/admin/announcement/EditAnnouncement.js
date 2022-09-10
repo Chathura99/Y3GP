@@ -59,12 +59,14 @@ export default function EditAnnouncement(props) {
   return (
     <div>
       <div
-        class="modal fade"
+        class="modal fade show"
         id="editAnnouncement"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        style={{ display: "block" }}
+
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -77,6 +79,7 @@ export default function EditAnnouncement(props) {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={() => props.setSelectedAnnouncementId("")}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -127,8 +130,8 @@ export default function EditAnnouncement(props) {
                         onChange={handleChange}
                       >
                         <option value="all">{ann.category}</option>
-                        <option value="all">All</option>
-                        <option value="guest">Guest</option>
+                        <option value="all">all</option>
+                        <option value="guest">guest</option>
                       </select>
                     </div>
                   </div>
@@ -195,6 +198,8 @@ export default function EditAnnouncement(props) {
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
+
       {popup === "success" && (
         <SuccessPopUp message={message} closePopUp={closePopUp} />
       )}

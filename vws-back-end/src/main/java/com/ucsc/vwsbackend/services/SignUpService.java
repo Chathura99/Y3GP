@@ -50,7 +50,7 @@ public class SignUpService {
 //      check in requests also
         int rowCount1 = userJdbcRepository.checkEmailExists(joinRequest.getEmail());
         int rowCount2 = joinRequestJdbcRepository.checkEmailExists(joinRequest.getEmail());
-        joinRequest.setDate(LocalDateTime.now());
+//        joinRequest.setDate(LocalDateTime.now());
         if(rowCount1>0){
             return "You have already an account!";
         }else if(rowCount2>0){
@@ -138,5 +138,9 @@ public class SignUpService {
         authority.setRoleCode(roleCode);
         authority.setRoleDescription(roleDescription);
         return authority;
+    }
+
+    public int deleteRequest(Long id) {
+        return joinRequestJdbcRepository.deleteRequest(id);
     }
 }

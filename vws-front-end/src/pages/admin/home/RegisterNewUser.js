@@ -19,7 +19,7 @@ export default function RegisterNewUser(props) {
   // open confirmation pop up modal
   const confirm = (e) => {
     e.preventDefault();
-    setMessage("Request to join");
+    setMessage("Register "+ requestData.firstName + " with id " + requestData.id);
     setPopUp("confirm");
   };
 

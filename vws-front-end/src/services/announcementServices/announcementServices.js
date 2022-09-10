@@ -22,5 +22,17 @@ export const editAnnouncement = (announcement) => {
     headers: {
       Authorization: "Bearer " + getToken(),
     },
+    data : announcement
+  });
+};
+
+export const getOneAnnouncement = (id) => {
+  console.log(id);
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getAnnouncementById/${id}`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
   });
 };

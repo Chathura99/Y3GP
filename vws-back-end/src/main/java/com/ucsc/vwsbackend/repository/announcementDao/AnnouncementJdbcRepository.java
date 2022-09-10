@@ -3,6 +3,7 @@ package com.ucsc.vwsbackend.repository.announcementDao;
 import com.ucsc.vwsbackend.dto.AnnouncementInfo;
 import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
 import com.ucsc.vwsbackend.entities.Announcement;
+import com.ucsc.vwsbackend.entities.JoinRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -98,6 +99,20 @@ public class AnnouncementJdbcRepository {
 
         List<AnnouncementWithAuthor> announcementWithAuthor = jdbc.query(query, new BeanPropertyRowMapper<AnnouncementWithAuthor>(AnnouncementWithAuthor.class));
         return announcementWithAuthor;
+    }
+
+    public AnnouncementWithAuthor getAnnouncementById(long id) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+
+        String query ="SELECT a.*,u.first_name,u.last_name,auth.role_code as role " +
+                "FROM announcement as a " +
+                "INNER JOIN user as u ON a.user_id = u.id " +
+                "INNER JOIN user_authority as ua ON u.id = ua.user_id " +
+                "INNER JOIN authority as auth ON auth.id = ua.user_id where ann_id = ?";
+
+        AnnouncementWithAuthor ann = (AnnouncementWithAuthor) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(AnnouncementWithAuthor.class));
+        return ann;
     }
 }
 

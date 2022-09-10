@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Set;
 
 @Table(name = "event")
 @Entity
@@ -14,39 +15,57 @@ public class Event {
     @Column(name = "event_id")
     private Long eventId;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_coordinator_id")
+    Volunteer volunteer;
+
+    public Volunteer getVolunteer() {
+        return volunteer;
+    }
 
     @Column(name = "no_of_volunteers")
     private Integer noOfVolunteers;
 
     @Column(name = "start_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime startDate;
+    private Date startDate;
 
     @Column(name = "end_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime endDate;
+    private Date endDate;
+
+    @Column(name = "status")
+    private Integer status;
+
+    @Column(name = "place")
+    private String place;
+
+    public String getCoordinate() {
+        return coordinate;
+    }
+
+    @Column(name = "coordinate")
+    private String coordinate;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id")
+    Project project;
+
+    @OneToMany(mappedBy = "event")
+    Set<ParticipateEvent> participations;
+
+
 
     public Long getEventId() {
         return eventId;
     }
 
-    public String getName() {
-        return name;
-    }
+
 
     public Integer getNoOfVolunteers() {
         return noOfVolunteers;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
 
     public Integer getStatus() {
         return status;
@@ -60,18 +79,50 @@ public class Event {
         return project;
     }
 
-    @Column(name = "status")
-    private Integer status;
-
-    @Column(name = "place")
-    private String place;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id")
-    Project project;
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
+    }
 
 
 
+    public void setNoOfVolunteers(Integer noOfVolunteers) {
+        this.noOfVolunteers = noOfVolunteers;
+    }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Set<ParticipateEvent> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(Set<ParticipateEvent> participations) {
+        this.participations = participations;
+    }
 
 }

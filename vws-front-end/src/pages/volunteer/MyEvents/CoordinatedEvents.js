@@ -1,81 +1,14 @@
 import React, { useEffect,useState } from 'react';
-import NewTable from '../../../utilities/Table/NewTable';
-import { useMemo } from 'react';
 import PieChart from './../../../utilities/Charts/PieChart';
 import EditCoordinatedForm from './EditCoordinatedForm';
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+import { getApprovedCoordinatedEvents } from './../../../services/eventServices/eventService';
 
 
 export default function CoordinatedEvents() {
-  const [upcomingEventsData, setUpComingEventsData] = useState([
-    {
-            event_id: "E001",
-            category: "Ganitha Saviya",
-            event_coordinator: "Ravindu",
-            startdate: "2022 09 12",
-            enddate: "2022 09 14",
-            no_of_members: "13",
-            location: "Nikawaratiya",
-            
-            action: (
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        data-toggle="modal"
-                        data-target="#EditCoordinatedEvent"
-                        className="btn p-1"
-                        style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                        // #96BE25,#BE4D25
-                        // onClick={handleSubmit}
-                      >
-                        EDIT
-                      </button>
-                    ),
-    },
-    {
-            event_id: "E002",
-            category: "Re-green Earth",
-            event_coordinator: "Sadaru",
-            startdate: "2022 09 02",
-            enddate: "2022 09 04",
-            no_of_members: "8",
-            location: "Horana",
-            
-            action: (
-              <button
-                type="button"
-                id="submit"
-                name="submit"
-                data-toggle="modal"
-                data-target="#EditCoordinatedEvent"
-                className="btn p-1"
-                style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                // #96BE25,#BE4D25
-                // onClick={handleSubmit}
-              >
-                EDIT
-              </button>
-            ),
-    }
-  ]);
-
-const data = useMemo(
-() => upcomingEventsData  )
-
-  const UpcomingEventsHeadings=useMemo(
-    () => [
-     
-      { accessor: "event_id", Header: "EVENT ID" },
-      { accessor: "category", Header: "CATEGORY" },
-      { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
-      { accessor: "startdate", Header: "STARTS ON" },
-      { accessor: "enddate", Header: "ENDS ON" },
-      { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
-      { accessor: "location", Header: "LOCATION" },
-      { accessor: "action", Header: "EDIT" },
-    ],
-    []
-  )
+  
 
       const [pieChartData, setPieChartData] = useState([
         ["Event", "Completed precentage"],
@@ -85,6 +18,8 @@ const data = useMemo(
 
     useEffect(() => {
         checkValidate();
+        MyCoordinatedEvent();
+
     }, []);
 
     const checkValidate = async () => {
@@ -93,6 +28,15 @@ const data = useMemo(
             window.location.href = "/";
         }
     };
+
+    const MyCoordinatedEvent = async () => {
+      const res = await getApprovedCoordinatedEvents();
+      setApprovedCoordinatedEventData(res.data);
+    };
+    const [selected, setSelected] = useState(false);
+  
+    const [approvedCoordinatedEventData, setApprovedCoordinatedEventData] = useState([]);
+
     return (
         <>
             <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -114,7 +58,79 @@ const data = useMemo(
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
                             <h5>Coordinated Events</h5><br></br>
-                                <NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData} />
+                            <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Coordinated Events"
+                    columns={[
+                      {
+                        field: "eventId",
+                        title: "EVENT ID",
+                        
+                      },
+                      {
+                        field: "category",
+                        title: "CATEGORY",
+                      },
+                      { field: "name", title: "COORDINATOR" },
+                      
+                      {
+                        field: "startDate",
+                        title: "STARTED ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "endDate",
+                        title: "ENDS ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "noOfVolunteers",
+                        title: "NO OF MEMBERS",
+                      },
+                      {
+                        field: "place",
+                        title: "Location",
+                      },
+                      
+                    ]}
+                    data={approvedCoordinatedEventData}
+                    actions={[
+                      {
+                        
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              data-toggle="modal"
+                              data-target="#CoordinateEventForm"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                width: "6rem",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              Edit
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          setApprovedCoordinatedEventData(rowData);
+                          setSelected(true);
+                        },
+                        tooltip: "Edit Details",
+                      },
+
+                     
+                      
+                    ]}
+                    />
+
+
                                 <EditCoordinatedForm />
                             </div>
                         </div>

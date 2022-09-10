@@ -1,7 +1,8 @@
 package com.ucsc.vwsbackend.entities;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Set;
 
 @Table(name = "volunteer")
 @Entity
@@ -28,12 +29,16 @@ public class Volunteer {
     @Column(name = " district")
     private String  district;
 
+
     @Column(name = "requested_date")
-    private LocalDateTime date;
+    private Date date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id")
     User user;
+
+    @OneToMany(mappedBy = "volunteer")
+    Set<ParticipateEvent> participations;
 
 
     public Volunteer() {
@@ -88,11 +93,11 @@ public class Volunteer {
         this.district = district;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -102,5 +107,13 @@ public class Volunteer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<ParticipateEvent> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(Set<ParticipateEvent> participations) {
+        this.participations = participations;
     }
 }

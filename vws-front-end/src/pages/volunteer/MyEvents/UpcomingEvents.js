@@ -1,86 +1,22 @@
 import React, { useEffect,useState } from 'react';
 // import Table from "../../../utilities/Table/Table";
 import Card from "react-bootstrap/Card";
-import NewTable from '../../../utilities/Table/NewTable';
-import { useMemo } from 'react';
 import MapFormPopUp from './MapFormPopUp';
 import "./UpcomingEvents.css"
-
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+import {getUpcomingEvents} from "../../../services/eventServices/eventService";
 
 export default function UpcomingEvents() {
   
     
-      const [upcomingEventsData, setUpComingEventsData] = useState([
-        {
-                event_id: "E001",
-                category: "Ganitha Saviya",
-                event_coordinator: "Ravindu",
-                startdate: "2022 09 12",
-                enddate: "2022 09 14",
-                no_of_members: "13",
-                location: 
-                <button
-          type="button"
-          id="submit"
-          name="submit"
-          data-toggle="modal"
-          data-target="#MapForm"
-          className="btn p-1"
-          style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>,
-                
-        },
-        {
-                event_id: "E002",
-                category: "Re-green Earth",
-                event_coordinator: "Sadaru",
-                startdate: "2022 09 02",
-                enddate: "2022 09 04",
-                no_of_members: "8",
-                location: 
-                <button
-          type="button"
-          id="submit"
-          name="submit"
-          data-toggle="modal"
-          data-target="#MapForm"
-          className="btn p-1"
-          style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>,
-                
-        }
-      ]);
-
-  const data = useMemo(
-    () => upcomingEventsData  )
-
-      const UpcomingEventsHeadings=useMemo(
-        () => [
-         
-          { accessor: "event_id", Header: "EVENT ID" },
-          { accessor: "category", Header: "CATEGORY" },
-          { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
-          { accessor: "startdate", Header: "STARTS ON" },
-          { accessor: "enddate", Header: "ENDS ON" },
-          { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
-          { accessor: "location", Header: "LOCATION" },
-          
-         
-        ],
-        []
-      )
+      
       
 
     useEffect(() => {
         checkValidate();
+        upcomingEvent();
     }, []);
 
     const checkValidate = async () => {
@@ -89,6 +25,15 @@ export default function UpcomingEvents() {
             window.location.href = "/";
         }
     };
+
+    const upcomingEvent = async () => {
+      const res = await getUpcomingEvents();
+      setUpComingEventData(res.data);
+    };
+    const [selected, setSelected] = useState(false);
+  
+    const [upComingEventData, setUpComingEventData] = useState([]);
+
     return (
         <>
             <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -144,8 +89,47 @@ export default function UpcomingEvents() {
 
       
                             <h5><br></br>All Upcoming Events</h5><br></br>
-                               
-                                <NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData} />
+                               <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Upcoming Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID" },
+                      { field: "category", title: "CATEGORY" },
+                      { field: "name", title: "COORDINATOR" },
+                      { field: "startDate", title: "STARTS ON" },
+                      { field: "endDate", title: "ENDS ON" },
+                      { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      { field: "place", title: "LOCATION" },
+                    ]}
+                    data={upComingEventData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              View
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          // setSelectedJoinRequestsData(rowData);
+                          // setSelected(true);
+                        },
+                         tooltip: "View Location",
+                      },
+                    ]}
+                  />
+                                
                                 <MapFormPopUp />
 
                             </div>

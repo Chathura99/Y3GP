@@ -1,43 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function AddEventProgress() {
-  //   const [requestData, setRequestData] = useState(
-  //     {
-  //       firstName: "chathura",
-  //       lastName: "manohara",
-  //       email: "c@gmail.com",
-  //       phoneNumber: "0715248569",
-  //       address: "Polgahawela",
-  //       universityCollege: "Colombo",
-  //       district: "Kurunegala",
-  //       date: "2021-10-11",
-  //       status: 0,
-  //       nic: "985475865v",
-  //       info: "Singing",
-  //       other: "",
-  //     },
-  //     []
-  //   );
-
-  const handleChange = (e) => {
-    // e.persist();
-    // console.log(e.target.name + "-" + e.target.value);
-    // setAnn((ann) => ({
-    //   ...ann,
-    //   [e.target.name]: e.target.value,
-    // }));
-  };
-
+export default function AddEventProgress(props) {
   return (
     <div>
       <div
-        class="modal fade"
+        class="modal fade show"
         id="addeventprogress"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        style={{ display: "block" }}
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -48,8 +22,10 @@ export default function AddEventProgress() {
               <button
                 type="button"
                 class="close"
-                data-dismiss="modal"
                 aria-label="Close"
+                onClick={() => {
+                  props.setSelected(false);
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -186,7 +162,7 @@ export default function AddEventProgress() {
                     />
                   </div>
                 </div>
-
+                </div>
                 <div className="row gutters">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="text-center mt-3 ">
@@ -196,8 +172,9 @@ export default function AddEventProgress() {
                           id="submit"
                           name="submit"
                           class="btn btn-secondary btn-sm"
-                          data-dismiss="modal"
-                          aria-label="Close"
+                          onClick={() => {
+                            props.setSelected(false);
+                          }}
                         >
                           Cancel
                         </button>
@@ -219,11 +196,12 @@ export default function AddEventProgress() {
                     </div>
                   </div>
                 </div>
-              </div>
+              
             </div>
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
     </div>
   );
 }

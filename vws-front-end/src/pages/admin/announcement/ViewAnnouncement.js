@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { getAnnouncement } from "../../../services/announcementServices/announcementServices";
+import { getOneAnnouncement } from "../../../services/announcementServices/announcementServices";
+import MaterialTable from 'material-table'
 import AddAnnouncement from "./AddAnnouncement";
 import "./announcement.css";
 import EditAnnouncement from "./EditAnnouncement";
 export default function ViewAnnouncement() {
   const [announcement, setAnnouncement] = useState([]);
+  const [selectedAnnouncementId, setSelectedAnnouncementId] = useState("");
   const [editannouncement, setEditAnnouncement] = useState({
-    title: "Title ",
-    category: "All",
-    content: "Content . . .",
-    date: "2022-10-10",
-    firstName: "Chathura",
-    lastName: "Manohara",
+    title: "",
+    category: "",
+    content: "",
+    date: "",
+    firstName: "",
+    lastName: "",
     file: "",
   });
 
@@ -29,8 +32,23 @@ export default function ViewAnnouncement() {
 
   const readAnnouncement = async () => {
     const res = await getAnnouncement("other");
-    console.log(res.data);
+    // console.log(res.data);
     setAnnouncement(res.data);
+  };
+
+  const readParticularAnnouncement = async (id) => {
+    const res = await getOneAnnouncement(id);
+    setEditAnnouncement(res.data);
+    // console.log(res.data)
+    console.log(editannouncement)
+  }
+
+
+  const [selectedId, setSelectedId] = useState(0);
+  window.onclick = (e) => {
+    console.log(e.target.parentNode.id);
+    setSelectedId(e.target.parentNode.id);
+    readParticularAnnouncement(selectedId);
   };
 
   return (
@@ -42,7 +60,15 @@ export default function ViewAnnouncement() {
               <div className="card-body">
                 <h4 className="">Announcements</h4>
                 <AddAnnouncement />
-                <EditAnnouncement ann={editannouncement} />
+                {/* {console.log(">>>" + selectedAnnouncementId)} */}
+
+                {selectedAnnouncementId && (
+                  <EditAnnouncement 
+                  ann={editannouncement}
+                  setSelectedAnnouncementId ={setSelectedAnnouncementId}
+                   />
+                )}
+
                 <button
                   type="button"
                   class="btn"
@@ -85,7 +111,7 @@ export default function ViewAnnouncement() {
                           </li>
                         </ul>
                       </div>
-                      <div className="card-body" id="body">
+                      <div className="card-body" id={ann.annId}>
                         <h6 className="card-title" style={{ color: "black" }}>
                           {ann.title}
                         </h6>
@@ -106,6 +132,9 @@ export default function ViewAnnouncement() {
                           id="edit"
                           data-toggle="modal"
                           data-target="#editAnnouncement"
+                          onClick={()=>{
+                            setSelectedAnnouncementId(1)
+                          }}
                         ></i>
                       </div>
                     </div>
@@ -115,16 +144,7 @@ export default function ViewAnnouncement() {
             </div>
           </div>
 
-          {/* <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-            <div className="card h-100" id="contentcard">
-              <div className="card-body">
-                <div className="row gutters ">
-                  <h4 className="ml-3">Publish New Announcement</h4>
-                </div>
-                <div className="row gutters ">Add announcement form</div>
-              </div>
-            </div>
-          </div> */}
+          
         </div>
       </div>
     </>

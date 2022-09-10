@@ -38,6 +38,13 @@ public class SignUpController {
         return status;
     }
 
+    @DeleteMapping("/deleteRequest/{id}")
+    public int deleteRequest(@PathVariable Long id)
+    {
+        int status = signUpService.deleteRequest(id);
+        return status;
+    }
+
 
 
 }
