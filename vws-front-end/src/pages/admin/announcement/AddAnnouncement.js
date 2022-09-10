@@ -10,7 +10,7 @@ export default function AddAnnouncement() {
     title: "",
     category: "",
     content: "",
-    userId:5,
+    userId:1,
     file: "",
   });
 
