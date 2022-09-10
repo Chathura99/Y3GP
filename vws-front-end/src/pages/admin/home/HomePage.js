@@ -2,6 +2,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
+import { Link } from "react-router-dom";
+
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getParticularJoinRequestData } from "../../../services/adminServices/JoinRequestService";
@@ -15,13 +17,12 @@ import MaterialTable from "material-table";
 // service
 import { getUpcomingEvents } from "../../../services/eventServices/eventService";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import { getAdminHomeSummary } from "../../../services/adminServices/ChartServices";
+import { getProjectSummary } from "../../../services/adminServices/ChartServices";
+
 
 export default function HomePage() {
-
- 
-  const [upComingEventsData, setUpComingEventsData] = useState([
-
-  ]);
+  const [upComingEventsData, setUpComingEventsData] = useState([]);
 
   const [pieChartData, setPieChartData] = useState([
     ["Task", "votes"],
@@ -45,17 +46,35 @@ export default function HomePage() {
     checkValidate();
     getRequest();
     upcomingEvent();
+    getCardSummary();
+    getProjectSummaryData();
   }, []);
 
   const getRequest = async () => {
     const res = await getJoinRequest();
-    console.log(res.data);
+    // console.log(res.data);
     setJoinRequestsData([...res.data]);
   };
 
   const upcomingEvent = async () => {
     const res = await getUpcomingEvents();
     setUpComingEventsData(res.data);
+  };
+
+  const [adminHomeSummaryData, setadminHomeSummaryData] = useState({});
+
+  const getCardSummary = async () => {
+    const res = await getAdminHomeSummary();
+    setadminHomeSummaryData(res.data);
+    console.log(res.data);
+  };
+
+  const [adminProjectSummaryData, setProjectSummaryData] = useState({});
+
+  const getProjectSummaryData = async () => {
+    const res = await getProjectSummary();
+    setProjectSummaryData(res.data);
+    console.log(...res.data);
   };
 
   const checkValidate = async () => {
@@ -84,7 +103,7 @@ export default function HomePage() {
                 <div className="row gutters">Volunteers</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">750</span>
+                    <span className="featured">{adminHomeSummaryData.volunteerCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -106,12 +125,12 @@ export default function HomePage() {
                 <div className="row gutters">Events Completed</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">119</span>
+                    <span className="featured">{adminHomeSummaryData.eventCount}</span>
                     <span className="rate">
-                      -3 <ArrowDownward className="featuredIcon negative" />
+                      0 <ArrowDownward className="featuredIcon negative" />
                     </span>
                     <span className="rate">
-                      0 <ArrowUpward className="featuredIcon" />
+                      3 <ArrowUpward className="featuredIcon" />
                     </span>
                   </div>
                 </div>
@@ -128,12 +147,12 @@ export default function HomePage() {
                 <div className="row gutters">New Requests</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">8</span>
+                    <span className="featured">{adminHomeSummaryData.newRequestCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
                     <span className="rate">
-                      +3 <ArrowUpward className="featuredIcon" />
+                      +5 <ArrowUpward className="featuredIcon" />
                     </span>
                   </div>
                 </div>
@@ -150,12 +169,12 @@ export default function HomePage() {
                 <div className="row gutters">Total Projects</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">19</span>
+                    <span className="featured">{adminHomeSummaryData.projectCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
                     <span className="rate">
-                      +25 <ArrowUpward className="featuredIcon" />
+                      +1 <ArrowUpward className="featuredIcon" />
                     </span>
                   </div>
                 </div>
@@ -194,7 +213,7 @@ export default function HomePage() {
                     {
                       icon: () => {
                         return (
-                          <button
+                          <Link to="/adminevent"><button
                             type="button"
                             className="btn mt-0"
                             style={{
@@ -203,13 +222,11 @@ export default function HomePage() {
                             }}
                           >
                             More...
-                          </button>
+                          </button></Link>
+                          
                         );
                       },
-                      onClick: (event, rowData) => {
-                        setSelectedJoinRequestsData(rowData);
-                        setSelected(true);
-                      },
+                      
                       // tooltip: "Register User",
                     },
                   ]}
