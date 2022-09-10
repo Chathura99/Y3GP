@@ -1,6 +1,8 @@
 package com.ucsc.vwsbackend.repository.ProjectDao;
 
+import com.ucsc.vwsbackend.dto.AnnouncementInfo;
 import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
+import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.entities.Project;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +48,28 @@ public class ProjectJdbcRepository {
 
         List<ProjectDetail> projectDetail = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<ProjectDetail>(ProjectDetail.class));
         return projectDetail;
+    }
+
+
+
+    // VOlunteer
+    public long addProposedProjects(NewProjectDetail newProjectDetail) {
+
+//        System.out.println(":ID" + newProjectDetail.getProjectId());
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String query = "INSERT INTO project " +
+                "(name, description,start_date, volunteer_id,event_per_year,status,proposed_date) " +
+                "values (:name, :description, :start_date, :volunteer_id, :event_per_year,0,curdate())";
+
+        namedParameters.addValue("name", newProjectDetail.getName());
+        namedParameters.addValue("description", newProjectDetail.getDescription());
+        namedParameters.addValue("start_date", newProjectDetail.getStartDate());
+        namedParameters.addValue("volunteer_id", newProjectDetail.getVolunteerId());
+        namedParameters.addValue("event_per_year", newProjectDetail.getEventPerYear());
+
+        int rowsAffected = jdbc.update(query , namedParameters);
+        return rowsAffected;
+
     }
 }

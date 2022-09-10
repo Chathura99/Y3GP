@@ -1,6 +1,8 @@
 package com.ucsc.vwsbackend.services;
 
+import com.ucsc.vwsbackend.dto.AnnouncementInfo;
 import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
+import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.entities.Project;
 import com.ucsc.vwsbackend.repository.ProjectDao.ProjectJdbcRepository;
@@ -19,5 +21,9 @@ public class ProjectService {
 
     public List<ProjectDetail> getProposedProjects() {
         return projectJdbcRepository.getProposedProjects();
+    }
+
+    public long addProposedProjects(NewProjectDetail newProjectDetail){
+        return projectJdbcRepository.addProposedProjects(newProjectDetail);
     }
 }
