@@ -22,6 +22,8 @@ public class ProjectDetail {
 
     private String phoneNumber;
 
+    private long coordinatorId;
+
     private String lastName;
 
     private String firstName;
@@ -106,5 +108,13 @@ public class ProjectDetail {
 
     public void setProposedDate(Date proposedDate) {
         this.proposedDate = proposedDate;
+    }
+
+    public long getCoordinatorId() {
+        return coordinatorId;
+    }
+
+    public void setCoordinatorId(long coordinatorId) {
+        this.coordinatorId = coordinatorId;
     }
 }
