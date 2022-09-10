@@ -6,45 +6,16 @@ import java.util.Date;
 
 
 public class NewProjectDetail {
-    private Long projectId;
 
     private String name;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startDate;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date proposedDate;
 
     private String description;
 
     private String status;
-
-    private String phoneNumber;
-
-    private String lastName;
-
-    private String firstName;
-
-    private Long eventPerYear;
-
-    public long getVolunteerId() {
-        return volunteerId;
-    }
-
-    public void setVolunteerId(long volunteerId) {
-        this.volunteerId = volunteerId;
-    }
-
-    private long volunteerId;
-
-    public Long getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
-    }
 
     public String getName() {
         return name;
@@ -78,43 +49,25 @@ public class NewProjectDetail {
         this.status = status;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Long getEventPerYear() {
+    public String getEventPerYear() {
         return eventPerYear;
     }
 
-    public void setEventPerYear(Long eventPerYear) {
+    public void setEventPerYear(String eventPerYear) {
         this.eventPerYear = eventPerYear;
     }
 
-    public Date getProposedDate() {
-        return proposedDate;
+    public long getVolunteerId() {
+        return volunteerId;
     }
 
-    public void setProposedDate(Date proposedDate) {
-        this.proposedDate = proposedDate;
+    public void setVolunteerId(long volunteerId) {
+        this.volunteerId = volunteerId;
     }
+
+    private String eventPerYear;
+
+
+    private long volunteerId;
+
 }

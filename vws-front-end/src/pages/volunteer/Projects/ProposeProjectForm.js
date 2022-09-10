@@ -101,12 +101,12 @@ export default function ProposeProjectForm() {
                   
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Project Name</label>
+                      <label for="name">Project Name</label>
                       <input
                         type="text"
                         className="form-control"
                         name="name"
-                        id=""
+                        id="name"
                         placeholder="Enter project name"
                         value={pro.name}
                         onChange={handleChange}
@@ -118,11 +118,11 @@ export default function ProposeProjectForm() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Start Date</label>
+                      <label for="startDate">Start Date</label>
                       <input
                         type="date"
                         className="form-control"
-                        id=""
+                        id="startDate"
                         value={pro.startDate}
                         name="startDate"
                         onChange={handleChange}
@@ -147,12 +147,12 @@ export default function ProposeProjectForm() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Description</label>
+                      <label for="description">Description</label>
                       <input
                         type="text"
                         style={{height:80}}
                         className="form-control"
-                        id=""
+                        id="description"
                         name="description"
                         placeholder="Enter description"
                         value={pro.description}
@@ -177,11 +177,11 @@ export default function ProposeProjectForm() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="website">Events per year</label>
+                      <label for="eventPerYear">Events per year</label>
                       <input
                         type="number"
                         className="form-control"
-                        id=""
+                        id="eventPerYear"
                         name="eventPerYear"
                         placeholder="Enter number of events"
                         value={pro.eventPerYear}
@@ -209,7 +209,7 @@ export default function ProposeProjectForm() {
                         <button
                           type="submit"
                           name="submit"
-                          
+                          id="submit"
                           className="btn btn-primary"
                           // onClick={handleSubmit}
                         >
