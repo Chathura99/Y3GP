@@ -33,24 +33,29 @@ public class ProjectController {
         return projectService.getProposedProjects();
     }
 
-<<<<<<< HEAD
-    @PostMapping("/addProposedProjects")
-    public long addProposedProjects(@RequestBody NewProjectDetail newProjectDetail){
-        return projectService.addProposedProjects(newProjectDetail);
-=======
+
+
+
     @PutMapping("/editProject")
-    public long editProject(@RequestBody ProjectDetail projectDetail){
+    public long editProject(@RequestBody ProjectDetail projectDetail) {
         return projectService.editProject(projectDetail);
     }
 
     @GetMapping("/getAllVolunteers")
-    public List<Volunteer> getAllVolunteers(){
+    public List<Volunteer> getAllVolunteers() {
         return projectService.getAllVolunteers();
     }
 
     @PostMapping("/initializeProject")
-    public String initializeProject(@RequestBody ProposedProjectdetails proposedProjectdetails){
+    public String initializeProject(@RequestBody ProposedProjectdetails proposedProjectdetails) {
         return projectService.initializeProject(proposedProjectdetails);
->>>>>>> main
+
+    }
+
+    // Volunteer-Malik
+    @PostMapping("/addProposedProjects")
+    public long addProposedProjects(@RequestBody NewProjectDetail newProjectDetail) {
+        return projectService.addProposedProjects(newProjectDetail);
     }
 }
+

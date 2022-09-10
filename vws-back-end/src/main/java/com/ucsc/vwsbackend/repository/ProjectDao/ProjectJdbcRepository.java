@@ -1,11 +1,10 @@
 package com.ucsc.vwsbackend.repository.ProjectDao;
 
-<<<<<<< HEAD
+
 import com.ucsc.vwsbackend.dto.AnnouncementInfo;
 import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
 import com.ucsc.vwsbackend.dto.NewProjectDetail;
-=======
->>>>>>> main
+
 import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.dto.ProposedProjectdetails;
 import com.ucsc.vwsbackend.dto.VolunteerUpgrade;
