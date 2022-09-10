@@ -1,20 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import { addProposedProjects } from "../../../services/projectServices/projectService";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function ProposeProjectForm() {
+  const [pro, setPro] = useState({
+    name: "",
+    description: "",
+    startDate: "",
+    volunteerId:1,
+    eventPerYear: "",
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setPro((pro) => ({
+      ...pro,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Propose new project !");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addProposedProjects(pro)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
+
   return (
     <div>
-      {/* <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        Middle
-      </button> */}
+      
 
       <div
         class="modal fade"
-        id="ProposeProjectForm"
+        id="addProposedProjects"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
@@ -36,11 +77,13 @@ export default function ProposeProjectForm() {
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""} style={{marginTop:0}}>
+            <form onSubmit={confirm}>
+
+              {/* <form onSubmit={""} style={{marginTop:0}}> */}
                 <div className="row gutters ">
                   
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
                       <label for="fullName">Proposed By</label>
                       <input
@@ -53,36 +96,44 @@ export default function ProposeProjectForm() {
                         // onChange={handleChange}
                       />
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="eMail">Date</label>
-                      <input
-                        type="date"
-                        className="form-control"
-                        id="date"
-                        
-                        // value={profile.email}
-                        name="email"
-                        // onChange={handleChange}
-                      />
-                    </div>
-                  </div>
-
+                  
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="phone">Project Name</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="ProjectName"
+                        name="name"
+                        id=""
                         placeholder="Enter project name"
+                        value={pro.name}
+                        onChange={handleChange}
+                        
+
                       />
                     </div>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="eMail">Start Date</label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        id=""
+                        value={pro.startDate}
+                        name="startDate"
+                        onChange={handleChange}
+                        
+                      />
+                    </div>
+                  </div>
+
+                  
+
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="phone">Phone</label>
                       <input
@@ -92,7 +143,7 @@ export default function ProposeProjectForm() {
                         placeholder="Enter phone number"
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -101,13 +152,18 @@ export default function ProposeProjectForm() {
                         type="text"
                         style={{height:80}}
                         className="form-control"
-                        id="description"
+                        id=""
+                        name="description"
                         placeholder="Enter description"
+                        value={pro.description}
+                        onChange={handleChange}
+                        
+
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="website">Other</label>
                       <input
@@ -117,16 +173,22 @@ export default function ProposeProjectForm() {
                         placeholder="Content"
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="website">Events per year</label>
                       <input
-                        type="url"
+                        type="number"
                         className="form-control"
-                        id="numberOfEvents"
+                        id=""
+                        name="eventPerYear"
                         placeholder="Enter number of events"
+                        value={pro.eventPerYear}
+                        onChange={handleChange}
+                        
+
+
                       />
                     </div>
                   </div>
@@ -139,19 +201,15 @@ export default function ProposeProjectForm() {
                       <div class="modal-footer justify-content-center ">
                         <button
                           type="button"
-                          id="submit"
-                          
-                          name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
                         >
                           Cancel
                         </button>
                         <button
-                          type="button"
-                          id="submit"
-                      
+                          type="submit"
                           name="submit"
+                          
                           className="btn btn-primary"
                           // onClick={handleSubmit}
                         >
@@ -166,6 +224,19 @@ export default function ProposeProjectForm() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }
