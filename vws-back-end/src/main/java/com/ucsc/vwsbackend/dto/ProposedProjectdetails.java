@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-
-public class ProjectDetail {
+public class ProposedProjectdetails {
     private Long projectId;
 
     private String name;
@@ -22,13 +21,13 @@ public class ProjectDetail {
 
     private String phoneNumber;
 
-    private long coordinatorId;
-
     private String lastName;
 
     private String firstName;
 
     private Long eventPerYear;
+
+    private  long volunteerId;
 
     public Long getProjectId() {
         return projectId;
@@ -52,6 +51,14 @@ public class ProjectDetail {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public Date getProposedDate() {
+        return proposedDate;
+    }
+
+    public void setProposedDate(Date proposedDate) {
+        this.proposedDate = proposedDate;
     }
 
     public String getDescription() {
@@ -102,19 +109,11 @@ public class ProjectDetail {
         this.eventPerYear = eventPerYear;
     }
 
-    public Date getProposedDate() {
-        return proposedDate;
+    public long getVolunteerId() {
+        return volunteerId;
     }
 
-    public void setProposedDate(Date proposedDate) {
-        this.proposedDate = proposedDate;
-    }
-
-    public long getCoordinatorId() {
-        return coordinatorId;
-    }
-
-    public void setCoordinatorId(long coordinatorId) {
-        this.coordinatorId = coordinatorId;
+    public void setVolunteerId(long volunteerId) {
+        this.volunteerId = volunteerId;
     }
 }

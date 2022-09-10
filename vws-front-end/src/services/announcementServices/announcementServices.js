@@ -36,3 +36,15 @@ export const getOneAnnouncement = (id) => {
     },
   });
 };
+
+export const addAnnouncement = (announcement) =>{
+  
+  return axios({
+    method: "POST",
+    url: `${USER_URL}/addAnnouncement`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data : announcement
+  });
+}

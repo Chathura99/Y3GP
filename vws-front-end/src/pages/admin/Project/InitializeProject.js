@@ -1,20 +1,49 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+// services
+import { initializeProject } from "../../../services/projectServices/projectService";
+// popups
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import Loading from "../../../utilities/Loading/Loading";
 
 export default function Initializeproject(props) {
-  const handleChange = (e) => {
-    // e.persist();
-    // console.log(e.target.name + "-" + e.target.value);
-    // setAnn((ann) => ({
-    //   ...ann,
-    //   [e.target.name]: e.target.value,
-    // }));
-  };
 
   const [selectedProject, setSelectedProject] = useState(props.data);
-  //  console.log(selectedProject)
+   console.log(selectedProject)
+
+  
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Initialize new project");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    initializeProject(selectedProject)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
   return (
-    <div>
+
+    <div>      
       <div
         class="modal fade show"
         id="initializeproject"
@@ -65,7 +94,7 @@ export default function Initializeproject(props) {
                       id="projectname"
                       name="projectname"
                       value={selectedProject.name}
-                      //   onChange={handleChange}
+                        // onChange={handleChange}
                       disabled
                     />
                   </div>
@@ -82,7 +111,7 @@ export default function Initializeproject(props) {
                       id="projectCoordinator"
                       name="projectCoordinator"
                       value={selectedProject.firstName}
-                      //   onChange={handleChange}
+                        // onChange={handleChange}
                       disabled
                     />
                   </div>
@@ -123,7 +152,7 @@ export default function Initializeproject(props) {
                 </div>
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label for="other" id="formLabel">
                       Other
                     </label>
@@ -136,7 +165,8 @@ export default function Initializeproject(props) {
                       //   onChange={handleChange}
                       disabled
                     />
-                  </div>
+                  </div> */}
+                  Please consider the forum, poll results before initialize
                 </div>
               </div>
 
@@ -166,7 +196,7 @@ export default function Initializeproject(props) {
 
                       title="Please fill the form correctly!"
 
-                      // onClick=
+                      onClick={confirm}
                     >
                       Create
                     </button>
@@ -178,6 +208,19 @@ export default function Initializeproject(props) {
         </div>
       </div>
       <div class="modal-backdrop fade show"></div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

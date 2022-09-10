@@ -6,11 +6,13 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 // services
 import { getOngoingProjects } from "../../../services/projectServices/projectService";
+// import { getVolunteer } from "../../../services/projectServices/projectService";
 
 export default function OnGoingProject() {
   useEffect(() => {
     checkValidate();
     getOngoingProjectDetails();
+    // getVolunteerData();
   }, []);
 
   const checkValidate = async () => {
@@ -19,13 +21,22 @@ export default function OnGoingProject() {
       window.location.href = "/";
     }
   };
+  const [onGoingProjectData, setOnGoingProjectData] = useState([]);
 
   const getOngoingProjectDetails = async () => {
     const res = await getOngoingProjects();
     // console.log(res.data);
     setOnGoingProjectData(res.data);
   };
-  const [onGoingProjectData, setOnGoingProjectData] = useState([]);
+
+  // const [volunteertData, setvolunteertData] = useState([]);
+
+  // const getVolunteerData = async () => {
+  //   const res = await getVolunteer();
+  //   console.log(res.data);
+  //   setvolunteertData(res.data);
+  // };
+
   const [selectedProject, setSelectedProject] = useState({});
 
   const [lineChartData, setLineChartData] = useState([
@@ -58,7 +69,8 @@ export default function OnGoingProject() {
                 </div>
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
-                  This chat shows . . .
+                  This chat shows events growth of all projects in latest few
+                  months
                 </div>
               </div>
             </div>

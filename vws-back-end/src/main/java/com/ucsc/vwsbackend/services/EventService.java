@@ -24,7 +24,6 @@ public class EventService {
 
     }
 
-
     // Volunteer
 
     public  List<EventDetail> getOngoingEvents() {
