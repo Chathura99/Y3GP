@@ -318,19 +318,63 @@ export default function SignUp() {
                             class="form-control browse"
                             type="file"
                             id="formFile"
-                            // name="copy"
-                            // value={requestData.copy}
-                            // onChange={handleChange}
+                          // name="copy"
+                          // value={requestData.copy}
+                          // onChange={handleChange}
                           />
                         </div>
                       </div>
+
+
+
+                      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div className="form-group">
+                          <label for="formFile" class="form-label" id="formLbl">
+                            Select your qualifications
+                          </label>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
+                            <label class="form-check-label" id="qualifications" for="flexCheckDefault">
+                              interpersonal skills
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <label class="form-check-label" id="qualifications" for="flexCheckChecked">
+                              Leadership
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <label class="form-check-label" id="qualifications" for="flexCheckChecked">
+                              Teamwork and collaboration
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <label class="form-check-label" id="qualifications" for="flexCheckChecked">
+                              Physical abilities
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <label class="form-check-label" id="qualifications" for="flexCheckChecked">
+                              Oral and written communications skills
+                            </label>
+                          </div>
+
+                        </div>
+                      </div>
+
                     </div>
 
+
                     <div className="row gutters">
+
                       <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="form-group">
                           <label for="info" id="formLbl">
-                            What are the potentials you have?
+                            What are the other potentials you have?
                           </label>
                           <input
                             type="text"
@@ -375,35 +419,35 @@ export default function SignUp() {
                               Cancel
                             </button>
                           </Link>
-                          {(Object.keys(errors).length) >0 ?(
+                          {(Object.keys(errors).length) > 0 ? (
                             <button
                               type="submit"
                               id="submitbtn"
                               name="submit"
                               class="btn btn-secondary btn-sm"
-                              style={{ backgroundColor: "white"}}
+                              style={{ backgroundColor: "white" }}
                               title="Please fill the form correctly!"
                               disabled="true"
                             >
                               Submit
                             </button>
                           ) :
-                          (
-                            <button
-                              type="submit"
-                              id="submitbtn"
-                              name="submit"
-                              class="btn btn-secondary btn-sm"
-                              style={{ backgroundColor: "white"}}
-                              title="Please fill the form correctly!"
-                            >
-                              Submit
-                            </button>
-                          )
-}
-                            
-                          
-                          
+                            (
+                              <button
+                                type="submit"
+                                id="submitbtn"
+                                name="submit"
+                                class="btn btn-secondary btn-sm"
+                                style={{ backgroundColor: "white" }}
+                                title="Please fill the form correctly!"
+                              >
+                                Submit
+                              </button>
+                            )
+                          }
+
+
+
                         </div>
                       </div>
                     </div>

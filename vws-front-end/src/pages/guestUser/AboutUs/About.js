@@ -1,7 +1,7 @@
 import React from 'react';
 import "./about.css";
 import { Link } from 'react-router-dom';
-
+import "../ApplyForScholarship/ApplyForScholarship";
 
 export default function About() {
     return (
