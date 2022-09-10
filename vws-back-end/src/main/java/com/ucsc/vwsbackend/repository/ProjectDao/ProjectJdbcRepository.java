@@ -227,14 +227,15 @@ public class ProjectJdbcRepository {
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
         String query = "INSERT INTO project " +
-                "(name, description,start_date, volunteer_id,event_per_year,status,proposed_date) " +
-                "values (:name, :description, :start_date, :volunteer_id, :event_per_year,0,curdate())";
+                "(name, description,start_date,event_per_year,volunteer_id,status,proposed_date) " +
+                "values (:name, :description, :start_date, :event_per_year,:volunteer_id,0,curdate())";
 
         namedParameters.addValue("name", newProjectDetail.getName());
         namedParameters.addValue("description", newProjectDetail.getDescription());
         namedParameters.addValue("start_date", newProjectDetail.getStartDate());
-        namedParameters.addValue("volunteer_id", newProjectDetail.getVolunteerId());
         namedParameters.addValue("event_per_year", newProjectDetail.getEventPerYear());
+        namedParameters.addValue("volunteer_id", newProjectDetail.getVolunteerId());
+
 
         int rowsAffected = jdbc.update(query , namedParameters);
         return rowsAffected;
