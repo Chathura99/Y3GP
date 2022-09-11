@@ -9,6 +9,7 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 import { getAnnouncement } from './../../../services/announcementServices/announcementServices';
 import { getUpcomingEvents } from './../../../services/eventServices/eventService';
+import { getVolunteerHomeSummary } from './../../../services/volunteerServices/ChartServices';
 
 
 export default function HomePage() {
@@ -30,6 +31,7 @@ export default function HomePage() {
     checkValidate();
     readAnnouncement();
     upcomingEvent();
+    getCardSummary();
 }, []);
 
 const checkValidate = async () => {
@@ -37,6 +39,14 @@ const checkValidate = async () => {
     if (!y) {
         window.location.href = "/";
     }
+};
+
+const [volunteerHomeSummaryData, setvolunteerHomeSummaryData] = useState({});
+
+const getCardSummary = async () => {
+  const res = await getVolunteerHomeSummary();
+  setvolunteerHomeSummaryData(res.data);
+  console.log(res.data);
 };
 
 const readAnnouncement = async () => {
@@ -66,7 +76,7 @@ const [announcement, setAnnouncement] = useState([]);
                 <div className="row gutters">Total Upcoming Events</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">3</span>
+                    <span className="featured">{volunteerHomeSummaryData.upcomingEventsCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -88,7 +98,7 @@ const [announcement, setAnnouncement] = useState([]);
                 <div className="row gutters">Events Completed</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">2</span>
+                    <span className="featured">{volunteerHomeSummaryData.completedEventsCount}</span>
                     <span className="rate">
                       -1 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -110,7 +120,7 @@ const [announcement, setAnnouncement] = useState([]);
                 <div className="row gutters">New Polls</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">1</span>
+                    <span className="featured">{volunteerHomeSummaryData.newPollsCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -132,7 +142,7 @@ const [announcement, setAnnouncement] = useState([]);
                 <div className="row gutters">Total Projects</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">2</span>
+                    <span className="featured">{volunteerHomeSummaryData.myProjectsCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
