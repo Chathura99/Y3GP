@@ -57,7 +57,7 @@ export const initializeProject = (pro) => {
   });
 };
 
-export const addProposedProjects = (pro) =>{
+export const addProposedProjects = () =>{
   
   return axios({
     method: "POST",
@@ -65,6 +65,6 @@ export const addProposedProjects = (pro) =>{
     headers: {
       Authorization: "Bearer " + getToken(),
     },
-    data : pro
+  
   });
 }

@@ -211,7 +211,7 @@ export default function ProposeProjectForm() {
                           name="submit"
                           id="submit"
                           className="btn btn-primary"
-                          // onClick={handleSubmit}
+                         onClick={handleSubmit}
                         >
                           Save
                         </button>
