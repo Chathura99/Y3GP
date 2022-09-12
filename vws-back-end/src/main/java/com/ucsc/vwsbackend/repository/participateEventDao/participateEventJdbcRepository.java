@@ -1,7 +1,6 @@
 package com.ucsc.vwsbackend.repository.participateEventDao;
 
 
-import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.entities.ParticipateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,14 +9,14 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class participateEventJdbcRepository {
+public class ParticipateEventJdbcRepository {
     @Autowired
     protected NamedParameterJdbcTemplate jdbc;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public long participateEvent(ParticipateEvent participateEvent) {
+    public long participateToEvent(ParticipateEvent participateEvent) {
 
 
         MapSqlParameterSource namedParameters =
