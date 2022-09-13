@@ -6,7 +6,12 @@ import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function CoordinateEventForm() {
 
-  const [coordinateEventToProject, setcoordinateEventToProject] = useState();
+  const [newEvent, setNewEvent] = useState({
+    startDate: "",
+    endDate: "",
+    
+
+  });
 
   return (
     <div>
@@ -48,7 +53,7 @@ export default function CoordinateEventForm() {
 
                  
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
                       <label for="fullName">Proposed By </label>
                       <input
@@ -62,7 +67,7 @@ export default function CoordinateEventForm() {
                         // onChange={handleChange}
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -79,7 +84,7 @@ export default function CoordinateEventForm() {
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="phone">Event Name</label>
                       <input
@@ -89,7 +94,7 @@ export default function CoordinateEventForm() {
                         // value={coordinateEventToProject.name}
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -132,7 +137,7 @@ export default function CoordinateEventForm() {
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="website">Other</label>
                       <input
@@ -142,7 +147,7 @@ export default function CoordinateEventForm() {
                         placeholder="Content"
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                  
                 </div>
