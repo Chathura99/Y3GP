@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
@@ -12,7 +11,7 @@ export default function CoordinateEventForm() {
     endDate: "",
     place: "",
     volunteerId:1,
-    projectId:1,
+    projectId:2,
     noOfVolunteers: "",
 
   });
@@ -58,7 +57,7 @@ export default function CoordinateEventForm() {
 
       <div
         class="modal fade"
-        id="CoordinateEventForm"
+        id="addCoordinatedEvents"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
