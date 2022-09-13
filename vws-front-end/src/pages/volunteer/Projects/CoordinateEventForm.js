@@ -110,68 +110,61 @@ export default function CoordinateEventForm() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Starts On</label>
+                      <label for="place">Place</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="place"
+                        name="place"
+                        value={newEvent.place}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="startDate">Starts On</label>
                       <input
                         type="date"
                         className="form-control"
-                        id="date"
-                        
-                        // value={coordinateEventToProject.start_date}
-                        name="email"
-                        // onChange={handleChange}
+                        id="startDate"
+                        value={newEvent.startDate}
+                        name="startDate"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
 
-                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="phone">Event Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="ProjectName"
-                        // value={coordinateEventToProject.name}
-                      />
-                    </div>
-                  </div> */}
+                  
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Ends On</label>
+                      <label for="endDate">Ends On</label>
                       <input
                         type="date"
                         className="form-control"
-                        id="date"
-                        
-                        // value={coordinateEventToProject.end_date}
-                        name="email"
-                        // onChange={handleChange}
+                        id="endDate"
+                        value={newEvent.endDate}
+                        name="endDate"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
 
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="phone">Description</label>
-                      <input
-                        type="text"
-                        style={{height:80}}
-                        className="form-control"
-                        id="description"
-                        // value={coordinateEventToProject.description}
-                      />
-                    </div>
-                  </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">No.of volunteers need</label>
+                      <label for="noOfVolunteers">No.of volunteers need</label>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
-                        id="ProjectName"
-                        // value={coordinateEventToProject.no_of_volunteers}
+                        id="noOfVolunteers"
+                        name="noOfVolunteers"
+                        value={newEvent.noOfVolunteers}
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div>
@@ -195,25 +188,18 @@ export default function CoordinateEventForm() {
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="text-center mt-3 ">
                       <div class="modal-footer justify-content-center ">
-                      <Link to="/volunteerProjects">
                         <button
                           type="button"
-                          id="submit"
-                          name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
-                          
                         >
                           Cancel
                         </button>
-                        </Link>
-                        
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          // onClick={handleSubmit}
                         >
                           Save
                         </button>
@@ -226,6 +212,19 @@ export default function CoordinateEventForm() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }
