@@ -1,5 +1,10 @@
 package com.ucsc.vwsbackend.services;
 
+
+import com.ucsc.vwsbackend.dto.AnnouncementInfo;
+import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
+import com.ucsc.vwsbackend.dto.NewProjectDetail;
+
 import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.dto.ProposedProjectdetails;
 import com.ucsc.vwsbackend.dto.VolunteerUpgrade;
@@ -21,6 +26,7 @@ public class ProjectService {
 
     @Autowired
     ProjectRepository projectRepository;
+
     public List<ProjectDetail> getOngoingProjects() {
         return projectJdbcRepository.getOngoingProjects();
     }
@@ -29,21 +35,24 @@ public class ProjectService {
         return projectJdbcRepository.getProposedProjects();
     }
 
+
+
+
     public long editProject(ProjectDetail projectDetail) {
 //      get new volunteer data
-        VolunteerUpgrade volunteerUpgrade=projectJdbcRepository.getNewCoordinatorData(projectDetail.getCoordinatorId());
+        VolunteerUpgrade volunteerUpgrade = projectJdbcRepository.getNewCoordinatorData(projectDetail.getCoordinatorId());
 //      save to pc
-        ProjectCoordinator projectCoordinator =new ProjectCoordinator();
+        ProjectCoordinator projectCoordinator = new ProjectCoordinator();
         projectCoordinator.setAddress(volunteerUpgrade.getAddress());
         projectCoordinator.setDistrict(volunteerUpgrade.getDistrict());
         projectCoordinator.setUniversityCollege(volunteerUpgrade.getUniversityCollege());
         projectCoordinator.setFirstName(volunteerUpgrade.getFirstName());
         projectCoordinator.setLastName(volunteerUpgrade.getLastName());
 
-        long newUserid=projectJdbcRepository.getUserIdOfNewVolunteer(projectDetail.getCoordinatorId());
-        long oldUserid=projectJdbcRepository.getUserIdOfOldCoordinator(projectDetail.getProjectId());
+        long newUserid = projectJdbcRepository.getUserIdOfNewVolunteer(projectDetail.getCoordinatorId());
+        long oldUserid = projectJdbcRepository.getUserIdOfOldCoordinator(projectDetail.getProjectId());
 //        insert new project coordinator
-        projectJdbcRepository.saveData(projectCoordinator,newUserid);
+        projectJdbcRepository.saveData(projectCoordinator, newUserid);
 //        remove from volunteer
         projectJdbcRepository.removeFromVolunteer(projectDetail.getCoordinatorId());
 //        upgrade new user role
@@ -65,10 +74,10 @@ public class ProjectService {
 
     public String initializeProject(ProposedProjectdetails proposedProjectdetails) {
 //      get new volunteer data
-        VolunteerUpgrade volunteerUpgrade=projectJdbcRepository.getNewCoordinatorData(proposedProjectdetails.getVolunteerId());
+        VolunteerUpgrade volunteerUpgrade = projectJdbcRepository.getNewCoordinatorData(proposedProjectdetails.getVolunteerId());
 
 //      save to pc
-        ProjectCoordinator projectCoordinator =new ProjectCoordinator();
+        ProjectCoordinator projectCoordinator = new ProjectCoordinator();
         projectCoordinator.setAddress(volunteerUpgrade.getAddress());
         projectCoordinator.setDistrict(volunteerUpgrade.getDistrict());
         projectCoordinator.setUniversityCollege(volunteerUpgrade.getUniversityCollege());
@@ -86,19 +95,26 @@ public class ProjectService {
         projectJdbcRepository.removeFromVolunteer(proposedProjectdetails.getVolunteerId());
 
 //      get newly created project coordinator id
-        long newCoordinatorUserId=projectJdbcRepository.getUserIdOfNewVolunteer(proposedProjectdetails.getVolunteerId());
-        System.out.println("newCoordinatorUserId->"+newCoordinatorUserId);
+        long newCoordinatorUserId = projectJdbcRepository.getUserIdOfNewVolunteer(proposedProjectdetails.getVolunteerId());
+        System.out.println("newCoordinatorUserId->" + newCoordinatorUserId);
 
 //      insert new project coordinator
-        projectJdbcRepository.saveData(projectCoordinator,newCoordinatorUserId);
+        projectJdbcRepository.saveData(projectCoordinator, newCoordinatorUserId);
 
-        long newCoordinatorId=projectJdbcRepository.getNewCoordinatorId(newCoordinatorUserId);
-        System.out.println("newCoordinatorId->"+newCoordinatorId);
+        long newCoordinatorId = projectJdbcRepository.getNewCoordinatorId(newCoordinatorUserId);
+        System.out.println("newCoordinatorId->" + newCoordinatorId);
 
 //      assign project coordinator
-        projectJdbcRepository.assignProjectCoordinator(proposedProjectdetails.getProjectId(),newCoordinatorId);
+        projectJdbcRepository.assignProjectCoordinator(proposedProjectdetails.getProjectId(), newCoordinatorId);
 
 
-        return proposedProjectdetails.getName()+" project added Successful!";
+        return proposedProjectdetails.getName() + " project added Successful!";
+
     }
+
+    //Volunteer-Malik
+    public long addProposedProjects(NewProjectDetail newProjectDetail) {
+        return projectJdbcRepository.addProposedProjects(newProjectDetail);
+    }
+
 }

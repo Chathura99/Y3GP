@@ -156,4 +156,6 @@ public class EventJdbcRepository {
         Event event = (Event) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(Event.class));
         return event;
     }
+
+
 }
