@@ -65,3 +65,15 @@ export const getPreviousEvents = () => {
     });
   };
 
+  export const addCoordinatedEvents = (newEvent) =>{
+    // console.log(pro);
+    return axios({
+      method: "POST",
+      url: `${USER_URL}/addCoordinatedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data: newEvent
+    
+    });
+  }
