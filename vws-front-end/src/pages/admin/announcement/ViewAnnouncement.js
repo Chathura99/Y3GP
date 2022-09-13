@@ -45,11 +45,11 @@ export default function ViewAnnouncement() {
 
 
   const [selectedId, setSelectedId] = useState(0);
-  window.onclick = (e) => {
-    console.log(e.target.parentNode.id);
-    setSelectedId(e.target.parentNode.id);
-    readParticularAnnouncement(selectedId);
-  };
+  // window.onclick = (e) => {
+  //   console.log(e.target.parentNode.id);
+  //   setSelectedId(e.target.parentNode.id);
+  //   readParticularAnnouncement(selectedId);
+  // };
 
   return (
     <>
@@ -133,7 +133,8 @@ export default function ViewAnnouncement() {
                           data-toggle="modal"
                           data-target="#editAnnouncement"
                           onClick={()=>{
-                            setSelectedAnnouncementId(1)
+                            setSelectedAnnouncementId(ann.annId)
+                            readParticularAnnouncement(ann.annId)
                           }}
                         ></i>
                       </div>
