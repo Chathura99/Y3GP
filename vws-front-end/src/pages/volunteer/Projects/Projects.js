@@ -1,6 +1,4 @@
 import React, { useEffect,useState } from 'react';
-import NewTable from '../../../utilities/Table/NewTable';
-import CoordinateEventForm from './CoordinateEventForm';
 import "./Projects.css"
 import ProposeProjectForm from './ProposeProjectForm';
 import EditProject from '../../admin/Project/EditProject';
@@ -10,6 +8,7 @@ import MaterialTable from "material-table";
 // services
 import { getOngoingProjects } from "../../../services/projectServices/projectService";
 import { useMemo } from 'react';
+import CoordinateEventForm from '../../projectCoordinator/project/Coordinate';
 
 export default function Projects() {
     // const [ProjectsData, setProjectsData] = useState([
@@ -94,7 +93,7 @@ export default function Projects() {
 
     const [onGoingProjectData, setOnGoingProjectData] = useState([]);
     const [selected, setSelected] = useState(false);
-    const [selectedProject, setSelectedProject] = useState({});
+    const [selectedCoordinateEvent, setSelectedCoordinatedEvent] = useState({});
     return (
         <>
             <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -147,7 +146,7 @@ export default function Projects() {
                               type="button"
                               class="btn"
                               data-toggle="modal"
-                              data-target="#CoordinateEventForm"
+                              data-target="#addCoordinatedEvents"
                               style={{
                                 backgroundColor: "#2596BE",
                                 width: "6rem",
@@ -159,8 +158,8 @@ export default function Projects() {
                             </button>
                           );
                         },
-                        onClick: (event, rowData) => {
-                          setSelectedProject(rowData);
+                        onClick: (newEvent, rowData) => {
+                          setSelectedCoordinatedEvent(rowData);
                           setSelected(true);
                         },
                         tooltip: "Coordinate Event",
@@ -192,18 +191,12 @@ export default function Projects() {
                       },
                       
                     ]}
-
-                    
-
-                    
-
-                    
                   />
-                  {/* {selected && (
-          // <CoordinateEventForm setSelected={setSelected} data={coordinateEventToProject}/>
-        )} */}
+               
                                 <ProposeProjectForm />
-                               
+                               {selected && (
+          <CoordinateEventForm setSelected={setSelected} data={setSelectedCoordinatedEvent} />
+        )}
                                 
                                 
                             </div>
