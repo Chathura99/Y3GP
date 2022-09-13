@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-export default function CoordinateEventForm(props) {
+export default function CoordinateEventForm() {
 
-  const [coordinateEventToProject, setcoordinateEventToProject] = useState(props.data);
+  const [coordinateEventToProject, setcoordinateEventToProject] = useState();
 
   return (
     <div>
@@ -30,9 +30,9 @@ export default function CoordinateEventForm(props) {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
-                onClick={() => {
-                  props.setSelected(false);
-                }}
+                // onClick={() => {
+                //   props.setSelected(false);
+                // }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -41,7 +41,7 @@ export default function CoordinateEventForm(props) {
               {/* <form onSubmit={""} style={{marginTop:0}}> */}
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>{coordinateEventToProject.name}</h4>
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}></h4>
                   </div>
 
                  
@@ -53,7 +53,7 @@ export default function CoordinateEventForm(props) {
                         type="text"
                         className="form-control"
                         id="proposedBy"
-                        value={coordinateEventToProject.firstName}
+                        // value={coordinateEventToProject.firstName}
                         
                         
                         name="firstName"
@@ -70,7 +70,7 @@ export default function CoordinateEventForm(props) {
                         className="form-control"
                         id="date"
                         
-                        value={coordinateEventToProject.start_date}
+                        // value={coordinateEventToProject.start_date}
                         name="email"
                         // onChange={handleChange}
                       />
@@ -84,7 +84,7 @@ export default function CoordinateEventForm(props) {
                         type="text"
                         className="form-control"
                         id="ProjectName"
-                        value={coordinateEventToProject.name}
+                        // value={coordinateEventToProject.name}
                       />
                     </div>
                   </div>
@@ -97,7 +97,7 @@ export default function CoordinateEventForm(props) {
                         className="form-control"
                         id="date"
                         
-                        value={coordinateEventToProject.end_date}
+                        // value={coordinateEventToProject.end_date}
                         name="email"
                         // onChange={handleChange}
                       />
@@ -113,7 +113,7 @@ export default function CoordinateEventForm(props) {
                         style={{height:80}}
                         className="form-control"
                         id="description"
-                        value={coordinateEventToProject.description}
+                        // value={coordinateEventToProject.description}
                       />
                     </div>
                   </div>
@@ -125,7 +125,7 @@ export default function CoordinateEventForm(props) {
                         type="text"
                         className="form-control"
                         id="ProjectName"
-                        value={coordinateEventToProject.no_of_volunteers}
+                        // value={coordinateEventToProject.no_of_volunteers}
                       />
                     </div>
                   </div>
@@ -156,9 +156,7 @@ export default function CoordinateEventForm(props) {
                           name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
-                          onClick={() => {
-                            props.setSelected(false);
-                          }}
+                          
                         >
                           Cancel
                         </button>

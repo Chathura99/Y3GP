@@ -9,8 +9,8 @@ public class NewProjectDetail {
 
     private String name;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date startDate;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private String startDate;
 
 
     private String description;
@@ -25,11 +25,20 @@ public class NewProjectDetail {
         this.name = name;
     }
 
-    public Date getStartDate() {
+//    public Date getStartDate() {
+//        return startDate;
+//    }
+//
+//    public void setStartDate(Date startDate) {
+//        this.startDate = startDate;
+//    }
+
+
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
