@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function CoordinateEventForm() {
 
