@@ -85,7 +85,7 @@ export default function Contact() {
                     <form onSubmit={confirm} >
 
                         <input type="text"
-                            className="form-control"
+                            className="form-control input-feedback"
                             id="feedback"
                             name="feedback"
                             placeholder="Enter Your Feedback"
@@ -96,7 +96,7 @@ export default function Contact() {
                         />
 
                         <div className="input-group-append">
-                            <button className="btn"
+                            <button className="btn input-feedback-btn "
                                 id="submit"
                                 type="submit"
                                 name="submit">
