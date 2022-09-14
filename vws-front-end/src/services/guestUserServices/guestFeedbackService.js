@@ -1,7 +1,7 @@
 import axios from "axios";
 const USER_URL = "http://localhost:8080/api/v1";
 
-export const addFeedback = (guest_user_feedback) =>{
+export const addFeedback = (feed) =>{
   
     return axios({
       method: "POST",
@@ -9,7 +9,7 @@ export const addFeedback = (guest_user_feedback) =>{
       //headers: {
       //  Authorization: "Bearer " + getToken(),
       //},
-      data : guest_user_feedback
+      data : feed
     });
 
 

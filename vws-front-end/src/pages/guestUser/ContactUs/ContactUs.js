@@ -1,15 +1,54 @@
 import React, { useState } from "react";
 import "./contactus.css";
 import { Link } from 'react-router-dom';
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { addFeedback } from "../../../services/guestUserServices/guestFeedbackService";
 
-import { addFeedback} from "../../../services/guestUserServices/guestFeedbackService";
 
 export default function Contact() {
 
-    const [feed, setfeed] = useState({
+    const [feed, setFeed] = useState({
         feedback: "",
-        
-      });
+
+    });
+
+    const handleChange = (e) => {
+        e.persist();
+        console.log(e.target.name + "-" + e.target.value);
+        setFeed((feed) => ({
+            ...feed,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+
+    const [popup, setPopUp] = useState("");
+    const [message, setMessage] = useState("");
+    
+    const closePopUp = () => {
+        setPopUp("");
+    };
+
+    const confirm = (e) => {
+        e.preventDefault();
+        setMessage("Propose new project !");
+        setPopUp("confirm");
+    };
+
+    const handleSubmit = (e) => {
+        // evt.preventDefault();
+        console.log("reached!")
+        addFeedback(feed)
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setMessage(response.data);
+                    setPopUp("success");
+                }
+            })
+
+    };
+
 
     return (
         <div className="container-fluid" id="contact-cont">
@@ -21,15 +60,24 @@ export default function Contact() {
 
                 <div className="input-group mb-3" id="input-feedback-cont">
 
-                <form>
+                    <form onSubmit={confirm}>
 
-                    <input type="text" className="form-control" id="feedback" 
-                    placeholder="Enter Your Feedback" aria-label="Enter Your Feedback" aria-describedby="basic-addon2" />
-                    <div className="input-group-append">
-                        <button className="btn" id="input-feedback-btn" 
-                        type="submit" name="submit">
-                       SEND</button>
-                    </div>
+                        <input type="text" className="form-control" 
+                            id="feedback"
+                            name="feedback"
+                            placeholder="Enter Your Feedback"
+                            value={feed.feedback} 
+                            aria-label="Enter Your Feedback" 
+                            aria-describedby="basic-addon2" 
+                            onChange={handleChange}
+                            />
+                        <div className="input-group-append">
+                            <button className="btn" 
+                            id="submit"
+                                type="submit" 
+                                name="submit">
+                                SEND</button>
+                        </div>
 
 
                     </form>
@@ -150,7 +198,10 @@ export default function Contact() {
 
 
 
-
+            {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      
         </div>
 
 
