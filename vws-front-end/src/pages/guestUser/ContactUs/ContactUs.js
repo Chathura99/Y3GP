@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from "react";
 import "./contactus.css";
 import { Link } from 'react-router-dom';
 
+import { addFeedback} from "../../../services/guestUserServices/guestFeedbackService";
 
-export default function ContactUs() {
+export default function Contact() {
+
+    const [feed, setfeed] = useState({
+        feedback: "",
+        
+      });
+
     return (
         <div className="container-fluid" id="contact-cont">
 
@@ -13,10 +20,19 @@ export default function ContactUs() {
                     Your comments and suggestions will enable us serve the world better.</p>
 
                 <div className="input-group mb-3" id="input-feedback-cont">
-                    <input type="text" className="form-control" id="input-feedback" placeholder="Enter Your Feedback" aria-label="Enter Your Feedback" aria-describedby="basic-addon2" />
+
+                <form>
+
+                    <input type="text" className="form-control" id="feedback" 
+                    placeholder="Enter Your Feedback" aria-label="Enter Your Feedback" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
-                        <button className="btn" id="input-feedback-btn" type="button">SEND</button>
+                        <button className="btn" id="input-feedback-btn" 
+                        type="submit" name="submit">
+                       SEND</button>
                     </div>
+
+
+                    </form>
                 </div>
 
             </div>
