@@ -59,7 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests((request) -> request.antMatchers(
                                 "/api/v1/auth/login",
                                 "/api/v1/vws-home",
-                        "/api/v1/signUp"
+                        "/api/v1/signUp",
+                                "/api/v1/addFeedback"
 
                         )
                         .permitAll()
