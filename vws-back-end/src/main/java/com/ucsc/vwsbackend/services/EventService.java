@@ -1,9 +1,6 @@
 package com.ucsc.vwsbackend.services;
 
-import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
-import com.ucsc.vwsbackend.dto.EventDetail;
-import com.ucsc.vwsbackend.dto.NewProjectDetail;
-import com.ucsc.vwsbackend.dto.ProjectDetail;
+import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.entities.ParticipateEvent;
 import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
@@ -41,8 +38,8 @@ public class EventService {
         return eventJdbcRepository.getCompletedEvents();
     }
 
-    public long addCoordinatedEvents(Event event){
-        return eventJdbcRepository.addCoordinatedEvents(event);
+    public long addCoordinatedEvents(NewCoordinateEventDetail newCoordinateEventDetail){
+        return eventJdbcRepository.addCoordinatedEvents(newCoordinateEventDetail);
     }
 
     public  List<EventDetail> getCoordinatedEvents() {

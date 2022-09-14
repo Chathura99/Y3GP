@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.controllers;
 
 
 import com.ucsc.vwsbackend.dto.EventDetail;
+import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.entities.ParticipateEvent;
@@ -47,8 +48,8 @@ public class EventController {
         return eventService.getCoordinatedEventById(id);
     }
     @PostMapping("/addCoordinatedEvents")
-    public long addCoordinatedEvents(@RequestBody Event event){
-        return eventService.addCoordinatedEvents(event);
+    public long addCoordinatedEvents(@RequestBody NewCoordinateEventDetail newCoordinateEventDetail){
+        return eventService.addCoordinatedEvents(newCoordinateEventDetail);
     }
 
     @GetMapping("/getCoordinatedEvents")

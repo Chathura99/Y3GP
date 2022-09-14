@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.repository.EventDao;
 
 
 import com.ucsc.vwsbackend.dto.EventDetail;
+import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -10,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -66,23 +68,26 @@ public class EventJdbcRepository {
     }
 
 
-    public int addCoordinatedEvents(Event event) {
+    public long addCoordinatedEvents(NewCoordinateEventDetail newCoordinateEventDetail) {
+
+        LocalDate sdate = LocalDate.parse(newCoordinateEventDetail.getStartDate());
+        LocalDate edate = LocalDate.parse(newCoordinateEventDetail.getEndDate());
 
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
 
         String query ="INSERT INTO event " +
-                "(volunteer_id, place,start_date, end_date,no_of_volunteers, project_id) " +
-                "values (:name, :place, :start_date, :end_date, :no_of_volunteers, :project_id )";
+                "(volunteer_id, place,start_date, end_date,no_of_volunteers, project_id,status) " +
+                "values (:volunteer_id, :place, :start_date, :end_date, :no_of_volunteers, :project_id,0 )";
 
 
 
-        namedParameters.addValue("name", event.getVolunteer());
-        namedParameters.addValue("place", event.getPlace());
-        namedParameters.addValue("start_date", event.getStartDate());
-        namedParameters.addValue("end_date", event.getEndDate());
-        namedParameters.addValue("no_of_volunteers", event.getNoOfVolunteers());
-        namedParameters.addValue("project_id", event.getProject());
+        namedParameters.addValue("volunteer_id", newCoordinateEventDetail.getVolunteerId());
+        namedParameters.addValue("place", newCoordinateEventDetail.getPlace());
+        namedParameters.addValue("start_date",sdate);
+        namedParameters.addValue("end_date",edate);
+        namedParameters.addValue("no_of_volunteers", newCoordinateEventDetail.getNoOfVolunteers());
+        namedParameters.addValue("project_id", newCoordinateEventDetail.getProjectId());
 
         int rowsAffected = jdbc.update(query, namedParameters);
         return rowsAffected;

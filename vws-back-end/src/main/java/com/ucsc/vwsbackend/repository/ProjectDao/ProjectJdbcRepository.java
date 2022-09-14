@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -222,6 +223,7 @@ public class ProjectJdbcRepository {
 
     // VOlunteer
     public long addProposedProjects(NewProjectDetail newProjectDetail) {
+        LocalDate sdate = LocalDate.parse(newProjectDetail.getStartDate());
 
 //        System.out.println(":ID" + newProjectDetail.getProjectId());
         MapSqlParameterSource namedParameters =
@@ -232,7 +234,7 @@ public class ProjectJdbcRepository {
 
         namedParameters.addValue("name", newProjectDetail.getName());
         namedParameters.addValue("description", newProjectDetail.getDescription());
-        namedParameters.addValue("start_date", newProjectDetail.getStartDate());
+        namedParameters.addValue("start_date",sdate);
         namedParameters.addValue("event_per_year", newProjectDetail.getEventPerYear());
         namedParameters.addValue("volunteer_id", newProjectDetail.getVolunteerId());
 

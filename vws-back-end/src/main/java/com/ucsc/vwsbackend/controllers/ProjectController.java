@@ -12,6 +12,7 @@ import com.ucsc.vwsbackend.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -55,6 +56,9 @@ public class ProjectController {
     // Volunteer-Malik
     @PostMapping("/addProposedProjects")
     public long addProposedProjects(@RequestBody NewProjectDetail newProjectDetail) {
+
+
+//        String to java Date()
         return projectService.addProposedProjects(newProjectDetail);
     }
 }
