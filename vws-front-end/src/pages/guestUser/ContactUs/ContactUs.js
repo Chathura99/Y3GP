@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./contactus.css";
 import { Link } from 'react-router-dom';
+
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import Loading from "../../../utilities/Loading/Loading";
+
 import { addFeedback } from "../../../services/guestUserServices/guestFeedbackService";
 
 
@@ -12,6 +17,50 @@ export default function Contact() {
 
     });
 
+    // open success/error pop up modals and set display message
+    const [popup, setPopUp] = useState("");
+    const [message, setMessage] = useState("");
+
+    // close pop up modal
+    const closePopUp = () => {
+        setPopUp("");
+    };
+
+    // open confirmation pop up modal
+    const confirm = (e) => {
+        e.preventDefault();
+        setMessage("Send Feedback");
+        setPopUp("confirm");
+    };
+
+    const handleSubmit = (e) => {
+        // e.preventDefault();
+        console.log("reached!")
+        addFeedback(feed)
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response.data);
+                    setMessage(response.data);
+                    if (response.data === 1) {     //check this
+                        setPopUp("success");
+                    } else {
+                        setPopUp("failed");
+                    }
+                }
+            })
+
+            .catch((err) => {
+                if (err && err.response) {
+                    console.log(err);
+                    setMessage(err.message);
+                    setPopUp("failed");
+                }
+            });
+
+
+    };
+
+
     const handleChange = (e) => {
         e.persist();
         console.log(e.target.name + "-" + e.target.value);
@@ -21,33 +70,6 @@ export default function Contact() {
         }));
     };
 
-
-    const [popup, setPopUp] = useState("");
-    const [message, setMessage] = useState("");
-    
-    const closePopUp = () => {
-        setPopUp("");
-    };
-
-    const confirm = (e) => {
-        e.preventDefault();
-        setMessage("Propose new project !");
-        setPopUp("confirm");
-    };
-
-    const handleSubmit = (e) => {
-        // evt.preventDefault();
-        console.log("reached!")
-        addFeedback(feed)
-            .then((response) => {
-                if (response.status === 200) {
-                    console.log(response.data);
-                    setMessage(response.data);
-                    setPopUp("success");
-                }
-            })
-
-    };
 
 
     return (
@@ -60,21 +82,23 @@ export default function Contact() {
 
                 <div className="input-group mb-3" id="input-feedback-cont">
 
-                    <form onSubmit={confirm}>
+                    <form onSubmit={confirm} >
 
-                        <input type="text" className="form-control" 
+                        <input type="text"
+                            className="form-control input-feedback"
                             id="feedback"
                             name="feedback"
                             placeholder="Enter Your Feedback"
-                            value={feed.feedback} 
-                            aria-label="Enter Your Feedback" 
-                            aria-describedby="basic-addon2" 
+                            value={feed.feedback}
+                            aria-label="Enter Your Feedback"
+                            aria-describedby="basic-addon2"
                             onChange={handleChange}
-                            />
+                        />
+
                         <div className="input-group-append">
-                            <button className="btn" 
-                            id="submit"
-                                type="submit" 
+                            <button className="btn input-feedback-btn "
+                                id="submit"
+                                type="submit"
                                 name="submit">
                                 SEND</button>
                         </div>
@@ -197,11 +221,24 @@ export default function Contact() {
             </div>
 
 
-
             {popup === "success" && (
-        <SuccessPopUp message={message} closePopUp={closePopUp} />
-      )}
-      
+                <SuccessPopUp message={message} closePopUp={closePopUp} />
+            )}
+
+            {popup === "failed" && (
+                <FailedPopUp message={message} closePopUp={closePopUp} />
+            )}
+
+            {popup === "confirm" && (
+                <ConfirmPopUp
+                    message={message}
+                    closePopUp={closePopUp}
+                    handleSubmit={handleSubmit}
+                />
+            )}
+
+
+
         </div>
 
 
