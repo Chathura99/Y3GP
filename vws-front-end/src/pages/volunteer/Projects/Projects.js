@@ -1,76 +1,16 @@
 import React, { useEffect,useState } from 'react';
 import "./Projects.css"
 import ProposeProjectForm from './ProposeProjectForm';
-import EditProject from '../../admin/Project/EditProject';
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 // services
 import { getOngoingProjects } from "../../../services/projectServices/projectService";
-import { useMemo } from 'react';
-import CoordinateEventForm from '../../projectCoordinator/project/Coordinate';
+import CoordinateEventForm from './CoordinateEventForm';
+import AddEventProgress from './../../admin/Event/AddEventProgress';
+
 
 export default function Projects() {
-    // const [ProjectsData, setProjectsData] = useState([
-    //     {
-    //       project_name: "Ganitha Saviya",
-    //       description: "Ganitha Saviya is a ....",
-    //       idea_by: "Ravindu Perera",
-    //       date: "2022 09 12",
-          
-          
-    //       action: (
-    //         <button
-    //           type="button"
-    //           id="submit"
-    //           name="submit"
-    //           className="btn p-1"
-    //           data-toggle="modal"
-    //           data-target="#CoordinateEventForm"
-    //           style={{backgroundColor:"#96BE25",border:"none"}}
-    //           // #96BE25,#BE4D25
-    //           // onClick={handleSubmit}
-    //         >
-    //           Coordinate Event
-    //         </button>
-    //       ),
-    //     },
-    //     {
-    //       project_name: "Re-green Earth",
-    //       description: "Re-green Earth is a ...",
-    //       idea_by: "Sadaru Avishka",
-    //       date: "2022 09 02",
-          
-          
-    //       action: (
-    //         <button
-    //           type="button"
-    //           id="submit"
-    //           name="submit"
-    //           data-toggle="modal"
-    //           data-target="#CoordinateEventForm"
-    //           className="btn p-1"
-    //           style={{backgroundColor:"#96BE25",border:"none"}}
-    //           // #96BE25-green,#BE4D25-red
-    //           // onClick={handleSubmit}
-    //         >
-    //           Coordinate Event
-    //         </button>
-    //       ),
-    //     },
-    //   ]);
-    
-    //   const [ProjectsHeadings, setProjectsTableHead] = useState([
-    //     { id: "project_name", label: "PROJECT NAME" },
-    //     { id: "description", label: "DESCRIPTION" },
-    //     { id: "idea_by", label: "IDEA BY" },
-    //     { id: "date", label: "DATE" },
-    //     { id: "action", label: "COORDINATE EVENT" },
-    
-    //   ]);
-
-   
-  
 
 
     useEffect(() => {
@@ -93,7 +33,7 @@ export default function Projects() {
 
     const [onGoingProjectData, setOnGoingProjectData] = useState([]);
     const [selected, setSelected] = useState(false);
-    const [selectedCoordinateEvent, setSelectedCoordinatedEvent] = useState({});
+    // const [selectedCoordinateEvent, setSelectedCoordinatedEvent] = useState({});
     return (
         <>
             <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -144,9 +84,8 @@ export default function Projects() {
                           return (
                             <button
                               type="button"
-                              class="btn"
-                              data-toggle="modal"
-                              data-target="#addCoordinatedEvents"
+                              className="btn"
+                              data-toggle="modal" data-target="#CoordinateEvent"
                               style={{
                                 backgroundColor: "#2596BE",
                                 width: "6rem",
@@ -158,8 +97,9 @@ export default function Projects() {
                             </button>
                           );
                         },
-                        onClick: (newEvent, rowData) => {
-                          setSelectedCoordinatedEvent(rowData);
+                        onClick: () => {
+                          // setSelectedCoordinatedEvent(rowData);
+                          
                           setSelected(true);
                         },
                         tooltip: "Coordinate Event",
@@ -194,15 +134,16 @@ export default function Projects() {
                   />
                
                                 <ProposeProjectForm />
-                               {selected && (
-          <CoordinateEventForm setSelected={setSelected} data={setSelectedCoordinatedEvent} />
-        )}
+           
+       
                                 
                                 
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                {selected && <CoordinateEventForm setSelected={setSelected} />}
             </div>
         </>
     );
