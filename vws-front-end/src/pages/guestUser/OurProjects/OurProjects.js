@@ -47,11 +47,11 @@ export default function OurProjects() {
 
                         <div className='btn-group'>
 
-                            <Link to="contact" smooth={true} spy={true}>
+                            <Link to="3" smooth={true} spy={true}>
                                 <button className="button p-button">Donate</button>
                             </Link>
 
-                            <Link to="contact" smooth={true} spy={true}>
+                            <Link to="requestnewevent" smooth={true} spy={true}>
                                 <button className="button p-button">Request Event</button>
                             </Link>
 

@@ -88,7 +88,7 @@
   padding: 10px;
 }
 
-#formLabel{
+#formLbl{
   color: white;
 }
 
@@ -97,4 +97,13 @@
 }
 .formerror{
   color: white;
+}
+
+.btn.btn-primary {
+  margin:0;
+}
+
+#qualifications{
+  color: #ffffff;
+  font-weight: 400;
 }

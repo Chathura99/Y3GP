@@ -19,7 +19,7 @@ export default function RegisterNewUser(props) {
   // open confirmation pop up modal
   const confirm = (e) => {
     e.preventDefault();
-    setMessage("Request to join");
+    setMessage("Register "+ requestData.firstName + " with id " + requestData.id);
     setPopUp("confirm");
   };
 
@@ -89,6 +89,7 @@ export default function RegisterNewUser(props) {
                       <label for="firstName" id="formLabel">
                         First Name
                       </label>
+
                       <input
                         type="text"
                         className="form-control"
@@ -100,7 +101,6 @@ export default function RegisterNewUser(props) {
                       />
                     </div>
                   </div>
-
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="lastName" id="formLabel">
@@ -219,7 +219,7 @@ export default function RegisterNewUser(props) {
                       />
                     </div>
                   </div>
-
+{/* 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="formFile" class="form-label" id="formLabel">
@@ -235,11 +235,11 @@ export default function RegisterNewUser(props) {
                         disabled
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="info" id="formLabel">
                         Potentials
@@ -256,7 +256,7 @@ export default function RegisterNewUser(props) {
                     </div>
                   </div>
 
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="other" id="formLabel">
                         Other comments
@@ -272,22 +272,22 @@ export default function RegisterNewUser(props) {
                       />
                     </div>
                   </div>
+                  </div>
 
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div className="text-center mt-3 ">
-                        <Link to="/adminhome">
                           <button
                             type="button"
                             id="submit"
                             name="submit"
-                            class="btn btn-secondary btn-sm"
+                            class="btn btn-secondary btn-sm m-2"
                             data-dismiss="modal"
                             aria-label="Close"
+                            onClick={() => props.setSelectedData({})}
                           >
                             Cancel
                           </button>
-                        </Link>
 
                         <button
                           type="submit"
@@ -305,7 +305,6 @@ export default function RegisterNewUser(props) {
                       </div>
                     </div>
                   </div>
-                </div>
               </form>
             </div>
           </div>

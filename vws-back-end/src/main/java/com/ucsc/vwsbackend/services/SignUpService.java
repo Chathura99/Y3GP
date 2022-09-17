@@ -50,7 +50,7 @@ public class SignUpService {
 //      check in requests also
         int rowCount1 = userJdbcRepository.checkEmailExists(joinRequest.getEmail());
         int rowCount2 = joinRequestJdbcRepository.checkEmailExists(joinRequest.getEmail());
-        joinRequest.setDate(LocalDateTime.now());
+//        joinRequest.setDate(LocalDateTime.now());
         if(rowCount1>0){
             return "You have already an account!";
         }else if(rowCount2>0){
@@ -65,6 +65,12 @@ public class SignUpService {
 
         return joinRequestJdbcRepository.getNewRequest();
     }
+
+    public JoinRequest getJoinRequestData(Long id) {
+        return joinRequestJdbcRepository.getData(id);
+    }
+
+
 
     public String signUpApproved(JoinRequest joinRequest){
         SimpleMailMessage message=new SimpleMailMessage();
@@ -106,6 +112,7 @@ public class SignUpService {
         volunteer.setUser(user);
         volunteer.setFirstName(joinRequest.getFirstName());
         volunteer.setLastName(joinRequest.getLastName());
+        volunteer.setCoordinatorOrNot(0);
 
         volunteerRepository.save(volunteer);
         joinRequestJdbcRepository.updateStatus(joinRequest.getId());
@@ -132,5 +139,9 @@ public class SignUpService {
         authority.setRoleCode(roleCode);
         authority.setRoleDescription(roleDescription);
         return authority;
+    }
+
+    public int deleteRequest(Long id) {
+        return joinRequestJdbcRepository.deleteRequest(id);
     }
 }

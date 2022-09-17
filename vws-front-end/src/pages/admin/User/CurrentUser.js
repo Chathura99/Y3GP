@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import PieChart from "../../../utilities/Charts/PieChart";
 import { LineChart } from "./../../../utilities/Charts/LineChart";
 import NewTable from "../../../utilities/Table/NewTable";
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+// service
+import { getUsers } from "../../../services/userService";
 
 export default function CurrentUser() {
   useEffect(() => {
     checkValidate();
+    getCurrentUsers();
   }, []);
 
   const checkValidate = async () => {
@@ -14,47 +20,13 @@ export default function CurrentUser() {
       window.location.href = "/";
     }
   };
-  const [currentUserTableData, setCurrentUserTableData] = useState([
-    {
-      userID: "E001",
-      email: "namal@gmail.com",
-      name: "Namal rathnaweera",
-      phone: "+94 75 4785 123",
-      joinDate: "2020-10-21",
-      university: "Peradeniya",
-      position: "Volunteer",
-      district: "Kandy",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: 0,
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Active
-        </button>
-      ),
-    },
-  ]);
 
-  const [currentUserTableHead, setCurrentUserTableHead] = useState([
-    { accessor: "userID", Header: "USER ID" },
-    { accessor: "email", Header: "EMAIL" },
-    { accessor: "name", Header: "NAME" },
-    { accessor: "phone", Header: "PHONE" },
-    { accessor: "joinDate", Header: "JOIN DATE" },
-    { accessor: "university", Header: "UNIVERSITY" },
-    { accessor: "position", Header: "POSITION" },
-    { accessor: "district", Header: "LOCATION" },
-    { accessor: "status", Header: "STATUS" },
-  ]);
+  const getCurrentUsers = async () => {
+    const res = await getUsers();
+    console.log(res.data);
+    setCurrentUserTableData(res.data);
+  };
+  const [currentUserTableData, setCurrentUserTableData] = useState([]);
 
   const [pieChartData, setPieChartData] = useState([
     ["User", "Count"],
@@ -84,6 +56,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <PieChart data={pieChartData} />
+                  This chat shows . . .
                 </div>
               </div>
             </div>
@@ -97,6 +70,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
+                  This chat shows . . .
                 </div>
               </div>
             </div>
@@ -107,11 +81,81 @@ export default function CurrentUser() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <h5>Current Users</h5>
-
-                <NewTable
-                  columns={currentUserTableHead}
+                <MaterialTable
+                  components={{
+                    Container: (props) => <Paper {...props} elevation={0} />,
+                  }}
+                  options={{ actionsColumnIndex: -1 }}
+                  title="Current Users"
+                  columns={[
+                    { field: "id", title: "USER ID", minWidth: "100px" },
+                    { field: "email", title: "EMAIL" },
+                    {
+                      field: "firstName",
+                      title: "FIRST NAME",
+                      minWidth: "130px",
+                    },
+                    {
+                      field: "lastName",
+                      title: "LAST NAME",
+                      minWidth: "120px",
+                    },
+                    { field: "phoneNumber", title: "PHONE" },
+                    {
+                      field: "createdAt",
+                      title: "JOIN DATE",
+                      minWidth: "120px",
+                    },
+                    // { field: "university", title: "UNIVERSITY" },
+                    // { field: "position", title: "POSITION" },
+                    // { field: "district", title: "LOCATION" },
+                    { field: "enabled", title: "STATUS" },
+                  ]}
                   data={currentUserTableData}
+                  actions={[
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#BE4D25",
+                              border: "none",
+                            }}
+                          >
+                            Remove
+                          </button>
+                        );
+                      },
+                      onClick: (event, rowData) => {
+                        // setSelectedJoinRequestsData(rowData);
+                        // setSelected(true);
+                      },
+                      // tooltip: "Register User",
+                    },
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#96BE25",
+                              border: "none",
+                            }}
+                          >
+                            More .
+                          </button>
+                        );
+                      },
+                      onClick: (event, rowData) => {
+                        // setSelectedJoinRequestsData(rowData);
+                        // setSelected(true);
+                      },
+                      // tooltip: "Register User",
+                    },
+                  ]}
                 />
               </div>
             </div>

@@ -1,43 +1,57 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+// services
+import { initializeProject } from "../../../services/projectServices/projectService";
+// popups
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import Loading from "../../../utilities/Loading/Loading";
 
-export default function Initializeproject() {
-  //   const [requestData, setRequestData] = useState(
-  //     {
-  //       firstName: "chathura",
-  //       lastName: "manohara",
-  //       email: "c@gmail.com",
-  //       phoneNumber: "0715248569",
-  //       address: "Polgahawela",
-  //       universityCollege: "Colombo",
-  //       district: "Kurunegala",
-  //       date: "2021-10-11",
-  //       status: 0,
-  //       nic: "985475865v",
-  //       info: "Singing",
-  //       other: "",
-  //     },
-  //     []
-  //   );
+export default function Initializeproject(props) {
 
-  const handleChange = (e) => {
-    // e.persist();
-    // console.log(e.target.name + "-" + e.target.value);
-    // setAnn((ann) => ({
-    //   ...ann,
-    //   [e.target.name]: e.target.value,
-    // }));
+  const [selectedProject, setSelectedProject] = useState(props.data);
+   console.log(selectedProject)
+
+  
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Initialize new project");
+    setPopUp("confirm");
   };
 
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    initializeProject(selectedProject)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
   return (
-    <div>
+
+    <div>      
       <div
-        class="modal fade"
+        class="modal fade show"
         id="initializeproject"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
+        style={{ display: "block" }}
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -48,8 +62,9 @@ export default function Initializeproject() {
               <button
                 type="button"
                 class="close"
-                data-dismiss="modal"
-                aria-label="Close"
+                onClick={() => {
+                  props.setSelected(false);
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -57,12 +72,15 @@ export default function Initializeproject() {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Proposed Person : Malik Wijesuriya</small>
+                  <small>
+                    Proposed Person : {selectedProject.firstName}{" "}
+                    {selectedProject.lastName}{" "}
+                  </small>
                   <br></br>
-                  <small>Phone : 0712584568</small>
+                  <small>Phone : {selectedProject.phoneNumber}</small>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Date : 2021-09-12</small>
+                  <small>Date : {selectedProject.proposedDate}</small>
                 </div>
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -75,8 +93,8 @@ export default function Initializeproject() {
                       className="form-control"
                       id="projectname"
                       name="projectname"
-                      value="Adurata Eliyak"
-                      //   onChange={handleChange}
+                      value={selectedProject.name}
+                        // onChange={handleChange}
                       disabled
                     />
                   </div>
@@ -85,15 +103,15 @@ export default function Initializeproject() {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group">
                     <label for="projectCoordinator" id="formLabel">
-                      Project Coordinator
+                      Proposed Person
                     </label>
                     <input
                       type="text"
                       className="form-control"
                       id="projectCoordinator"
                       name="projectCoordinator"
-                      value="Kamal Silva"
-                      //   onChange={handleChange}
+                      value={selectedProject.firstName}
+                        // onChange={handleChange}
                       disabled
                     />
                   </div>
@@ -109,7 +127,7 @@ export default function Initializeproject() {
                       className="form-control"
                       id="description"
                       name="description"
-                      value="Target person : like. . ."
+                      value={selectedProject.description}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -126,7 +144,7 @@ export default function Initializeproject() {
                       className="form-control"
                       id="eventPerYear"
                       name="eventPerYear"
-                      value="6"
+                      value={selectedProject.eventPerYear}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -134,7 +152,7 @@ export default function Initializeproject() {
                 </div>
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <label for="other" id="formLabel">
                       Other
                     </label>
@@ -143,43 +161,45 @@ export default function Initializeproject() {
                       className="form-control"
                       id="other"
                       name="other"
-                      value="Anuradhapura"
+                      value="There is ..."
                       //   onChange={handleChange}
                       disabled
                     />
-                  </div>
+                  </div> */}
+                  Please consider the forum, poll results before initialize
                 </div>
+              </div>
 
-                <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div className="text-center mt-3 ">
-                      <Link to="/adminproposedproject">
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          class="btn btn-secondary btn-sm"
-                          data-dismiss="modal"
-                aria-label="Close"
-                        >
-                          Cancel
-                        </button>
-                      </Link>
-
+              <div className="row gutters">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div className="text-center mt-3 ">
+                    <Link to="/adminproposedproject">
                       <button
-                        type="submit"
+                        type="button"
+                        id="submit"
                         name="submit"
-                        class="btn btn-primary btn-sm"
-                        //   {...(Object.keys(errors).length === true)}
-                        //   style={{backgroundColor:"white"}}
-
-                        title="Please fill the form correctly!"
-
-                        // onClick=
+                        class="btn btn-secondary btn-sm"
+                        onClick={() => {
+                          props.setSelected(false);
+                        }}
                       >
-                        Create
+                        Cancel
                       </button>
-                    </div>
+                    </Link>
+
+                    <button
+                      type="submit"
+                      name="submit"
+                      class="btn btn-primary btn-sm"
+                      //   {...(Object.keys(errors).length === true)}
+                      //   style={{backgroundColor:"white"}}
+
+                      title="Please fill the form correctly!"
+
+                      onClick={confirm}
+                    >
+                      Create
+                    </button>
                   </div>
                 </div>
               </div>
@@ -187,6 +207,20 @@ export default function Initializeproject() {
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,8 @@
 package com.ucsc.vwsbackend.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,6 +27,7 @@ public class Announcement {
 
     @Column(name = "date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
     private Date date;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

@@ -45,4 +45,8 @@ public class AnnouncementService{
     public long editAnnouncement(Announcement announcement) {
         return announcementJdbcRepository.editAnnouncement(announcement);
     }
+
+    public AnnouncementWithAuthor getAnnouncementById(long id) {
+        return announcementJdbcRepository.getAnnouncementById(id);
+    }
 }

@@ -1,84 +1,18 @@
 import React, { useEffect,useState } from 'react';
-import NewTable from '../../../utilities/Table/NewTable';
-import { useMemo } from 'react';
-// import "./PreviousEvents.css";
 
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+// services
+import { getPreviousEvents } from './../../../services/eventServices/eventService';
 
 export default function PreviousEvents() {
-  const [upcomingEventsData, setUpComingEventsData] = useState([
-    {
-            event_id: "E001",
-            category: "Ganitha Saviya",
-            event_coordinator: "Ravindu",
-            startdate: "2022 09 12",
-            enddate: "2022 09 14",
-            no_of_members: "13",
-            location: "Nikawaratiya",
-            
-            action: (
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        data-toggle="modal"
-                        data-target="#exampleModalCenter"
-                        className="btn p-1"
-                        style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                        // #96BE25,#BE4D25
-                        // onClick={handleSubmit}
-                      >
-                        Details
-                      </button>
-                    ),
-    },
-    {
-            event_id: "E002",
-            category: "Re-green Earth",
-            event_coordinator: "Sadaru",
-            startdate: "2022 09 02",
-            enddate: "2022 09 04",
-            no_of_members: "8",
-            location: "Horana",
-            
-            action: (
-              <button
-                type="button"
-                id="submit"
-                name="submit"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-                className="btn p-1"
-                style={{backgroundColor:"#96BE25",border:"none",marginTop: 10,marginBottom: 10}}
-                // #96BE25,#BE4D25
-                // onClick={handleSubmit}
-              >
-                Details
-              </button>
-            ),
-    }
-  ]);
-
-const data = useMemo(
-() => upcomingEventsData  )
-
-  const UpcomingEventsHeadings=useMemo(
-    () => [
-     
-      { accessor: "event_id", Header: "EVENT ID" },
-      { accessor: "category", Header: "CATEGORY" },
-      { accessor: "event_coordinator", Header: "EVENT COORDINATOR" },
-      { accessor: "startdate", Header: "STARTS ON" },
-      { accessor: "enddate", Header: "ENDS ON" },
-      { accessor: "no_of_members", Header: "NO. OF MEMBERS" },
-      { accessor: "location", Header: "LOCATION" },
-      { accessor: "action", Header: "EVENT DETAILS" },
-    ],
-    []
-  )
+  
 
 
     useEffect(() => {
         checkValidate();
+        getPreviousEventDetails();
     }, []);
 
     const checkValidate = async () => {
@@ -87,6 +21,16 @@ const data = useMemo(
             window.location.href = "/";
         }
     };
+    const getPreviousEventDetails = async () => {
+      const res = await getPreviousEvents();
+      // console.log(res.data);
+      setPreviousEventData(res.data);
+    };
+
+    const [previousEventData, setPreviousEventData] = useState([]);
+    const [selected, setSelected] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState({});
+
     return (
         <>
             <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -97,8 +41,47 @@ const data = useMemo(
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
                             <h5>Previous Events</h5><br></br>
-                            
-                                <NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData} />
+                            <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Previous Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID" },
+                      { field: "category", title: "CATEGORY" },
+                      { field: "name", title: "COORDINATOR" },
+                      { field: "startDate", title: "STARTED ON" },
+                      { field: "endDate", title: "ENDS ON" },
+                      { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      { field: "place", title: "LOCATION" },
+                    ]}
+                    data={previousEventData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              Details
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          // setSelectedJoinRequestsData(rowData);
+                          setSelected(true);
+                        },
+                         tooltip: "Event Details",
+                      },
+                    ]}
+                    />
+                                
                             </div>
                         </div>
                     </div>

@@ -21,6 +21,11 @@ public class AnnouncementController {
     public List<AnnouncementWithAuthor> getAllAnnouncement(@PathVariable(value = "category") String category) {
         return announcementService.getAllAnnouncement(category);
     }
+    @GetMapping("/getAnnouncementById/{id}")
+    public AnnouncementWithAuthor getAnnouncementById(@PathVariable(value = "id") long id) {
+        return announcementService.getAnnouncementById(id);
+    }
+
 
 
     @PostMapping("/addAnnouncement")

@@ -1,24 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { addCoordinatedEvents } from './../../../services/eventServices/eventService';
 
 export default function CoordinateEventForm() {
+
+  const [newEvent, setNewEvent] = useState({
+    startDate: "",
+    endDate: "",
+    place: "",
+    volunteerId:1,
+    projectId:2,
+    noOfVolunteers: "",
+
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setNewEvent((newEvent) => ({
+      ...newEvent,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+   // open confirmation pop up modal
+   const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Propose new project !");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addCoordinatedEvents(newEvent)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
   return (
     <div>
-      {/* <button
-        type="button"
-        class="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModalCenter"
-      >
-        Middle
-      </button> */}
+     
 
       <div
         class="modal fade"
-        id="CoordinateEventForm"
+        id="addCoordinatedEvents"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
+        style={{ display: "block" }}
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -31,101 +75,100 @@ export default function CoordinateEventForm() {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                // onClick={() => {
+                //   props.setSelected(false);
+                // }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""} style={{marginTop:0}}>
+            <form onSubmit={confirm}>
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>Adurata Eliyak</h4>
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}></h4>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                 
+
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
-                      <label for="fullName">Proposed By</label>
+                      <label for="fullName">Proposed By </label>
                       <input
                         type="text"
                         className="form-control"
                         id="proposedBy"
-                        placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
+                        // value={coordinateEventToProject.firstName}
+                        
+                        
                         name="firstName"
                         // onChange={handleChange}
                       />
                     </div>
+                  </div> */}
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="place">Place</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="place"
+                        name="place"
+                        value={newEvent.place}
+                        onChange={handleChange}
+                      />
+                    </div>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Starts On</label>
+                      <label for="startDate">Starts On</label>
                       <input
                         type="date"
                         className="form-control"
-                        id="date"
-                        
-                        // value={profile.email}
-                        name="email"
-                        // onChange={handleChange}
+                        id="startDate"
+                        value={newEvent.startDate}
+                        name="startDate"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="phone">Event Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="ProjectName"
-                        placeholder="Enter event name"
-                      />
-                    </div>
-                  </div>
+                  
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Ends On</label>
+                      <label for="endDate">Ends On</label>
                       <input
                         type="date"
                         className="form-control"
-                        id="date"
-                        
-                        // value={profile.email}
-                        name="email"
-                        // onChange={handleChange}
+                        id="endDate"
+                        value={newEvent.endDate}
+                        name="endDate"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
+
 
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Description</label>
+                      <label for="noOfVolunteers">No.of volunteers need</label>
                       <input
-                        type="text"
-                        style={{height:80}}
+                        type="number"
                         className="form-control"
-                        id="description"
-                        placeholder="Enter description"
+                        id="noOfVolunteers"
+                        name="noOfVolunteers"
+                        value={newEvent.noOfVolunteers}
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="phone">No.of volunteers need</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="ProjectName"
-                        placeholder="Enter volunteer count"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="website">Other</label>
                       <input
@@ -135,7 +178,7 @@ export default function CoordinateEventForm() {
                         placeholder="Content"
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                  
                 </div>
@@ -146,19 +189,16 @@ export default function CoordinateEventForm() {
                       <div class="modal-footer justify-content-center ">
                         <button
                           type="button"
-                          id="submit"
-                          name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
                         >
                           Cancel
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          // onClick={handleSubmit}
                         >
                           Save
                         </button>
@@ -171,6 +211,19 @@ export default function CoordinateEventForm() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

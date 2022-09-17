@@ -26,3 +26,25 @@ export const signUpApprove = (requestData) => {
     data: requestData,
   });
 };
+
+export const getParticularJoinRequestData= (id) => {
+  console.log("from->"+id);
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getJoinRequestData/${id}`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
+export const deleteRequest = (id) => {
+  return axios({
+    method: "DELETE",
+    url: `${USER_URL}/deleteRequest/${id}`,
+    headers: {
+    Authorization: "Bearer " + getToken(),
+  },
+  });
+  
+};

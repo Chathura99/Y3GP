@@ -26,10 +26,22 @@ public class SignUpController {
         return signUpService.getJoinRequest();
 
     }
+
+    @GetMapping("/getJoinRequestData/{id}")
+    public JoinRequest getJoinRequestData(@PathVariable Long id){
+        return signUpService.getJoinRequestData(id);
+    }
     @PostMapping("/signUpApproved")
     public String signUpApproved(@RequestBody JoinRequest joinRequest)
     {
         String status = signUpService.signUpApproved(joinRequest);
+        return status;
+    }
+
+    @DeleteMapping("/deleteRequest/{id}")
+    public int deleteRequest(@PathVariable Long id)
+    {
+        int status = signUpService.deleteRequest(id);
         return status;
     }
 

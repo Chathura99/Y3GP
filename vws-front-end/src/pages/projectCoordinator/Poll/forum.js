@@ -27,6 +27,7 @@ useEffect(() => {
 
 
       read: (
+        <Link to="/adminviewforum" className="sign-up">
               <button
                 type="button"
                 id="submit"
@@ -38,10 +39,11 @@ useEffect(() => {
                 // #96BE25,#BE4D25
                 // onClick={handleSubmit}
               >
-                <Link to="/adminviewforum" className="sign-up">
+                
                     <b>Read</b>
-                  </Link>
+                  
               </button>
+              </Link>
             ),
 
           },
