@@ -1,2 +1,4 @@
-package com.ucsc.vwsbackend.dto;public class DiscssionTopicWithReply {
+package com.ucsc.vwsbackend.dto;
+
+public class DiscssionTopicWithReply {
 }

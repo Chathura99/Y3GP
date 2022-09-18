@@ -14,11 +14,11 @@ public class DiscussionTopic {
     @Column(name = "topic_id")
     private long topicId;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "topic")
+    private String topic;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "topic_description")
+    private String topicDescription;
 
 
     @Column(name = "created_by")
@@ -43,20 +43,20 @@ public class DiscussionTopic {
         this.topicId = topicId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTopic() {
+        return topic;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTopic(String topic) {
+        this.topic= topic;
     }
 
-    public String getDescription() {
-        return description;
+    public String getTopicDescriptionDescription() {
+        return topicDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTopicDescriptionDescription(String description) {
+        this.topicDescription = topicDescription;
     }
 
     public String getCreatedBy() {
