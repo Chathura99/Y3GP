@@ -7,80 +7,55 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-@Table(name = "forum")
+@Table(name = "reply")
 @Entity
 public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "forum_id")
-    private long forumId;
-
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "description")
-    private String description;
+    @Column(name = "reply_id")
+    private long replyId;
 
 
-    @Column(name = "created_by")
-    private String createdBy;
 
-    @Column(name = "start_date")
+    @Column(name = "reply_description")
+    private String replyDescription;
+
+
+    @Column(name = "replied_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @CreationTimestamp
-    private Date startDate;
+    private Date repliedDate;
 
-    @Column(name = "end_date")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @CreationTimestamp
-    private Date endDate;
 
-    public long getForumId() {
-        return forumId;
+
+
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "topic_id")
+    DiscussionTopic discussionTopic;
+
+    public long getReplyId() {
+        return replyId;
     }
 
-    public void setForumId(long forumId) {
-        this.forumId = forumId;
+    public void setReplyId(long replyId) {
+        this.replyId = replyId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getReplyDescription() {
+        return replyDescription;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setReplyDescription(String replyDescription) {
+        this.replyDescription = replyDescription;
     }
 
-    public String getDescription() {
-        return description;
+    public Date getRepliedDate() {
+        return repliedDate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setRepliedDate(Date repliedDate) {
+        this.repliedDate = repliedDate;
     }
 
     public DiscussionTopic getDiscussionTopic() {
@@ -100,10 +75,8 @@ public class Reply {
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "topic_id")
-    DiscussionTopic discussionTopic;
-
-    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     User user;
+
+
 }
