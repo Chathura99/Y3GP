@@ -4,7 +4,7 @@ import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import { addCoordinatedEvents } from './../../../services/eventServices/eventService';
 
-export default function CoordinateEventForm() {
+export default function CoordinateEventForm(props) {
 
   const [newEvent, setNewEvent] = useState({
     startDate: "",
@@ -15,6 +15,8 @@ export default function CoordinateEventForm() {
     noOfVolunteers: "",
 
   });
+
+  
 
   const handleChange = (e) => {
     e.persist();
@@ -34,7 +36,7 @@ export default function CoordinateEventForm() {
    // open confirmation pop up modal
    const confirm = (e) => {
     e.preventDefault();
-    setMessage("Propose new project !");
+    setMessage("Coordinated New Event !");
     setPopUp("confirm");
   };
 
@@ -56,7 +58,7 @@ export default function CoordinateEventForm() {
      
 
       <div
-        class="modal fade"
+        class="modal fade show"
         id="addCoordinatedEvents"
         tabindex="-1"
         role="dialog"
@@ -75,9 +77,9 @@ export default function CoordinateEventForm() {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
-                // onClick={() => {
-                //   props.setSelected(false);
-                // }}
+                onClick={() => {
+                  props.setSelected(false);
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -86,10 +88,10 @@ export default function CoordinateEventForm() {
             <form onSubmit={confirm}>
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}></h4>
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>{props.projectData}</h4>
                   </div>
-
-                 
+{console.log(props.projectData)}
+                 <h1></h1>
 
                   {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
@@ -191,6 +193,9 @@ export default function CoordinateEventForm() {
                           type="button"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
+                          onClick={()=>{
+                            props.setSelected(false)
+                          }}
                         >
                           Cancel
                         </button>
@@ -199,6 +204,7 @@ export default function CoordinateEventForm() {
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
+                          
                         >
                           Save
                         </button>
@@ -211,6 +217,7 @@ export default function CoordinateEventForm() {
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
       {popup === "success" && (
         <SuccessPopUp message={message} closePopUp={closePopUp} />
       )}
