@@ -132,4 +132,11 @@ public class JoinRequest {
         this.status = status;
     }
 
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
 }

@@ -59,5 +59,10 @@ public class UserController {
         return passwordService.changePassword(userPassword,id);
     }
 
+    @PutMapping("/deactivateUser/{id}")
+    public long deactivateUser(@PathVariable Long id){
+        return passwordService.deactivateUser(id);
+    }
+
 
 }
