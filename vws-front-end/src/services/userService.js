@@ -39,6 +39,17 @@ export const updateProfile = (profile,role) => {
   });
 };
 
+export const deactivateUser = (id) => {
+  // return axios.get(USER_URL);
+  return axios({
+    method: "PUT",
+    url: `${USER_URL}/deactivateUser/${id}`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
 export const updatePassword = (password,id) => {
   console.log(password);
   // return axios.get(USER_URL);
