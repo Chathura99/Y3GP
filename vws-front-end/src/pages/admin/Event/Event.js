@@ -37,6 +37,7 @@ export default function Event() {
 
   const [upComingEventData, setUpComingEventData] = useState([]);
   const [previousEventData, setPreviousEventData] = useState([]);
+  const [eventProgressData, setEventProgressData] = useState({});
 
   return (
     <>
@@ -142,7 +143,8 @@ export default function Event() {
                           );
                         },
                         onClick: (event, rowData) => {
-                          // setSelectedJoinRequestsData(rowData);
+                          setEventProgressData(rowData)
+                          // To Do - set progress
                           setSelected(true);
                         },
                         // tooltip: "Register User",
@@ -155,7 +157,7 @@ export default function Event() {
           </div>
         </div>
 
-        {selected && <AddEventProgress setSelected={setSelected} />}
+        {selected && <AddEventProgress setSelected={setSelected} eventProgressData={eventProgressData}/>}
       </div>
     </>
   );

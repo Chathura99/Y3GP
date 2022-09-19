@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function AddEventProgress(props) {
+  const [eventProgressData, setEventProgressData] = useState(props.eventProgressData);
+  console.log(eventProgressData);
   return (
     <div>
       <div
@@ -33,12 +35,14 @@ export default function AddEventProgress(props) {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Event Coordinator : Malik Wijesuriya</small>
+                  <small>Coordinator : {eventProgressData.name}</small>
                   <br></br>
-                  <small>Phone : 0712584568</small>
+                  <small>Phone : {eventProgressData.phoneNumber}</small>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Date : "2021-09-12"</small>
+                  <small>Start Date : {eventProgressData.startDate} </small>
+                  <br />
+                  <small>End Date : {eventProgressData.endDate} </small>
                   <br />
                   <small>Status : </small>
                 </div>
@@ -104,11 +108,108 @@ export default function AddEventProgress(props) {
                       id="description"
                       name="description"
                       value="
-                      The second programme of the...
+                      Get from progress query!
                       "
                       //   onChange={handleChange}
                       disabled
                     />
+                  </div>
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="form-group">
+                      <label
+                        for="formFile"
+                        class="form-label"
+                        id="formLbl"
+                        style={{ color: "gray" }}
+                      >
+                        Progress
+                      </label>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                          checked
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckDefault"
+                          style={{ color: "black" }}
+                        >
+                          criteria 1
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckChecked"
+                          style={{ color: "black" }}
+
+                        >
+                          criteria 2
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckChecked"
+                          style={{ color: "black" }}
+
+                        >
+                          criteria 3{" "}
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckChecked"
+                          style={{ color: "black" }}
+
+                        >
+                          criteria 4{" "}
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckChecked"
+                          style={{ color: "black" }}
+
+                        >
+                          criteria 5{" "}
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -122,7 +223,7 @@ export default function AddEventProgress(props) {
                       className="form-control"
                       id="location"
                       name="location"
-                      value="Galenbidunuwewa"
+                      value={eventProgressData.place}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -139,7 +240,7 @@ export default function AddEventProgress(props) {
                       className="form-control"
                       id="numberOfMembersr"
                       name="numberOfMembers"
-                      value="20"
+                      value={eventProgressData.noOfVolunteers}
                       //   onChange={handleChange}
                       disabled
                     />
@@ -156,47 +257,46 @@ export default function AddEventProgress(props) {
                       className="form-control"
                       id="district"
                       name="district"
-                      value="Anuradhapura"
+                      value={eventProgressData.place}
                       //   onChange={handleChange}
                       disabled
                     />
                   </div>
                 </div>
-                </div>
-                <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div className="text-center mt-3 ">
-                      <Link to="/adminevent">
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          class="btn btn-secondary btn-sm"
-                          onClick={() => {
-                            props.setSelected(false);
-                          }}
-                        >
-                          Cancel
-                        </button>
-                      </Link>
-
+              </div>
+              <div className="row gutters">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <div className="text-center mt-3 ">
+                    <Link to="/adminevent">
                       <button
-                        type="submit"
+                        type="button"
+                        id="submit"
                         name="submit"
-                        class="btn btn-primary btn-sm"
-                        //   {...(Object.keys(errors).length === true)}
-                        //   style={{backgroundColor:"white"}}
-
-                        title="Please fill the form correctly!"
-
-                        // onClick=
+                        class="btn btn-secondary btn-sm"
+                        onClick={() => {
+                          props.setSelected(false);
+                        }}
                       >
-                        OK
+                        Cancel
                       </button>
-                    </div>
+                    </Link>
+
+                    <button
+                      type="submit"
+                      name="submit"
+                      class="btn btn-primary btn-sm"
+                      //   {...(Object.keys(errors).length === true)}
+                      //   style={{backgroundColor:"white"}}
+
+                      title="Please fill the form correctly!"
+
+                      // onClick=
+                    >
+                      OK
+                    </button>
                   </div>
                 </div>
-              
+              </div>
             </div>
           </div>
         </div>
