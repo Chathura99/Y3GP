@@ -212,7 +212,7 @@ public class ProjectJdbcRepository {
 
     public long removeCurrentProjectCoordinator(long oldUserid) {
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-        namedParameters.addValue("id", oldUserid);
+        namedParameters.addValue("oldUserid", oldUserid);
 
         String query = "Delete FROM project_coordinator where id = :oldUserid;";
 
@@ -221,7 +221,7 @@ public class ProjectJdbcRepository {
 
 
 
-    // VOlunteer
+    // Volunteer
     public long addProposedProjects(NewProjectDetail newProjectDetail) {
         LocalDate sdate = LocalDate.parse(newProjectDetail.getStartDate());
 
@@ -242,5 +242,17 @@ public class ProjectJdbcRepository {
         int rowsAffected = jdbc.update(query , namedParameters);
         return rowsAffected;
 
+    }
+
+    public long setCoordinatorOrNotToZero(long oldUserid) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE volunteer " +
+                "SET coordinator_or_not = 0 WHERE id = :oldUserid";
+
+        namedParameters.addValue("oldUserid", oldUserid);
+
+        int rowsAffected = jdbc.update(update, namedParameters);
+        return rowsAffected;
     }
 }
