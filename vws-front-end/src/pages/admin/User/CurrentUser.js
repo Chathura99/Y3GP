@@ -7,6 +7,11 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 // service
 import { getUsers } from "../../../services/userService";
+import {deactivateUser} from "../../../services/userService";
+// popups
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 
 export default function CurrentUser() {
   useEffect(() => {
@@ -26,6 +31,35 @@ export default function CurrentUser() {
     console.log(res.data);
     setCurrentUserTableData(res.data);
   };
+
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  const [selectedUser, setSelectedUser] = useState(0);
+
+  const closePopUp = () => {
+    setPopUp("");
+  };
+
+  const deactivate = () => {
+    deactivateUser(selectedUser)
+      .then((response) => {
+        if (response.status === 200 && response.data == 1) {
+          setMessage("Deactivate account successfully!");
+          setPopUp("success");
+        } else {
+          setPopUp("failed");
+        }
+      })
+      .catch((err) => {
+        if (err && err.response) {
+          console.log(err.message);
+          setMessage("Something went wrong!");
+          setPopUp("failed");
+        }
+      });
+    setPopUp("");
+  };
+
   const [currentUserTableData, setCurrentUserTableData] = useState([]);
 
   const [pieChartData, setPieChartData] = useState([
@@ -109,7 +143,7 @@ export default function CurrentUser() {
                     // { field: "university", title: "UNIVERSITY" },
                     // { field: "position", title: "POSITION" },
                     // { field: "district", title: "LOCATION" },
-                    { field: "enabled", title: "STATUS" },
+                    { field: "enabled", title: "STATUS",hidden:"true" },
                   ]}
                   data={currentUserTableData}
                   actions={[
@@ -122,39 +156,41 @@ export default function CurrentUser() {
                             style={{
                               backgroundColor: "#BE4D25",
                               border: "none",
+                              width:"100px"
                             }}
                           >
-                            Remove
+                            Deactivate
                           </button>
                         );
                       },
                       onClick: (event, rowData) => {
-                        // setSelectedJoinRequestsData(rowData);
-                        // setSelected(true);
+                        setPopUp("confirm");
+                        setMessage("Deactivate "+ rowData.firstName+"'s account! ");
+                        setSelectedUser(rowData.id);
+                        
                       },
                       // tooltip: "Register User",
                     },
-                    {
-                      icon: () => {
-                        return (
-                          <button
-                            type="button"
-                            className="btn mt-0"
-                            style={{
-                              backgroundColor: "#96BE25",
-                              border: "none",
-                            }}
-                          >
-                            More .
-                          </button>
-                        );
-                      },
-                      onClick: (event, rowData) => {
-                        // setSelectedJoinRequestsData(rowData);
-                        // setSelected(true);
-                      },
-                      // tooltip: "Register User",
-                    },
+                    // {
+                    //   icon: () => {
+                    //     return (
+                    //       <button
+                    //         type="button"
+                    //         className="btn mt-0"
+                    //         style={{
+                    //           backgroundColor: "#96BE25",
+                    //           border: "none",
+                    //         }}
+                    //       >
+                    //         More .
+                    //       </button>
+                    //     );
+                    //   },
+                    //   onClick: (event, rowData) => {
+                        
+                    //   },
+                     
+                    // },
                   ]}
                 />
               </div>
@@ -162,6 +198,19 @@ export default function CurrentUser() {
           </div>
         </div>
       </div>
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={deactivate}
+        />
+      )}
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
     </>
   );
 }
