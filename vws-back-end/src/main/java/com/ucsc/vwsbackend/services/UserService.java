@@ -36,7 +36,8 @@ public class UserService implements UserDetailsService {
 
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+//        return userRepository.findAll();
+        return userJdbcRepository.findAllActiveUser();
     }
 
     public Profile getUserById(Long id) {

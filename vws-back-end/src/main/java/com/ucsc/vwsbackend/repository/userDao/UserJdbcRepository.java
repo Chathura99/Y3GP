@@ -1,12 +1,16 @@
 package com.ucsc.vwsbackend.repository.userDao;
 
+import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
 import com.ucsc.vwsbackend.dto.Profile;
+import com.ucsc.vwsbackend.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UserJdbcRepository {
@@ -113,5 +117,21 @@ public class UserJdbcRepository {
         String key = jdbcTemplate.queryForObject(sql, new Object[] { id }, String.class);
 
         return key;
+    }
+
+    public List<User> findAllActiveUser() {
+        String query ="SELECT * from user where enabled=1";
+
+        List<User> users = jdbc.query(query,new BeanPropertyRowMapper<User>(User.class));
+        return users;
+    }
+
+    public long deactivateUser(Long id) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update1 = "UPDATE user " +
+                "SET enabled = 0 WHERE id = :id;";
+        namedParameters.addValue("id", id);
+        return  jdbc.update(update1, namedParameters);
     }
 }

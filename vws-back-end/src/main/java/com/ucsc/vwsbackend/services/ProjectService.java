@@ -39,6 +39,7 @@ public class ProjectService {
 
 
     public long editProject(ProjectDetail projectDetail) {
+//        ToDO: with out edit pc check it
 //      get new volunteer data
         VolunteerUpgrade volunteerUpgrade = projectJdbcRepository.getNewCoordinatorData(projectDetail.getCoordinatorId());
 //      save to pc
@@ -59,12 +60,15 @@ public class ProjectService {
         projectJdbcRepository.upgradeNewUserRole(newUserid);
 //        downgrade current user role
         projectJdbcRepository.downgradeNewUserRole(oldUserid);
-//        remove current project coordinator
-        projectJdbcRepository.removeCurrentProjectCoordinator(oldUserid);
-
+//        set coordinator_or_not to 0
+        projectJdbcRepository.setCoordinatorOrNotToZero(oldUserid);
 
         projectDetail.setCoordinatorId(projectJdbcRepository.getNewCoordinatorId(newUserid));
-        return projectJdbcRepository.editProject(projectDetail);
+        long success =projectJdbcRepository.editProject(projectDetail);
+
+//        remove current project coordinator
+        projectJdbcRepository.removeCurrentProjectCoordinator(oldUserid);
+        return success;
     }
 
 

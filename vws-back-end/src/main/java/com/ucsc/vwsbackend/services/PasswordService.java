@@ -21,4 +21,8 @@ public class PasswordService {
 
         return userJdbcRepository.changePassword(userPassword.getNewPassword(),id);
     }
+
+    public long deactivateUser(Long id) {
+        return userJdbcRepository.deactivateUser(id);
+    }
 }
