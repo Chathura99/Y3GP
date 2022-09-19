@@ -32,6 +32,7 @@ export default function Projects() {
     };
 
     const [onGoingProjectData, setOnGoingProjectData] = useState([]);
+    const [projectData, setProjectData] = useState({});
     const [selected, setSelected] = useState(false);
     // const [selectedCoordinateEvent, setSelectedCoordinatedEvent] = useState({});
     return (
@@ -85,21 +86,29 @@ export default function Projects() {
                             <button
                               type="button"
                               className="btn"
-                              data-toggle="modal" data-target="#CoordinateEvent"
+                              // data-toggle="modal" data-target="#addCoordinatedEvents"
                               style={{
                                 backgroundColor: "#2596BE",
                                 width: "6rem",
                                 border: "none",
                                 marginRight: 0,
                               }}
+                            
+                              // id='proposenewbtn' 
+                              // data-toggle="modal" 
+                              // data-target="#addCoordinatedEvents"
+                            
+                            
                             >
                               Coordinate
                             </button>
+                            // <button id='proposenewbtn' data-toggle="modal" data-target="#addProposedProjects">Coordinatt </button>
+
                           );
                         },
-                        onClick: () => {
-                          // setSelectedCoordinatedEvent(rowData);
-                          
+                        onClick: (event, rowData) => {
+                          setProjectData(rowData.name)
+                          console.log(rowData)
                           setSelected(true);
                         },
                         tooltip: "Coordinate Event",
@@ -134,6 +143,7 @@ export default function Projects() {
                   />
                
                                 <ProposeProjectForm />
+                                
            
        
                                 
@@ -142,8 +152,8 @@ export default function Projects() {
                         </div>
                     </div>
                 </div>
-                
-                {selected && <CoordinateEventForm setSelected={setSelected} />}
+                {/* <CoordinateEventForm setSelected={setSelected} /> */}
+                {selected && <CoordinateEventForm setSelected={setSelected} projectData={projectData}/>}
             </div>
         </>
     );
