@@ -30,7 +30,7 @@ export default function CompletedEvents() {
 
   const [selected, setSelected] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState({});
-  const [completedEventData, setCompletedEventData] = useState({});
+  const [completedEventData, setCompletedEventData] = useState([]);
 
   const [lineChartData, setLineChartData] = useState([
     [
@@ -105,7 +105,7 @@ export default function CompletedEvents() {
                       { field: "noOfVolunteers", title: "NO OF MEMBERS" },
                       { field: "place", title: "LOCATION" },
                     ]}
-                    // data={completedEventData}
+                    data={completedEventData}
                     actions={[
                       {
                         icon: () => {
@@ -124,7 +124,7 @@ export default function CompletedEvents() {
                         },
                         onClick: (event, rowData) => {
                           // setSelectedJoinRequestsData(rowData);
-                          // setSelected(true);
+                          setSelected(true);
                         },
                          tooltip: "Event Details",
                       },
@@ -137,5 +137,5 @@ export default function CompletedEvents() {
         </div>
       </div>
     </>
-  )
+  );
 }

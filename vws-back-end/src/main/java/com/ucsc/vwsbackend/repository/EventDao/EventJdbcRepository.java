@@ -36,7 +36,7 @@ public class EventJdbcRepository {
     }
 
     public List<EventDetail> getPreviousEvents() {
-        System.out.println("bghfghcbnvnbvnbv-----vhgvhbvbjn");
+//        System.out.println("bghfghcbnvnbvnbv-----vhgvhbvbjn");
         String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name,v.volunteer_id,u.phone_number from event as e " +
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
