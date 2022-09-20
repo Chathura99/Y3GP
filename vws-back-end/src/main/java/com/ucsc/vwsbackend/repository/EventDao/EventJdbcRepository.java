@@ -3,8 +3,8 @@ package com.ucsc.vwsbackend.repository.EventDao;
 
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
+import com.ucsc.vwsbackend.dto.ParticipateEvent;
 import com.ucsc.vwsbackend.entities.Event;
-import com.ucsc.vwsbackend.entities.ParticipateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -172,8 +172,9 @@ public class EventJdbcRepository {
                 "(event_id,volunteer_id,status) " +
                 "values (:event_id, :volunteer_id,0)";
 
-        namedParameters.addValue("name", participateEvent.getEvent());
-        namedParameters.addValue("description", participateEvent.getVolunteer());
+        namedParameters.addValue("event_id", participateEvent.getEventId());
+        namedParameters.addValue("volunteer_id", participateEvent.getVolunteerId());
+
 
 
 
