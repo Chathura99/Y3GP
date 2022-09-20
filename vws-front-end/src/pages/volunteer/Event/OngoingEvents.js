@@ -2,6 +2,8 @@ import React, { useEffect,useState } from 'react';
 import MapFormPopUp from './MapFormPopUp';
 import JoinEventForm from './JoinEventForm';
 import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
@@ -11,8 +13,63 @@ import { getOngoingEvents } from './../../../services/eventServices/eventService
 
 export default function OngoingEvents() {
   
+  const [joinEvent, setJoinEvent] = useState({
+    eventId: "",
+    volunteerId: "",
+    status: 0
+
+});
   
-  
+const [popup, setPopUp] = useState("");
+const [message, setMessage] = useState("");
+
+const closePopUp = () => {
+  setPopUp("");
+};
+
+const confirm = (e) => {
+  e.preventDefault();
+  setMessage("Request to Join");
+  setPopUp("confirm");
+};
+
+// const handleSubmit = (e) => {
+//   // e.preventDefault();
+//   console.log("reached!")
+//   addFeedback(feed)
+//       .then((response) => {
+//           if (response.status === 200) {
+//               console.log(response.data);
+//               setMessage(response.data);
+//               if (response.data === 1) {     //check this
+//                   setPopUp("success");
+//               } else {
+//                   setPopUp("failed");
+//               }
+//           }
+//       })
+
+//       .catch((err) => {
+//           if (err && err.response) {
+//               console.log(err);
+//               setMessage(err.message);
+//               setPopUp("failed");
+//           }
+//       });
+
+
+// };
+
+
+// const handleChange = (e) => {
+//   e.persist();
+//   console.log(e.target.name + "-" + e.target.value);
+//   setFeed((feed) => ({
+//       ...feed,
+//       [e.target.name]: e.target.value,
+//   }));
+// };
+
 
 
     useEffect(() => {
@@ -34,6 +91,8 @@ export default function OngoingEvents() {
     };
 
     const [onGoingEventData, setOnGoingEventData] = useState([]);
+    const [eventData, setEventData] = useState({});
+
     const [selected, setSelected] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState({});
 
@@ -129,10 +188,11 @@ export default function OngoingEvents() {
                             </button>
                           );
                         },
-                        // onClick: (event, rowData) => {
-                        //   setSelectedProject(rowData);
-                        //   setSelected(true);
-                        // },
+                        onClick: (event, rowData) => {
+                          setEventData(rowData);
+                          console.log(rowData)
+                          setSelected(true);
+                        },
                         tooltip: "Join to Event",
                       },
                       
@@ -156,6 +216,19 @@ export default function OngoingEvents() {
                     </div>
                 </div>
             </div>
+            {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {/* {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )} */}
         </>
     );
 }
