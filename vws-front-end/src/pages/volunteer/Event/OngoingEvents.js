@@ -9,13 +9,14 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 // services
 import { getOngoingEvents } from './../../../services/eventServices/eventService';
+import { participateToEvent } from './../../../services/volunteerServices/joinEventService';
 
 
 export default function OngoingEvents() {
   
   const [joinEvent, setJoinEvent] = useState({
-    eventId: "",
-    volunteerId: "",
+    eventId: 4,
+    volunteerId: 1,
     status: 0
 
 });
@@ -33,42 +34,42 @@ const confirm = (e) => {
   setPopUp("confirm");
 };
 
-// const handleSubmit = (e) => {
-//   // e.preventDefault();
-//   console.log("reached!")
-//   addFeedback(feed)
-//       .then((response) => {
-//           if (response.status === 200) {
-//               console.log(response.data);
-//               setMessage(response.data);
-//               if (response.data === 1) {     //check this
-//                   setPopUp("success");
-//               } else {
-//                   setPopUp("failed");
-//               }
-//           }
-//       })
+const handleSubmit = (e) => {
+  // e.preventDefault();
+  console.log("reached!")
+  participateToEvent(joinEvent)
+      .then((response) => {
+          if (response.status === 200) {
+              console.log(response.data);
+              setMessage(response.data);
+              if (response.data === 1) {     //check this
+                  setPopUp("success");
+              } else {
+                  setPopUp("failed");
+              }
+          }
+      })
 
-//       .catch((err) => {
-//           if (err && err.response) {
-//               console.log(err);
-//               setMessage(err.message);
-//               setPopUp("failed");
-//           }
-//       });
-
-
-// };
+      .catch((err) => {
+          if (err && err.response) {
+              console.log(err);
+              setMessage(err.message);
+              setPopUp("failed");
+          }
+      });
 
 
-// const handleChange = (e) => {
-//   e.persist();
-//   console.log(e.target.name + "-" + e.target.value);
-//   setFeed((feed) => ({
-//       ...feed,
-//       [e.target.name]: e.target.value,
-//   }));
-// };
+};
+
+
+const handleChange = (e) => {
+  e.persist();
+  console.log(e.target.name + "-" + e.target.value);
+  setJoinEvent((joinEvent) => ({
+      ...joinEvent,
+      [e.target.name]: e.target.value,
+  }));
+};
 
 
 
@@ -174,8 +175,11 @@ const confirm = (e) => {
                         
                         icon: () => {
                           return (
+                            
                             <button
-                              type="button"
+                            onClick={confirm}
+                            id="submit"
+                              type="submit"
                               class="btn"
                               style={{
                                 backgroundColor: "#96BE25",
@@ -222,13 +226,14 @@ const confirm = (e) => {
       {popup === "failed" && (
         <FailedPopUp message={message} closePopUp={closePopUp} />
       )}
-      {/* {popup === "confirm" && (
+      {popup === "confirm" && (
         <ConfirmPopUp
           message={message}
           closePopUp={closePopUp}
           handleSubmit={handleSubmit}
+          data={eventData}
         />
-      )} */}
+      )}
         </>
     );
 }
