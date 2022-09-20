@@ -107,8 +107,8 @@ export default function Projects() {
                           );
                         },
                         onClick: (event, rowData) => {
-                          setProjectData(rowData.name)
-                          console.log(rowData)
+                          setProjectData(rowData);
+                          // console.log(rowData)
                           setSelected(true);
                         },
                         tooltip: "Coordinate Event",
@@ -153,7 +153,7 @@ export default function Projects() {
                     </div>
                 </div>
                 {/* <CoordinateEventForm setSelected={setSelected} /> */}
-                {selected && <CoordinateEventForm setSelected={setSelected} projectData={projectData}/>}
+                {selected && <CoordinateEventForm setSelected={setSelected} data={projectData}/>}
             </div>
         </>
     );

@@ -4,6 +4,7 @@ package com.ucsc.vwsbackend.repository.EventDao;
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.entities.Event;
+import com.ucsc.vwsbackend.entities.ParticipateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -160,6 +161,25 @@ public class EventJdbcRepository {
 
         Event event = (Event) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(Event.class));
         return event;
+    }
+
+    public long participateToEvent(ParticipateEvent participateEvent) {
+
+
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String query = "INSERT INTO participate_event " +
+                "(event_id,volunteer_id,status) " +
+                "values (:event_id, :volunteer_id,0)";
+
+        namedParameters.addValue("name", participateEvent.getEvent());
+        namedParameters.addValue("description", participateEvent.getVolunteer());
+
+
+
+        int rowsAffected = jdbc.update(query , namedParameters);
+        return rowsAffected;
+
     }
 
 

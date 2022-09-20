@@ -6,6 +6,8 @@ import { addCoordinatedEvents } from './../../../services/eventServices/eventSer
 
 export default function CoordinateEventForm(props) {
 
+  const [projectData, setProjectData] = useState(props.data);
+
   const [newEvent, setNewEvent] = useState({
     startDate: "",
     endDate: "",
@@ -85,12 +87,28 @@ export default function CoordinateEventForm(props) {
               </button>
             </div>
             <div class="modal-body">
+            <div className="row gutters ">
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <small>
+                    Project Name : {projectData.name}
+                   
+                  </small>
+                  <br></br>
+                  <small>Project Coordinator : {projectData.firstName}</small>
+                </div>
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <small>Start Date : {projectData.startDate}</small>
+                </div>
+            </div>
+
+            
             <form onSubmit={confirm}>
                 <div className="row gutters ">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>{props.projectData}</h4>
-                  </div>
-{console.log(props.projectData)}
+                
+                  {/* <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>{projectData.name}</h4>
+                  </div> */}
+{/* {console.log(props.projectData)} */}
                  <h1></h1>
 
                   {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
