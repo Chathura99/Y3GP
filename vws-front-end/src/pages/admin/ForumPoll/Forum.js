@@ -5,12 +5,16 @@ import NewTable from "../../../utilities/Table/NewTable.js";
 import AddForumTopic from "./AddForumTopic";
 import { Link } from "react-router-dom";
 import AddNewPoll from "./AddNewPoll";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+import { getForumInfo } from "../../../services/forumServices/forumService";
 
 export default function Forum() {
   
 
   useEffect(() => {
     checkValidate();
+    getForumDetails();
   }, []);
 
   const checkValidate = async () => {
@@ -19,76 +23,85 @@ export default function Forum() {
       window.location.href = "/";
     }
   };
-  const [ProjectsData, setProjectsData] = useState([
-    {
-      topic: "Blood Donation",
-      last_update: "2022 07 12",
-      replies: "05",
+  const getForumDetails = async () => {
+    const res = await getForumInfo();
+    console.log(res.data);
+    setForumData(res.data);
+  };
+
+  const [ForumData, setForumData] = useState([]);
+  const [selected, setSelected] = useState(false);
+  const [selectedForum, setSelectedForum] = useState({});
+  // const [ProjectsData, setProjectsData] = useState([
+  //   {
+  //     topic: "Blood Donation",
+  //     last_update: "2022 07 12",
+  //     replies: "05",
             
             
             
-      read: (
-        <Link to="/adminviewforum" className="sign-up">
-              <button
-                type="button"
-                id="submit"
-                name="submit"
-                className="btn p-1"
-                data-toggle="modal"
-                data-target="#CoordinateEventForm"
-                style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-                // #96BE25,#BE4D25
-                // onClick={handleSubmit}
-              >
+  //     read: (
+  //       <Link to="/adminviewforum" className="sign-up">
+  //             <button
+  //               type="button"
+  //               id="submit"
+  //               name="submit"
+  //               className="btn p-1"
+  //               data-toggle="modal"
+  //               data-target="#CoordinateEventForm"
+  //               style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+  //               // #96BE25,#BE4D25
+  //               // onClick={handleSubmit}
+  //             >
                 
-                    <b>Read</b>
+  //                   <b>Read</b>
                   
-              </button>
-              </Link>
-            ),
+  //             </button>
+  //             </Link>
+  //           ),
             
-          },
-    //       {
-    //         project_name: "Re-green Earth",
-    //         description: "Re-green Earth is a ...",
-    //         idea_by: "Sadaru Avishka",
-    //         date: "2022 09 02",
+  //         },
+  //   //       {
+  //   //         project_name: "Re-green Earth",
+  //   //         description: "Re-green Earth is a ...",
+  //   //         idea_by: "Sadaru Avishka",
+  //   //         date: "2022 09 02",
             
             
-    //         read: (
-    //           <button
-    //             type="button"
-    //             id="submit"
-    //             name="submit"
-    //             data-toggle="modal"
-    //             data-target="#CoordinateEventForm"
-    //             className="btn p-1"
-    //             style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-    //             // #96BE25-green,#BE4D25-red
-    //             // onClick={handleSubmit}
-    //           >
-    //             Read
-    //           </button>
-    //         ),
+  //   //         read: (
+  //   //           <button
+  //   //             type="button"
+  //   //             id="submit"
+  //   //             name="submit"
+  //   //             data-toggle="modal"
+  //   //             data-target="#CoordinateEventForm"
+  //   //             className="btn p-1"
+  //   //             style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
+  //   //             // #96BE25-green,#BE4D25-red
+  //   //             // onClick={handleSubmit}
+  //   //           >
+  //   //             Read
+  //   //           </button>
+  //   //         ),
             
-    // }
-  ]);
+  //   // }
+  // ]);
 
-const data = useMemo(
-() => ProjectsData  )
+// const data = useMemo(
+// () => ProjectsData  )
 
-  const ProjectsHeadings=useMemo(
-    () => [
+//   const ProjectsHeadings=useMemo(
+//     () => [
      
-      { accessor: "topic", Header: "TOPIC" },
-      { accessor: "last_update", Header: "LAST UPDATE" },
-      { accessor: "replies", Header: "REPLIES" },
-      { accessor: "read", Header: "ACTION" },
+//       { accessor: "topic", Header: "TOPIC" },
+//       { accessor: "last_update", Header: "LAST UPDATE" },
+//       { accessor: "replies", Header: "REPLIES" },
+//       { accessor: "read", Header: "ACTION" },
       
       
-    ],
-    []
-  )
+//     ],
+//     []
+//   )
 // poll data
 
   return (
@@ -107,7 +120,71 @@ const data = useMemo(
                                   <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic">Add New Forum Topic </button>
                                   <AddForumTopic/>
                                 
-                                  <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                  <br></br><MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Ongoing Events"
+                    columns={[
+                      {
+                        field: "title",
+                        title: "Forum Topic",
+                        
+                      },
+                      {
+                        field: "createdBy",
+                        title: "Created By",
+                      },
+                      { field: "startDate", title: "Started Date", minWidth: "150px" },
+                      
+                      {
+                        field: "replies",
+                        title: "Replies",
+                        
+                      },
+                      
+                      
+                    ]}
+                    data={ForumData}
+                    actions={[
+                      {
+                        
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              // data-toggle="modal"
+                              // data-target="#CoordinateEventForm"
+                              style={{
+                                backgroundColor: "#2596BE",
+                                width: "6rem",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              View
+                            </button>
+                          );
+                        },
+                        // onClick: (event, rowData) => {
+                        //   setSelectedEvent(rowData);
+                        //   setSelected(true);
+                        // },
+                        tooltip: "View Location",
+                      },
+
+                      
+                      
+                    ]}
+
+                    
+
+                    
+
+                    
+                  />
                                 
                                  
                                 
