@@ -1,5 +1,7 @@
 package com.ucsc.vwsbackend.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class ForumInfo {
@@ -7,8 +9,20 @@ public class ForumInfo {
     private String title;
     private String description;
     private String createdBy;
+    @JsonFormat(pattern="YYYY-MM-dd HH:mm:ss")
     private Date startDate;
+
+    @JsonFormat(pattern="YYYY-MM-dd HH:mm:ss")
     private Date endDate;
+    private String replies;
+
+    public String getReplies() {
+        return replies;
+    }
+
+    public void setReplies(String replies) {
+        this.replies = replies;
+    }
 
     public long getForumId() {
         return forumId;
