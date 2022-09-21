@@ -9,10 +9,10 @@ public class ForumInfo {
     private String title;
     private String description;
     private String createdBy;
-    @JsonFormat(pattern="YYYY-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date startDate;
 
-    @JsonFormat(pattern="YYYY-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date endDate;
     private String replies;
 
