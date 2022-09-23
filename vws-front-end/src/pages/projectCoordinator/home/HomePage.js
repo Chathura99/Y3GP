@@ -6,6 +6,7 @@ import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import Loading from "../../../utilities/Loading/Loading";
 
 
 // for remove box shadow
@@ -15,23 +16,25 @@ import MaterialTable from "material-table";
 // service
 import { getUpcomingEvents } from "../../../services/eventServices/eventService";
 
+
+
 export default function PcHomePage() {
     useEffect(() => {
         checkValidate();
-        getUpcomingEventsdata();
+        upcomingEvent();
     }, []);
 
     const checkValidate = async () => {
-        const y = localstorage.getItem("USER_KEY");
+        const y = localStorage.getItem("USER_KEY");
         if (!y) {
             window.location.href = "/";
         }
     };
 
-    const getUpcomingEventsdata = async () => {
+    const upcomingEvent = async () => {
         const res = await getUpcomingEvents();
         console.log(res.data);
-        setUpComingEvents(res.data);
+        setUpComingEventsData(res.data);
     };
 
     const [upComingEventsData, setUpComingEventsData] = useState([]);
