@@ -5,7 +5,7 @@ import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
-import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+//import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 
 
@@ -15,6 +15,7 @@ import MaterialTable from "material-table";
 
 // service
 import { getUpcomingEvents } from "../../../services/eventServices/eventService";
+import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 
 
 
@@ -22,6 +23,7 @@ export default function PcHomePage() {
     useEffect(() => {
         checkValidate();
         upcomingEvent();
+        getRequest();
     }, []);
 
     const checkValidate = async () => {
@@ -37,92 +39,62 @@ export default function PcHomePage() {
         setUpComingEventsData(res.data);
     };
 
+    const getRequest = async () => {
+        const res = await getJoinRequest();
+        // console.log(res.data);
+        setJoinRequestsData([...res.data]);
+      };
+
     const [upComingEventsData, setUpComingEventsData] = useState([]);
     const [selectedupComingEvents, setSelectedupComingEvents] = useState({});
 
     const [selected, setSelected] = useState(false);
 
+    const [joinRequestsData, setJoinRequestsData] = useState([]);
+    const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
 
 
-
-//  const [upComingEventsData, setUpComingEventsData] = useState([
+//  const [joinRequestsData, setJoinRequestsData] = useState([
 //    {
-//      eventId: "E001",
-//      project: "Ganitha Saviya",
-//      place:"Kurunegala",
-//      member: 25,
-//      coordinator: "Ravindu Prabasha",
+//      id: "R001",
+//      name: "Chathura Manohara",
+//      nic: "998547521v",
+//      phone: "+94 75 025 1451",
 //      date: "2022 09 12",
+//      status: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1 mt-0"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Rejected
+//        </button>
+//      ),
 //    },
-//    {
-//      eventId: "E002",
-//      project: "Re-green Earth",
-//      place:"Kaduruwela",
-//      member: 100,
-//      coordinator: "Namal Upendra",
-//      date: "2022 09 25",
-//    },
-//    {
-//      eventId: "E003",
-//      project: "Re-green Earth",
-//      place:"Matara",
-//      member: 130,
-//      coordinator: "Sahan Kalhara",
-//      date: "2022 09 25",
-//    },
+//  ]);
 //
-//  ]);
-
-//  const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
-//    { accessor: "eventId", Header: "EVENT ID" },
-//    { accessor: "project", Header: "PROJECT NAME" },
-//    { accessor: "place", Header: "PLACE" },
-//    { accessor: "member", Header: "MEMBERS" },
-//    { accessor: "coordinator", Header: "COORDINATOR" },
+//  const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
+//    { accessor: "id", Header: "REQUEST ID" },
+//    { accessor: "name", Header: "NAME" },
+//    { accessor: "nic", Header: "NIC" },
+//    { accessor: "phone", Header: "PHONE" },
 //    { accessor: "date", Header: "DATE" },
+//    { accessor: "status", Header: "Status" },
 //  ]);
-
-  const [joinRequestsData, setJoinRequestsData] = useState([
-    {
-      id: "R001",
-      name: "Chathura Manohara",
-      nic: "998547521v",
-      phone: "+94 75 025 1451",
-      date: "2022 09 12",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1 mt-0"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Rejected
-        </button>
-      ),
-    },
-  ]);
-
-  const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
-    { accessor: "id", Header: "REQUEST ID" },
-    { accessor: "name", Header: "NAME" },
-    { accessor: "nic", Header: "NIC" },
-    { accessor: "phone", Header: "PHONE" },
-    { accessor: "date", Header: "DATE" },
-    { accessor: "status", Header: "Status" },
-  ]);
-
-  useEffect(() => {
-    getRequest();
-  }, []);
-
-  const getRequest = async () => {
-    const res = await getJoinRequest();
-    console.log(res.data)
-    // setJoinRequestsData(res.data);
-  };
+//
+//  useEffect(() => {
+//    getRequest();
+//  }, []);
+//
+//  const getRequest = async () => {
+//    const res = await getJoinRequest();
+//    console.log(res.data)
+//    // setJoinRequestsData(res.data);
+//  };
 
 const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
@@ -236,7 +208,6 @@ const [pieChartData, setPieChartData] = useState([
             <div className="card h-100" id="contentcard">
               <div className="card-body">
                 <div className="row gutters">
-                  <h5>Project Details</h5>
                 </div>
                 <div className="row gutters ">
 
@@ -245,41 +216,41 @@ const [pieChartData, setPieChartData] = useState([
                         Container: (props) => <Paper {...props} elevation={0} />,
                         }}
                       options={{ actionsColumnIndex: -1 }}
-                      title="Join Requests"
-                      columns={[
-                        { title: "REQUEST ID", field: "id" },
-                        { title: "FIRST NAME", field: "firstName" },
-                        { title: "LAST NAME", field: "lastName" },
-                        { title: "NIC", field: "nic" },
-                        { title: "PHONE", field: "phoneNumber" },
-                        { title: "DATE", field: "date" },
-                        { title: "DISTRICT", field: "district" },
-                      ]}
-                      data={upComingEventsData}
-                //      actions={[
-                //        {
-                //            icon: () => {
-                //                return (
-                //                    <button
-                //                        type="button"
-                //                        className="btn mt-0"
-                //                        style={{
-                //                            backgroundColor: "#96BE25",
-                //                            border: "none",
-                //                        }}
-                //                    >
-                //                        Register
-                //                    </button>
-                //                );
-                //            },
-                //            onClick: (event, rowData) => {
-                //                setSelectedJoinRequestsData(rowData);
-                //                setSelected(true);
-                //            },
-                //            // tooltip: "Register User",
-                //        },
-                //      ]}
-                    />
+                      title="Project Details"
+                                          columns={[
+                                            { field: "eventId", title: "PROJECT ID" },
+                                            { field: "category", title: "CATEGORY" },
+                                            { field: "name", title: "COORDINATOR" },
+                                            { field: "phoneNumber", title: "PHONE" },
+                                            { field: "startDate", title: "STARTS ON" },
+                                            { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                                            { field: "place", title: "LOCATION" },
+                                          ]}
+                                          data={upComingEventsData}
+                                          actions={[
+                                            {
+                                              icon: () => {
+                                                return (
+                                                  <button
+                                                    type="button"
+                                                    className="btn mt-0"
+                                                    style={{
+                                                      backgroundColor: "#96BE25",
+                                                      border: "none",
+                                                    }}
+                                                  >
+                                                    Details
+                                                  </button>
+                                                );
+                                              },
+                                              onClick: (event, rowData) => {
+                                                // setSelectedJoinRequestsData(rowData);
+                                                // setSelected(true);
+                                              },
+                                              // tooltip: "Register User",
+                                            },
+                                          ]}
+                                        />
 
 
 
@@ -325,7 +296,48 @@ const [pieChartData, setPieChartData] = useState([
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
-                <NewTable columns={joinRequestsTableHead} data={joinRequestsData} />
+
+              <MaterialTable
+                                components={{
+                                  Container: (props) => <Paper {...props} elevation={0} />,
+                                }}
+                                options={{ actionsColumnIndex: -1 }}
+                                title="Join Requests"
+                                columns={[
+                                  { title: "REQUEST ID", field: "id" },
+                                  { title: "FIRST NAME", field: "firstName" },
+                                  { title: "LAST NAME", field: "lastName" },
+                                  { title: "NIC", field: "nic" },
+                                  { title: "PHONE", field: "phoneNumber" },
+                                  { title: "DATE", field: "date" },
+                                  { title: "DISTRICT", field: "district" },
+                                ]}
+                                data={joinRequestsData}
+                                actions={[
+                                  {
+                                    icon: () => {
+                                      return (
+                                        <button
+                                          type="button"
+                                          className="btn mt-0"
+                                          style={{
+                                            backgroundColor: "#96BE25",
+                                            border: "none",
+                                          }}
+                                        >
+                                          Register
+                                        </button>
+                                      );
+                                    },
+                                    onClick: (event, rowData) => {
+                                      setSelectedJoinRequestsData(rowData);
+                                      setSelected(true);
+                                    },
+                                    // tooltip: "Register User",
+                                  },
+                                ]}
+                              />
+
               </div>
             </div>
           </div>
@@ -334,3 +346,43 @@ const [pieChartData, setPieChartData] = useState([
     </>
   );
 }
+
+
+
+
+//  const [upComingEventsData, setUpComingEventsData] = useState([
+//    {
+//      eventId: "E001",
+//      project: "Ganitha Saviya",
+//      place:"Kurunegala",
+//      member: 25,
+//      coordinator: "Ravindu Prabasha",
+//      date: "2022 09 12",
+//    },
+//    {
+//      eventId: "E002",
+//      project: "Re-green Earth",
+//      place:"Kaduruwela",
+//      member: 100,
+//      coordinator: "Namal Upendra",
+//      date: "2022 09 25",
+//    },
+//    {
+//      eventId: "E003",
+//      project: "Re-green Earth",
+//      place:"Matara",
+//      member: 130,
+//      coordinator: "Sahan Kalhara",
+//      date: "2022 09 25",
+//    },
+//
+//  ]);
+
+//  const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
+//    { accessor: "eventId", Header: "EVENT ID" },
+//    { accessor: "project", Header: "PROJECT NAME" },
+//    { accessor: "place", Header: "PLACE" },
+//    { accessor: "member", Header: "MEMBERS" },
+//    { accessor: "coordinator", Header: "COORDINATOR" },
+//    { accessor: "date", Header: "DATE" },
+//  ]);
