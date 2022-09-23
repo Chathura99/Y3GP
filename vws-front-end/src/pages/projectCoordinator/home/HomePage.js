@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import NewTable from './../../../utilities/Table/NewTable';
-import { useMemo } from 'react';
+import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";
 import "./homepage.css";
@@ -8,43 +8,76 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 
 
-export default function PcHomePage() {
-  const [upComingEventsData, setUpComingEventsData] = useState([
-    {
-      eventId: "E001",
-      project: "Ganitha Saviya",
-      place:"Kurunegala",
-      member: 25,
-      coordinator: "Ravindu Prabasha",
-      date: "2022 09 12",
-    },
-    {
-      eventId: "E002",
-      project: "Re-green Earth",
-      place:"Kaduruwela",
-      member: 100,
-      coordinator: "Namal Upendra",
-      date: "2022 09 25",
-    },
-    {
-      eventId: "E003",
-      project: "Re-green Earth",
-      place:"Matara",
-      member: 130,
-      coordinator: "Sahan Kalhara",
-      date: "2022 09 25",
-    },
-    
-  ]);
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 
-  const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
-    { accessor: "eventId", Header: "EVENT ID" },
-    { accessor: "project", Header: "PROJECT NAME" },
-    { accessor: "place", Header: "PLACE" },
-    { accessor: "member", Header: "MEMBERS" },
-    { accessor: "coordinator", Header: "COORDINATOR" },
-    { accessor: "date", Header: "DATE" },
-  ]);
+// service
+import { getUpcomingEvents } from "../../../services/eventServices/eventService";
+
+export default function PcHomePage() {
+    useEffect(() => {
+        checkValidate();
+        getUpcomingEventsdata();
+    }, []);
+
+    const checkValidate = async () => {
+        const y = localstorage.getItem("USER_KEY");
+        if (!y) {
+            window.location.href = "/";
+        }
+    };
+
+    const getUpcomingEventsdata = async () => {
+        const res = await getUpcomingEvents();
+        console.log(res.data);
+        setUpComingEvents(res.data);
+    };
+
+    const [upComingEventsData, setUpComingEventsData] = useState([]);
+    const [selectedupComingEvents, setSelectedupComingEvents] = useState({});
+
+    const [selected, setSelected] = useState(false);
+
+
+
+
+//  const [upComingEventsData, setUpComingEventsData] = useState([
+//    {
+//      eventId: "E001",
+//      project: "Ganitha Saviya",
+//      place:"Kurunegala",
+//      member: 25,
+//      coordinator: "Ravindu Prabasha",
+//      date: "2022 09 12",
+//    },
+//    {
+//      eventId: "E002",
+//      project: "Re-green Earth",
+//      place:"Kaduruwela",
+//      member: 100,
+//      coordinator: "Namal Upendra",
+//      date: "2022 09 25",
+//    },
+//    {
+//      eventId: "E003",
+//      project: "Re-green Earth",
+//      place:"Matara",
+//      member: 130,
+//      coordinator: "Sahan Kalhara",
+//      date: "2022 09 25",
+//    },
+//
+//  ]);
+
+//  const [upComingEventsTableHead, setUpComingEventsTableHead] = useState([
+//    { accessor: "eventId", Header: "EVENT ID" },
+//    { accessor: "project", Header: "PROJECT NAME" },
+//    { accessor: "place", Header: "PLACE" },
+//    { accessor: "member", Header: "MEMBERS" },
+//    { accessor: "coordinator", Header: "COORDINATOR" },
+//    { accessor: "date", Header: "DATE" },
+//  ]);
 
   const [joinRequestsData, setJoinRequestsData] = useState([
     {
@@ -203,7 +236,51 @@ const [pieChartData, setPieChartData] = useState([
                   <h5>Project Details</h5>
                 </div>
                 <div className="row gutters ">
-                <NewTable columns={upComingEventsTableHead} data={upComingEventsData} />
+
+                <MaterialTable
+                      components={{
+                        Container: (props) => <Paper {...props} elevation={0} />,
+                        }}
+                      options={{ actionsColumnIndex: -1 }}
+                      title="Join Requests"
+                      columns={[
+                        { title: "REQUEST ID", field: "id" },
+                        { title: "FIRST NAME", field: "firstName" },
+                        { title: "LAST NAME", field: "lastName" },
+                        { title: "NIC", field: "nic" },
+                        { title: "PHONE", field: "phoneNumber" },
+                        { title: "DATE", field: "date" },
+                        { title: "DISTRICT", field: "district" },
+                      ]}
+                      data={upComingEventsData}
+                //      actions={[
+                //        {
+                //            icon: () => {
+                //                return (
+                //                    <button
+                //                        type="button"
+                //                        className="btn mt-0"
+                //                        style={{
+                //                            backgroundColor: "#96BE25",
+                //                            border: "none",
+                //                        }}
+                //                    >
+                //                        Register
+                //                    </button>
+                //                );
+                //            },
+                //            onClick: (event, rowData) => {
+                //                setSelectedJoinRequestsData(rowData);
+                //                setSelected(true);
+                //            },
+                //            // tooltip: "Register User",
+                //        },
+                //      ]}
+                    />
+
+
+
+
                 </div>
               </div>
             </div>
