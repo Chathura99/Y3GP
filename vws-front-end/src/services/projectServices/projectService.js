@@ -69,3 +69,13 @@ export const addProposedProjects = (pro) =>{
   
   });
 }
+
+export const getMyProjectsData = () => {
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getMyProjectsData`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
