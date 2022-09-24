@@ -14,7 +14,6 @@ import MaterialTable from "material-table";
 // services
 import {
   getUpcomingEvents,
-  getPreviousEvents,
 } from "../../../services/eventServices/eventService";
 
 
@@ -37,6 +36,7 @@ export default function PcUpcomingEvents() {
     const upcomingEvent = async () => {
         const res = await getUpcomingEvents();
         setUpComingEventData(res.data);
+        console.log(res.data);
     };
 
     const [selected, setSelected] = useState(false);
