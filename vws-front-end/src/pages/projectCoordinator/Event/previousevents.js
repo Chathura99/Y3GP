@@ -8,6 +8,8 @@ import NewTable from '../../../utilities/Table/NewTable';
 //import "./Project.css"
 import { useMemo } from 'react';
 
+import AddEventProgress from "./AddEventProgress";
+
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
@@ -42,7 +44,7 @@ export default function PcPreviousEvents() {
     const [selected, setSelected] = useState(false);
 
     const [previousEventData, setPreviousEventData] = useState([]);
-
+    const [eventProgressData, setEventProgressData] = useState({});
 
 //  const [upcomingProjectsData, setUpComingProjectsData] = useState([
 //    {
@@ -165,8 +167,9 @@ return (
                                       );
                                     },
                                     onClick: (event, rowData) => {
-                                      // setSelectedJoinRequestsData(rowData);
-                                      // setSelected(true);
+                                      setEventProgressData(rowData)
+                                      // To Do - set progress
+                                      setSelected(true);
                                     },
                                     // tooltip: "Register User",
                                   },
@@ -177,6 +180,7 @@ return (
                     </div>
                 </div>
             </div>
+            {selected && <AddEventProgress setSelected={setSelected} eventProgressData={eventProgressData}/>}
         </div>
     </>
 );
