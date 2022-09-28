@@ -15,7 +15,7 @@ import { participateToEvent } from './../../../services/volunteerServices/joinEv
 export default function OngoingEvents() {
   
   const [joinEvent, setJoinEvent] = useState({
-    eventId: 4,
+    eventId: "",
     volunteerId: 1,
     status: 0
 
@@ -44,8 +44,13 @@ const handleSubmit = (e) => {
               setMessage(response.data);
               if (response.data === 1) {     //check this
                   setPopUp("success");
-              } else {
+              } else if(response.data=2) {
+
                   setPopUp("failed");
+                  setMessage("Already joined");
+              }
+              else{
+                setPopUp("Failed");
               }
           }
       })
@@ -193,6 +198,12 @@ const handleChange = (e) => {
                           );
                         },
                         onClick: (event, rowData) => {
+                          setJoinEvent({
+                            eventId: rowData.eventId,
+                            volunteerId: 1,
+                            status: 0
+                        
+                        });
                           setEventData(rowData);
                           console.log(rowData)
                           setSelected(true);

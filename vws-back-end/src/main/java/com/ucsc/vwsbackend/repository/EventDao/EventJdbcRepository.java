@@ -165,9 +165,17 @@ public class EventJdbcRepository {
 
     public long participateToEvent(ParticipateEvent participateEvent) {
 
+        String sql = "SELECT count(*) from participate_event where volunteer_id = ? and event_id=?";
+
+        int count = jdbcTemplate.queryForObject(sql, new Object[] { participateEvent.getVolunteerId(),participateEvent.getEventId() }, Integer.class);
+
+       if(count==1){
+           return 2;
+       }
 
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
+
         String query = "INSERT INTO participate_event " +
                 "(event_id,volunteer_id,status) " +
                 "values (:event_id, :volunteer_id,0)";
@@ -183,5 +191,13 @@ public class EventJdbcRepository {
 
     }
 
+    public List<ParticipateEvent> joinedEvent() {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        String query ="select * from participate_event where volunteer_id=!null";
+
+        List<ParticipateEvent> events = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<ParticipateEvent>(ParticipateEvent.class));
+        return events;
+    }
 
 }
