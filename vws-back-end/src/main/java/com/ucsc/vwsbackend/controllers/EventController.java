@@ -70,4 +70,11 @@ public class EventController {
     public long participateToEvent(@RequestBody ParticipateEvent participateEvent) {
         return eventService.participateToEvent(participateEvent);
     }
+
+
+
+    @GetMapping("/joinedEvent")
+    public List<ParticipateEvent> joinedEvent() {
+        return eventService.joinedEvent();
+    }
 }

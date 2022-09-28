@@ -17,3 +17,13 @@ export const participateToEvent = (joinEvent) =>{
     
     });
   }
+
+  // export const joinedEvent = () => {
+  //   return axios({
+  //     method: "GET",
+  //     url: `${USER_URL}/joinedEvent`,
+  //     headers: {
+  //       Authorization: "Bearer " + getToken(),
+  //     },
+  //   });
+  // };
