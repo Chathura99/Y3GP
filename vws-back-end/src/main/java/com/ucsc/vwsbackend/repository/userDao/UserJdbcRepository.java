@@ -87,22 +87,10 @@ public class UserJdbcRepository {
         namedParameters.addValue("district", profile.getDistrict());
         namedParameters.addValue("role", role);
 
-//add query to update both user and other user character table
 
-        if(role.equals("ADMIN")){
-            update2 = "UPDATE admin " +
-                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
-        }else if(role.equals("VOLUNTEER")){
-            update2 = "UPDATE volunteer " +
-                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
-        }else{
-            update2 = "UPDATE project_coordinator " +
-                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
-        }
 
         int table1 = jdbc.update(update1, namedParameters);
-        int table2 = jdbc.update(update2, namedParameters);
-        return table1+table2;
+        return table1;
     }
 
     public long changePassword(String newPassword,long id) {
