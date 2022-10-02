@@ -4,79 +4,119 @@ import NewTable from '../../../utilities/Table/NewTable';
 //import "./Project.css"
 import { useMemo } from 'react';
 
+
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+// services
+import {
+  getPreviousEvents,
+} from "../../../services/eventServices/eventService";
+
+
+
 export default function PcVolunteers() {
 
-  const [upcomingEventsData, setUpComingEventsData] = useState([
-    {
-      event_id: "E001",
-      category: "Ganitha Saviya",
-      event_coordinator: "Ravindu",
-      startdate: "2022 09 12",
-      enddate: "2022 09 14",
-      no_of_members: "13",
-      location: "Nikawaratiya",
-      
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Check
-        </button>
-      ),
-    },
-    {
-      event_id: "E002",
-      category: "Re-green Earth",
-      event_coordinator: "Sadaru",
-      startdate: "2022 09 02",
-      enddate: "2022 09 04",
-      no_of_members: "8",
-      location: "Horana",
-      
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Check
-        </button>
-      ),
-    },
-  ]);
+    useEffect(() => {
+            checkValidate();
+            previousEvent();
+        }, []);
 
-  const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
-    { accessor: "event_id", Header: "Event ID" },
-    { accessor: "category", Header: "Category" },
-    { accessor: "event_coordinator", Header: "Event Coordinator" },
-    { accessor: "startdate", Header: "Starts On" },
-    { accessor: "enddate", Header: "Ends On" },
-    { accessor: "no_of_members", Header: "No. of Members" },
-    { accessor: "location", Header: "Location" },
-    { accessor: "action", Header: "Action" },
+        const checkValidate = async () => {
+            const y = localStorage.getItem("USER_KEY");
+            if (!y) {
+              window.location.href = "/";
+            }
+          };
 
-  ]);
+        const previousEvent = async () => {
+            const res = await getPreviousEvents();
+            setPreviousEventData(res.data);
+        };
 
-useEffect(() => {
-    checkValidate();
-}, []);
+        const [selected, setSelected] = useState(false);
+        const [previousEventData, setPreviousEventData] = useState([]);
+        const [eventProgressData, setEventProgressData] = useState({});
 
-const checkValidate = async () => {
-    const y = localStorage.getItem("USER_KEY");
-    if (!y) {
-        window.location.href = "/";
-    }
-};
+
+
+
+
+
+//
+//  const [upcomingEventsData, setUpComingEventsData] = useState([
+//    {
+//      event_id: "E001",
+//      category: "Ganitha Saviya",
+//      event_coordinator: "Ravindu",
+//      startdate: "2022 09 12",
+//      enddate: "2022 09 14",
+//      no_of_members: "13",
+//      location: "Nikawaratiya",
+//
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn p-1"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Check
+//        </button>
+//      ),
+//    },
+//    {
+//      event_id: "E002",
+//      category: "Re-green Earth",
+//      event_coordinator: "Sadaru",
+//      startdate: "2022 09 02",
+//      enddate: "2022 09 04",
+//      no_of_members: "8",
+//      location: "Horana",
+//
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn p-1"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Check
+//        </button>
+//      ),
+//    },
+//  ]);
+//
+//  const [UpcomingEventsHeadings, setUpComingEventsTableHead] = useState([
+//    { accessor: "event_id", Header: "Event ID" },
+//    { accessor: "category", Header: "Category" },
+//    { accessor: "event_coordinator", Header: "Event Coordinator" },
+//    { accessor: "startdate", Header: "Starts On" },
+//    { accessor: "enddate", Header: "Ends On" },
+//    { accessor: "no_of_members", Header: "No. of Members" },
+//    { accessor: "location", Header: "Location" },
+//    { accessor: "action", Header: "Action" },
+//
+//  ]);
+//
+//useEffect(() => {
+//    checkValidate();
+//}, []);
+//
+//const checkValidate = async () => {
+//    const y = localStorage.getItem("USER_KEY");
+//    if (!y) {
+//        window.location.href = "/";
+//    }
+//};
+
+
 return (
     <>
         <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -86,9 +126,56 @@ return (
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="card h-100" id="contentcard">
                         <div className="card-body ">
-                        <h5>Volunteers</h5>
-                          <br></br><NewTable columns={UpcomingEventsHeadings} data={upcomingEventsData}/>
-
+                        <div className="row gutters "></div>
+                            {/* <h5>Previous Events</h5> */}
+                            <div
+                              className="row gutters "
+                              style={{ justifyContent: "center" }}
+                            >
+                              <MaterialTable
+                                components={{
+                                  Container: (props) => <Paper {...props} elevation={0} />,
+                                }}
+                                options={{ actionsColumnIndex: -1 }}
+                                title="Previous Events"
+                                columns={[
+                                  { field: "eventId", title: "EVENT ID" },
+                                  { field: "category", title: "CATEGORY" },
+                                  { field: "name", title: "COORDINATOR" },
+                                  { field: "phoneNumber", title: "PHONE" },
+                                  { field: "startDate", title: "STARTED ON" },
+                                  { field: "endDate", title: "ENDS ON" },
+                                  { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                                  { field: "place", title: "LOCATION" },
+                                  { field: "status", title: "STATUS" },
+                                ]}
+                                data={previousEventData}
+                                actions={[
+                                  {
+                                    icon: () => {
+                                      return (
+                                        <button
+                                          type="button"
+                                          className="btn mt-0"
+                                          style={{
+                                            backgroundColor: "#96BE25",
+                                            border: "none",
+                                          }}
+                                        >
+                                          Progress
+                                        </button>
+                                      );
+                                    },
+                                    onClick: (event, rowData) => {
+                                      setEventProgressData(rowData)
+                                      // To Do - set progress
+                                      setSelected(true);
+                                    },
+                                    // tooltip: "Register User",
+                                  },
+                                ]}
+                              />
+                            </div>
                         </div>
                     </div>
                 </div>

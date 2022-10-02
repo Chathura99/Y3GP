@@ -3,6 +3,7 @@ package com.ucsc.vwsbackend.repository.EventDao;
 
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
+import com.ucsc.vwsbackend.dto.ParticipateEvent;
 import com.ucsc.vwsbackend.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -35,7 +36,7 @@ public class EventJdbcRepository {
     }
 
     public List<EventDetail> getPreviousEvents() {
-        System.out.println("bghfghcbnvnbvnbv-----vhgvhbvbjn");
+//        System.out.println("bghfghcbnvnbvnbv-----vhgvhbvbjn");
         String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name,v.volunteer_id,u.phone_number from event as e " +
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
@@ -162,5 +163,41 @@ public class EventJdbcRepository {
         return event;
     }
 
+    public long participateToEvent(ParticipateEvent participateEvent) {
+
+        String sql = "SELECT count(*) from participate_event where volunteer_id = ? and event_id=?";
+
+        int count = jdbcTemplate.queryForObject(sql, new Object[] { participateEvent.getVolunteerId(),participateEvent.getEventId() }, Integer.class);
+
+       if(count==1){
+           return 2;
+       }
+
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+
+        String query = "INSERT INTO participate_event " +
+                "(event_id,volunteer_id,status) " +
+                "values (:event_id, :volunteer_id,0)";
+
+        namedParameters.addValue("event_id", participateEvent.getEventId());
+        namedParameters.addValue("volunteer_id", participateEvent.getVolunteerId());
+
+
+
+
+        int rowsAffected = jdbc.update(query , namedParameters);
+        return rowsAffected;
+
+    }
+
+    public List<ParticipateEvent> joinedEvent() {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        String query ="select * from participate_event where volunteer_id=!null";
+
+        List<ParticipateEvent> events = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<ParticipateEvent>(ParticipateEvent.class));
+        return events;
+    }
 
 }

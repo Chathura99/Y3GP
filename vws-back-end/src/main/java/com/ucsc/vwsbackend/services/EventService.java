@@ -2,9 +2,7 @@ package com.ucsc.vwsbackend.services;
 
 import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Event;
-import com.ucsc.vwsbackend.entities.ParticipateEvent;
 import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
-import com.ucsc.vwsbackend.repository.participateEventDao.ParticipateEventJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +13,7 @@ public class EventService {
     @Autowired
     EventJdbcRepository eventJdbcRepository;
 
-    @Autowired
-    ParticipateEventJdbcRepository participateEventJdbcRepository;
+
 
     public  List<EventDetail> getUpcomingEvents() {
         return eventJdbcRepository.getUpcomingEvents();
@@ -60,7 +57,10 @@ public class EventService {
     }
 
     public long participateToEvent(ParticipateEvent participateEvent) {
-        return participateEventJdbcRepository.participateToEvent(participateEvent);
+        return eventJdbcRepository.participateToEvent(participateEvent);
     }
 
+    public  List<ParticipateEvent> joinedEvent() {
+        return eventJdbcRepository.joinedEvent();
+    }
 }

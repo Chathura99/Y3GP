@@ -1,84 +1,123 @@
-import React, { useEffect,useState } from 'react';
+import React, {
+    useEffect,
+    useState
+} from 'react';
+
 import NewTable from '../../../utilities/Table/NewTable';
 //import CoordinateEventForm from './Coordinate';
 //import "./Project.css"
 import { useMemo } from 'react';
 
+// for remove box shadow
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+// services
+import {
+  getUpcomingEvents,
+} from "../../../services/eventServices/eventService";
+
+
+
 
 export default function PcUpcomingEvents() {
 
+    useEffect(() => {
+        checkValidate();
+        upcomingEvent();
+      }, []);
 
-  const [upcomingProjectsData, setUpComingProjectsData] = useState([
-    {
-      project_id: "E001",
-      project_name: "Ganitha Saviya",
-      description: "Event to upscale the mathematical knowledge of school children.",
-      coordinator: "Ravindu",
-      startdate: "2022 09 14",
-      // no_of_members: "13",
-      // location: "Nikawaratiya",
-      
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Join
-        </button>
-      ),
-    },
-    {
-      project_id: "E002",
-      project_name: "Widyawa Mulasita",
-      description: "Event to upscale the Scientific knowledge of school children.",
-      coordinator: "Tharindu",
-      startdate: "2022 09 14",
-      // no_of_members: "8",
-      // location: "Horana",
-      
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn btn-primary p-1"
-          style={{backgroundColor:"#96BE25",border:"none"}}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Join
-        </button>
-      ),
-    },
-  ]);
+    const checkValidate = async () => {
+        const y = localStorage.getItem("USER_KEY");
+        if (!y) {
+            window.location.href = "/";
+        }
+    };
 
-  const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
-    { accessor: "project_id", Header: "Project ID" },
-    { accessor: "project_name", Header: "Project Name" },
-    { accessor: "description", Header: "Description" },
-    { accessor: "coordinator", Header: "Coordinator" },
-    { accessor: "startdate", Header: "Start Date" },
-    // { id: "no_of_members", label: "Coordinate Events" },
-    // { id: "location", label: "Location" },
-    { accessor: "action", Header: "Action" },
+    const upcomingEvent = async () => {
+        const res = await getUpcomingEvents();
+        setUpComingEventData(res.data);
+        console.log(res.data);
+    };
 
-  ]);
+    const [selected, setSelected] = useState(false);
 
-useEffect(() => {
-    checkValidate();
-}, []);
+    const [upComingEventData, setUpComingEventData] = useState([]);
 
-const checkValidate = async () => {
-    const y = localStorage.getItem("USER_KEY");
-    if (!y) {
-        window.location.href = "/";
-    }
-};
+
+
+
+//  const [upcomingProjectsData, setUpComingProjectsData] = useState([
+//    {
+//      project_id: "E001",
+//      project_name: "Ganitha Saviya",
+//      description: "Event to upscale the mathematical knowledge of school children.",
+//      coordinator: "Ravindu",
+//      startdate: "2022 09 14",
+//      // no_of_members: "13",
+//      // location: "Nikawaratiya",
+//
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Join
+//        </button>
+//      ),
+//    },
+//    {
+//      project_id: "E002",
+//      project_name: "Widyawa Mulasita",
+//      description: "Event to upscale the Scientific knowledge of school children.",
+//      coordinator: "Tharindu",
+//      startdate: "2022 09 14",
+//      // no_of_members: "8",
+//      // location: "Horana",
+//
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Join
+//        </button>
+//      ),
+//    },
+//  ]);
+//
+//  const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
+//    { accessor: "project_id", Header: "Project ID" },
+//    { accessor: "project_name", Header: "Project Name" },
+//    { accessor: "description", Header: "Description" },
+//    { accessor: "coordinator", Header: "Coordinator" },
+//    { accessor: "startdate", Header: "Start Date" },
+//    // { id: "no_of_members", label: "Coordinate Events" },
+//    // { id: "location", label: "Location" },
+//    { accessor: "action", Header: "Action" },
+//
+//  ]);
+//
+//useEffect(() => {
+//    checkValidate();
+//}, []);
+//
+//const checkValidate = async () => {
+//    const y = localStorage.getItem("USER_KEY");
+//    if (!y) {
+//        window.location.href = "/";
+//    }
+//};
+
 return (
     <>
         <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -88,11 +127,53 @@ return (
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="card h-100" id="contentcard">
                         <div className="card-body ">
-                            <h5>Upcoming Events</h5>
-
-                            <br></br><NewTable columns={UpcomingProjectsHeadings} data={upcomingProjectsData}/>
-
-
+<div className="row gutters "></div>
+                <div
+                  className="row gutters "
+                  style={{ justifyContent: "center" }}
+                >
+                  <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Upcoming Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID" },
+                      { field: "category", title: "CATEGORY" },
+                      { field: "name", title: "COORDINATOR" },
+                      { field: "phoneNumber", title: "PHONE" },
+                      { field: "startDate", title: "STARTS ON" },
+                      { field: "endDate", title: "ENDS ON" },
+                      { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      { field: "place", title: "LOCATION" },
+                    ]}
+                    data={upComingEventData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              Details
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          // setSelectedJoinRequestsData(rowData);
+                          // setSelected(true);
+                        },
+                        // tooltip: "Register User",
+                      },
+                    ]}
+                  />
+                </div>
                         </div>
                     </div>
                 </div>

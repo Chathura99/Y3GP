@@ -4,8 +4,8 @@ package com.ucsc.vwsbackend.controllers;
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.dto.NewProjectDetail;
+import com.ucsc.vwsbackend.dto.ParticipateEvent;
 import com.ucsc.vwsbackend.entities.Event;
-import com.ucsc.vwsbackend.entities.ParticipateEvent;
 import com.ucsc.vwsbackend.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -69,5 +69,12 @@ public class EventController {
     @PostMapping("/participateToEvent")
     public long participateToEvent(@RequestBody ParticipateEvent participateEvent) {
         return eventService.participateToEvent(participateEvent);
+    }
+
+
+
+    @GetMapping("/joinedEvent")
+    public List<ParticipateEvent> joinedEvent() {
+        return eventService.joinedEvent();
     }
 }
