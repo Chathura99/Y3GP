@@ -52,9 +52,12 @@ public class UserJdbcRepository {
 
         namedParameters.addValue("id", id);
 //        namedParameters.addValue("table", table);
+
+
         String query = "select u.id,u.first_name,u.last_name,u.phone_number,u.email,r.address,r.district,r.university_college,u.user_key " +
                 "from user as u, $table as r " +
                 "where r.id=u.id and u.id=?";
+
 //        add table name to query
         query =query.replace("$table",table);
 //        get single row
@@ -66,19 +69,12 @@ public class UserJdbcRepository {
     public long updateProfile(Profile profile, String role) {
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
+        //         change this queries
+
         String update1 = "UPDATE user " +
                 "SET first_name = :firstName, last_name = :lastName, phone_number= :phoneNumber, email = :email  WHERE id = :id;";
+
         String update2="";
-        if(role.equals("ADMIN")){
-            update2 = "UPDATE admin " +
-                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
-        }else if(role.equals("VOLUNTEER")){
-            update2 = "UPDATE volunteer " +
-                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
-        }else{
-            update2 = "UPDATE project_coordinator " +
-                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
-        }
 
         namedParameters.addValue("id", profile.getId());
         namedParameters.addValue("firstName", profile.getFirstName());
@@ -90,6 +86,19 @@ public class UserJdbcRepository {
         namedParameters.addValue("universityCollege", profile.getUniversityCollege());
         namedParameters.addValue("district", profile.getDistrict());
         namedParameters.addValue("role", role);
+
+//add query to update both user and other user character table
+
+        if(role.equals("ADMIN")){
+            update2 = "UPDATE admin " +
+                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
+        }else if(role.equals("VOLUNTEER")){
+            update2 = "UPDATE volunteer " +
+                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
+        }else{
+            update2 = "UPDATE project_coordinator " +
+                    "SET first_name = :firstName, last_name = :lastName, district= :district, university_college = :universityCollege, address=:address  WHERE id = :id;";
+        }
 
         int table1 = jdbc.update(update1, namedParameters);
         int table2 = jdbc.update(update2, namedParameters);
