@@ -237,32 +237,32 @@ const handleChange = (e) => {
                         tooltip: "Join to Event",
                       },
                       
-                      {
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              className="btn mt-0"
-                              style={{
-                                backgroundColor: "#BE4D25",
-                                border: "none",
-                                // marginRight: "2px",
-                              }}
-                            >
-                              Leave
-                            </button>
-                          );
-                        },
-                        //  tooltip: "Leave from event",
-                        onClick: (event, rowData) => {
-                          setPopUp("confirmDelete");
-                          setSelectedJoinEventData({
-                            eventId: rowData.eventId,
-                            volunteerId: 1,
-                            status: 0
-                        });
-                      },
-                      },
+                      // {
+                      //   icon: () => {
+                      //     return (
+                      //       <button
+                      //         type="button"
+                      //         className="btn mt-0"
+                      //         style={{
+                      //           backgroundColor: "#BE4D25",
+                      //           border: "none",
+                      //           // marginRight: "2px",
+                      //         }}
+                      //       >
+                      //         Leave
+                      //       </button>
+                      //     );
+                      //   },
+                      //   //  tooltip: "Leave from event",
+                      //   onClick: (event, rowData) => {
+                      //     setPopUp("confirmDelete");
+                      //     setSelectedJoinEventData({
+                      //       eventId: rowData.eventId,
+                      //       volunteerId: 1,
+                      //       status: 0
+                      //   });
+                      // },
+                      // },
                     ]}
 
                     
