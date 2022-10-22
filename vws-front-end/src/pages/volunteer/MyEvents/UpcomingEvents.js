@@ -7,10 +7,25 @@ import "./UpcomingEvents.css"
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 import {getUpcomingEvents} from "../../../services/eventServices/eventService";
+import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { leaveEvent } from '../../../services/volunteerServices/joinEventService';
 
 export default function UpcomingEvents() {
   
-    
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  
+  // const confirm = (e) => {
+  //   e.preventDefault();
+  //   setMessage("Request to Join");
+  //   setPopUp("confirm");
+  // };
       
       
 
@@ -30,8 +45,31 @@ export default function UpcomingEvents() {
       const res = await getUpcomingEvents();
       setUpComingEventData(res.data);
     };
+
+    const deleteSelectedJoin = () => {
+      // console.log("deleted " + selectedJoinEventData.volunteer_id);
+      leaveEvent(selectedJoinEventData)
+        .then((response) => {
+          if (response.status === 200 && response.data == 1) {
+            setMessage("Leave successfully!");
+            setPopUp("success");
+          }else if(response.data=2 ) {
+
+            setPopUp("failed");
+            setMessage("Please join before leave.");
+        }
+
+           else {
+            setPopUp("failed");
+          }
+        })
+        
+      setPopUp("");
+    };
     const [selected, setSelected] = useState(false);
-  
+    const [eventData, setEventData] = useState({});
+    const [selectedJoinEventData, setSelectedJoinEventData] = useState({});
+
     const [upComingEventData, setUpComingEventData] = useState([]);
 
     return (
@@ -127,6 +165,32 @@ export default function UpcomingEvents() {
                         },
                          tooltip: "View Location",
                       },
+                      {
+                          icon: () => {
+                            return (
+                              <button
+                                type="button"
+                                className="btn mt-0"
+                                style={{
+                                  backgroundColor: "#BE4D25",
+                                  border: "none",
+                                  // marginRight: "2px",
+                                }}
+                              >
+                                Leave
+                              </button>
+                            );
+                          },
+                          //  tooltip: "Leave from event",
+                          onClick: (event, rowData) => {
+                            setPopUp("confirmDelete");
+                            setSelectedJoinEventData({
+                              eventId: rowData.eventId,
+                              volunteerId: 1,
+                              status: 0
+                          });
+                        },
+                        },
                     ]}
                   />
                                 
@@ -137,6 +201,27 @@ export default function UpcomingEvents() {
                     </div>
                 </div>
             </div>
+            {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {/* {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+          data={eventData}
+        />
+      )} */}
+       {popup === "confirmDelete" && (
+        <ConfirmPopUp
+          message={"Want to leave ?"}
+          closePopUp={closePopUp}
+          handleSubmit={deleteSelectedJoin}
+        />
+      )}
         </>
     );
 }
