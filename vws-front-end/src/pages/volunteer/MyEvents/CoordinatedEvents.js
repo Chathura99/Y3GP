@@ -33,9 +33,10 @@ export default function CoordinatedEvents() {
       const res = await getApprovedCoordinatedEvents();
       setApprovedCoordinatedEventData(res.data);
     };
-    const [selected, setSelected] = useState(false);
-  
+    
     const [approvedCoordinatedEventData, setApprovedCoordinatedEventData] = useState([]);
+    const [eventData, setEventData] = useState({});
+    const [selected, setSelected] = useState(false);
 
     return (
         <>
@@ -106,7 +107,6 @@ export default function CoordinatedEvents() {
                               type="button"
                               class="btn"
                               data-toggle="modal"
-                              data-target="#CoordinateEventForm"
                               style={{
                                 backgroundColor: "#96BE25",
                                 width: "6rem",
@@ -119,7 +119,7 @@ export default function CoordinatedEvents() {
                           );
                         },
                         onClick: (event, rowData) => {
-                          setApprovedCoordinatedEventData(rowData);
+                          setEventData(rowData);
                           setSelected(true);
                         },
                         tooltip: "Edit Details",
@@ -131,11 +131,12 @@ export default function CoordinatedEvents() {
                     />
 
 
-                                <EditCoordinatedForm />
                             </div>
                         </div>
                     </div>
                 </div>
+                {selected && <EditCoordinatedForm setSelected={setSelected} eventData={eventData}/>}
+
             </div>
         </>
     );

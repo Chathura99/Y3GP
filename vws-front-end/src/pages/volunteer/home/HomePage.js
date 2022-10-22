@@ -16,8 +16,8 @@ export default function HomePage() {
   
   const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
-    ["Ganitha Saviya", 11],
-    ["Re-Green Earth", 2],
+    ["Ganitha Saviya", 5],
+    ["Re-Green Earth", 5],
     
   ]);
 
@@ -236,6 +236,7 @@ const [announcement, setAnnouncement] = useState([]);
                 </div>
                 <div className="row gutters ">
                   <DonutChart data={donutChartData}/>
+                  Contributing Projects . . .
                 </div>
               </div>
             </div>
@@ -254,6 +255,7 @@ const [announcement, setAnnouncement] = useState([]);
                 </div>
                 <div className="row gutters ">
                   <PieChart data={pieChartData}/>
+                  My Coordinated Events progress summary . . .
                 </div>
               </div>
             </div>

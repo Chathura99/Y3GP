@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import ImageUploadComponent from "./ImageUploadComponent";
 
 
-export default function EditCoordinatedForm() {
+export default function EditCoordinatedForm(props) {
+
+  const [eventData, setEventData] = useState(props.eventData);
+  console.log(eventData);
+
+
   return (
     <div>
       {/* <button
@@ -15,12 +22,14 @@ export default function EditCoordinatedForm() {
       </button> */}
 
       <div
-        class="modal fade"
+        class="modal fade show"
         id="EditCoordinatedEvent"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
+        style={{ display: "block" }}
+
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -33,6 +42,9 @@ export default function EditCoordinatedForm() {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={() => {
+                  props.setSelected(false);
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
