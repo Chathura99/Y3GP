@@ -38,7 +38,7 @@ export default function CoordinateEventForm(props) {
    // open confirmation pop up modal
    const confirm = (e) => {
     e.preventDefault();
-    setMessage("Coordinated New Event !");
+    // setMessage("Coordinated New Event !");
     setPopUp("confirm");
   };
 
@@ -49,7 +49,7 @@ export default function CoordinateEventForm(props) {
       .then((response) => {
         if (response.status === 200) {
           console.log(response.data);
-          setMessage(response.data);
+          setMessage("Coordinated New Event !");
           setPopUp("success");
         }
       })
