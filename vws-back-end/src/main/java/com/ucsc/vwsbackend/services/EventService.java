@@ -63,4 +63,8 @@ public class EventService {
     public  List<ParticipateEvent> joinedEvent() {
         return eventJdbcRepository.joinedEvent();
     }
+
+    public int leaveEvent(ParticipateEvent participateEvent) {
+        return eventJdbcRepository.leaveEvent(participateEvent);
+    }
 }
