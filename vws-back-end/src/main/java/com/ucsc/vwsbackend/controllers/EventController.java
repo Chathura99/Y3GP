@@ -71,10 +71,27 @@ public class EventController {
         return eventService.participateToEvent(participateEvent);
     }
 
+    @DeleteMapping("/leaveEvent")
+    public long leaveEvent(@RequestBody ParticipateEvent participateEvent) {
+        return eventService.leaveEvent(participateEvent);
+    }
 
+//    @DeleteMapping("/leaveEvent/{volunteer_id}")
+////    public int leaveEvent(@PathVariable Long volunteer_id)
+////    {
+////        int status = eventService.leaveEvent(volunteer_id);
+////        return status;
+////    }
 
     @GetMapping("/joinedEvent")
     public List<ParticipateEvent> joinedEvent() {
         return eventService.joinedEvent();
     }
+
+//    @DeleteMapping("/leaveEvent/{volunteer_id}")
+//    public int leaveEvent(@PathVariable Long volunteer_id)
+//    {
+//        int status = eventService.leaveEvent(volunteer_id);
+//        return status;
+//    }
 }
