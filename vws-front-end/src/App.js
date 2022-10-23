@@ -67,6 +67,9 @@ import PcPoll from "./pages/projectCoordinator/Poll/poll";
 import Loading from "./utilities/Loading/Loading";
 // import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 import Event1 from "./pages/guestUser/OurLatestEvents/Event1";
+import Notification from "./pages/all/Notification/Notification";
+import Scholarship from "./pages/admin/Scholarship/Scholarship";
+import Feedback from "./pages/admin/Feedback/Feedback";
 
 
 
@@ -152,6 +155,9 @@ function App() {
             <Route path="/adminviewpoll" element={<ViewPoll />}></Route>
             <Route path="/adminaddnewdiscussion" element={<AddNewDiscussion />}></Route>
             <Route path="/admindiscussiontopic" element={<DiscussionTopic />}></Route>
+            <Route path="/notification" element={<Notification />}></Route>
+            <Route path="/adminscholarship" element={<Scholarship />}></Route>
+            <Route path="/adminfeedback" element={<Feedback/>}></Route>
             
             <Route
               path="/adminongoingproject"
