@@ -1,6 +1,7 @@
 package com.ucsc.vwsbackend.services;
 
 import com.ucsc.vwsbackend.dto.*;
+import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class EventService {
         return eventJdbcRepository.addCoordinatedEvents(newCoordinateEventDetail);
     }
 
+    public long editMyCoordinatedEvents(Event event) {
+        return eventJdbcRepository.editMyCoordinatedEvents(event);
+    }
     public  List<EventDetail> getCoordinatedEvents() {
         return eventJdbcRepository.getCoordinatedEvents();
     }

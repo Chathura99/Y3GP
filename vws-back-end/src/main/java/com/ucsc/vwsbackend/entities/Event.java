@@ -26,6 +26,17 @@ public class Event {
     @Column(name = "no_of_volunteers")
     private Integer noOfVolunteers;
 
+    public Integer getParticipatedVolunteersCount() {
+        return participatedVolunteersCount;
+    }
+
+    public void setParticipatedVolunteersCount(Integer participatedVolunteersCount) {
+        this.participatedVolunteersCount = participatedVolunteersCount;
+    }
+
+    @Column(name = "participated_volunteers_Count")
+    private Integer participatedVolunteersCount;
+
     @Column(name = "start_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date startDate;
