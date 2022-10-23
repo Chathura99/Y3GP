@@ -23,6 +23,16 @@ public class EventDetail {
 
     private String place;
 
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     private String category;
 
     private String name;

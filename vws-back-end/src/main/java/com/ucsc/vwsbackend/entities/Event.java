@@ -40,6 +40,25 @@ public class Event {
     @Column(name = "place")
     private String place;
 
+    @Column(name = "description")
+    private String description;
+
+    public void setVolunteer(Volunteer volunteer) {
+        this.volunteer = volunteer;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate;
+    }
+
     public String getCoordinate() {
         return coordinate;
     }
