@@ -44,7 +44,7 @@ public class JoinRequest {
     @Column(name = "requested_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @CreationTimestamp
-    private Date date;
+    private Date requestedDate;
 
     @Column(name="status")
     private int status;
@@ -116,12 +116,9 @@ public class JoinRequest {
         this.district = district;
     }
 
-    public Date getDate() {
-        return date;
-    }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setRequestedDate(Date requestedDate) {
+        this.requestedDate = requestedDate;
     }
 
     public int getStatus() {
@@ -134,6 +131,10 @@ public class JoinRequest {
 
     public String getNic() {
         return nic;
+    }
+
+    public Date getRequestedDate() {
+        return requestedDate;
     }
 
     public void setNic(String nic) {
