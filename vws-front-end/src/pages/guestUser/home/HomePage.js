@@ -9,6 +9,7 @@ import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
 import VisionMission from "../VisionMission/VisionMission";
 import AboutUs from "../AboutUs/About";
 import ContactUs from "../ContactUs/ContactUs";
+import Scholarship from '../Scholarship/Scholarship';
 
 
 export default function HomePage() {
@@ -76,6 +77,10 @@ export default function HomePage() {
 
       <div className='AboutUs'>
         <AboutUs />
+      </div>
+
+      <div className='Scholarship'>
+        <Scholarship />
       </div>
 
       <div className='VisionMission'>
