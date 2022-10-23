@@ -8,8 +8,7 @@ import { Link } from "react-router-dom";
 export default function ApplyForScholarship() {
   const [requestData, setRequestData] = useState(
     {
-      firstName: "",
-      lastName: "",
+      fullName: "",
       email: "",
       phoneNumber: "",
       address: "",
@@ -60,48 +59,35 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
-                      <label for="firstName">First Name</label>
+                      <label for="fullName">Full Name</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="firstName"
-                        placeholder="Enter Your First Name"
-                        name="firstName"
+                        id="fullName"
+                        placeholder="Enter Your Full Name"
+                        name="fullName"
                         value={requestData.firstName}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
 
+
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="lastName">Last Name</label>
+                      <label for="nic">NIC/Passport</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="lastName"
-                        placeholder="Enter Your Last Name"
-                        name="lastName"
-                        value={requestData.lastName}
+                        id="nic"
+                        placeholder="Enter Your NIC/Passport Number"
+                        name="nic"
+                        value={requestData.nic}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="email">Email</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        placeholder="Enter Your Email"
-                        name="email"
-                        value={requestData.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -113,6 +99,22 @@ export default function ApplyForScholarship() {
                         placeholder="Enter Your Phone Number"
                         name="phoneNumber"
                         value={requestData.phoneNumber}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="email">Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="Enter Your Email"
+                        name="email"
+                        value={requestData.email}
                         onChange={handleChange}
                       />
                     </div>
@@ -151,51 +153,68 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="nic">NIC/Passport</label>
+                      <label for="school">School/University:</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="nic"
-                        placeholder="Enter Your NIC/Passport Number"
-                        name="nic"
-                        value={requestData.nic}
+                        id="school"
+                        placeholder="Enter Your School/University"
+                        name="school"
+                        value={requestData.address}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
 
-
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="nic">Select the prefered scholarship type</label>
+                      <label for="nic">Select the scholarship type</label>
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                          <label class="form-check-label" for="flexRadioDefault1">
-                            Scholarship - 1
-                          </label>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          O/L Passed (A/L Students)
+                        </label>
                       </div>
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                          <label class="form-check-label" for="flexRadioDefault2">
-                          Scholarship - 2
-                          </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                          <label class="form-check-label" for="flexRadioDefault2">
-                          Scholarship - 3
-                          </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                          <label class="form-check-label" for="flexRadioDefault2">
-                          Scholarship - 4
-                          </label>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          A/L Passed (Undergraduates)
+                        </label>
                       </div>
                     </div>
                   </div>
 
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label for="formFile1" class="form-label" id="formLbl1">
+                            Result sheet
+                          </label>
+                          <input
+                            class="form-control browse"
+                            type="file"
+                            id="formFile1"
+                          // name="copy"
+                          // value={requestData.copy}
+                          // onChange={handleChange}
+                          />
+                        </div>
+                      </div>
 
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label for="formFile2" class="form-label" id="formLbl2">
+                            Income Certificate
+                          </label>
+                          <input
+                            class="form-control browse"
+                            type="file"
+                            id="formFile2"
+                          // name="copy"
+                          // value={requestData.copy}
+                          // onChange={handleChange}
+                          />
+                        </div>
+                      </div>
 
                 </div>
 
