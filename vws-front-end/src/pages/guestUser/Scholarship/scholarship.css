@@ -1,20 +1,20 @@
 /* About Us */
 
-#about-cont {
+#scholarship-cont {
     margin-top: 0px;
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #ffffff;
 }
 
-#about {
+#scholarship {
     background-color: #145369;
     padding: 15px 0 15px 0;
     margin: auto;
     border-radius: 8px;
 }
 
-#about-img {
+#scholarship-img {
     display: flex;
     justify-content: center;
     border-radius: 8px;
@@ -24,20 +24,21 @@
     height: auto;
 }
 
-#about-right {
+#scholarship-right {
     background-color: #145369;
     border-radius: 8px;
     width: auto;
     height: auto;
     padding: auto;
     margin: auto;
+
 }
 
 .btn-group {
     display: inline-block;
 }
 
-.a-button {
+.s-button {
     border-radius: 4px;
     border: none;
     background-color: rgb(255, 255, 255);
@@ -45,21 +46,20 @@
     font-weight: 600;
     width: 200px;
     height: 40px;
-    letter-spacing: 1px;
+    letter-spacing: 1px !important;
     flex: 2;
     margin-bottom: 5px;
-    margin-right: 10px;
 }
 
 
-#about-right-H2 {
+#scholarship-right-H2 {
     color: #ffffff;
     font-size: 20px;
     margin-bottom: 20px;
 
 }
 
-#about-right-H1 {
+#scholarship-right-H1 {
     color: #ffffff;
     margin-bottom: 20px;
     font-weight: 900;
@@ -69,7 +69,7 @@
 
 
 @media screen and (max-width: 1100px) {
-    #about-right-H2 {
+    #scholarship-right-H2 {
         font-size: 16px;
     }
 }

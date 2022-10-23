@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import ImageUploadComponent from "./ImageUploadComponent";
 
 
-export default function EditCoordinatedForm() {
+export default function EditCoordinatedForm(props) {
+
+  const [eventData, setEventData] = useState(props.eventData);
+  console.log(eventData);
+
+
   return (
     <div>
       {/* <button
@@ -15,12 +22,14 @@ export default function EditCoordinatedForm() {
       </button> */}
 
       <div
-        class="modal fade"
+        class="modal fade show"
         id="EditCoordinatedEvent"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
+        style={{ display: "block" }}
+
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -33,16 +42,27 @@ export default function EditCoordinatedForm() {
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
+                onClick={() => {
+                  props.setSelected(false);
+                }}
               >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""} style={{marginTop:0}}>
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>Ganitha Saviya</h4>
+                  <small>Coordinator : {eventData.name}</small>
+                  <br></br>
+                  <small>Phone : {eventData.phoneNumber}</small>
                   </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <small>Start Date : {eventData.startDate} </small>
+                  <br />
+                  <small>End Date : {eventData.endDate} </small>
+                  <br />
+                </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
@@ -200,7 +220,6 @@ export default function EditCoordinatedForm() {
                     </div>
                   </div>
                 </div>
-              </form>
             </div>
           </div>
         </div>

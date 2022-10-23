@@ -41,7 +41,7 @@ public class EventJdbcRepository {
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.start_date< CURDATE()";
+                "where e.start_date< CURDATE() and e.end_date< CURDATE()";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
 
@@ -97,9 +97,11 @@ public class EventJdbcRepository {
     // view coordinated events
     public List<EventDetail> getCoordinatedEvents() {
 
-        String query ="SELECT * from event as e INNER JOIN project as p ON e.project_id=p.project_id" +
-                "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id" +
-                "INNER JOIN user as u ON u.id=v.id where status=0";
+        String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name,v.volunteer_id,u.phone_number from event as e " +
+                "INNER JOIN project as p ON e.project_id=p.project_id " +
+                "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
+                "INNER JOIN user as u ON u.id=v.id " +
+                "where e.status=0";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
@@ -109,11 +111,20 @@ public class EventJdbcRepository {
     // view approved coordinated events
     public List<EventDetail> getApprovedCoordinatedEvents() {
 
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+
         String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name,v.volunteer_id,u.phone_number from event as e " +
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.status=1";
+                "where e.start_date< CURDATE() AND CURDATE() < e.end_date AND e.status=1";
+//        String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name FROM event as e " +
+//                "INNER JOIN project as p ON e.project_id=p.project_id " +
+//                "INNER JOIN volunteer as v ON v.volunteer_id=p.volunteer_id " +
+//                "INNER JOIN user as u ON u.id=v.id " +
+//                "where e.start_date< CURDATE() AND CURDATE() < e.end_date AND e.status=1";
+
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
@@ -173,6 +184,8 @@ public class EventJdbcRepository {
            return 2;
        }
 
+
+
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
 
@@ -198,6 +211,27 @@ public class EventJdbcRepository {
 
         List<ParticipateEvent> events = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<ParticipateEvent>(ParticipateEvent.class));
         return events;
+    }
+
+    public int leaveEvent(ParticipateEvent participateEvent) {
+
+        String sql = "SELECT count(*) from participate_event where volunteer_id = ? and event_id=?";
+
+        int count = jdbcTemplate.queryForObject(sql, new Object[] { participateEvent.getVolunteerId(),participateEvent.getEventId() }, Integer.class);
+
+        if(count==0){
+            return 2;
+        }
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String delete = "DELETE FROM participate_event WHERE volunteer_id = :volunteer_id  and event_id = :event_id;";
+
+
+
+        namedParameters.addValue("event_id", participateEvent.getEventId());
+        namedParameters.addValue("volunteer_id", participateEvent.getVolunteerId());
+
+        return jdbc.update(delete, namedParameters);
     }
 
 }

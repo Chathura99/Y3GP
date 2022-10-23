@@ -9,7 +9,7 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 // services
 import { getOngoingEvents } from './../../../services/eventServices/eventService';
-import { participateToEvent } from './../../../services/volunteerServices/joinEventService';
+import { leaveEvent, participateToEvent } from './../../../services/volunteerServices/joinEventService';
 
 
 export default function OngoingEvents() {
@@ -34,6 +34,9 @@ const confirm = (e) => {
   setPopUp("confirm");
 };
 
+
+
+
 const handleSubmit = (e) => {
   // e.preventDefault();
   console.log("reached!")
@@ -41,7 +44,7 @@ const handleSubmit = (e) => {
       .then((response) => {
           if (response.status === 200) {
               console.log(response.data);
-              setMessage(response.data);
+              setMessage("Joined Successfully");
               if (response.data === 1) {     //check this
                   setPopUp("success");
               } else if(response.data=2) {
@@ -96,6 +99,29 @@ const handleChange = (e) => {
       setOnGoingEventData(res.data);
     };
 
+    // new code
+    const deleteSelectedJoin = () => {
+      // console.log("deleted " + selectedJoinEventData.volunteer_id);
+      leaveEvent(selectedJoinEventData)
+        .then((response) => {
+          if (response.status === 200 && response.data == 1) {
+            setMessage("Leave successfully!");
+            setPopUp("success");
+          }else if(response.data=2 ) {
+
+            setPopUp("failed");
+            setMessage("Please join before leave.");
+        }
+
+           else {
+            setPopUp("failed");
+          }
+        })
+        
+      setPopUp("");
+    };
+
+    const [selectedJoinEventData, setSelectedJoinEventData] = useState({});
     const [onGoingEventData, setOnGoingEventData] = useState([]);
     const [eventData, setEventData] = useState({});
 
@@ -211,6 +237,32 @@ const handleChange = (e) => {
                         tooltip: "Join to Event",
                       },
                       
+                      // {
+                      //   icon: () => {
+                      //     return (
+                      //       <button
+                      //         type="button"
+                      //         className="btn mt-0"
+                      //         style={{
+                      //           backgroundColor: "#BE4D25",
+                      //           border: "none",
+                      //           // marginRight: "2px",
+                      //         }}
+                      //       >
+                      //         Leave
+                      //       </button>
+                      //     );
+                      //   },
+                      //   //  tooltip: "Leave from event",
+                      //   onClick: (event, rowData) => {
+                      //     setPopUp("confirmDelete");
+                      //     setSelectedJoinEventData({
+                      //       eventId: rowData.eventId,
+                      //       volunteerId: 1,
+                      //       status: 0
+                      //   });
+                      // },
+                      // },
                     ]}
 
                     
@@ -243,6 +295,13 @@ const handleChange = (e) => {
           closePopUp={closePopUp}
           handleSubmit={handleSubmit}
           data={eventData}
+        />
+      )}
+       {popup === "confirmDelete" && (
+        <ConfirmPopUp
+          message={"Want to leave ?"}
+          closePopUp={closePopUp}
+          handleSubmit={deleteSelectedJoin}
         />
       )}
         </>

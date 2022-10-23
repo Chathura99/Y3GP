@@ -9,6 +9,7 @@ import OurLatestEvents from "../OurLatestEvents/OurLatestEvents";
 import VisionMission from "../VisionMission/VisionMission";
 import AboutUs from "../AboutUs/About";
 import ContactUs from "../ContactUs/ContactUs";
+import Scholarship from '../Scholarship/Scholarship';
 
 
 export default function HomePage() {
@@ -42,13 +43,11 @@ export default function HomePage() {
               </h4>
 
               <div className='btn-group'>
-                <Link to="/signup" smooth={true} spy={true}>
-                  <button className="btn my-2 my-sm-0" id="h-button1">Join With Us</button>
-                </Link>
 
                 <Link to="#" smooth={true} spy={true}>
-                  <button className="btn my-2 my-sm-0" id="h-button2">Support Us</button>
+                  <button className="btn my-2 my-sm-0" id="h-button2">Donate</button>
                 </Link>
+
               </div>
 
               <div className="h-icons">
@@ -74,12 +73,16 @@ export default function HomePage() {
         <OurLatestEvents />
       </div>
 
-      <div className='AboutUs'>
-        <AboutUs />
+      <div className='Scholarship'>
+        <Scholarship />
       </div>
 
       <div className='VisionMission'>
         <VisionMission />
+      </div>
+
+      <div className='AboutUs'>
+        <AboutUs />
       </div>
 
       <div className='ContactUs'>

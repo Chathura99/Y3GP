@@ -18,6 +18,18 @@ export const participateToEvent = (joinEvent) =>{
     });
   }
 
+  export const leaveEvent = (leaveevent) => {
+    return axios({
+      method: "DELETE",
+      url: `${USER_URL}/leaveEvent`,
+      headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data: leaveevent
+    });
+    
+  };
+
   // export const joinedEvent = () => {
   //   return axios({
   //     method: "GET",

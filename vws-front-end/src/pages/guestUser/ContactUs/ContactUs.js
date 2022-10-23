@@ -84,6 +84,32 @@ export default function Contact() {
 
                     <form onSubmit={confirm} >
 
+                        <div class="input-group mb-3">
+                            <input type="text"
+                                className="form-control input-feedback"
+                                id="feedback"
+                                name="feedback"
+                                placeholder="Enter Your Feedback"
+                                value={feed.feedback}
+                                aria-label="Enter Your Feedback"
+                                aria-describedby="basic-addon2"
+                                onChange={handleChange}
+                            />
+
+
+                            <div class="input-group-append">
+                                <button class="btn btn-info"
+                                    type="button"
+                                    id="submit"
+                                    name="submit">
+                                    SEND</button>
+                            </div>
+                        </div>
+
+
+
+                        {/*
+
                         <input type="text"
                             className="form-control input-feedback"
                             id="feedback"
@@ -95,13 +121,16 @@ export default function Contact() {
                             onChange={handleChange}
                         />
 
-                        <div className="input-group-append">
+                        <div class="input-group-append">
                             <button className="btn input-feedback-btn "
                                 id="submit"
                                 type="submit"
                                 name="submit">
                                 SEND</button>
                         </div>
+
+                        
+                        */}
 
 
                     </form>
