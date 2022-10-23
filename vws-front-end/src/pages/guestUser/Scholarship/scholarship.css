@@ -38,7 +38,7 @@
     display: inline-block;
 }
 
-.a-button {
+.s-button {
     border-radius: 4px;
     border: none;
     background-color: rgb(255, 255, 255);
@@ -46,8 +46,7 @@
     font-weight: 600;
     width: 200px;
     height: 40px;
-    margin-right: 20px;
-    margin-left: 10px;
+    letter-spacing: 1px !important;
     flex: 2;
     margin-bottom: 5px;
 }

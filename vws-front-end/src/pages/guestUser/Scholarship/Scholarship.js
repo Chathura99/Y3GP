@@ -33,7 +33,7 @@ export default function Scholarship() {
                             <div className='btn-group'>
                         
                                 <Link to="/applyforscholarship" smooth={true} spy={true}>
-                                    <button className="button a-button">Apply</button>
+                                    <button className="button s-button">Apply for Scholarship</button>
                                 </Link>
 
                             </div>
