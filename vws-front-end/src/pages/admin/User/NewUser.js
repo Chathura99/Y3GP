@@ -87,7 +87,7 @@ export default function NewUser() {
                     { title: "LAST NAME", field: "lastName" },
                     { title: "NIC", field: "nic" },
                     { title: "PHONE", field: "phoneNumber" },
-                    { title: "DATE", field: "date" },
+                    { title: "DATE", field: "requestedDate" },
                     { title: "DISTRICT", field: "district" },
                   ]}
                   data={joinRequestsData}
