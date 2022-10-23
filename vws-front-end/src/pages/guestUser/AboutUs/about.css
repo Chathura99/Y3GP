@@ -31,7 +31,6 @@
     height: auto;
     padding: auto;
     margin: auto;
-
 }
 
 .btn-group {
@@ -46,10 +45,10 @@
     font-weight: 600;
     width: 200px;
     height: 40px;
-    margin-right: 20px;
-    margin-left: 10px;
+    letter-spacing: 1px;
     flex: 2;
     margin-bottom: 5px;
+    margin-right: 10px;
 }
 
 
