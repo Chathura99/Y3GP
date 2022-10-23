@@ -77,3 +77,14 @@ export const getPreviousEvents = () => {
     
     });
   }
+
+  export const editMyCoordinatedEvents = (event) => {
+    return axios({
+      method: "PUT",
+      url: `${USER_URL}/editMyCoordinatedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data : event
+    });
+  };
