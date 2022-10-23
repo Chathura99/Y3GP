@@ -42,11 +42,22 @@
     }
 }
 
+
+@media screen and (max-width: 520px) {
+    #feedback {
+      width: 200px !important;
+    }
+}
+
+
+/*
+
 #input-feedback-cont {
-    padding-left: 300px;
-    padding-right: 300px;
+    padding-left: 29%;
+    padding-right: 29%;
     display: flex;
 }
+
 
 @media screen and (max-width: 1233px) {
     #input-feedback-cont {
@@ -76,7 +87,7 @@
     }
 }
 
-/*
+
 
 .input-feedback-btn {
     background: #ffffff;
@@ -89,6 +100,10 @@
 }
 
 */
+
+.feedback-btn{
+    height: 40px !important;
+}
 
 .input-feedback {
     background: #ffffff;

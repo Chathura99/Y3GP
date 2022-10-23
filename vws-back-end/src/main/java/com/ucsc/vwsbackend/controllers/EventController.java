@@ -5,6 +5,7 @@ import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.dto.ParticipateEvent;
+import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,19 @@ public class EventController {
     public List<EventDetail> getApprovedCoordinatedEvents() {
         return eventService.getApprovedCoordinatedEvents();
     }
+
+    @PutMapping("/editMyCoordinatedEvents")
+//    {
+//            "annId": 6,
+//            "title": "Update Announcement 1",
+//            "content": "content",
+//            "category": "guest",
+//            "date": "2022-07-09T06:40:00.000+00:00"
+//    }
+    public long editMyCoordinatedEvents(@RequestBody Event event){
+        return eventService.editMyCoordinatedEvents(event);
+    }
+
     @PutMapping("/updateCoordinatedEventStatus")
     public long updateCoordinatedEventStatus(@RequestBody Event event){
         return eventService.updateCoordinatedEventStatus(event);

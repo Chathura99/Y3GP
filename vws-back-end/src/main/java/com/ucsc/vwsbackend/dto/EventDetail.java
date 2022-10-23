@@ -13,6 +13,16 @@ public class EventDetail {
 
     private Integer noOfVolunteers;
 
+    public Integer getParticipatedVolunteersCount() {
+        return participatedVolunteersCount;
+    }
+
+    public void setParticipatedVolunteersCount(Integer participatedVolunteersCount) {
+        this.participatedVolunteersCount = participatedVolunteersCount;
+    }
+
+    private Integer participatedVolunteersCount;
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date startDate;
 
@@ -22,6 +32,16 @@ public class EventDetail {
     private Integer status;
 
     private String place;
+
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     private String category;
 

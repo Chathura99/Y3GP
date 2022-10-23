@@ -4,6 +4,7 @@ package com.ucsc.vwsbackend.repository.EventDao;
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.dto.ParticipateEvent;
+import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -148,6 +149,24 @@ public class EventJdbcRepository {
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
+    }
+
+    //update my coordinated events(volunteer's)
+    public long editMyCoordinatedEvents(Event event) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE event " +
+                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count  WHERE event_id = :id;";
+
+        namedParameters.addValue("description", event.getDescription());
+        namedParameters.addValue("participated_volunteers_Count", event.getParticipatedVolunteersCount());
+//        namedParameters.addValue("category", announcement.getCategory());
+//        namedParameters.addValue("date", announcement.getDate());
+//        namedParameters.addValue("id", announcement.getAnnId());
+
+        int rowsAffected = jdbc.update(update, namedParameters);
+        return rowsAffected;
+
     }
 
     // approve coordinated events
