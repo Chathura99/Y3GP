@@ -23,6 +23,18 @@ public class Event {
         return volunteer;
     }
 
+
+    //Guset User
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    GuestUserData guest_user_data;
+
+    public GuestUserData getGuestUserData() {
+        return guest_user_data;
+    }
+
+
     @Column(name = "no_of_volunteers")
     private Integer noOfVolunteers;
 
