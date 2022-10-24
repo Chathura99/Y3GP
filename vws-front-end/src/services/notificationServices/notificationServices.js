@@ -14,3 +14,15 @@ export const getNotification= (id) => {
       },
     });
   };
+
+  
+export const Consider= (id,notification) => {
+  return axios({
+    method: "PUT",
+    url: `${USER_URL}/consider/${id}`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data:notification
+  });
+};

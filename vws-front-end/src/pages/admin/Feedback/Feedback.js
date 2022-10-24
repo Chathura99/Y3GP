@@ -1,28 +1,72 @@
 import React, { useState, useEffect } from "react";
+import { getFeedback } from "../../../services/guestUserServices/guestFeedbackService";
+import { Consider } from "../../../services/notificationServices/notificationServices";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function Feedback() {
-  const [announcement, setAnnouncement] = useState([
-    {
-      annId: "",
-      title: "dfdsf",
-      category: "sdfsd",
-      content: "fsdfsd",
-      date: "2022-12-12",
-      firstName: "dfsd",
-      lastName: "fsdf",
-      file: "dfsd",
-    },
-    {
-      annId: "",
-      title: "dfdsf",
-      category: "sdfsd",
-      content: "fsdfsd",
-      date: "2022-12-12",
-      firstName: "dfsd",
-      lastName: "fsdf",
-      file: "dfsd",
-    },
-  ]);
+  const [feedback, setFeedback] = useState([]);
+  const [feedbackId, setFeedbackId] = useState(0);
+  const [selectedId, setSelectedId] = useState(0);
+  const [notification, setNotification] = useState({
+    description: "",
+    heading: "",
+    userId: "",
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setNotification((notification) => ({
+      ...notification,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Send consideration details");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!");
+    Consider(feedbackId, notification).then((response) => {
+      if (response.status === 200) {
+        console.log(response.data);
+        setMessage(response.data);
+        setPopUp("success");
+      }
+    });
+  };
+
+  useEffect(() => {
+    checkValidate();
+    readFeedback();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
+
+  const readFeedback = async () => {
+    const res = await getFeedback();
+    console.log(res.data);
+    setFeedback(res.data);
+  };
+
   return (
     <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
       <div className="row gutters mt-10">
@@ -35,9 +79,12 @@ export default function Feedback() {
                 className="row gutters "
                 style={{ justifyContent: "center" }}
               >
-                {announcement.map((ann, index) => (
-                  <div key={ann.annId}>
-                    <div className="card">
+                {feedback.map((fb, index) => (
+                  <div key={fb.feedbackId}>
+                    <div
+                      className="card"
+                      style={{ width: "500px", paddingRight: "10px" }}
+                    >
                       <div className="card-header" id="head">
                         <ul className="nav ">
                           <li className="nav-item">
@@ -54,19 +101,20 @@ export default function Feedback() {
                             style={{ marginTop: "8px" }}
                           >
                             <a className="nav-link" style={{ color: "black" }}>
-                              <b>{ann.firstName + " " + ann.lastName}</b>
+                              <b>{"Anonymous User"}</b>
                             </a>
-                            {/* <a className="nav-link">
-                              {ann.role + " " + ann.date}
-                            </a> */}
+                            <a className="nav-link">
+                              <b>{fb.date}</b>
+                            </a>
                           </li>
                         </ul>
                       </div>
-                      <div className="card-body" id={ann.annId}>
-                        <h6 className="card-title" style={{ color: "black" }}>
-                          {ann.title}
-                        </h6>
-                        <p className="card-text">{ann.content}</p>
+                      <div className="card-body" id={fb.feedbackId}>
+                        <h6
+                          className="card-title"
+                          style={{ color: "black" }}
+                        ></h6>
+                        <p className="card-text">{fb.feedback}</p>
                         <p className="card-text">
                           {/* <div className="pdfFiles">
                             <img
@@ -78,6 +126,104 @@ export default function Feedback() {
                             </a>
                           </div> */}
                         </p>
+                        <button
+                          type="button"
+                          className="btn mt-0"
+                          style={{
+                            backgroundColor: "#96BE25",
+                            border: "none",
+                          }}
+                          onClick={() => {
+                            setSelectedId(fb.feedbackId);
+                          }}
+                        >
+                          Consider
+                        </button>
+                        {selectedId === fb.feedbackId && (
+                        <form onSubmit={confirm}>
+                          <div className="row gutters ">
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                              <div className="form-group ">
+                                <label for="heading">Heading</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="heading"
+                                  placeholder="Enter heading"
+                                  value={notification.heading}
+                                  name="heading"
+                                  onChange={handleChange}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                              <div className="form-group">
+                                <label for="category">Coordinator</label>
+
+                                <select
+                                  type="text"
+                                  className="form-control"
+                                  id="userId"
+                                  placeholder="Select category"
+                                  value={notification.userId}
+                                  name="userId"
+                                  onChange={handleChange}
+                                >
+                                  <option value="4">Kalana wishwajith | Re-Green Earth</option>
+                                  <option value="5">Ravindu Medagama | 	Sarasavi Piyageta</option>
+                                  <option value="6">Kasun Wishwajith |	Sisu Mediya</option>
+                                  <option value="7">Sadun Silva | Hisata Sewanak</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                              <div className="form-group">
+                                <label for="content">Description</label>
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  id="description"
+                                  placeholder="Enter content"
+                                  value={notification.description}
+                                  name="description"
+                                  onChange={handleChange}
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="row gutters">
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                              <div className="text-center mt-3 ">
+                                <div class="modal-footer justify-content-center ">
+                                  <button
+                                    type="button"
+                                    className="btn btn-secondary m-2"
+                                    data-dismiss="modal"
+                                    onClick={() => {
+                                      setSelectedId(0);
+                                    }}
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button
+                                    type="submit"
+                                    id="submit"
+                                    name="submit"
+                                    className="btn btn-primary"
+                                    onClick={() => {
+                                      setFeedbackId(fb.feedbackId);
+                                    }}
+                                  >
+                                    Send
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>)}
                       </div>
                     </div>
                   </div>
@@ -87,6 +233,19 @@ export default function Feedback() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }
