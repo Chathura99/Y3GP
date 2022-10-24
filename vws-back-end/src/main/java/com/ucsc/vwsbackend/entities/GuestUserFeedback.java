@@ -18,6 +18,9 @@ public class GuestUserFeedback {
     @Column(name = "feedback")
     private String feedback;
 
+    @Column(name = "consider")
+    private long consider;
+
     @Column(name = "date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
@@ -44,5 +47,13 @@ public class GuestUserFeedback {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public long getConsider() {
+        return consider;
+    }
+
+    public void setConsider(long consider) {
+        this.consider = consider;
     }
 }
