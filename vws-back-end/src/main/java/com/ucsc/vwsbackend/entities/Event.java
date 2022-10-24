@@ -38,6 +38,17 @@ public class Event {
     @Column(name = "no_of_volunteers")
     private Integer noOfVolunteers;
 
+    public Integer getParticipatedVolunteersCount() {
+        return participatedVolunteersCount;
+    }
+
+    public void setParticipatedVolunteersCount(Integer participatedVolunteersCount) {
+        this.participatedVolunteersCount = participatedVolunteersCount;
+    }
+
+    @Column(name = "participated_volunteers_Count")
+    private Integer participatedVolunteersCount;
+
     @Column(name = "start_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date startDate;
@@ -51,6 +62,25 @@ public class Event {
 
     @Column(name = "place")
     private String place;
+
+    @Column(name = "description")
+    private String description;
+
+    public void setVolunteer(Volunteer volunteer) {
+        this.volunteer = volunteer;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCoordinate(String coordinate) {
+        this.coordinate = coordinate;
+    }
 
     public String getCoordinate() {
         return coordinate;

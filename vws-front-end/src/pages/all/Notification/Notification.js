@@ -1,28 +1,53 @@
-import React from 'react'
-import FileUpload from '../FileUpload/FileUpload'
+import React,{useEffect,useState} from "react";
+import { MDBNotification, MDBContainer } from "mdbreact";
+import { getNotification } from "../../../services/notificationServices/notificationServices";
 
-export default function Notification() {
-  return (
-    <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
-    <div className="row gutters mt-10">
-      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
-        <div className="card h-100" id="contentcard">
-          <div className="card-body">
-          <h4 className="">Notification</h4>
-            <div className="row gutters "></div>
-            <div
-              className="row gutters "
-              style={{ justifyContent: "center" }}
-            >
-              
-<FileUpload/>
+export default function Notification(){
 
-             
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  )
+  const [notification, setNotification] = useState([]);
+  
+  useEffect(() => {
+    checkValidate();
+    readNotification();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
+
+  const readNotification = async () => {
+    const res = await getNotification(1);
+    // console.log(res.data);
+    setNotification(res.data);
+    console.log(res.data);
+  };
+    return (
+      <MDBContainer
+        style={{
+          width: "600px",
+          position: "fixed",
+          top: "50px",
+          right: "10px",
+          zIndex: 9999
+        }}
+      >
+        {notification.map((not, index) => (
+          <MDBNotification
+          show
+          fade
+          iconClassName="text-primary"
+          title={not.heading}
+          message={not.description}
+          text={not.date}
+        />
+        ))}
+        
+        
+      </MDBContainer>
+    );
+  
 }
+
