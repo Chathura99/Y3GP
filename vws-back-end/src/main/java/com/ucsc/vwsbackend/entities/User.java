@@ -43,7 +43,7 @@ public class User implements UserDetails {
     @Column(name = "CREATED_ON")
     @CreationTimestamp
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date createdAt;
+    private Date createdOn;
 
     @Column(name = "UPDATED_ON")
     @UpdateTimestamp
@@ -139,12 +139,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 
     public Date getUpdatedAt() {

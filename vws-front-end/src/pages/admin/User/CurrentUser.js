@@ -136,7 +136,7 @@ export default function CurrentUser() {
                     },
                     { field: "phoneNumber", title: "PHONE" },
                     {
-                      field: "createdAt",
+                      field: "createdOn",
                       title: "JOIN DATE",
                       minWidth: "120px",
                     },

@@ -243,17 +243,18 @@ export default function AddAnnouncement(props) {
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="form-group">
                       <label for="info" id="formLabel">
-                        Potentials
+                        Potentials :
                       </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="info"
-                        name="info"
-                        value={requestData.info}
-                        //   onChange={handleChange}
-                        disabled
-                      />
+                      {requestData.protential}
+                    </div>
+                  </div>
+
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="form-group">
+                      <label for="info" id="formLabel">
+                        Qualifications :
+                      </label>
+                      {requestData.qualification}
                     </div>
                   </div>
 
