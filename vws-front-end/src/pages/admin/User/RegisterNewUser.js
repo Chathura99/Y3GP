@@ -240,21 +240,21 @@ export default function AddAnnouncement(props) {
                 </div>
 
                 <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  {/* <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="form-group">
                       <label for="info" id="formLabel">
                         Potentials :
                       </label>
                       {requestData.protential}
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="form-group">
                       <label for="info" id="formLabel">
                         Qualifications :
                       </label>
-                      {requestData.qualification}
+                      <p>{requestData.qualification}</p>
                     </div>
                   </div>
 

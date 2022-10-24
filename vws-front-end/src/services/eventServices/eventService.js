@@ -77,3 +77,14 @@ export const getPreviousEvents = () => {
     
     });
   }
+
+  
+  export const getProgressData = (id) => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getProgress/${id}`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
