@@ -8,6 +8,8 @@ import AddNewPoll from "./AddNewPoll";
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 import { getForumInfo } from "../../../services/forumServices/forumService";
+import DiscussionTopic from "./DiscussionTopic";
+import ViewForum from "./ViewForum";
 
 export default function Forum() {
   
@@ -30,6 +32,8 @@ export default function Forum() {
   };
 
   const [ForumData, setForumData] = useState([]);
+  const [viewForumData, setViewForumData] = useState({});
+
   const [selected, setSelected] = useState(false);
   const [selectedForum, setSelectedForum] = useState({});
   // const [ProjectsData, setProjectsData] = useState([
@@ -117,7 +121,7 @@ export default function Forum() {
                             <div className="card-body " >
                                 <h5>Forum</h5>
                                 
-                                  <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic">Add New Forum Topic </button>
+                                  <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic" >Add New Forum Topic </button>
                                   <AddForumTopic/>
                                 
                                   <br></br><MaterialTable
@@ -125,7 +129,7 @@ export default function Forum() {
                       Container: (props) => <Paper {...props} elevation={0} />,
                     }}
                     options={{ actionsColumnIndex: -1 }}
-                    title="Ongoing Events"
+                    title="All Forums"
                     columns={[
                       {
                         field: "title",
@@ -133,7 +137,7 @@ export default function Forum() {
                         
                       },
                       {
-                        field: "createdBy",
+                        field: "name",
                         title: "Created By",
                       },
                       { field: "startDate", title: "Started Date", minWidth: "150px" },
@@ -155,7 +159,7 @@ export default function Forum() {
                             <button
                               type="button"
                               class="btn"
-                              // data-toggle="modal"
+                              data-toggle="modal"
                               // data-target="#CoordinateEventForm"
                               style={{
                                 backgroundColor: "#2596BE",
@@ -168,11 +172,13 @@ export default function Forum() {
                             </button>
                           );
                         },
-                        // onClick: (event, rowData) => {
-                        //   setSelectedEvent(rowData);
-                        //   setSelected(true);
-                        // },
-                        tooltip: "View Location",
+                        onClick: (event, rowData) => {
+                          setForumData(rowData);
+                          setSelected(true);
+                          window.location.href = "/adminviewforum";
+                          console.log("selected!");
+                        },
+                        // tooltip: "View Location",
                       },
 
                       
@@ -194,7 +200,9 @@ export default function Forum() {
                 </div>
             </div>
             </div> 
-            
+            {selected && <DiscussionTopic setSelected={setSelected} viewForumData={viewForumData}/>}
+            {/* {selected && <ViewForum setSelected={setSelected} data={ForumData}/>} */}
+
             </div>
           </>
   );

@@ -1,7 +1,57 @@
 import { red } from "@material-ui/core/colors";
-import React from "react";
+import React, { useState } from "react";
+import { addNewForum } from "../../../services/forumServices/forumService";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function AddForumTopic() {
+
+  const [forum, setForum] = useState({
+    title: "",
+    description: "",
+   
+    endDate: "",
+    userId:1,
+    
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setForum((forum) => ({
+      ...forum,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+
+ const closePopUp = () => {
+    setPopUp("");
+  };
+
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Add New Forum Topic !");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addNewForum(forum)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
+
   return (
     <div>
       {/* <button
@@ -37,7 +87,7 @@ export default function AddForumTopic() {
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""} style={{marginTop:0}}>
+              <form onSubmit={confirm}>
                 <div className="row gutters ">
                   
 
@@ -49,14 +99,15 @@ export default function AddForumTopic() {
                         className="form-control"
                         id="proposedBy"
                         placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
+                        value={forum.name}
                         name="firstName"
-                        // onChange={handleChange}
+                        onChange={handleChange}
+                        disabled
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="eMail">Starts On</label>
                       <input
@@ -64,21 +115,25 @@ export default function AddForumTopic() {
                         className="form-control"
                         id="date"
                         
-                        // value={profile.email}
+                        value={forum.startDate}
                         name="email"
-                        // onChange={handleChange}
+                        onChange={handleChange}
+                        disabled
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Title</label>
+                      <label for="title">Title</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="ProjectName"
-                        placeholder="Enter project name"
+                        id="title"
+                        placeholder="Enter forum Title"
+                        value={forum.title}
+                        name="title"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -89,13 +144,15 @@ export default function AddForumTopic() {
                       <input
                         type="date"
                         className="form-control"
-                        id="date"
-                        
+                        id="endDate"
+                        name="endDate"
+                        value={forum.endDate}
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="form-group">
                       <label for="phone">Description</label>
                       <input
@@ -103,7 +160,11 @@ export default function AddForumTopic() {
                         style={{height:80, width:460}}
                         className="form-control"
                         id="description"
+                        value={forum.description}
+                        name="description"
                         placeholder="Enter description"
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div>
@@ -140,9 +201,7 @@ export default function AddForumTopic() {
                       <div class="modal-footer justify-content-center " >
                         <button
                           type="button"
-                          id="submit"
                           
-                          name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
                           
@@ -150,7 +209,7 @@ export default function AddForumTopic() {
                           Cancel
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                       
                           name="submit"
@@ -168,6 +227,19 @@ export default function AddForumTopic() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }
