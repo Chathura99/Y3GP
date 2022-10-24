@@ -11,13 +11,17 @@ export default function RequestNewEvent() {
       email: "",
       phoneNumber: "",
       address: "",
-      universityCollege: "",
       district: "",
-      date: "",
-      status: 0,
+      profession: "",
       nic: "",
-      info: "",
-      other: ""
+      other: "" ,
+
+      volunteers: "",
+      
+      date: "",
+
+      status: 0
+
     },
     []
   );
