@@ -14,3 +14,36 @@ const getToken = () => {
       },
     });
   };
+
+  export const getViewForumInfo = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getViewForumInfo`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+
+  export const getReplyToForum = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getReplyToForum`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+
+  export const addNewForum = (forum) =>{
+    console.log(forum);
+    return axios({
+      method: "POST",
+      url: `${USER_URL}/addNewForum`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data: forum
+    
+    });
+  }

@@ -5,11 +5,26 @@ import Table from "../../../utilities/Table/Table";
 import { red } from "@mui/material/colors";
 // import EditProject from "./EditProject";
 import "./Summary.css";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+import { getUsers } from "../../../services/userService";
+
 
 export default function MemberSummary() {
   useEffect(() => {
     checkValidate();
+    getCurrentUsers();
   }, []);
+
+  const getCurrentUsers = async () => {
+    const res = await getUsers();
+    console.log(res.data);
+    setCurrentUserTableData(res.data);
+  };
+
+  const closePopUp = () => {
+    setPopUp("");
+  };
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -19,81 +34,11 @@ export default function MemberSummary() {
   };
   
   // new table
-  const [ProjectsData, setProjectsData] = useState([
-    {
-      userid: "V001",
-      name: "Hazeen Ram",
-      email: "hazeen@gmail.com",
-      phone:"0766782567",
-      district: "Kalutara",
-      joineddate: "2020-10-21",
-      position:"Volunteer",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Active
-        </button>
-      ),
-    },
-    {
-      userid: "V002",
-      name: "Chamath Shanuka",
-      email: "chamath23@gmail.com",
-      phone:"0765467341",
-      district: "Colombo",
-      joineddate: "2019-12-01",
-      position:"Volunteer",
-      status: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn  mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          Active
-        </button>
-      ),
-    },
-   ]);
-
-const data = useMemo(
-() => ProjectsData  )
-
-  const ProjectsHeadings=useMemo(
-    () => [
-     
-      
-      { accessor: "userid", Header: "User ID"  },
-      { accessor: "name", Header: "NAME"},
-      { accessor: "email",Header: "E MAIL" },
-      { accessor: "phone", Header: "PHONE" },
-      { accessor: "district", Header: "DISTRICT" },
-      { accessor: "joineddate",Header: "JOINED DATE" },
-      { accessor: "position", Header: "POSITION"},
-      { accessor: "status", Header: "STATUS"},
-      
-      
-    ],
-    []
-  )
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  const [selectedUser, setSelectedUser] = useState(0);
+  const [currentUserTableData, setCurrentUserTableData] = useState([]);
+  
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
@@ -213,7 +158,39 @@ const data = useMemo(
                             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div className="card h-100" id="contentcard">
                                     <div className="card-body " >                          
-                                          <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                    <MaterialTable
+                  components={{
+                    Container: (props) => <Paper {...props} elevation={0} />,
+                  }}
+                  options={{ actionsColumnIndex: -1 }}
+                  title="Current Users"
+                  columns={[
+                    { field: "id", title: "USER ID", minWidth: "100px" },
+                    { field: "email", title: "EMAIL" },
+                    {
+                      field: "firstName",
+                      title: "FIRST NAME",
+                      minWidth: "130px",
+                    },
+                    {
+                      field: "lastName",
+                      title: "LAST NAME",
+                      minWidth: "120px",
+                    },
+                    { field: "phoneNumber", title: "PHONE" },
+                    {
+                      field: "createdAt",
+                      title: "JOIN DATE",
+                      minWidth: "120px",
+                    },
+                    // { field: "university", title: "UNIVERSITY" },
+                    // { field: "position", title: "POSITION" },
+                    // { field: "district", title: "LOCATION" },
+                    { field: "enabled", title: "STATUS",hidden:"true" },
+                  ]}
+                  data={currentUserTableData}
+              
+                />
                                     </div>
                                 </div>
                             </div>

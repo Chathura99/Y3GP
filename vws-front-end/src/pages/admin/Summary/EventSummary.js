@@ -5,10 +5,17 @@ import NewTable from "../../../utilities/Table/NewTable.js";
 import { red } from "@mui/material/colors";
 // import EditProject from "./EditProject";
 import "./Summary.css";
+import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { getOngoingEvents } from "../../../services/eventServices/eventService";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 
 export default function EventSummary() {
   useEffect(() => {
     checkValidate();
+    getOngoingEventDetails();
   }, []);
 
   const checkValidate = async () => {
@@ -17,80 +24,13 @@ export default function EventSummary() {
       window.location.href = "/";
     }
   };
+  const getOngoingEventDetails = async () => {
+    const res = await getOngoingEvents();
+    // console.log(res.data);
+    setOnGoingEventData(res.data);
+  };
   
-      // new table
-      const [ProjectsData, setProjectsData] = useState([
-        {
-      eventId: "E001",
-      category: "Ganitha Saviya",
-      coordinator: "Hazeen Ram",
-      district: "Kalutara",
-      startOn: "2020-10-21",
-      endOn:"2020-11-21",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>
-      ),
-    },
-    {
-      eventId: "E002",
-      category: "Re-green Earth",
-      coordinator: "Chamath Shanuka",
-      district: "Colombo",
-      startOn: "2019-12-01",
-      endOn:"2020-01-21",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn  mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>
-      ),
-    },
-       ]);
-    
-    const data = useMemo(
-    () => ProjectsData  )
-    
-      const ProjectsHeadings=useMemo(
-        () => [
-         
-          
-          { accessor: "eventId", Header: "EVENT ID"  },
-          { accessor: "category", Header: "CATEGORY"},
-          { accessor: "coordinator",Header: "COORDINATOR" },
-          { accessor: "district", Header: "DISTRICT" },
-          { accessor: "startOn",Header: "START ON" },
-          { accessor: "endOn", Header: "END ON"},
-          { accessor: "action", Header: "ACTION"},
-          
-          
-        ],
-        []
-      )
+      
       // line chart
   const [lineChartData, setLineChartData] = useState([
     [
@@ -114,6 +54,9 @@ export default function EventSummary() {
     // ["May", 300, 4, 18, 1, 1],
     // ["Jun", 200, 5, 20, 1, 1],
   ]);
+  const [onGoingEventData, setOnGoingEventData] = useState([]);
+
+
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -212,35 +155,56 @@ export default function EventSummary() {
                             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div className="card h-100" id="contentcard">
                                     <div className="card-body " >                          
-                                          <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                    <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Ongoing Events"
+                    columns={[
+                      {
+                        field: "eventId",
+                        title: "EVENT ID",
+                        
+                      },
+                      {
+                        field: "category",
+                        title: "CATEGORY",
+                      },
+                      { field: "name", title: "COORDINATOR" },
+                      
+                      {
+                        field: "startDate",
+                        title: "STARTED ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "endDate",
+                        title: "ENDS ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "noOfVolunteers",
+                        title: "NO OF MEMBERS",
+                      },
+                      
+                    ]}
+                    data={onGoingEventData}
+               
+                    />
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
             </div> 
-                {/* <div className="row gutters " id="row" >
-                  <NewTable columns={ProjectsHeadings} data={ProjectsData}/>
-                </div> */}
+                
               </div>
             </div>
           </div>
         </div>
-        {/* <EditProject /> */}
-                {/* <button
-                  type="button"
-                  class="btn"
-                  data-toggle="modal"
-                  data-target="#editproject"
-                  style={{
-                    backgroundColor: "#96BE25",
-                    border: "none",
-                    marginRight: 0,
-                  }}
-                >
-                  Edit
-                </button>
-                <br></br> */}
+       
       </div>
     </>
   );
