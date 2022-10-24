@@ -3,6 +3,7 @@ package com.ucsc.vwsbackend.services;
 import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
+import com.ucsc.vwsbackend.entities.EventProgress;
 import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,5 +71,9 @@ public class EventService {
 
     public int leaveEvent(ParticipateEvent participateEvent) {
         return eventJdbcRepository.leaveEvent(participateEvent);
+    }
+
+    public EventProgress getProgress(long id) {
+        return eventJdbcRepository.getProgress(id);
     }
 }

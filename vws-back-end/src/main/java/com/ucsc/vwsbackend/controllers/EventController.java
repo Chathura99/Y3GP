@@ -7,6 +7,7 @@ import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.dto.ParticipateEvent;
 import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
+import com.ucsc.vwsbackend.entities.EventProgress;
 import com.ucsc.vwsbackend.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,11 @@ public class EventController {
     @GetMapping("/getPreviousEvents")
     public List<EventDetail> getPreviousEvents() {
         return eventService.getPreviousEvents();
+    }
+
+    @GetMapping("/getProgress/{id}")
+    public EventProgress getProgress(@PathVariable(value = "id") long id) {
+        return eventService.getProgress(id);
     }
 
 

@@ -6,6 +6,7 @@ import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.dto.ParticipateEvent;
 import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
+import com.ucsc.vwsbackend.entities.EventProgress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -253,4 +254,10 @@ public class EventJdbcRepository {
         return jdbc.update(delete, namedParameters);
     }
 
+    public EventProgress getProgress(long id) {
+
+        String query ="select * from event_progress where event_id=?";
+        EventProgress eventProgress = (EventProgress) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(EventProgress.class));
+        return eventProgress;
+    }
 }
