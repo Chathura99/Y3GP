@@ -6,14 +6,33 @@ import java.util.Date;
 
 public class ForumInfo {
     private long forumId;
+
+    public String getName() {
+        return name;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    private long userId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private String title;
     private String description;
-    private String createdBy;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date startDate;
+    private String name;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Date endDate;
+    private String startDate;
+
+    private String endDate;
+
+
     private String replies;
 
     public String getReplies() {
@@ -48,27 +67,19 @@ public class ForumInfo {
         this.description = description;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

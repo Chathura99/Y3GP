@@ -3,6 +3,7 @@ package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Event;
+import com.ucsc.vwsbackend.entities.EventProgress;
 import com.ucsc.vwsbackend.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,11 @@ public class EventController {
     @GetMapping("/getPreviousEvents")
     public List<EventDetail> getPreviousEvents() {
         return eventService.getPreviousEvents();
+    }
+
+    @GetMapping("/getProgress/{id}")
+    public EventProgress getProgress(@PathVariable(value = "id") long id) {
+        return eventService.getProgress(id);
     }
 
 
@@ -63,6 +69,17 @@ public class EventController {
 //      public long updateCoordinatedEventStatus(@RequestBody Event event){
 //        return eventService.updateCoordinatedEventStatus(event);
 //    }
+
+
+    @PutMapping("/editMyCoordinatedEvents")
+    public long editMyCoordinatedEvents(@RequestBody Event event){
+        return eventService.editMyCoordinatedEvents(event);
+    }
+
+    // @PutMapping("/updateCoordinatedEventStatus")
+    // public long updateCoordinatedEventStatus(@RequestBody Event event){
+    //     return eventService.updateCoordinatedEventStatus(event);
+    // }
 
     @PostMapping("/participateToEvent")
     public long participateToEvent(@RequestBody ParticipateEvent participateEvent) {
@@ -116,4 +133,12 @@ public class EventController {
         return eventService.editEvent(projectDetail);
     }
 
+    @PostMapping("/makeGuestRequest")
+    public long makeGuestRequest(@RequestBody GuestUserRequest guestUserRequest) {
+        return eventService.makeGuestRequest(guestUserRequest);
+    }
+    @GetMapping("/getMyNewUpcomingEvents")
+    public List<EventDetail> getMyNewUpcomingEvents() {
+        return eventService.getMyNewUpcomingEvents();
+    }
 }

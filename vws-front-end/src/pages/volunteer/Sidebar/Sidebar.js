@@ -265,18 +265,18 @@ export default function Sidebar(page) {
                       >Home</div>
                     </Link>
                   </li>
-                  <li
-                    className="nav-item"
-
-                  >
-                    <Link to="/adminhome" className="nav-link">
-
+                  <li className="nav-item">
+                    <Link to="/volunteernotification" className="nav-link">
                       <div
                         className={linkdark === 1 ? "linkdark" : ""}
                         onClick={() => {
                           setLinkdark(1);
+                          highLight(99);
                         }}
-                      > Notification</div>
+                      >
+                        
+                        <i class="fa fa-bell" aria-hidden="true"></i>
+                      </div>
                     </Link>
                   </li>
                   <li className="nav-item">

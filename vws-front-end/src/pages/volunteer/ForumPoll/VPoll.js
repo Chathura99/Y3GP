@@ -5,13 +5,23 @@ import NewTable from "../../../utilities/Table/NewTable.js";
 // import AddForumTopic from "./AddForumTopic";
 import { Link } from "react-router-dom";
 // import AddNewPoll from "./AddNewPoll";
-
+import { getPollInfo } from "../../../services/pollServices/pollService";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 export default function VPoll() {
   
 
   useEffect(() => {
     checkValidate();
+    getPollDetails();
+
   }, []);
+  const getPollDetails = async () => {
+    const res = await getPollInfo();
+    console.log(res.data);
+    setPollData(res.data);
+  };
+
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -19,78 +29,16 @@ export default function VPoll() {
       window.location.href = "/";
     }
   };
-  const [ProjectsData, setProjectsData] = useState([
-    {
-      topic: "Blood Donation",
-      starteddate:"2022 07 11",
-      last_update: "2022 07 12",
-      votes: "25",
-      enddate:"2022 07 13",     
-            
-            
-      read: (
-        <Link to="/adminviewpoll" className="sign-up">
-              <button
-                type="button"
-                id="submit"
-                name="submit"
-                className="btn p-1"
-                data-toggle="modal"
-                data-target="#CoordinateEventForm"
-                style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-                // #96BE25,#BE4D25
-                // onClick={handleSubmit}
-              >
-                
-                    <b>Read</b>
-                  
-              </button>
-              </Link>
-            ),
-            
-          },
-    //       {
-    //         project_name: "Re-green Earth",
-    //         description: "Re-green Earth is a ...",
-    //         idea_by: "Sadaru Avishka",
-    //         date: "2022 09 02",
-            
-            
-    //         read: (
-    //           <button
-    //             type="button"
-    //             id="submit"
-    //             name="submit"
-    //             data-toggle="modal"
-    //             data-target="#CoordinateEventForm"
-    //             className="btn p-1"
-    //             style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-    //             // #96BE25-green,#BE4D25-red
-    //             // onClick={handleSubmit}
-    //           >
-    //             Read
-    //           </button>
-    //         ),
-            
-    // }
-  ]);
+  const [PollData, setPollData] = useState([]);
+  const [viewPollData, setViewPollData] = useState({});
 
-const data = useMemo(
-() => ProjectsData  )
+  const [selected, setSelected] = useState(false);
+  const [selectedPoll, setSelectedPoll] = useState({});
 
-  const ProjectsHeadings=useMemo(
-    () => [
-     
-      { accessor: "topic", Header: "TOPIC" },
-      { accessor: "starteddate", Header: "STARTED DATE" },
-      { accessor: "last_update", Header: "LAST UPDATE" },
-      { accessor: "votes", Header: "VOTES" },
-      { accessor: "enddate", Header: "END DATE" },
-      { accessor: "read", Header: "ACTION" },
-      
-    ],
-    []
-  )
+  
+  
+
+
 // poll data
 
   return (
@@ -191,8 +139,77 @@ const data = useMemo(
                                 
                                   {/* <button id='forumbtn' data-toggle="modal" data-target="#AddNewPoll">Add New Poll </button>
                                   <AddNewPoll/> */}
-                                
-                                  <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                <br></br><MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="All Polls"
+                    columns={[
+                      {
+                        field: "title",
+                        title: "Topic",
+                        
+                      },
+                      {
+                        field: "startDate",
+                        title: "Started Date",
+                      },
+                      { field: "updatedDate", title: "Updated Date", minWidth: "150px" },
+                      
+                      {
+                        field: "votes",
+                        title: "Votes",
+                        
+                      },
+                      {
+                        field: "endDate",
+                        title: "End Date",
+                      },
+                      
+                      
+                    ]}
+                    data={PollData}
+                    actions={[
+                      {
+                        
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              data-toggle="modal"
+                              // data-target="#CoordinateEventForm"
+                              style={{
+                                backgroundColor: "#2596BE",
+                                width: "6rem",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              Read
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          setViewPollData(rowData);
+                          setSelected(true);
+                          window.location.href = "/adminviewpoll";
+                          console.log("selected!");
+                        },
+                        // tooltip: "View Location",
+                      },
+
+                      
+                      
+                    ]}
+
+                    
+
+                    
+
+                    
+                  />
                                 
                                 
                                 

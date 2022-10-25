@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import PieChart from './../../../utilities/Charts/PieChart';
+import PieChart from '../../../utilities/Charts/PieChart';
 import EditCoordinatedForm from './EditCoordinatedForm';
 // for remove box shadow
 import { Paper } from "@material-ui/core";
@@ -65,7 +65,7 @@ export default function CoordinatedEvents() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body">
-                            <h5>Approved Coordinated Events</h5>
+                            <h5>My Coordinated Events</h5>
                             <MaterialTable
                     components={{
                       Container: (props) => <Paper {...props} elevation={0} />,

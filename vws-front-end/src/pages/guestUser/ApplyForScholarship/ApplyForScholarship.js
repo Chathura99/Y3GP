@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import "./applyforscholarship.css";
 
-import { joinRequest } from "../../../services/guestUserServices/signUpService";
+import { ApplyScholar } from "../../../services/scholarshipServices/scholarshipServices";
 import { Link } from "react-router-dom";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 
 
 export default function ApplyForScholarship() {
   const [requestData, setRequestData] = useState(
     {
-      firstName: "",
-      lastName: "",
+      fullName: "",
       email: "",
       phoneNumber: "",
       address: "",
@@ -19,7 +21,8 @@ export default function ApplyForScholarship() {
       status: 0,
       nic: "",
       info: "",
-      other: ""
+      other: "",
+      scholarshipType:"1"
     },
     []
   );
@@ -27,23 +30,43 @@ export default function ApplyForScholarship() {
   const handleSubmit = (evt) => {
     console.log(requestData);
     evt.preventDefault();
-    joinRequest(requestData).then((response) => {
+    ApplyScholar(requestData).then((response) => {
       if (response.status === 200) {
         console.log(response.data);
+        setPopUp("success")
+        setMessage("Event request sent!")
       } else {
         console.log("Something went wrong");
+        setPopUp("failed")
+        setMessage("Something went wrong")
       }
     });
   };
 
   const handleChange = (e) => {
     e.persist();
-    // console.log(e.target.name + "-" + e.target.value);
+    console.log(e.target.name + "-" + e.target.value);
     setRequestData((requestData) => ({
       ...requestData,
       [e.target.name]: e.target.value,
     }));
   };
+
+  
+    // open success/error pop up modals and set display message
+    const [popup, setPopUp] = useState("");
+    const [message, setMessage] = useState("");
+    // close pop up modal
+    const closePopUp = () => {
+      setPopUp("");
+    };
+    // open confirmation pop up modal
+    const confirm = (e) => {
+      e.preventDefault();
+      setMessage("Send Application for request scholarship!");
+      setPopUp("confirm");
+    };
+
 
   return (
     <div className="container-fluid calculated-bodywidth">
@@ -60,48 +83,35 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
-                      <label for="firstName">First Name</label>
+                      <label for="fullName">Full Name</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="firstName"
-                        placeholder="Enter Your First Name"
-                        name="firstName"
+                        id="fullName"
+                        placeholder="Enter Your Full Name"
+                        name="fullName"
                         value={requestData.firstName}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
 
+
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="lastName">Last Name</label>
+                      <label for="nic">NIC/Passport</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="lastName"
-                        placeholder="Enter Your Last Name"
-                        name="lastName"
-                        value={requestData.lastName}
+                        id="nic"
+                        placeholder="Enter Your NIC/Passport Number"
+                        name="nic"
+                        value={requestData.nic}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="email">Email</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        placeholder="Enter Your Email"
-                        name="email"
-                        value={requestData.email}
-                        onChange={handleChange}
-                      />
-                    </div>
-                  </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -113,6 +123,22 @@ export default function ApplyForScholarship() {
                         placeholder="Enter Your Phone Number"
                         name="phoneNumber"
                         value={requestData.phoneNumber}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="email">Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="Enter Your Email"
+                        name="email"
+                        value={requestData.email}
                         onChange={handleChange}
                       />
                     </div>
@@ -151,51 +177,68 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="nic">NIC/Passport</label>
+                      <label for="school">School/University:</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="nic"
-                        placeholder="Enter Your NIC/Passport Number"
-                        name="nic"
-                        value={requestData.nic}
+                        id="universityCollege"
+                        placeholder="Enter Your School/University"
+                        name="universityCollege"
+                        value={requestData.universityCollege}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
 
-
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="nic">Select the prefered scholarship type</label>
+                      <label for="nic">Select the scholarship type</label>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                          <label class="form-check-label" for="flexRadioDefault1">
-                            Scholarship - 1
-                          </label>
+                        <input class="form-check-input" type="radio" name="scholarshipType" id="flexRadioDefault1" onChange={handleChange} value={requestData.scholarshipType} />
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          O/L Passed (A/L Students)
+                        </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                          <label class="form-check-label" for="flexRadioDefault2">
-                          Scholarship - 2
-                          </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                          <label class="form-check-label" for="flexRadioDefault2">
-                          Scholarship - 3
-                          </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                          <label class="form-check-label" for="flexRadioDefault2">
-                          Scholarship - 4
-                          </label>
+                        <input class="form-check-input" type="radio" name="scholarshipType" id="flexRadioDefault2" onChange={handleChange} value={requestData.scholarshipType} />
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          A/L Passed (Undergraduates)
+                        </label>
                       </div>
                     </div>
                   </div>
 
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label for="formFile1" class="form-label" id="formLbl1">
+                            Result sheet
+                          </label>
+                          <input
+                            class="form-control browse"
+                            type="file"
+                            id="formFile1"
+                          // name="copy"
+                          // value={requestData.copy}
+                          // onChange={handleChange}
+                          />
+                        </div>
+                      </div>
 
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label for="formFile2" class="form-label" id="formLbl2">
+                            Income Certificate
+                          </label>
+                          <input
+                            class="form-control browse"
+                            type="file"
+                            id="formFile2"
+                          // name="copy"
+                          // value={requestData.copy}
+                          // onChange={handleChange}
+                          />
+                        </div>
+                      </div>
 
                 </div>
 
@@ -235,7 +278,7 @@ export default function ApplyForScholarship() {
                         id="submit"
                         name="submit"
                         class="btn btn-secondary btn-sm"
-                        onClick={handleSubmit}
+                        onClick={confirm}
                       >
                         Submit
                       </button>
@@ -247,6 +290,19 @@ export default function ApplyForScholarship() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

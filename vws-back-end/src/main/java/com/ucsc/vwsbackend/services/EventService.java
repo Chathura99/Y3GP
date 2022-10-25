@@ -1,8 +1,10 @@
 package com.ucsc.vwsbackend.services;
 
 import com.ucsc.vwsbackend.dto.*;
+import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.entities.ProjectCoordinator;
+import com.ucsc.vwsbackend.entities.EventProgress;
 import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
 import com.ucsc.vwsbackend.repository.ProjectDao.ProjectJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,9 @@ public class EventService {
         return eventJdbcRepository.addCoordinatedEvents(newCoordinateEventDetail);
     }
 
+    public long editMyCoordinatedEvents(Event event) {
+        return eventJdbcRepository.editMyCoordinatedEvents(event);
+    }
     public  List<EventDetail> getCoordinatedEvents() {
         return eventJdbcRepository.getCoordinatedEvents();
     }
@@ -78,7 +83,18 @@ public class EventService {
 //Project Coordinator - Ravindu
     public  List<EventDetail> getJoinRequest() {
     return eventJdbcRepository.getJoinRequest();
-}
+    }
+    public EventProgress getProgress(long id) {
+        return eventJdbcRepository.getProgress(id);
+    }
+
+    public long makeGuestRequest(GuestUserRequest guestUserRequest) {
+        return eventJdbcRepository.makeGuestRequest(guestUserRequest);
+    }
+    public  List<EventDetail> getMyNewUpcomingEvents() {
+        return eventJdbcRepository.getMyNewUpcomingEvents();
+    }
+
 
     public long updateCoordinatedEventStatus(long id) {
         return eventJdbcRepository.updateCoordinatedEventStatus(id);

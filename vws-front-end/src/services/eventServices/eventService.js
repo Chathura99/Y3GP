@@ -126,6 +126,55 @@ export const editEvent = (pro) => {
 };
 
 
+  
+
+  
+  export const getProgressData = (id) => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getProgress/${id}`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+
+    });
+  };
+
+export const editMyCoordinatedEvents = (newEvent) => {
+    return axios({
+      method: "PUT",
+      url: `${USER_URL}/editMyCoordinatedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data : newEvent
+      });
+  }; 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  export const getMyNewUpcomingEvents = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getMyNewUpcomingEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+    

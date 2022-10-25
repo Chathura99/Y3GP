@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.dto.AdminHomeSummary;
 import com.ucsc.vwsbackend.dto.AdminProjectSummary;
+import com.ucsc.vwsbackend.dto.UserSummary;
 import com.ucsc.vwsbackend.dto.VolunteerHomeSummary;
 import com.ucsc.vwsbackend.services.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,10 @@ public class ChartController {
     @GetMapping("/getVolunteerHomeSummary")
     public VolunteerHomeSummary getVolunteerHomeSummary(){
         return chartService.getVolunteerHomeSummary();
+    }
+
+    @GetMapping("/getUserSummary")
+    public UserSummary GetUserSummary(){
+        return chartService.GetUserSummary();
     }
 }

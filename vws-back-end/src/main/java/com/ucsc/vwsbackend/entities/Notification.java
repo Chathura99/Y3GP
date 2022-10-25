@@ -24,8 +24,15 @@ public class Notification {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
-    @Column(name = "view_group")
-    private String viewGroup;
+    @Column(name = "heading")
+    private String heading;
+
+    @Column(name = "status")
+    private Integer status;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    User user;
 
     public Long getNotificationId() {
         return notificationId;
@@ -43,9 +50,6 @@ public class Notification {
         return date;
     }
 
-    public String getViewGroup() {
-        return viewGroup;
-    }
 
     public Integer getStatus() {
         return status;
@@ -55,14 +59,38 @@ public class Notification {
         return user;
     }
 
-    @Column(name = "status")
-    private Integer status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    User user;
 
-    public Notification() {
+    public void setNotificationId(Long notificationId) {
+        this.notificationId = notificationId;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setView(String view) {
+        this.view = view;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
