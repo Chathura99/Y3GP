@@ -32,9 +32,21 @@ export default function CurrentUser() {
 
   const getRoleSummary = async () => {
     const res = await getUserSummary();
-    // setadminHomeSummaryData(res.data);
-    console.log(res.data);
-    Object.values(res.data).map(
+    setDonutChartData([...res.data]);
+    // get data from backend correctly
+    console.log(res.data.admin);
+  };
+
+  const [donutChartData, setDonutChartData] = useState({});
+
+  const pieChartData = [
+    ["User", "Count"],
+    ["Volunteer", 750],
+    ["Project Coordinator", 21],
+    ["Admin", 2],
+  ]
+
+  const donutData = Object.values(donutChartData).map(
       (value) => (
         pieChartData.push(
           [
@@ -44,7 +56,7 @@ export default function CurrentUser() {
         )
       )
     )
-  };
+
 
   const getCurrentUsers = async () => {
     const res = await getUsers();
@@ -82,12 +94,7 @@ export default function CurrentUser() {
 
   const [currentUserTableData, setCurrentUserTableData] = useState([]);
 
-  const [pieChartData, setPieChartData] = useState([
-    ["User", "Count"],
-    ["Volunteer", 750],
-    ["Project Coordinator", 21],
-    ["Admin", 2],
-  ]);
+  
 
   const [lineChartData, setLineChartData] = useState([
     ["Month", "ADMIN", "Volunteer", "Project Coordinator"],
