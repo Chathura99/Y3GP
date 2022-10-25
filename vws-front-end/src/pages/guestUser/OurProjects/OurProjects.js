@@ -30,7 +30,7 @@ export default function OurProjects() {
                   className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12"
                   id="project-left"
                 >
-                  <h1 id="project-right-H1">MathLab</h1>
+                  <h1 id="project-right-H1">{pro.name}</h1>
 
                   <img
                     src="https://img.freepik.com/free-vector/people-volunteering-donating-money_53876-66112.jpg"
@@ -75,7 +75,7 @@ export default function OurProjects() {
                   id="project-right"
                 >
                   <h4 id="project-right-H2">
-                    <p>{pro.name}</p>
+                    <p>The {pro.name} project</p>
                     <p>Phone:{pro.phoneNumber}</p>
                     <p>Description:{pro.description}</p>
                     <p>Event Per Year:{pro.eventPerYear}</p>

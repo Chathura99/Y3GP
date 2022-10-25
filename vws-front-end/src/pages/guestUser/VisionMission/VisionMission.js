@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function VisionMission() {
     return (
-        <div classNameName=" container-fluid" id="vision-mission-cont">
+        <div classNameName=" container-fluid" id="vision-mission-cont" >
 
 
             <div className="card mx-auto" id="vision-card">
