@@ -71,9 +71,9 @@ public class EventController {
 
 
 
-    @PostMapping("/editMyCoordinatedEvents")
-    public long editMyCoordinatedEvents(@RequestBody EventDetail eventDetail){
-        return eventService.editMyCoordinatedEvents(eventDetail);
+    @PutMapping("/editMyCoordinatedEvents")
+    public long editMyCoordinatedEvents(@RequestBody Event event){
+        return eventService.editMyCoordinatedEvents(event);
     }
 
     @PutMapping("/updateCoordinatedEventStatus")
@@ -109,4 +109,9 @@ public class EventController {
 //        int status = eventService.leaveEvent(volunteer_id);
 //        return status;
 //    }
+
+    @GetMapping("/getMyNewUpcomingEvents")
+    public List<EventDetail> getMyNewUpcomingEvents() {
+        return eventService.getMyNewUpcomingEvents();
+    }
 }
