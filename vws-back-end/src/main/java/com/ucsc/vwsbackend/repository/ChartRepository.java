@@ -1,9 +1,6 @@
 package com.ucsc.vwsbackend.repository;
 
-import com.ucsc.vwsbackend.dto.AdminHomeSummary;
-import com.ucsc.vwsbackend.dto.AdminProjectSummary;
-import com.ucsc.vwsbackend.dto.UserSummary;
-import com.ucsc.vwsbackend.dto.VolunteerHomeSummary;
+import com.ucsc.vwsbackend.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -79,5 +76,11 @@ public class ChartRepository {
         List<UserSummary> userSummaries = jdbc.query(sql, new BeanPropertyRowMapper<UserSummary>(UserSummary.class));
 
         return  userSummaries;
+    }
+    public List<VolunteerProjectSummary> getVolunteerProjectSummary(){
+        String sql ="SELECT count(*) as count,p.name FROM event as e INNER JOIN project as p " +
+                "ON p.project_id=e.project_id GROUP BY e.project_id";
+        List<VolunteerProjectSummary> summary = jdbc.query(sql, new BeanPropertyRowMapper<VolunteerProjectSummary>(VolunteerProjectSummary.class));
+        return summary;
     }
 }
