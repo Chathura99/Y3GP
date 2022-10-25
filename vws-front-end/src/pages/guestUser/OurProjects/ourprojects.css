@@ -50,14 +50,12 @@
     background-color: rgb(255, 255, 255);
     color: #145369;
     font-weight: 600;
-    width: 120px;
+    width: 200px;
     height: 40px;
-    margin-right: 20px;
-    margin-left: 10px;
+    margin-right: 10px;
     flex: 2;
     margin-bottom: 5px;
 }
-
 
 #project-right-H2 {
     color: #ffffff;

@@ -2,12 +2,15 @@ import React, { useState,useEffect } from "react";
 //import "../../volunteer/home/homepage.css";
 import { useMemo } from 'react';
 import "./DiscussionTopic.css" ;
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+import { getReplyToForum } from "../../../services/forumServices/forumService";
 
-
-export default function DiscussionTopic() {
+export default function DiscussionTopic(props) {
 
   useEffect(() => {
     checkValidate();
+    getAllReplies();
 }, []);
 
 const checkValidate = async () => {
@@ -16,8 +19,15 @@ const checkValidate = async () => {
         window.location.href = "/";
     }
 };
-  
 
+const getAllReplies = async () => {
+  const res = await getReplyToForum();
+  console.log(res.data);
+  setSeeReplyData(res.data);
+};
+  
+const [seeReplyData, setSeeReplyData] = useState([]);
+const [selected, setSelected] = useState(false);
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -29,7 +39,7 @@ const checkValidate = async () => {
               <div className="card-body">
                 
                 <div className="row gutters ">
-                  <h5>Forum- Blood Donation</h5>
+                  <h5>Forum- Blood Donations</h5>
                   <div className="card" id="cardtopic">
                   
                   <div className="card-body" id="topicbody">
@@ -60,8 +70,8 @@ const checkValidate = async () => {
                         id="details"
                         style={{ marginTop: "8px" }}
                       >
-                        <a className="nav-link" style={{color:"black"}}><b>R.R. Rathnayake</b></a>
-                        <a className="nav-link">ADMIN 2021-10-21 12:12</a>
+                        <a className="nav-link" style={{color:"black"}}><b>{seeReplyData.name}</b></a>
+                        <a className="nav-link">Volunteer 2021-10-21 12:12</a>
                       </li>
                     </ul>
                   </div>

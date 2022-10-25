@@ -80,27 +80,56 @@ export default function Contact() {
                 <p id="footer-p1">Leave your thoughts about Sasnaka Sansada that your feedback will encourage us to uplift and improve our services.
                     Your comments and suggestions will enable us serve the world better.</p>
 
-                <div className="input-group mb-3" id="input-feedback-cont">
+                <div className="input-group mb-3 justify-content-center col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="input-feedback-cont">
 
                     <form onSubmit={confirm} >
 
-                        <input type="text"
-                            className="form-control input-feedback"
-                            id="feedback"
-                            name="feedback"
-                            placeholder="Enter Your Feedback"
-                            value={feed.feedback}
-                            aria-label="Enter Your Feedback"
-                            aria-describedby="basic-addon2"
-                            onChange={handleChange}
-                        />
+                        <div class="input-group mb-3">
 
-                        <div className="input-group-append">
-                            <button className="btn input-feedback-btn "
-                                id="submit"
-                                type="submit"
-                                name="submit">
-                                SEND</button>
+                            {/* <input type="text"
+                                className="form-control input-feedback"
+                                id="feedback"
+                                name="feedback"
+                                placeholder="Enter Your Feedback"
+                                value={feed.feedback}
+                                aria-label="Enter Your Feedback"
+                                aria-describedby="basic-addon2"
+                                onChange={handleChange}
+                            />
+
+
+                            <div class="input-group-append">
+                                <button class="btn btn-info"
+                                    type="button"
+                                    id="submit"
+                                    name="submit">
+                                    SEND</button>
+                            </div>
+                        </div> 
+
+                        */}
+
+
+
+                            <input type="text"
+                                className="form-control input-feedback"
+                                id="feedback"
+                                name="feedback"
+                                placeholder="Enter Your Feedback"
+                                value={feed.feedback}
+                                aria-label="Enter Your Feedback"
+                                aria-describedby="basic-addon2"
+                                onChange={handleChange}
+                            />
+
+                            <div class="input-group-append">
+                                <button className="btn btn-success btn-sm feedback-btn"
+                                    id="submit"
+                                    type="submit"
+                                    name="submit">
+                                    SEND</button>
+                            </div>
+
                         </div>
 
 

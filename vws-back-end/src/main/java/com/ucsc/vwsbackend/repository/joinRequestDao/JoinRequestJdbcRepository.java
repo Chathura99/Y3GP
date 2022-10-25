@@ -45,7 +45,6 @@ public class JoinRequestJdbcRepository {
         String query ="SELECT * from join_request where status=0";
 
         List<JoinRequest> joinRequests = jdbc.query(query, new BeanPropertyRowMapper<JoinRequest>(JoinRequest.class));
-        System.out.println("->"+joinRequests.get(0).getDate()+joinRequests.get(0).getEmail());
         return joinRequests;
     }
 

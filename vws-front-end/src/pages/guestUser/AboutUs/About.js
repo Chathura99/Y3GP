@@ -35,10 +35,6 @@ export default function About() {
                                     <button className="button a-button">Become a Volunteer</button>
                                 </Link>
 
-                                <Link to="/applyforscholarship" smooth={true} spy={true}>
-                                    <button className="button a-button">Apply for Scholarship</button>
-                                </Link>
-
                             </div>
                         </div>
 

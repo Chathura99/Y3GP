@@ -1,0 +1,75 @@
+/* About Us */
+
+#scholarship-cont {
+    margin-top: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #ffffff;
+}
+
+#scholarship {
+    background-color: #145369;
+    padding: 15px 0 15px 0;
+    margin: auto;
+    border-radius: 8px;
+}
+
+#scholarship-img {
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    padding: auto;
+    margin: auto;
+    width: auto;
+    height: auto;
+}
+
+#scholarship-right {
+    background-color: #145369;
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+    padding: auto;
+    margin: auto;
+
+}
+
+.btn-group {
+    display: inline-block;
+}
+
+.s-button {
+    border-radius: 4px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    color: #145369;
+    font-weight: 600;
+    width: 200px;
+    height: 40px;
+    letter-spacing: 1px !important;
+    flex: 2;
+    margin-bottom: 5px;
+}
+
+
+#scholarship-right-H2 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 20px;
+
+}
+
+#scholarship-right-H1 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: 900;
+    font-size: 28px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 1100px) {
+    #scholarship-right-H2 {
+        font-size: 16px;
+    }
+}

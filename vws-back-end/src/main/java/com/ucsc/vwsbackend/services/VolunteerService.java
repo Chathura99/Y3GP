@@ -40,7 +40,7 @@ public class VolunteerService {
         user.setUserName(joinRequest.getFirstName()+joinRequest.getLastName());
         user.setEmail(joinRequest.getEmail());
         user.setPhoneNumber(joinRequest.getPhoneNumber());
-        user.setCreatedAt(new Date());
+        user.setCreatedOn(new Date());
         user.setPassword(passwordEncoder.encode("123456789"));
         user.setEnabled(true);
         user.setAuthorities(authorityList);

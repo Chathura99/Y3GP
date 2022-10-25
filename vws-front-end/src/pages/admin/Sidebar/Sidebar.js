@@ -51,9 +51,7 @@ export default function Sidebar(page) {
       <div className="wrapper d-flex align-items-stretch">
         <nav id="sidebar" className={isActive}>
           <div className="p-2 pt-3">
-            <div className="sidebar-logo">
-            
-            </div>
+            <div className="sidebar-logo"></div>
             <ul className="list-unstyled components mb-5">
               <li
                 className={selected === 1 ? "active" : ""}
@@ -168,6 +166,17 @@ export default function Sidebar(page) {
                 </Link>
               </li>
               <li
+                className={selected === 8 ? "active" : ""}
+                onClick={() => {
+                  highLight(8);
+                }}
+              >
+                <Link to="/adminscholarship">
+                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Scholarships
+                </Link>
+              </li>
+
+              <li
                 className={selected === 6 ? "active" : ""}
                 onClick={() => {
                   highLight(6);
@@ -271,6 +280,16 @@ export default function Sidebar(page) {
                   </li>
                 </ul>
               </li>
+              <li
+                className={selected === 9 ? "active" : ""}
+                onClick={() => {
+                  highLight(9);
+                }}
+              >
+                <Link to="/adminfeedback">
+                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Feedback
+                </Link>
+              </li>
             </ul>
 
             <div className="footer"></div>
@@ -314,42 +333,47 @@ export default function Sidebar(page) {
                         className={linkdark === 0 ? "linkdark" : ""}
                         onClick={() => {
                           setLinkdark(0);
+                          highLight(1);
                         }}
                       >
+                        
                         Home
                       </div>
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/adminhome" className="nav-link">
+                    <Link to="/notification" className="nav-link">
                       <div
                         className={linkdark === 1 ? "linkdark" : ""}
                         onClick={() => {
                           setLinkdark(1);
+                          highLight(99);
                         }}
                       >
-                        {" "}
-                        Notification
+                        
+                        <i class="fa fa-bell" aria-hidden="true"></i>
                       </div>
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={logOut} id="logout">
-                      Log Out
-                    </a>
-                  </li>
+                  
                   <li className="nav-item">
                     <Link to="/viewprofile" className="nav-link">
                       <div
                         className={linkdark === 3 ? "linkdark" : ""}
                         onClick={() => {
                           setLinkdark(3);
+                          highLight(99);
                         }}
                       >
                         {userdata &&
                           `${userdata.firstName} ${userdata.lastName}`}
                       </div>
                     </Link>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={logOut} id="logout">
+                      <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
                   </li>
                 </ul>
               </div>

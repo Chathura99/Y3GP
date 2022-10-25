@@ -4,10 +4,15 @@ import Table from "../../../utilities/Table/Table";
 import { red } from "@mui/material/colors";
 // import EditProject from "./EditProject";
 import "./Summary.css";
+import { getOngoingEvents } from "../../../services/eventServices/eventService";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 
 export default function PcEventSummary() {
   useEffect(() => {
     checkValidate();
+    getOngoingEventDetails();
+
   }, []);
 
   const checkValidate = async () => {
@@ -16,68 +21,13 @@ export default function PcEventSummary() {
       window.location.href = "/";
     }
   };
-  const [onGoingProjectData, setOnGoingProjectData] = useState([
-    {
-      eventId: "E001",
-      category: "Ganitha Saviya",
-      coordinator: "Hazeen Ram",
-      district: "Kalutara",
-      startOn: "2020-10-21",
-      endOn:"2020-11-21",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>
-      ),
-    },
-    {
-      eventId: "E002",
-      category: "Re-green Earth",
-      coordinator: "Chamath Shanuka",
-      district: "Colombo",
-      startOn: "2019-12-01",
-      endsOn:"2020-01-21",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn  mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>
-      ),
-    },
-  ]);
+  const getOngoingEventDetails = async () => {
+    const res = await getOngoingEvents();
+    // console.log(res.data);
+    setOnGoingEventData(res.data);
+  };
 
-  const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "eventId", label: "EVENT ID" },
-    { id: "category", label: "CATEGORY" },
-    { id: "coordinator", label: "COORDINATOR" },
-    { id: "district", label: "DISTRICT" },
-    { id: "startOn", label: "START ON" },
-    { id: "endOn", label: "END ON" },
-    { id: "action", label: "ACTION" },
-  ]);
+  
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
@@ -100,6 +50,9 @@ export default function PcEventSummary() {
     // ["May", 300, 4, 18, 1, 1],
     // ["Jun", 200, 5, 20, 1, 1],
   ]);
+
+  const [onGoingEventData, setOnGoingEventData] = useState([]);
+
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -189,12 +142,50 @@ export default function PcEventSummary() {
                     </form>
 
                 </div>
-                <div className="row gutters " id="row" >
-                  <Table
-                    rows={onGoingProjectData}
-                    headCells={onGoingProjectTableHead}
+                <div id="eventleftside">
+                    <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
+                
 
-                  />
+                        <div className="row gutters mt-3">
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div className="card h-100" id="contentcard">
+                                    <div className="card-body " >                 <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Ongoing Events"
+                    columns={[
+                      {
+                        field: "eventId",
+                        title: "EVENT ID",
+                        
+                      },
+                      {
+                        field: "category",
+                        title: "CATEGORY",
+                      },
+                      { field: "name", title: "COORDINATOR" },
+                      
+                      {
+                        field: "startDate",
+                        title: "STARTED ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "endDate",
+                        title: "ENDS ON",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "noOfVolunteers",
+                        title: "NO OF MEMBERS",
+                      },
+                      
+                    ]}
+                    data={onGoingEventData}
+               
+                    />
                 </div>
               </div>
             </div>
@@ -216,6 +207,12 @@ export default function PcEventSummary() {
                 </button>
                 <br></br> */}
       </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
     </>
   );
 }

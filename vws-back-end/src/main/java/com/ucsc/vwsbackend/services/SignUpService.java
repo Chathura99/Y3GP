@@ -105,7 +105,7 @@ public class SignUpService {
         Volunteer volunteer=new Volunteer();
 
         volunteer.setAddress(joinRequest.getAddress());
-        volunteer.setDate(joinRequest.getDate());
+        volunteer.setDate(joinRequest.getRequestedDate());
         volunteer.setDistrict(joinRequest.getDistrict());
         volunteer.setUniversityCollege(joinRequest.getUniversityCollege());
 //        set user in here
