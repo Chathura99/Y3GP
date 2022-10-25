@@ -76,10 +76,10 @@ export default function OurProjects() {
                 >
                   <h4 id="project-right-H2">
                     <p>{pro.name}</p>
-                    <p>{pro.phoneNumber}</p>
-                    <p>{pro.description}</p>
-                    <p>{pro.eventPerYear}</p>
-                    <p>{pro.firstName + " " + pro.lastName}</p>
+                    <p>Phone:{pro.phoneNumber}</p>
+                    <p>Description:{pro.description}</p>
+                    <p>Event Per Year:{pro.eventPerYear}</p>
+                    <p>Contact Person:{pro.firstName + " " + pro.lastName}</p>
                   </h4>
 
                   <div className="btn-group">
