@@ -294,5 +294,18 @@ public List<EventDetail> getJoinRequest() {
         return rowsAffected;
     }
 
+    public List<EventDetail> getJoinRequest() {
+        System.out.println("vgfgh");
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        String query =  "select pc.name, e.*, v.* " +
+                "FROM event as e " +
+                "INNER JOIN project as pc ON e.project_id = pc.project_id " +
+                "INNER JOIN volunteer as v ON v.volunteer_id = e.volunteer_id " +
+                "WHERE pc.project_id = '2' && e.status = '0'";
+        List<EventDetail> eventrequests = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
+        System.out.println("vgfgh"+eventrequests.get(0).getName());
+        return eventrequests;
+    }
 
 }

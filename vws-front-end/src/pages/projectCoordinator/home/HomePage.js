@@ -180,7 +180,7 @@ const [pieChartData, setPieChartData] = useState([
                       options={{ actionsColumnIndex: -1 }}
                       title="Project Details"
                                           columns={[
-                                            { field: "project_id", title: "ID" },
+                                            { field: "project_id", title: "ID" ,hidden:true},
                                             { field: "name", title: "PROJECT" },
                                             { field: "name", title: "COORDINATOR" },
                                             { field: "phoneNumber", title: "PHONE" },
