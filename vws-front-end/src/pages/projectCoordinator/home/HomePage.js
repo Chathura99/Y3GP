@@ -7,6 +7,7 @@ import "./homepage.css";
 import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 //import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
+import PcApprove from "./MakeApprove";
 
 
 // for remove box shadow
@@ -15,7 +16,7 @@ import MaterialTable from "material-table";
 
 // service
 import { getUpcomingEvents } from "../../../services/eventServices/eventService";
-import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import { getEventRequest } from "../../../services/eventServices/eventService";
 
 
 
@@ -40,9 +41,9 @@ export default function PcHomePage() {
     };
 
     const getRequest = async () => {
-        const res = await getJoinRequest();
-        // console.log(res.data);
-        setJoinRequestsData([...res.data]);
+        const res = await getEventRequest();
+         console.log(res.data);
+        setJoinRequestsData(res.data);
       };
 
     const [upComingEventsData, setUpComingEventsData] = useState([]);
@@ -54,47 +55,7 @@ export default function PcHomePage() {
     const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
 
 
-//  const [joinRequestsData, setJoinRequestsData] = useState([
-//    {
-//      id: "R001",
-//      name: "Chathura Manohara",
-//      nic: "998547521v",
-//      phone: "+94 75 025 1451",
-//      date: "2022 09 12",
-//      status: (
-//        <button
-//          type="button"
-//          id="submit"
-//          name="submit"
-//          className="btn btn-primary p-1 mt-0"
-//          style={{backgroundColor:"#96BE25",border:"none"}}
-//          // #96BE25,#BE4D25
-//          // onClick={handleSubmit}
-//        >
-//          Rejected
-//        </button>
-//      ),
-//    },
-//  ]);
-//
-//  const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
-//    { accessor: "id", Header: "REQUEST ID" },
-//    { accessor: "name", Header: "NAME" },
-//    { accessor: "nic", Header: "NIC" },
-//    { accessor: "phone", Header: "PHONE" },
-//    { accessor: "date", Header: "DATE" },
-//    { accessor: "status", Header: "Status" },
-//  ]);
-//
-//  useEffect(() => {
-//    getRequest();
-//  }, []);
-//
-//  const getRequest = async () => {
-//    const res = await getJoinRequest();
-//    console.log(res.data)
-//    // setJoinRequestsData(res.data);
-//  };
+
 
 const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
@@ -211,6 +172,7 @@ const [pieChartData, setPieChartData] = useState([
                 </div>
                 <div className="row gutters ">
 
+
                 <MaterialTable
                       components={{
                         Container: (props) => <Paper {...props} elevation={0} />,
@@ -218,13 +180,13 @@ const [pieChartData, setPieChartData] = useState([
                       options={{ actionsColumnIndex: -1 }}
                       title="Project Details"
                                           columns={[
-                                            { field: "eventId", title: "PROJECT ID" },
-                                            { field: "category", title: "CATEGORY" },
+                                            { field: "project_id", title: "ID" },
+                                            { field: "name", title: "PROJECT" },
                                             { field: "name", title: "COORDINATOR" },
                                             { field: "phoneNumber", title: "PHONE" },
-                                            { field: "startDate", title: "STARTS ON" },
-                                            { field: "noOfVolunteers", title: "NO OF MEMBERS" },
-                                            { field: "place", title: "LOCATION" },
+//                                            { field: "startDate", title: "STARTS ON" },
+//                                            { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+//                                            { field: "place", title: "LOCATION" },
                                           ]}
                                           data={upComingEventsData}
                                           actions={[
@@ -251,9 +213,6 @@ const [pieChartData, setPieChartData] = useState([
                                             },
                                           ]}
                                         />
-
-
-
 
                 </div>
               </div>
@@ -304,13 +263,14 @@ const [pieChartData, setPieChartData] = useState([
                                 options={{ actionsColumnIndex: -1 }}
                                 title="Join Requests"
                                 columns={[
-                                  { title: "REQUEST ID", field: "id" },
-                                  { title: "FIRST NAME", field: "firstName" },
-                                  { title: "LAST NAME", field: "lastName" },
-                                  { title: "NIC", field: "nic" },
-                                  { title: "PHONE", field: "phoneNumber" },
-                                  { title: "DATE", field: "date" },
-                                  { title: "DISTRICT", field: "district" },
+//                                  { title: "REQUEST ID", field: "id" },
+                                  { title: "EVENT", field: "name" ,hidden:true},
+                                  { title: "DATE", field: "startDate" },
+                                  { title: "PLACE", field: "place" },
+                                  { title: "NO OF VOLUNTEERS", field: "noOfVolunteers" },
+                                  { title: "STATUS", field: "status" ,hidden:true},
+//                                  { title: "DISTRICT", field: "district" },
+
                                 ]}
                                 data={joinRequestsData}
                                 actions={[
@@ -325,7 +285,7 @@ const [pieChartData, setPieChartData] = useState([
                                             border: "none",
                                           }}
                                         >
-                                          Register
+                                          DETAILS
                                         </button>
                                       );
                                     },
@@ -337,13 +297,18 @@ const [pieChartData, setPieChartData] = useState([
                                   },
                                 ]}
                               />
-
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    {selected && (
+                  <PcApprove setSelected={setSelected} data={selectedJoinRequestsData} />
+                )}
+
+                <br></br>
+
+      </>
   );
 }
 
@@ -386,3 +351,45 @@ const [pieChartData, setPieChartData] = useState([
 //    { accessor: "coordinator", Header: "COORDINATOR" },
 //    { accessor: "date", Header: "DATE" },
 //  ]);
+
+//  const [joinRequestsData, setJoinRequestsData] = useState([
+//    {
+//      id: "R001",
+//      name: "Chathura Manohara",
+//      nic: "998547521v",
+//      phone: "+94 75 025 1451",
+//      date: "2022 09 12",
+//      status: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1 mt-0"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Rejected
+//        </button>
+//      ),
+//    },
+//  ]);
+//
+//  const [joinRequestsTableHead, setJoinRequestsTableHead] = useState([
+//    { accessor: "id", Header: "REQUEST ID" },
+//    { accessor: "name", Header: "NAME" },
+//    { accessor: "nic", Header: "NIC" },
+//    { accessor: "phone", Header: "PHONE" },
+//    { accessor: "date", Header: "DATE" },
+//    { accessor: "status", Header: "Status" },
+//  ]);
+//
+//  useEffect(() => {
+//    getRequest();
+//  }, []);
+//
+//  const getRequest = async () => {
+//    const res = await getJoinRequest();
+//    console.log(res.data)
+//    // setJoinRequestsData(res.data);
+//  };

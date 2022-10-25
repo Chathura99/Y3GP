@@ -76,4 +76,45 @@ export const getPreviousEvents = () => {
       data: newEvent
     
     });
-  }
+    };
+
+ //ProjectCoordinator-Ravindu
+
+    export const getEventRequest = () => {
+        console.log("das")
+        return axios({
+          method: "GET",
+          url: `${USER_URL}/getJoinRequest`,
+          headers: {
+            Authorization: "Bearer " + getToken(),
+          },
+        });
+      };
+
+
+export const updateCoordinatedEventStatus = (id) => {
+        console.log("das")
+        return axios({
+          method: "PUT",
+          url: `${USER_URL}/updateCoordinatedEventStatus/${id}`,
+          headers: {
+            Authorization: "Bearer " + getToken(),
+          },
+        });
+      };
+
+export const editEvent = (pro) => {
+  return axios({
+    method: "PUT",
+    url: `${USER_URL}/editEvent`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data : pro
+  });
+};
+
+
+
+
+

@@ -1,10 +1,7 @@
 package com.ucsc.vwsbackend.controllers;
 
 
-import com.ucsc.vwsbackend.dto.EventDetail;
-import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
-import com.ucsc.vwsbackend.dto.NewProjectDetail;
-import com.ucsc.vwsbackend.dto.ParticipateEvent;
+import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,10 +58,11 @@ public class EventController {
     public List<EventDetail> getApprovedCoordinatedEvents() {
         return eventService.getApprovedCoordinatedEvents();
     }
-    @PutMapping("/updateCoordinatedEventStatus")
-    public long updateCoordinatedEventStatus(@RequestBody Event event){
-        return eventService.updateCoordinatedEventStatus(event);
-    }
+
+//      @PutMapping("/updateCoordinatedEventStatus")
+//      public long updateCoordinatedEventStatus(@RequestBody Event event){
+//        return eventService.updateCoordinatedEventStatus(event);
+//    }
 
     @PostMapping("/participateToEvent")
     public long participateToEvent(@RequestBody ParticipateEvent participateEvent) {
@@ -94,4 +92,23 @@ public class EventController {
 //        int status = eventService.leaveEvent(volunteer_id);
 //        return status;
 //    }
+
+
+//Project Coordinator - Ravindu
+
+    @GetMapping("/getJoinRequest")
+    public List<EventDetail> getJoinRequest() {
+        System.out.println("vgfgh");
+        return eventService.getJoinRequest();}
+
+    @PutMapping("/updateCoordinatedEventStatus/{id}")
+    public long updateCoordinatedEventStatus(@PathVariable(value = "id") long id){
+        return eventService.updateCoordinatedEventStatus(id);
+    }
+
+    @PutMapping("/editEvent")
+    public long editEvent(@RequestBody ProjectDetail projectDetail) {
+        return eventService.editEvent(projectDetail);
+    }
+
 }

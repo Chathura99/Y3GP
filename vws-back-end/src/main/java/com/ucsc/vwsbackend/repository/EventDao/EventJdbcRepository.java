@@ -4,6 +4,7 @@ package com.ucsc.vwsbackend.repository.EventDao;
 import com.ucsc.vwsbackend.dto.EventDetail;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.dto.ParticipateEvent;
+import com.ucsc.vwsbackend.dto.ProjectDetail;
 import com.ucsc.vwsbackend.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -151,18 +152,18 @@ public class EventJdbcRepository {
     }
 
     // approve coordinated events
-    public int updateCoordinatedEventStatus(Event eventId){
-        MapSqlParameterSource namedParameters =
-                new MapSqlParameterSource();
-        String update = "UPDATE event " +
-                "SET status = 1 WHERE eventId = :reqId;";
-
-        namedParameters.addValue("reqId", eventId);
-
-
-        int rowsAffected = jdbc.update(update, namedParameters);
-        return rowsAffected;
-    }
+//    public int updateCoordinatedEventStatus(Event eventId){
+//        MapSqlParameterSource namedParameters =
+//                new MapSqlParameterSource();
+//        String update = "UPDATE event " +
+//                "SET status = 1 WHERE eventId = :reqId;";
+//
+//        namedParameters.addValue("reqId", eventId);
+//
+//
+//        int rowsAffected = jdbc.update(update, namedParameters);
+//        return rowsAffected;
+//    }
 
     public Event getCoordinatedEventById(long id) {
         MapSqlParameterSource namedParameters =
@@ -233,5 +234,52 @@ public class EventJdbcRepository {
 
         return jdbc.update(delete, namedParameters);
     }
+
+
+
+//Project Coordinator - Ravindu
+public List<EventDetail> getJoinRequest() {
+    System.out.println("vgfgh");
+    MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+    String query =  "select pc.name, e.*, v.* " +
+                    "FROM event as e " +
+                    "INNER JOIN project as pc ON e.project_id = pc.project_id " +
+                    "INNER JOIN volunteer as v ON v.volunteer_id = e.volunteer_id " +
+                    "WHERE pc.project_id = '2'";
+    List<EventDetail> eventrequests = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
+    System.out.println("vgfgh"+eventrequests.get(0).getName());
+    return eventrequests;
+}
+
+    public int updateCoordinatedEventStatus(long eventId){
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE event " +
+                "SET status = 1 WHERE event_id = :eventId;";
+
+        namedParameters.addValue("eventId", eventId);
+
+
+        int rowsAffected = jdbc.update(update, namedParameters);
+        return rowsAffected;
+    }
+
+    public long editEvent(ProjectDetail projectDetail) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE project " +
+                "SET name = :name, description = :description, event_per_year= :event_per_year, coordinator_id= :coordinator_id WHERE project_id = :id;";
+
+        namedParameters.addValue("name", projectDetail.getName());
+        namedParameters.addValue("description", projectDetail.getDescription());
+        namedParameters.addValue("coordinator_id", projectDetail.getCoordinatorId());
+        namedParameters.addValue("event_per_year", projectDetail.getEventPerYear());
+        namedParameters.addValue("id", projectDetail.getProjectId());
+
+        int rowsAffected = jdbc.update(update, namedParameters);
+        return rowsAffected;
+    }
+
 
 }
