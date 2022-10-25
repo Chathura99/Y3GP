@@ -73,17 +73,11 @@ public class ChartRepository {
         return volunteerHomeSummary;
     }
 
-    public UserSummary GetUserSummary() {
-        UserSummary userSummary = new UserSummary();
-        String sql1 = "SELECT count(*) FROM `authority` where role_code='VOLUNTEER'";
-        String sql2 = "SELECT count(*) FROM `authority` where role_code='PROJECT_COORDINATOR'";
-        String sql3 = "SELECT count(*) FROM `authority` where role_code='ADMIN'";
+    public List<UserSummary>  GetUserSummary() {
+        String sql = "SELECT role_code as name,count(*) as count FROM `authority` group by role_code";
 
+        List<UserSummary> userSummaries = jdbc.query(sql, new BeanPropertyRowMapper<UserSummary>(UserSummary.class));
 
-        userSummary.setVolunteerCount(jdbcTemplate.queryForObject(sql1, Integer.class));
-        userSummary.setAdminCount(jdbcTemplate.queryForObject(sql3, Integer.class));
-        userSummary.setPcCount(jdbcTemplate.queryForObject(sql2, Integer.class));
-
-        return  userSummary;
+        return  userSummaries;
     }
 }

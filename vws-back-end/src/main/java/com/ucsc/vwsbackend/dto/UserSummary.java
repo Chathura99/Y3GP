@@ -1,31 +1,22 @@
 package com.ucsc.vwsbackend.dto;
 
 public class UserSummary {
-    private long adminCount;
-    private long volunteerCount;
-    private long pcCount;
+    private String name;
+    private long count;
 
-    public long getAdminCount() {
-        return adminCount;
+    public String getName() {
+        return name;
     }
 
-    public void setAdminCount(long adminCount) {
-        this.adminCount = adminCount;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public long getVolunteerCount() {
-        return volunteerCount;
+    public long getCount() {
+        return count;
     }
 
-    public void setVolunteerCount(long volunteerCount) {
-        this.volunteerCount = volunteerCount;
-    }
-
-    public long getPcCount() {
-        return pcCount;
-    }
-
-    public void setPcCount(long pcCount) {
-        this.pcCount = pcCount;
+    public void setCount(long count) {
+        this.count = count;
     }
 }

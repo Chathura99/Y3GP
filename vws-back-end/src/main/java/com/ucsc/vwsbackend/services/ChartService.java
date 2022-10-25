@@ -31,7 +31,7 @@ public class ChartService {
     }
 
 
-    public UserSummary GetUserSummary() {
+    public List<UserSummary>  GetUserSummary() {
         return chartRepository.GetUserSummary();
     }
 }

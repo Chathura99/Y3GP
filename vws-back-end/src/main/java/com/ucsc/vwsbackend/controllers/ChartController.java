@@ -37,7 +37,7 @@ public class ChartController {
     }
 
     @GetMapping("/getUserSummary")
-    public UserSummary GetUserSummary(){
+    public List<UserSummary> GetUserSummary(){
         return chartService.GetUserSummary();
     }
 }
