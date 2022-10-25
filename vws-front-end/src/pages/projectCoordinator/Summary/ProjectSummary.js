@@ -4,10 +4,15 @@ import Table from "../../../utilities/Table/Table";
 import { red } from "@mui/material/colors";
 // import EditProject from "./EditProject";
 import "./Summary.css";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+import { getOngoingProjects } from "../../../services/projectServices/projectService";
 
 export default function ProjectSummary() {
   useEffect(() => {
     checkValidate();
+    getOngoingProjectDetails();
+
   }, []);
 
   const checkValidate = async () => {
@@ -16,65 +21,18 @@ export default function ProjectSummary() {
       window.location.href = "/";
     }
   };
-  const [onGoingProjectData, setOnGoingProjectData] = useState([
-    {
-      projectId: "P001",
-      projectname: "Ganitha Saviya",
-      description: "asefbrhnkugh dffgd...",
-      ideaby: "Hazeen Ram",
-      date: "2020-10-21",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>
-      ),
-    },
-    {
-      projectId: "P002",
-      projectname: "Re-green Earth",
-      description: "weffgbg ghgukm...",
-      ideaby: "Chamath Shanuka",
-      date: "2019-12-01",
-      action: (
-        <button
-          type="button"
-          id="submit"
-          name="submit"
-          className="btn  mt-0"
-          style={{
-            backgroundColor: "#96BE25",
-            border: "none",
-            marginRight: "2px",
-          }}
-          // #96BE25,#BE4D25
-          // onClick={handleSubmit}
-        >
-          View
-        </button>
-      ),
-    },
-  ]);
 
-  const [onGoingProjectTableHead, setOnGoingProjectTableHead] = useState([
-    { id: "projectId", label: "PROJECT ID" },
-    { id: "projectname", label: "PROJECT NAME" },
-    { id: "description", label: "DESCRIPATION" },
-    { id: "ideaby", label: "IDEA BY" },
-    { id: "date", label: "Date" },
-    { id: "action", label: "ACTION" },
-  ]);
+  const getOngoingProjectDetails = async () => {
+    const res = await getOngoingProjects();
+    // console.log(res.data);
+    setOnGoingProjectData(res.data);
+  };
+
+  const [onGoingProjectData, setOnGoingProjectData] = useState([]);
+  const [projectData, setProjectData] = useState({});
+  const [selected, setSelected] = useState(false);
+  
+  
   const [lineChartData, setLineChartData] = useState([
     [
       "Month",
@@ -186,32 +144,56 @@ export default function ProjectSummary() {
                     </form>
 
                 </div>
-                <div className="row gutters " id="row" >
-                  <Table
-                    rows={onGoingProjectData}
-                    headCells={onGoingProjectTableHead}
+                <div id="eventleftside">
+                    <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
+                
 
+                        <div className="row gutters mt-3">
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div className="card h-100" id="contentcard">
+                                    <div className="card-body " >                          
+                                    <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Ongoing Projects"
+                    columns={[
+                      // { field: "projectId", title: "PROJECT ID" },
+                      {
+                        field: "name",
+                        title: "PROJECT NAME",
+                        minWidth: "150px",
+                      },
+                      {
+                        field: "description",
+                        title: "DESCRIPTION",
+                        minWidth: "200px",
+                      },
+                      { field: "firstName", title: "COORDINATOR" },
+                      
+                      {
+                        field: "startDate",
+                        title: "STARTED ON",
+                        minWidth: "150px",
+                      },
+                      
+                    ]}
+                    data={onGoingProjectData}
+                 
                   />
-                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                
               </div>
             </div>
           </div>
         </div>
-        {/* <EditProject /> */}
-                {/* <button
-                  type="button"
-                  class="btn"
-                  data-toggle="modal"
-                  data-target="#editproject"
-                  style={{
-                    backgroundColor: "#96BE25",
-                    border: "none",
-                    marginRight: 0,
-                  }}
-                >
-                  Edit
-                </button>
-                <br></br> */}
+        
       </div>
     </>
   );
