@@ -41,9 +41,9 @@ export default function CurrentUser() {
 
   const pieChartData = [
     ["User", "Count"],
-    ["Volunteer", 750],
-    ["Project Coordinator", 21],
-    ["Admin", 2],
+    // ["Volunteer", 750],
+    // ["Project Coordinator", 21],
+    // ["Admin", 2],
   ]
 
   const donutData = Object.values(donutChartData).map(
