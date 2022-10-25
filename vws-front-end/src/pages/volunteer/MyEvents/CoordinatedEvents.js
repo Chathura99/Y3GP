@@ -1,5 +1,5 @@
 import React, { useEffect,useState } from 'react';
-import PieChart from './../../../utilities/Charts/PieChart';
+import PieChart from '../../../utilities/Charts/PieChart';
 import EditCoordinatedForm from './EditCoordinatedForm';
 // for remove box shadow
 import { Paper } from "@material-ui/core";

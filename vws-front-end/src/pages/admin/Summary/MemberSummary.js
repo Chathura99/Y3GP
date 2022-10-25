@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useMemo } from "react";
-import { LineChart } from "./../../../utilities/Charts/LineChart";
+import { LineChart } from "../../../utilities/Charts/LineChart";
 import NewTable from "../../../utilities/Table/NewTable.js";
 import Table from "../../../utilities/Table/Table";
 import { red } from "@mui/material/colors";
