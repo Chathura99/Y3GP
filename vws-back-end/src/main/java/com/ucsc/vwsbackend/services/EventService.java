@@ -7,6 +7,7 @@ import com.ucsc.vwsbackend.entities.EventProgress;
 import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 @Service
@@ -79,5 +80,9 @@ public class EventService {
 
     public  List<EventDetail> getMyNewUpcomingEvents() {
         return eventJdbcRepository.getMyNewUpcomingEvents();
+    }
+
+    public long deleteCoordinatedEvents(@PathVariable Long id) {
+        return eventJdbcRepository.deleteCoordinatedEvents(id);
     }
 }

@@ -114,4 +114,9 @@ public class EventController {
     public List<EventDetail> getMyNewUpcomingEvents() {
         return eventService.getMyNewUpcomingEvents();
     }
+
+    @DeleteMapping("/deleteCoordinatedEvents/{id}")
+    public long deleteCoordinatedEvents(@PathVariable Long id) {
+        return eventService.deleteCoordinatedEvents(id);
+    }
 }

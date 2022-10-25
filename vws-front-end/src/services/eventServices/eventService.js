@@ -131,3 +131,14 @@ export const editMyCoordinatedEvents = (newEvent) => {
     });
   };
     
+  export const deleteCoordinatedEvents = (deleteevent) => {
+    return axios({
+      method: "DELETE",
+      url: `${USER_URL}/deleteCoordinatedEvents`,
+      headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data: deleteevent
+    });
+    
+  };
