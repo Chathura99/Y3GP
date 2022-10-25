@@ -42,7 +42,7 @@ export const editScholarship = (sch) => {
     console.log(sch)
     return axios({
       method: "POST",
-      url: `${USER_URL}/sendMeeting`,
+      url: `${USER_URL}/ApplyScholar`,
       headers: {
         Authorization: "Bearer " + getToken(),
       },

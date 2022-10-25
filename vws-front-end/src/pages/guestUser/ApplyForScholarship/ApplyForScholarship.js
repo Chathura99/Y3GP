@@ -21,7 +21,8 @@ export default function ApplyForScholarship() {
       status: 0,
       nic: "",
       info: "",
-      other: ""
+      other: "",
+      scholarshipType:"1"
     },
     []
   );
@@ -180,10 +181,10 @@ export default function ApplyForScholarship() {
                       <input
                         type="text"
                         className="form-control"
-                        id="school"
+                        id="universityCollege"
                         placeholder="Enter Your School/University"
-                        name="school"
-                        value={requestData.address}
+                        name="universityCollege"
+                        value={requestData.universityCollege}
                         onChange={handleChange}
                       />
                     </div>
@@ -193,13 +194,13 @@ export default function ApplyForScholarship() {
                     <div className="form-group">
                       <label for="nic">Select the scholarship type</label>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                        <input class="form-check-input" type="radio" name="scholarshipType" id="flexRadioDefault1" onChange={handleChange} value={requestData.scholarshipType} />
                         <label class="form-check-label" for="flexRadioDefault1">
                           O/L Passed (A/L Students)
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
+                        <input class="form-check-input" type="radio" name="scholarshipType" id="flexRadioDefault2" onChange={handleChange} value={requestData.scholarshipType} />
                         <label class="form-check-label" for="flexRadioDefault2">
                           A/L Passed (Undergraduates)
                         </label>

@@ -38,4 +38,29 @@ public class ScholarshipJdbcRepository {
         int rowsAffected = jdbc.update(update, namedParameters);
         return rowsAffected;
     }
+
+    public long ApplyScholar(Scholarship scholarship) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+//to event table
+        String query1 = "INSERT INTO scholarship " +
+                "( address,requested_date,district,email,nic,phone_number,scholarship_type,full_name,income_certificate,other,result_sheet,university_college,status) " +
+                "values (:address,curdate(), :district,:email,:nic,:phone_number,:scholarship_type,:full_name,:income_certificate,:other,:result_sheet,:university_college,:status)";
+        namedParameters.addValue("address", scholarship.getAddress());
+        namedParameters.addValue("district",scholarship.getDistrict() );
+        namedParameters.addValue("email", scholarship.getEmail());
+        namedParameters.addValue("phone_number",scholarship.getPhoneNumber() );
+        namedParameters.addValue("scholarship_type", scholarship.getScholarshipType());
+        namedParameters.addValue("full_name", scholarship.getFullName());
+        namedParameters.addValue("income_certificate",scholarship.getIncomeCertificate() );
+        namedParameters.addValue("other", scholarship.getOther());
+        namedParameters.addValue("nic", scholarship.getNic());
+        namedParameters.addValue("result_sheet",scholarship.getResultSheet());
+        namedParameters.addValue("university_college", scholarship.getUniversityCollege());
+        namedParameters.addValue("status",0 );
+
+
+        int rowsAffected1 = jdbc.update(query1, namedParameters);
+        return rowsAffected1;
+    }
 }

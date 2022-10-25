@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 "/api/v1/auth/login",
                                 "/api/v1/vws-home",
                         "/api/v1/signUp",
-                                "/api/v1/addFeedback","/api/v1/getOngoingProjects","/api/v1/makeGuestRequest"
+                                "/api/v1/addFeedback","/api/v1/getOngoingProjects","/api/v1/makeGuestRequest","/api/v1/ApplyScholar"
 
                         )
                         .permitAll()

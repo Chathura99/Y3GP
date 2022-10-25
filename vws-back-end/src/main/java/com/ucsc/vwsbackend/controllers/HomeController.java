@@ -34,7 +34,6 @@ public class HomeController  {
     }
 
 
-
 //    Chathura
     @GetMapping("/getFeedback")
     public List<GuestUserFeedback> getFeedback(){
@@ -56,6 +55,11 @@ public class HomeController  {
     @PutMapping("/sendMeeting")
     public long sendMeeting(@RequestBody Scholarship scholarship){
         return scholarshipService.sendMeeting(scholarship);
+    }
+
+    @PostMapping("/ApplyScholar")
+    public long ApplyScholar(@RequestBody Scholarship scholarship){
+        return scholarshipService.ApplyScholar(scholarship);
     }
 
 }
