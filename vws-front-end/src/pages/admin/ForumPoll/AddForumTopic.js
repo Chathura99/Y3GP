@@ -98,7 +98,7 @@ export default function AddForumTopic() {
                         type="text"
                         className="form-control"
                         id="proposedBy"
-                        placeholder="Ravindu Medagama"
+                        placeholder="Chathura Senevirathna"
                         value={forum.name}
                         name="firstName"
                         onChange={handleChange}

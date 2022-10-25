@@ -6,14 +6,46 @@ import { LineChart } from '../../../utilities/Charts/LineChart';
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 import { getCompletedEvents } from '../../../services/eventServices/eventService';
+import { getVolunteerCompletedEventSummary } from '../../../services/volunteerServices/ChartServices';
 
 export default function CompletedEvents() {
+
+  const [donutChartData, setDonutChartData] = useState([
+    ["place", "Count"],
+
+  ]);
 
   useEffect(() => {
     checkValidate();
     getCompletedEventDetails();
+    getComEventSummaryData();
 
   }, []);
+
+  const [volunteerCompletedEventSummaryData, setVolunteerCompletedEventSummaryData] = useState({});
+
+
+  const getComEventSummaryData = async () => {
+    const res = await getVolunteerCompletedEventSummary();
+    setVolunteerCompletedEventSummaryData(res.data);
+    console.log(...res.data);
+    Donut(res.data);
+     
+
+  };
+
+  const Donut = (data)=>{
+    Object.values(data).map(
+      (value) => (
+        donutChartData.push(
+          [
+            value.place,
+            value.count
+          ]
+        )
+      )
+    )
+  }
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -47,12 +79,7 @@ export default function CompletedEvents() {
     ["Jun", 200, 150],
   ]);
 
-  const [donutChartData, setDonutChartData] = useState([
-    ["Project", "Count"],
-    ["Ganitha Saviya", 11],
-    ["Re-Green Earth", 2],
-    
-  ]);
+ 
 
   return (
     <>

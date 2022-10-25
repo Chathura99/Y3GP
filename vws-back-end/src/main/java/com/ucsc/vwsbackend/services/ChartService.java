@@ -35,4 +35,8 @@ public class ChartService {
     public List<VolunteerProjectSummary> getVolunteerProjectSummary(){
         return  chartRepository.getVolunteerProjectSummary();
     }
+
+    public List<VolunteerProjectSummary> getVolunteerCompletedEventSummary(){
+        return  chartRepository.getVolunteerCompletedEventSummary();
+    }
 }
