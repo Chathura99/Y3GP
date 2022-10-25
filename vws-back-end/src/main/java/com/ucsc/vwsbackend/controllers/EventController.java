@@ -1,10 +1,7 @@
 package com.ucsc.vwsbackend.controllers;
 
 
-import com.ucsc.vwsbackend.dto.EventDetail;
-import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
-import com.ucsc.vwsbackend.dto.NewProjectDetail;
-import com.ucsc.vwsbackend.dto.ParticipateEvent;
+import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.entities.EventProgress;
@@ -109,4 +106,9 @@ public class EventController {
 //        int status = eventService.leaveEvent(volunteer_id);
 //        return status;
 //    }
+
+    @PostMapping("/makeGuestRequest")
+    public long makeGuestRequest(@RequestBody GuestUserRequest guestUserRequest){
+        return eventService.makeGuestRequest(guestUserRequest);
+    }
 }

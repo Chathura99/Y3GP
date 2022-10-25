@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.repository.EventDao;
 
 
 import com.ucsc.vwsbackend.dto.EventDetail;
+import com.ucsc.vwsbackend.dto.GuestUserRequest;
 import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
 import com.ucsc.vwsbackend.dto.ParticipateEvent;
 import com.ucsc.vwsbackend.entities.Announcement;
@@ -263,5 +264,47 @@ public class EventJdbcRepository {
         String query ="select * from event_progress where event_id=?";
         EventProgress eventProgress = (EventProgress) jdbcTemplate.queryForObject(query, new Object[]{id}, new BeanPropertyRowMapper(EventProgress.class));
         return eventProgress;
+    }
+
+    public long makeGuestRequest(GuestUserRequest guestUserRequest) {
+        System.out.println(guestUserRequest.getFirstName());
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+//to event table
+        String query1 = "INSERT INTO event " +
+                "( project_id,participated_volunteers_Count,place,start_date) " +
+                "values (:projectId,:noOfVolunteers , :place,:startDate)";
+//to guest data table
+        String query2 = "INSERT INTO guest_user_data " +
+                "(event_id,volunteer_id,status) " +
+                "values (:event_id, :volunteer_id,0,:place)";
+
+//        user_id	address	district	email	first_name	last_name	nic	other	phone_number	profession
+
+//        event_id end_date no_of_volunteers place start_date status project_id volunteer_id name coordinate event_coordinator_id description participated_volunteers_count user_id
+
+        namedParameters.addValue("firstName", guestUserRequest.getFirstName());
+        namedParameters.addValue("lastName", guestUserRequest.getLastName());
+        namedParameters.addValue("email", guestUserRequest.getEmail());
+        namedParameters.addValue("phoneNumber", guestUserRequest.getPhoneNumber());
+        namedParameters.addValue("address", guestUserRequest.getAddress());
+        namedParameters.addValue("district", guestUserRequest.getDistrict());
+        namedParameters.addValue("profession", guestUserRequest.getProfession());
+        namedParameters.addValue("nic", guestUserRequest.getNic());
+        namedParameters.addValue("noOfVolunteers", guestUserRequest.getNoOfVolunteers());
+        namedParameters.addValue("projectId", guestUserRequest.getProjectId());
+        namedParameters.addValue("startDate", guestUserRequest.getStartDate());
+        namedParameters.addValue("place", guestUserRequest.getPlace());
+
+
+        int rowsAffected1 = jdbc.update(query1 , namedParameters);
+//        int rowsAffected2 =jdbc.update(query2 , namedParameters);
+//        if(rowsAffected1+rowsAffected2 == 2){
+//            return rowsAffected1;
+//        }else{
+//            return 0;
+//        }
+        return 1;
+
     }
 }

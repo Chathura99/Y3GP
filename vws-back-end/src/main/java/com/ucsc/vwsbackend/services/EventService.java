@@ -76,4 +76,8 @@ public class EventService {
     public EventProgress getProgress(long id) {
         return eventJdbcRepository.getProgress(id);
     }
+
+    public long makeGuestRequest(GuestUserRequest guestUserRequest) {
+        return eventJdbcRepository.makeGuestRequest(guestUserRequest);
+    }
 }
