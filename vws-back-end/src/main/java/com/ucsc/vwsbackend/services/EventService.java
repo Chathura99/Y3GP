@@ -9,6 +9,7 @@ import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
 import com.ucsc.vwsbackend.repository.ProjectDao.ProjectJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 @Service
@@ -96,6 +97,12 @@ public class EventService {
     }
 
 
+    public long deleteCoordinatedEvents(@PathVariable Long id) {
+        return eventJdbcRepository.deleteCoordinatedEvents(id);
+    }
+
+
+
     public long updateCoordinatedEventStatus(long id) {
         return eventJdbcRepository.updateCoordinatedEventStatus(id);
     }
@@ -142,3 +149,4 @@ public class EventService {
 
 
 }
+} 
