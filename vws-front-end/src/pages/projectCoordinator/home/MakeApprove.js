@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { getVolunteer } from "../../../services/projectServices/projectService";
 import { editProject } from "../../../services/projectServices/projectService";
 import { updateCoordinatedEventStatus } from "../../../services/eventServices/eventService";
+import { updateCoordinatedEventStatusReject } from "../../../services/eventServices/eventService";
+
 // popups
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
@@ -20,6 +22,7 @@ export default function EditProject(props) {
   // close pop up modal
   const closePopUp = () => {
     setPopUp("");
+    window.location.href="/pchome"
   };
   // open confirmation pop up modal
   const confirm = (e) => {
@@ -40,6 +43,18 @@ const [selectedEventId, setSelectedEventId] = useState("");
       }
     });
   };
+
+    const handleSubmit1 = (e) => {
+      // evt.preventDefault();
+      console.log("reached!");
+      updateCoordinatedEventStatusReject(selectedEventId).then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage("reject success");
+          setPopUp("success");
+        }
+      });
+    };
 
   const handleChange = (e) => {
     e.persist();
@@ -194,8 +209,9 @@ const [selectedEventId, setSelectedEventId] = useState("");
                         title="Approve Request"
                         onClick={() => {
                         setSelectedEventId(selectedProject.eventId)
-                         console.log(selectedProject.eventId);
-                         setPopUp("confirm");
+                        console.log(selectedProject.eventId);
+                        setPopUp("confirm");
+                        setMessage("Approve Request")
                         }}
                       >
                         Approve
@@ -207,7 +223,12 @@ const [selectedEventId, setSelectedEventId] = useState("");
                       name="submit"
                       class="btn btn-primary btn-sm"
                       title="Reject Request"
-                      onClick={confirm}
+                      onClick={()=>{
+                      setSelectedEventId(selectedProject.eventId)
+                      setPopUp("confirmReject");
+                                              setMessage("Reject Request")
+
+                      }}
                     >
                       Reject
                     </button>
@@ -232,6 +253,13 @@ const [selectedEventId, setSelectedEventId] = useState("");
           handleSubmit={handleSubmit}
         />
       )}
+      {popup === "confirmReject" && (
+              <ConfirmPopUp
+                message={message}
+                closePopUp={closePopUp}
+                handleSubmit={handleSubmit1}
+              />
+            )}
     </div>
   );
 }

@@ -106,6 +106,11 @@ public class EventController {
         return eventService.updateCoordinatedEventStatus(id);
     }
 
+    @PutMapping("/updateCoordinatedEventStatusReject/{id}")
+    public long updateCoordinatedEventStatusReject(@PathVariable(value = "id") long id){
+        return eventService.updateCoordinatedEventStatusReject(id);
+    }
+
     @PutMapping("/editEvent")
     public long editEvent(@RequestBody ProjectDetail projectDetail) {
         return eventService.editEvent(projectDetail);

@@ -4,6 +4,7 @@ import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.entities.ProjectCoordinator;
 import com.ucsc.vwsbackend.repository.EventDao.EventJdbcRepository;
+import com.ucsc.vwsbackend.repository.ProjectDao.ProjectJdbcRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,9 @@ public class EventService {
 
     @Autowired
     EventJdbcRepository eventJdbcRepository;
+
+    @Autowired
+    ProjectJdbcRepository projectJdbcRepository;
 
 
 
@@ -78,6 +82,10 @@ public class EventService {
 
     public long updateCoordinatedEventStatus(long id) {
         return eventJdbcRepository.updateCoordinatedEventStatus(id);
+    }
+
+    public long updateCoordinatedEventStatusReject(long id) {
+        return eventJdbcRepository.updateCoordinatedEventStatusReject(id);
     }
 
     public long editEvent(ProjectDetail projectDetail) {

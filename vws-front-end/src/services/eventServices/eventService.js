@@ -103,6 +103,17 @@ export const updateCoordinatedEventStatus = (id) => {
         });
       };
 
+      export const updateCoordinatedEventStatusReject = (id) => {
+              console.log("das")
+              return axios({
+                method: "PUT",
+                url: `${USER_URL}/updateCoordinatedEventStatusReject/${id}`,
+                headers: {
+                  Authorization: "Bearer " + getToken(),
+                },
+              });
+            };
+
 export const editEvent = (pro) => {
   return axios({
     method: "PUT",

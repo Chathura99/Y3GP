@@ -246,7 +246,7 @@ public List<EventDetail> getJoinRequest() {
                     "FROM event as e " +
                     "INNER JOIN project as pc ON e.project_id = pc.project_id " +
                     "INNER JOIN volunteer as v ON v.volunteer_id = e.volunteer_id " +
-                    "WHERE pc.project_id = '2'";
+                    "WHERE pc.project_id = '2' && e.status = '0'";
     List<EventDetail> eventrequests = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
     System.out.println("vgfgh"+eventrequests.get(0).getName());
     return eventrequests;
@@ -257,6 +257,19 @@ public List<EventDetail> getJoinRequest() {
                 new MapSqlParameterSource();
         String update = "UPDATE event " +
                 "SET status = 1 WHERE event_id = :eventId;";
+
+        namedParameters.addValue("eventId", eventId);
+
+
+        int rowsAffected = jdbc.update(update, namedParameters);
+        return rowsAffected;
+    }
+
+    public int updateCoordinatedEventStatusReject(long eventId){
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE event " +
+                "SET status = 2 WHERE event_id = :eventId;";
 
         namedParameters.addValue("eventId", eventId);
 
