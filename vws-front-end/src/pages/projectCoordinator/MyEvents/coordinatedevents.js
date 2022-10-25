@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import NewTable from '../../../utilities/Table/NewTable';
-import PieChart from './../../../utilities/Charts/PieChart';
+import PieChart from '../../../utilities/Charts/PieChart';
 import PopUpEdit from './popupedit';
 import { useMemo } from 'react';
 

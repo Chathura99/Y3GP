@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import NewTable from './../../../utilities/Table/NewTable';
+import NewTable from '../../../utilities/Table/NewTable';
 import Table from "../../../utilities/Table/Table";
 import DonutChart from "../../../utilities/Charts/DonutChart";
 import PieChart from "../../../utilities/Charts/PieChart";

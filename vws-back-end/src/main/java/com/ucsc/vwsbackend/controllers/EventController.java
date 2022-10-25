@@ -7,6 +7,7 @@ import com.ucsc.vwsbackend.dto.NewProjectDetail;
 import com.ucsc.vwsbackend.dto.ParticipateEvent;
 import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Event;
+import com.ucsc.vwsbackend.entities.EventProgress;
 import com.ucsc.vwsbackend.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,11 @@ public class EventController {
     @GetMapping("/getPreviousEvents")
     public List<EventDetail> getPreviousEvents() {
         return eventService.getPreviousEvents();
+    }
+
+    @GetMapping("/getProgress/{id}")
+    public EventProgress getProgress(@PathVariable(value = "id") long id) {
+        return eventService.getProgress(id);
     }
 
 
@@ -63,16 +69,11 @@ public class EventController {
         return eventService.getApprovedCoordinatedEvents();
     }
 
-    @PutMapping("/editMyCoordinatedEvents")
-//    {
-//            "annId": 6,
-//            "title": "Update Announcement 1",
-//            "content": "content",
-//            "category": "guest",
-//            "date": "2022-07-09T06:40:00.000+00:00"
-//    }
-    public long editMyCoordinatedEvents(@RequestBody Event event){
-        return eventService.editMyCoordinatedEvents(event);
+
+
+    @PostMapping("/editMyCoordinatedEvents")
+    public long editMyCoordinatedEvents(@RequestBody EventDetail eventDetail){
+        return eventService.editMyCoordinatedEvents(eventDetail);
     }
 
     @PutMapping("/updateCoordinatedEventStatus")

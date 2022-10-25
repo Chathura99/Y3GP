@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import DonutChart from "../../../utilities/Charts/DonutChart";
-import { LineChart } from './../../../utilities/Charts/LineChart';
+import { LineChart } from '../../../utilities/Charts/LineChart';
 
 // for remove box shadow
 import { Paper } from "@material-ui/core";

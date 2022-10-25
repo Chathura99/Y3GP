@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getProgressData } from "../../../services/eventServices/eventService";
 
 export default function AddEventProgress(props) {
-  const [eventProgressData, setEventProgressData] = useState(props.eventProgressData);
+  const [eventProgressData, setEventProgressData] = useState(
+    props.eventProgressData
+  );
   console.log(eventProgressData);
+
+  const [progress, setProgress] = useState({});
+
+  useEffect(() => {
+    checkValidate();
+    getProgress();
+  }, []);
+
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
+
+  const getProgress = async () => {
+    const res = await getProgressData(eventProgressData.eventId);
+    setProgress(res.data);
+  };
+  console.log(progress);
+
   return (
     <div>
       <div
@@ -35,7 +59,7 @@ export default function AddEventProgress(props) {
             <div class="modal-body">
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Coordinator : {eventProgressData.name}</small>
+                  <small>Coordinator : {eventProgressData.name} </small>
                   <br></br>
                   <small>Phone : {eventProgressData.phoneNumber}</small>
                 </div>
@@ -44,76 +68,10 @@ export default function AddEventProgress(props) {
                   <br />
                   <small>End Date : {eventProgressData.endDate} </small>
                   <br />
-                  <small>Status : </small>
+                  <small>Status : {progress.status}</small>
                 </div>
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group ">
-                    <label for="progress" id="formLabel">
-                      Progress
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="progress1"
-                      name="progress1"
-                      value="img 1"
-                      //   onChange={handleChange}
-                      disabled
-                    />
-                  </div>
-                  <div className="form-group ">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="progress2"
-                      name="progress2"
-                      value="img 2"
-                      //   onChange={handleChange}
-                      disabled
-                    />
-                  </div>
-                  <div className="form-group ">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="progress3"
-                      name="progress3"
-                      value="img 3"
-                      //   onChange={handleChange}
-                      disabled
-                    />
-                  </div>
-                  <div className="form-group ">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="progress4"
-                      name="progress4"
-                      value="img 4"
-                      //   onChange={handleChange}
-                      disabled
-                    />
-                  </div>
-                </div>
-
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group">
-                    <label for="description" id="formLabel">
-                      Description
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="description"
-                      name="description"
-                      value="
-                      Get from progress query!
-                      "
-                      //   onChange={handleChange}
-                      disabled
-                    />
-                  </div>
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="form-group">
                       <label
@@ -153,7 +111,6 @@ export default function AddEventProgress(props) {
                           id="qualifications"
                           for="flexCheckChecked"
                           style={{ color: "black" }}
-
                         >
                           criteria 2
                         </label>
@@ -170,7 +127,6 @@ export default function AddEventProgress(props) {
                           id="qualifications"
                           for="flexCheckChecked"
                           style={{ color: "black" }}
-
                         >
                           criteria 3{" "}
                         </label>
@@ -187,7 +143,6 @@ export default function AddEventProgress(props) {
                           id="qualifications"
                           for="flexCheckChecked"
                           style={{ color: "black" }}
-
                         >
                           criteria 4{" "}
                         </label>
@@ -204,11 +159,34 @@ export default function AddEventProgress(props) {
                           id="qualifications"
                           for="flexCheckChecked"
                           style={{ color: "black" }}
-
                         >
                           criteria 5{" "}
                         </label>
                       </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        style={{ width: "100px", padding: "4px" }}
+                        src="https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/88148396_2835630146473168_7460508207769714688_n.jpg?stp=dst-jpg_p296x100&_nc_cat=106&ccb=1-7&_nc_sid=0debeb&_nc_ohc=XkShSIFW0uUAX8n35nx&_nc_oc=AQm6qMttBhOG0Aj_ckyZ9NRpmAXPl6c8DSlzAMOKKEVxRugb1INRXhYdQxaSUvGEePpBxRnyZhN8whSD5AXqqQHE&_nc_ht=scontent.fcmb1-2.fna&oh=00_AT8r2xfWborJZ6hj_dzMQSl0VxCJD-rtoLzw9nepTezZHQ&oe=637C4DD4"
+                      />
+                      <img
+                        style={{ width: "100px", padding: "4px" }}
+                        src="https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/88148396_2835630146473168_7460508207769714688_n.jpg?stp=dst-jpg_p296x100&_nc_cat=106&ccb=1-7&_nc_sid=0debeb&_nc_ohc=XkShSIFW0uUAX8n35nx&_nc_oc=AQm6qMttBhOG0Aj_ckyZ9NRpmAXPl6c8DSlzAMOKKEVxRugb1INRXhYdQxaSUvGEePpBxRnyZhN8whSD5AXqqQHE&_nc_ht=scontent.fcmb1-2.fna&oh=00_AT8r2xfWborJZ6hj_dzMQSl0VxCJD-rtoLzw9nepTezZHQ&oe=637C4DD4"
+                      />
+                    </div>
+                    <div class="col">
+                      <img
+                        style={{ width: "100px", padding: "4px" }}
+                        src="https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/88148396_2835630146473168_7460508207769714688_n.jpg?stp=dst-jpg_p296x100&_nc_cat=106&ccb=1-7&_nc_sid=0debeb&_nc_ohc=XkShSIFW0uUAX8n35nx&_nc_oc=AQm6qMttBhOG0Aj_ckyZ9NRpmAXPl6c8DSlzAMOKKEVxRugb1INRXhYdQxaSUvGEePpBxRnyZhN8whSD5AXqqQHE&_nc_ht=scontent.fcmb1-2.fna&oh=00_AT8r2xfWborJZ6hj_dzMQSl0VxCJD-rtoLzw9nepTezZHQ&oe=637C4DD4"
+                      />
+                      <img
+                        style={{ width: "100px", padding: "4px" }}
+                        src="https://scontent.fcmb1-2.fna.fbcdn.net/v/t1.6435-9/88148396_2835630146473168_7460508207769714688_n.jpg?stp=dst-jpg_p296x100&_nc_cat=106&ccb=1-7&_nc_sid=0debeb&_nc_ohc=XkShSIFW0uUAX8n35nx&_nc_oc=AQm6qMttBhOG0Aj_ckyZ9NRpmAXPl6c8DSlzAMOKKEVxRugb1INRXhYdQxaSUvGEePpBxRnyZhN8whSD5AXqqQHE&_nc_ht=scontent.fcmb1-2.fna&oh=00_AT8r2xfWborJZ6hj_dzMQSl0VxCJD-rtoLzw9nepTezZHQ&oe=637C4DD4"
+                      />
                     </div>
                   </div>
                 </div>
@@ -233,7 +211,7 @@ export default function AddEventProgress(props) {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group">
                     <label for="numberOfMembers" id="formLabel">
-                      Number Of Members
+                      Number Of Participations
                     </label>
                     <input
                       type="text"
@@ -250,17 +228,18 @@ export default function AddEventProgress(props) {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group">
                     <label for="district" id="formLabel">
-                      District
+                      Description :<p>{progress.description}</p>
                     </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="district"
-                      name="district"
-                      value={eventProgressData.place}
-                      //   onChange={handleChange}
-                      disabled
-                    />
+                  </div>
+                </div>
+
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div className="form-group">
+                    <label for="district" id="formLabel">
+                      Summary :
+                    </label>
+                    <p>Actual participations : 50%</p>
+                    <p>Actual date : 100%</p>
                   </div>
                 </div>
               </div>

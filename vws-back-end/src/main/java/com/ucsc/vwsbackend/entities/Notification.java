@@ -27,6 +27,13 @@ public class Notification {
     @Column(name = "heading")
     private String heading;
 
+    @Column(name = "status")
+    private Integer status;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    User user;
+
     public Long getNotificationId() {
         return notificationId;
     }
@@ -52,12 +59,7 @@ public class Notification {
         return user;
     }
 
-    @Column(name = "status")
-    private Integer status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    User user;
 
     public void setNotificationId(Long notificationId) {
         this.notificationId = notificationId;

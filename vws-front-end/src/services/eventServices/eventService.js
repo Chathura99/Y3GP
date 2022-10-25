@@ -76,4 +76,31 @@ export const getPreviousEvents = () => {
       data: newEvent
     
     });
-  }
+  };
+
+
+  
+
+  
+  export const getProgressData = (id) => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getProgress/${id}`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+
+    });
+  };
+
+export const editMyCoordinatedEvents = (newEvent) => {
+    return axios({
+      method: "POST",
+      url: `${USER_URL}/editMyCoordinatedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data : newEvent
+      });
+  }; 
+    

@@ -1,7 +1,6 @@
 package com.ucsc.vwsbackend.services;
 
-import com.ucsc.vwsbackend.dto.ForumInfo;
-import com.ucsc.vwsbackend.dto.ProjectDetail;
+import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementJdbcRepository;
 import com.ucsc.vwsbackend.repository.announcementDao.AnnouncementRepository;
 import com.ucsc.vwsbackend.repository.forumDao.ForumJdbcRepository;
@@ -19,5 +18,17 @@ public class ForumService {
 
     public List<ForumInfo> getForumInfo() {
         return forumJdbcRepository.getForumInfo();
+    }
+
+    public List<ForumWithDiscussionTopic> getViewForumInfo() {
+        return forumJdbcRepository.getViewForumInfo();
+    }
+
+    public List<DiscssionTopicWithReply> getReplyToForum() {
+        return forumJdbcRepository.getReplyToForum();
+    }
+
+    public long addNewForum(ForumInfo forumInfo){
+        return forumJdbcRepository.addNewForum(forumInfo);
     }
 }

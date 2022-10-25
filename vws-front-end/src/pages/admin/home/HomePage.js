@@ -30,16 +30,14 @@ export default function HomePage() {
     ["Re-green Earth", 2],
   ]);
 
+ 
+
   const [joinRequestsData, setJoinRequestsData] = useState([]);
   const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
 
   const [donutChartData, setDonutChartData] = useState([
-    ["Project", "Count"],
-    ["Ganitha Saviya", 11],
-    ["Re-Green Earth", 2],
-    ["Lohithuppada", 2],
-    ["Scholarship", 2],
-    ["Sarasavi Piya", 7],
+    ["name", "Count"],
+
   ]);
 
   useEffect(() => {
@@ -48,6 +46,7 @@ export default function HomePage() {
     upcomingEvent();
     getCardSummary();
     getProjectSummaryData();
+
   }, []);
 
   const getRequest = async () => {
@@ -75,7 +74,22 @@ export default function HomePage() {
     const res = await getProjectSummary();
     setProjectSummaryData(res.data);
     console.log(...res.data);
+    Donut(res.data);
+     
   };
+  // check push
+  const Donut = (data)=>{
+    Object.values(data).map(
+      (value) => (
+        donutChartData.push(
+          [
+            value.name,
+            value.count
+          ]
+        )
+      )
+    )
+  }
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -245,7 +259,7 @@ export default function HomePage() {
                 </div>
                 <div className="row gutters ">
                   <DonutChart data={donutChartData} />
-                  Project Occuring details . . .
+                  Event Occuring details for all current projects
                 </div>
               </div>
             </div>

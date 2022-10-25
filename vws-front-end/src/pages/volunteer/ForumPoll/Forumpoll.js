@@ -4,13 +4,18 @@ import "../../admin/ForumPoll/Forum.css";
 import NewTable from "../../../utilities/Table/NewTable.js";
 // import AddForumTopic from "./AddForumTopic";
 import { Link } from "react-router-dom";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
 // import AddNewPoll from "./AddNewPoll";
+import { getForumInfo } from "../../../services/forumServices/forumService";
 
 export default function Forum() {
   
 
   useEffect(() => {
     checkValidate();
+    getForumDetails();
+
   }, []);
 
   const checkValidate = async () => {
@@ -19,53 +24,19 @@ export default function Forum() {
       window.location.href = "/";
     }
   };
-  const [ProjectsData, setProjectsData] = useState([
-    {
-      topic: "Blood Donation",
-      last_update: "2022 07 12",
-      replies: "05",
-            
-            
-            
-      read: (
-        <Link to="/adminviewforum" className="sign-up">
-              <button
-                type="button"
-                id="submit"
-                name="submit"
-                className="btn p-1"
-                data-toggle="modal"
-                data-target="#CoordinateEventForm"
-                style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-                // #96BE25,#BE4D25
-                // onClick={handleSubmit}
-              >
-                
-                    <b>Read</b>
-                  
-              </button>
-              </Link>
-            ),
-            
-          },
-          
-  ]);
+  const getForumDetails = async () => {
+    const res = await getForumInfo();
+    console.log(res.data);
+    setForumData(res.data);
+  };
 
-const data = useMemo(
-() => ProjectsData  )
+  const [ForumData, setForumData] = useState([]);
+  const [viewForumData, setViewForumData] = useState({});
 
-  const ProjectsHeadings=useMemo(
-    () => [
-     
-      { accessor: "topic", Header: "TOPIC" },
-      { accessor: "last_update", Header: "LAST UPDATE" },
-      { accessor: "replies", Header: "REPLIES" },
-      { accessor: "read", Header: "ACTION" },
-      
-      
-    ],
-    []
-  )
+  const [selected, setSelected] = useState(false);
+  const [selectedForum, setSelectedForum] = useState({});
+
+  
 // poll data
 
   return (
@@ -83,8 +54,73 @@ const data = useMemo(
                                 
                                   {/* <button id='forumbtn' data-toggle="modal" data-target="#AddForumTopic">Add New Forum Topic </button>
                                   <AddForumTopic/> */}
-                                
-                                  <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                <br></br><MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="All Forums"
+                    columns={[
+                      {
+                        field: "title",
+                        title: "Topic",
+                        
+                      },
+                      {
+                        field: "name",
+                        title: "Created By",
+                      },
+                      { field: "startDate", title: "Started Date", minWidth: "150px" },
+                      
+                      {
+                        field: "replies",
+                        title: "Replies",
+                        
+                      },
+                      
+                      
+                    ]}
+                    data={ForumData}
+                    actions={[
+                      {
+                        
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              data-toggle="modal"
+                              // data-target="#CoordinateEventForm"
+                              style={{
+                                backgroundColor: "#2596BE",
+                                width: "6rem",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              Read
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          setForumData(rowData);
+                          setSelected(true);
+                          window.location.href = "/adminviewforum";
+                          console.log("selected!");
+                        },
+                        // tooltip: "View Location",
+                      },
+
+                      
+                      
+                    ]}
+
+                    
+
+                    
+
+                    
+                  />
                                 
                                   
                                 

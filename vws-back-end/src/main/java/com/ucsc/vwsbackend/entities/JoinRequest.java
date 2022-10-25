@@ -41,6 +41,13 @@ public class JoinRequest {
     @Column(name = " district")
     private String  district;
 
+    @Column(name = " protential")
+    private String  protential;
+
+    @Column(name = " qualification")
+    private String  qualification;
+
+
     @Column(name = "requested_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @CreationTimestamp
@@ -139,5 +146,21 @@ public class JoinRequest {
 
     public void setNic(String nic) {
         this.nic = nic;
+    }
+
+    public String getProtential() {
+        return protential;
+    }
+
+    public void setProtential(String protential) {
+        this.protential = protential;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
     }
 }

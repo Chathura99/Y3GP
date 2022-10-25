@@ -1,7 +1,57 @@
 import { red } from "@material-ui/core/colors";
-import React from "react";
+import React, { useState } from "react";
+import { addNewPoll } from "../../../services/pollServices/pollService";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 
 export default function AddNewPoll() {
+  const [poll, setPoll] = useState({
+    title: "",
+    description: "",
+    option1: "",
+    option2: "",
+    endDate: "",
+    
+    
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setPoll((poll) => ({
+      ...poll,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+
+ const closePopUp = () => {
+    setPopUp("");
+  };
+
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Add New Poll !");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addNewPoll(poll)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
+
   return (
     <div>
       {/* <button
@@ -37,7 +87,7 @@ export default function AddNewPoll() {
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""} style={{marginTop:0}}>
+            <form onSubmit={confirm}>
                 <div className="row gutters ">
                   
 
@@ -48,9 +98,10 @@ export default function AddNewPoll() {
                         type="text"
                         className="form-control"
                         id="proposedBy"
-                        placeholder="Ravindu Medagama"
+                        placeholder="Chathura Senevirathna"
                         // value={profile.firstName}
                         name="firstName"
+                        disabled
                         // onChange={handleChange}
                       />
                     </div>
@@ -58,38 +109,51 @@ export default function AddNewPoll() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Starts On</label>
+                      <label for="startDate">Starts On</label>
                       <input
                         type="date"
                         className="form-control"
-                        id="date"
+                        id="startDate"
+
                         
-                        // value={profile.email}
-                        name="email"
-                        // onChange={handleChange}
+                        value={poll.startDate}
+                        name="startDate"
+                        onChange={handleChange}
+
+                        disabled
                       />
                     </div>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Title</label>
+                      <label for="title">Title</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="ProjectName"
-                        placeholder="Enter project name"
+                        id="title"
+                        name="title"
+                        value={poll.title}
+
+                        placeholder="Enter Poll Title"
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Ends On</label>
+                      <label for="endDate">Ends On</label>
                       <input
                         type="date"
+                        name="endDate"
+                        value={poll.endDate}
+
                         className="form-control"
-                        id="date"
+                        id="endDate"
+                        onChange={handleChange}
+
                         
                       />
                     </div>
@@ -97,13 +161,18 @@ export default function AddNewPoll() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" >
                     <div className="form-group" style={{ width:460}}>
-                      <label for="phone">Description</label>
+                      <label for="description">Description</label>
                       <input
                         type="text"
                         className="form-control"
                         id="description"
+                        value={poll.description}
+                        name="description"
+
                         placeholder="Content"
                         style={{height: 80 }}
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div> 
@@ -124,24 +193,35 @@ export default function AddNewPoll() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"  style={{ float: "left"}}>
                     <div className="form-group">
-                      <label for="website">Option 1</label>
+                      <label for="option1">Option 1</label>
                       <input
-                        type="url"
+                        type="text"
                         className="form-control"
                         id="option1"
+                        name="option1"
+                        value={poll.option1}
+
+
                         placeholder="Enter option 1"
+                        onChange={handleChange}
+
                         
                       />
                     </div>
                   </div>
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" style={{ float: "right"}} >
                     <div className="form-group">
-                      <label for="website">Option 2</label>
+                      <label for="option2">Option 2</label>
                       <input
-                        type="url"
+                        type="text"
                         className="form-control"
-                        id="Option 2"
+                        id="Option2"
+                        name="option2"
+                        value={poll.option2}
+
                         placeholder="Enter option 2"
+                        onChange={handleChange}
+
                         
                       />
                     </div>
@@ -156,9 +236,7 @@ export default function AddNewPoll() {
                       <div class="modal-footer justify-content-center " >
                         <button
                           type="button"
-                          id="submit"
                           
-                          name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
                           
@@ -166,7 +244,7 @@ export default function AddNewPoll() {
                           Cancel
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                       
                           name="submit"
@@ -184,6 +262,19 @@ export default function AddNewPoll() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

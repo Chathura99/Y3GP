@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PieChart from "../../../utilities/Charts/PieChart";
-import { LineChart } from "./../../../utilities/Charts/LineChart";
+import { LineChart } from "../../../utilities/Charts/LineChart";
 import NewTable from "../../../utilities/Table/NewTable";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
@@ -136,7 +136,7 @@ export default function CurrentUser() {
                     },
                     { field: "phoneNumber", title: "PHONE" },
                     {
-                      field: "createdAt",
+                      field: "createdOn",
                       title: "JOIN DATE",
                       minWidth: "120px",
                     },

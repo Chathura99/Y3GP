@@ -266,7 +266,7 @@ export default function Sidebar(page) {
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/notification" className="nav-link">
+                    <Link to="/volunteernotification" className="nav-link">
                       <div
                         className={linkdark === 1 ? "linkdark" : ""}
                         onClick={() => {

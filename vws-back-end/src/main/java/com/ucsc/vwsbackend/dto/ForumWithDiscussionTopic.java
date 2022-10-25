@@ -8,6 +8,25 @@ public class ForumWithDiscussionTopic {
     private String topicDescription;
     private String createdBy;
     private Date startedDate;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getReplies() {
+        return replies;
+    }
+
+    public void setReplies(String replies) {
+        this.replies = replies;
+    }
+
+    private String replies;
 
     public long getTopicId() {
         return topicId;

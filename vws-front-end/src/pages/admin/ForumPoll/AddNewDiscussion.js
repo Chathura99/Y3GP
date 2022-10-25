@@ -48,10 +48,11 @@ export default function AddNewDiscussion() {
                         type="text"
                         className="form-control"
                         id="proposedBy"
-                        placeholder="Ravindu Medagama"
+                        placeholder="Chathura Senevirathna"
                         // value={profile.firstName}
                         name="firstName"
                         // onChange={handleChange}
+                        disabled
                       />
                     </div>
                   </div>
@@ -78,7 +79,7 @@ export default function AddNewDiscussion() {
                         type="text"
                         className="form-control"
                         id="ProjectName"
-                        placeholder="Enter project name"
+                        placeholder="Enter new topic"
                       />
                     </div>
                   </div>
