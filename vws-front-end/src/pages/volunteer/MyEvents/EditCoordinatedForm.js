@@ -11,11 +11,13 @@ import ImageUploadComponent from "./ImageUploadComponent";
 export default function EditCoordinatedForm(props) {
 
   const [eventData, setEventData] = useState(props.eventData);
-  // console.log(eventData);
+  console.log(eventData.eventId+"jnvjnn");
 
   const [newEvent, setNewEvent] = useState({
     description: "",
     participatedVolunteersCount: "",
+    eventId:eventData.eventId,
+    actualDays: ""
     
 
   });
@@ -125,7 +127,8 @@ export default function EditCoordinatedForm(props) {
                 <label for="location" id="formLabel">
                       Upload Images
                     </label>
-                  <div class="row">
+                    <ImageUploadComponent />
+                  {/* <div class="row">
                     <div class="col">
                       <img
                         style={{ width: "100px", padding: "4px",border: '0.5px solid black' }}
@@ -146,7 +149,7 @@ export default function EditCoordinatedForm(props) {
                         src="https://static.vecteezy.com/system/resources/thumbnails/004/640/699/small/circle-upload-icon-button-isolated-on-white-background-vector.jpg"
                       />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
 {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group ">
@@ -277,7 +280,22 @@ export default function EditCoordinatedForm(props) {
                     </div>
                   </div>
 
-                  
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="eMail">Location</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="location"
+                        // placeholder="Enter location"
+                        // value={profile.email}
+                        value={eventData.place}
+                        name="location"
+                        // onChange={handleChange}
+                        disabled
+                      />
+                    </div>
+                  </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -294,6 +312,8 @@ export default function EditCoordinatedForm(props) {
                       />
                     </div>
                   </div>
+
+                  
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -312,17 +332,16 @@ export default function EditCoordinatedForm(props) {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">Location</label>
+                      <label for="actualDays">Actual number of days to complete</label>
                       <input
-                        type="text"
+                        type="number"
                         className="form-control"
-                        id="location"
-                        // placeholder="Enter location"
-                        // value={profile.email}
-                        value={eventData.place}
-                        name="location"
-                        // onChange={handleChange}
-                        disabled
+                        id="actualDays"
+                        placeholder="Enter Actual No.of Days"
+                        value={newEvent.actualDays}
+                        name="actualDays"
+                        onChange={handleChange}
+                        // disabled
                       />
                     </div>
                   </div>

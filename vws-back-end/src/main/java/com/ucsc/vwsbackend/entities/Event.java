@@ -49,6 +49,41 @@ public class Event {
     @Column(name = "participated_volunteers_Count")
     private Integer participatedVolunteersCount;
 
+    @Column(name = "actual_days")
+    private Integer actualDays;
+
+    public Integer getActualDays() {
+        return actualDays;
+    }
+
+    public void setActualDays(Integer actualDays) {
+        this.actualDays = actualDays;
+    }
+
+    public String getCriteria1() {
+        return criteria1;
+    }
+
+    public void setCriteria1(String criteria1) {
+        this.criteria1 = criteria1;
+    }
+
+    public String getCriteria2() {
+        return criteria2;
+    }
+
+    public void setCriteria2(String criteria2) {
+        this.criteria2 = criteria2;
+    }
+
+    public String getCriteria3() {
+        return criteria3;
+    }
+
+    public void setCriteria3(String criteria3) {
+        this.criteria3 = criteria3;
+    }
+
     @Column(name = "start_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date startDate;
@@ -65,6 +100,17 @@ public class Event {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "criteria1")
+    private String criteria1;
+
+    @Column(name = "criteria2")
+    private String criteria2;
+
+    @Column(name = "criteria3")
+    private String criteria3;
+
+
 
     public void setVolunteer(Volunteer volunteer) {
         this.volunteer = volunteer;

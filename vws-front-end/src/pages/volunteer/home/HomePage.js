@@ -9,17 +9,12 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 import { getAnnouncement } from '../../../services/announcementServices/announcementServices';
 import { getUpcomingEvents } from '../../../services/eventServices/eventService';
-import { getVolunteerHomeSummary } from '../../../services/volunteerServices/ChartServices';
+import { getVolunteerHomeSummary, getVolunteerProjectSummary } from '../../../services/volunteerServices/ChartServices';
 
 
 export default function HomePage() {
   
-  const [donutChartData, setDonutChartData] = useState([
-    ["Project", "Count"],
-    ["Ganitha Saviya", 5],
-    ["Re-Green Earth", 5],
-    
-  ]);
+  
 
   const [pieChartData, setPieChartData] = useState([
     ["Task", "votes"],
@@ -27,12 +22,46 @@ export default function HomePage() {
     ["Re-green Earth", 40],
   ]);
 
+  const donutChartData = [
+    ["name", "Count"],
+
+  ];
+  const DonutData =
+
   useEffect(() => {
     checkValidate();
     readAnnouncement();
     upcomingEvent();
     getCardSummary();
+    getProjectSummaryData();
 }, []);
+
+const [volunteerProjectSummaryData, setVolunteerProjectSummaryData] = useState({});
+
+  const getProjectSummaryData = async () => {
+    const res = await getVolunteerProjectSummary();
+    setDonuttChartData([...res.data]);
+    console.log(...res.data);
+    // Donut(res.data);
+     
+
+  };
+
+  const [donuttChartData, setDonuttChartData] = useState({});
+
+
+  const Donut = 
+    Object.values(donuttChartData).map(
+      (value) => (
+        donutChartData.push(
+          [
+            value.name,
+            value.count
+          ]
+        )
+      )
+    )
+  
 
 const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");

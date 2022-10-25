@@ -83,4 +83,11 @@ public class ChartRepository {
         List<VolunteerProjectSummary> summary = jdbc.query(sql, new BeanPropertyRowMapper<VolunteerProjectSummary>(VolunteerProjectSummary.class));
         return summary;
     }
+
+    public List<VolunteerProjectSummary> getVolunteerCompletedEventSummary(){
+        String sql ="SELECT count(*) as count,e.place FROM event as e INNER JOIN participate_event as pe ON e.volunteer_id=pe.volunteer_id " +
+                "WHERE e.volunteer_id=1 AND e.end_date<curdate() AND e.status=1 GROUP BY e.event_id;";
+        List<VolunteerProjectSummary> summary = jdbc.query(sql, new BeanPropertyRowMapper<VolunteerProjectSummary>(VolunteerProjectSummary.class));
+        return summary;
+    }
 }
