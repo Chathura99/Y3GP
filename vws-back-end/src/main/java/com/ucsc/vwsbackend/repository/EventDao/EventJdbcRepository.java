@@ -45,7 +45,7 @@ public class EventJdbcRepository {
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.start_date< CURDATE() and e.end_date< CURDATE() ";
+                "where e.end_date< CURDATE() and e.status=1";
 
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
@@ -101,12 +101,23 @@ public class EventJdbcRepository {
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.status=0";
+                "where e.status=0 and v.volunteer_id=1";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
     }
 
+    public long deleteCoordinatedEvents(Long id) {
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+        namedParameters.addValue("id", id);
+
+        String query = "Delete FROM event where event = :id;";
+
+
+
+        return jdbc.update(query, namedParameters);
+
+    }
 
     // view approved coordinated events
     public List<EventDetail> getApprovedCoordinatedEvents() {
@@ -144,7 +155,7 @@ public class EventJdbcRepository {
                 "INNER JOIN participate_event as pe ON pe.volunteer_id=e.volunteer_id AND pe.event_id=e.event_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.status=1";
+                "where e.status=1 and v.volunteer_id=1";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
@@ -213,9 +224,24 @@ public class EventJdbcRepository {
 
         int count = jdbcTemplate.queryForObject(sql, new Object[]{participateEvent.getVolunteerId(), participateEvent.getEventId()}, Integer.class);
 
-        if (count == 1) {
+       if (count == 1) {
             return 2;
         }
+
+
+//        String sql2 = "SELECT count(*) from participate_event where volunteer_id = ? and event_id=?";
+
+//        String sql2 = "SELECT count(*) from event inner join participate_event as pe ON e.event_id=pe.event_id " +
+//                "where ";
+//
+//        int counts = jdbcTemplate.queryForObject(sql2, new Object[] { participateEvent.getVolunteerId(),participateEvent.getEventId() }, Integer.class);
+//
+//        if(counts==1){
+//            return 2;
+//        }
+
+
+       
 
 
         MapSqlParameterSource namedParameters =
