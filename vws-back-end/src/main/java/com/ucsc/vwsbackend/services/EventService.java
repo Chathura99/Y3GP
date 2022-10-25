@@ -41,8 +41,8 @@ public class EventService {
         return eventJdbcRepository.addCoordinatedEvents(newCoordinateEventDetail);
     }
 
-    public long editMyCoordinatedEvents(EventDetail eventDetail) {
-        return eventJdbcRepository.editMyCoordinatedEvents(eventDetail);
+    public long editMyCoordinatedEvents(Event event) {
+        return eventJdbcRepository.editMyCoordinatedEvents(event);
     }
     public  List<EventDetail> getCoordinatedEvents() {
         return eventJdbcRepository.getCoordinatedEvents();
@@ -79,5 +79,7 @@ public class EventService {
 
     public long makeGuestRequest(GuestUserRequest guestUserRequest) {
         return eventJdbcRepository.makeGuestRequest(guestUserRequest);
+    public  List<EventDetail> getMyNewUpcomingEvents() {
+        return eventJdbcRepository.getMyNewUpcomingEvents();
     }
 }

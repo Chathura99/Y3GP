@@ -121,8 +121,34 @@ export default function EditCoordinatedForm(props) {
                 <div className="row gutters ">
 
                   
-
-<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                <label for="location" id="formLabel">
+                      Upload Images
+                    </label>
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        style={{ width: "100px", padding: "4px",border: '0.5px solid black' }}
+                        src="https://static.vecteezy.com/system/resources/thumbnails/004/640/699/small/circle-upload-icon-button-isolated-on-white-background-vector.jpg"
+                      />
+                      <img
+                        style={{ width: "100px", padding: "4px",border: '0.5px solid black' }}
+                        src="https://static.vecteezy.com/system/resources/thumbnails/004/640/699/small/circle-upload-icon-button-isolated-on-white-background-vector.jpg"
+                      />
+                    </div>
+                    <div class="col">
+                      <img
+                        style={{ width: "100px", padding: "4px",border: '0.5px solid black' }}
+                        src="https://static.vecteezy.com/system/resources/thumbnails/004/640/699/small/circle-upload-icon-button-isolated-on-white-background-vector.jpg"
+                      />
+                      <img
+                        style={{ width: "100px", padding: "4px",border: '0.5px solid black' }}
+                        src="https://static.vecteezy.com/system/resources/thumbnails/004/640/699/small/circle-upload-icon-button-isolated-on-white-background-vector.jpg"
+                      />
+                    </div>
+                  </div>
+                </div>
+{/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group ">
                     <label for="progress" id="formLabel">
                       Upload Images
@@ -170,7 +196,7 @@ export default function EditCoordinatedForm(props) {
                       disabled
                     />
                   </div>
-                </div>
+                </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -186,6 +212,68 @@ export default function EditCoordinatedForm(props) {
                         onChange={handleChange}
 
                       />
+                    </div>
+                  </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                    <label
+                        for="formFile"
+                        class="form-label"
+                        id="formLbl"
+                        style={{ color: "gray" }}
+                      >
+                        Progress
+                      </label>
+                    <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckDefault"
+                          checked
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckDefault"
+                          style={{ color: "black" }}
+                        >
+                          criteria 1
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckChecked"
+                          style={{ color: "black" }}
+                        >
+                          criteria 2
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="flexCheckChecked"
+                        />
+                        <label
+                          class="form-check-label"
+                          id="qualifications"
+                          for="flexCheckChecked"
+                          style={{ color: "black" }}
+                        >
+                          criteria 3{" "}
+                        </label>
+                      </div>
                     </div>
                   </div>
 
@@ -239,7 +327,7 @@ export default function EditCoordinatedForm(props) {
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="eMail">Progress</label>
                       <input
@@ -252,7 +340,7 @@ export default function EditCoordinatedForm(props) {
                         // onChange={handleChange}
                       />
                     </div>
-                  </div>
+                  </div> */}
 
 
 

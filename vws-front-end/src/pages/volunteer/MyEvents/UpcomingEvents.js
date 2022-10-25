@@ -6,7 +6,7 @@ import "./UpcomingEvents.css"
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
-import {getUpcomingEvents} from "../../../services/eventServices/eventService";
+import {getMyNewUpcomingEvents, getUpcomingEvents} from "../../../services/eventServices/eventService";
 import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
@@ -42,7 +42,7 @@ export default function UpcomingEvents() {
     };
 
     const upcomingEvent = async () => {
-      const res = await getUpcomingEvents();
+      const res = await getMyNewUpcomingEvents();
       setUpComingEventData(res.data);
     };
 

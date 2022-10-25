@@ -95,7 +95,7 @@ export const getPreviousEvents = () => {
 
 export const editMyCoordinatedEvents = (newEvent) => {
     return axios({
-      method: "POST",
+      method: "PUT",
       url: `${USER_URL}/editMyCoordinatedEvents`,
       headers: {
         Authorization: "Bearer " + getToken(),
@@ -103,4 +103,31 @@ export const editMyCoordinatedEvents = (newEvent) => {
       data : newEvent
       });
   }; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  export const getMyNewUpcomingEvents = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getMyNewUpcomingEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
     
