@@ -206,7 +206,7 @@ export default function MoreDetails(props) {
                       </button>
                     </Link>
 
-                    {scholarship.meetingLink !== "" ? (
+                    {scholarship.meetingLink != "" ? (
                       <button
                         name="submit"
                         class="btn btn-primary btn-sm"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LineChart } from "./../../../utilities/Charts/LineChart";
+import { LineChart } from "../../../utilities/Charts/LineChart";
 import EditProject from "./EditProject";
 // for remove box shadow
 import { Paper } from "@material-ui/core";

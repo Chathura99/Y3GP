@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./requestnewevent.css";
-import { joinRequest } from "../../../services/guestUserServices/signUpService";
+import { eventRequest } from "../../../services/guestUserServices/eventRequestService";
+
 import { Link } from "react-router-dom";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 
 export default function RequestNewEvent() {
   const [requestData, setRequestData] = useState(
@@ -14,14 +18,11 @@ export default function RequestNewEvent() {
       district: "",
       profession: "",
       nic: "",
-      other: "" ,
-
-      volunteers: "",
-      
-      date: "",
-
-      status: 0
-
+      other: "",
+      noOfVolunteers: "",
+      startDate: "",
+      status: 0,
+      projectId:0
     },
     []
   );
@@ -29,23 +30,41 @@ export default function RequestNewEvent() {
   const handleSubmit = (evt) => {
     console.log(requestData);
     evt.preventDefault();
-    joinRequest(requestData).then((response) => {
+    eventRequest(requestData).then((response) => {
       if (response.status === 200) {
         console.log(response.data);
+        setPopUp("success")
+        setMessage("Event request sent!")
       } else {
         console.log("Something went wrong");
+        setPopUp("failed")
+        setMessage("Something went wrong")
       }
     });
   };
 
   const handleChange = (e) => {
     e.persist();
-    // console.log(e.target.name + "-" + e.target.value);
+    console.log(e.target.name + "-" + e.target.value);
     setRequestData((requestData) => ({
       ...requestData,
       [e.target.name]: e.target.value,
     }));
   };
+
+    // open success/error pop up modals and set display message
+    const [popup, setPopUp] = useState("");
+    const [message, setMessage] = useState("");
+    // close pop up modal
+    const closePopUp = () => {
+      setPopUp("");
+    };
+    // open confirmation pop up modal
+    const confirm = (e) => {
+      e.preventDefault();
+      setMessage("Request new event!");
+      setPopUp("confirm");
+    };
 
   return (
     <div className="container-fluid calculated-bodywidth">
@@ -53,7 +72,7 @@ export default function RequestNewEvent() {
         <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
           <div className="card h-100" id="contentcard">
             <div className="card-body">
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={confirm}>
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <h3 className="mb-4">Request New Event</h3>
@@ -179,39 +198,66 @@ export default function RequestNewEvent() {
                       />
                     </div>
                   </div>
-
                 </div>
-
-                <div className="row gutters">
-                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <h6 className="subTopic">Event Details:</h6>
                   </div>
-
+                <div className="row gutters">
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="event">Event</label>
+                      <label for="projectId" id="formLabel">
+                        Event{" "}
+                      </label>
+
+                      <select
+                        type="text"
+                        className="form-control"
+                        id="projectId"
+                        name="projectId"
+                        // value={
+                        //   selectedProject.firstName
+                        // }
+                        onChange={handleChange}
+                      >
+                        <option value="1">Ganitha Saviya</option>
+                        <option value="2">Re-Green Earth </option>
+                        <option value="3">Lohithuppada</option>
+                        <option value="4">Pahe Hapan</option>
+
+                        <option value="5">Adurata Eliyak</option>
+                        <option value="6">Sisu Mediya</option>
+                        <option value="7">Ganitha Saviya</option>
+                      </select>
+                    </div>
+                  </div>
+
+                 
+{/* 
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="projectId">Event</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="event"
+                        id="projectId"
                         placeholder="Enter Event"
-                        name="event"
-                        value={requestData.event}
+                        name="projectId"
+                        value={requestData.projectId}
                         onChange={handleChange}
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="date">Date</label>
                       <input
-                        type="text"
+                        type="date"
                         className="form-control"
                         id="date"
                         placeholder="Enter Date"
-                        name="date"
-                        value={requestData.date}
+                        name="startDate"
+                        value={requestData.startDate}
                         onChange={handleChange}
                       />
                     </div>
@@ -234,14 +280,14 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="volunteers">Volunteer Count</label>
+                      <label for="noOfVolunteers">Volunteer Count</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="volunteers"
+                        id="noOfVolunteers"
                         placeholder="Enter Number of Volunteers Needed"
-                        name="volunteers"
-                        value={requestData.volunteers}
+                        name="noOfVolunteers"
+                        value={requestData.noOfVolunteers}
                         onChange={handleChange}
                       />
                     </div>
@@ -282,7 +328,7 @@ export default function RequestNewEvent() {
                         id="submit"
                         name="submit"
                         class="btn btn-secondary btn-sm"
-                        onClick={handleSubmit}
+                        onClick={confirm}
                       >
                         Submit
                       </button>
@@ -294,6 +340,19 @@ export default function RequestNewEvent() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

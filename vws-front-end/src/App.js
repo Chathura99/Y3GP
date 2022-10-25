@@ -64,6 +64,9 @@ import PcSummary from "./pages/projectCoordinator/Summary/summary";
 import PcEventSummary from "./pages/projectCoordinator/Summary/EventSummary";
 import PcProjectSummary from "./pages/projectCoordinator/Summary/ProjectSummary";
 import PcPoll from "./pages/projectCoordinator/Poll/poll";
+import PcApprove from "./pages/projectCoordinator/Home/MakeApprove";
+
+
 import Loading from "./utilities/Loading/Loading";
 // import ViewForum from "./pages/admin/ForumPoll/ViewForum";
 import Event1 from "./pages/guestUser/OurLatestEvents/Event1";
@@ -72,6 +75,7 @@ import VNotification from "./pages/volunteer/Notification/Notification";
 import CNotification from "./pages/projectCoordinator/Notification/Notification";
 import Scholarship from "./pages/admin/Scholarship/Scholarship";
 import Feedback from "./pages/admin/Feedback/Feedback";
+
 
 
 
@@ -188,7 +192,7 @@ function App() {
             <Route path="/pchome" element={<PcHomePage />}></Route>
 
             {/* project coordinator part */}
-            <Route path="/pchome" element={<PcHomePage />}></Route>
+            <Route path="/pcapprove" element={<PcApprove />}></Route>
             <Route
               path="/pcongoingproject"
               element={<PcOngoingProject />}

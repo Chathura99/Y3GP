@@ -1,11 +1,7 @@
 package com.ucsc.vwsbackend.controllers;
 
 
-import com.ucsc.vwsbackend.dto.EventDetail;
-import com.ucsc.vwsbackend.dto.NewCoordinateEventDetail;
-import com.ucsc.vwsbackend.dto.NewProjectDetail;
-import com.ucsc.vwsbackend.dto.ParticipateEvent;
-import com.ucsc.vwsbackend.entities.Announcement;
+import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Event;
 import com.ucsc.vwsbackend.entities.EventProgress;
 import com.ucsc.vwsbackend.services.EventService;
@@ -69,6 +65,10 @@ public class EventController {
         return eventService.getApprovedCoordinatedEvents();
     }
 
+//      @PutMapping("/updateCoordinatedEventStatus")
+//      public long updateCoordinatedEventStatus(@RequestBody Event event){
+//        return eventService.updateCoordinatedEventStatus(event);
+//    }
 
 
     @PutMapping("/editMyCoordinatedEvents")
@@ -76,10 +76,10 @@ public class EventController {
         return eventService.editMyCoordinatedEvents(event);
     }
 
-    @PutMapping("/updateCoordinatedEventStatus")
-    public long updateCoordinatedEventStatus(@RequestBody Event event){
-        return eventService.updateCoordinatedEventStatus(event);
-    }
+    // @PutMapping("/updateCoordinatedEventStatus")
+    // public long updateCoordinatedEventStatus(@RequestBody Event event){
+    //     return eventService.updateCoordinatedEventStatus(event);
+    // }
 
     @PostMapping("/participateToEvent")
     public long participateToEvent(@RequestBody ParticipateEvent participateEvent) {
@@ -110,6 +110,33 @@ public class EventController {
 //        return status;
 //    }
 
+
+//Project Coordinator - Ravindu
+
+    @GetMapping("/getJoinRequest")
+    public List<EventDetail> getJoinRequest() {
+        System.out.println("vgfgh");
+        return eventService.getJoinRequest();}
+
+    @PutMapping("/updateCoordinatedEventStatus/{id}")
+    public long updateCoordinatedEventStatus(@PathVariable(value = "id") long id){
+        return eventService.updateCoordinatedEventStatus(id);
+    }
+
+    @PutMapping("/updateCoordinatedEventStatusReject/{id}")
+    public long updateCoordinatedEventStatusReject(@PathVariable(value = "id") long id){
+        return eventService.updateCoordinatedEventStatusReject(id);
+    }
+
+    @PutMapping("/editEvent")
+    public long editEvent(@RequestBody ProjectDetail projectDetail) {
+        return eventService.editEvent(projectDetail);
+    }
+
+    @PostMapping("/makeGuestRequest")
+    public long makeGuestRequest(@RequestBody GuestUserRequest guestUserRequest) {
+        return eventService.makeGuestRequest(guestUserRequest);
+    }
     @GetMapping("/getMyNewUpcomingEvents")
     public List<EventDetail> getMyNewUpcomingEvents() {
         return eventService.getMyNewUpcomingEvents();

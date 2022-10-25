@@ -7,9 +7,9 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
-import { getAnnouncement } from './../../../services/announcementServices/announcementServices';
-import { getUpcomingEvents } from './../../../services/eventServices/eventService';
-import { getVolunteerHomeSummary } from './../../../services/volunteerServices/ChartServices';
+import { getAnnouncement } from '../../../services/announcementServices/announcementServices';
+import { getUpcomingEvents } from '../../../services/eventServices/eventService';
+import { getVolunteerHomeSummary } from '../../../services/volunteerServices/ChartServices';
 
 
 export default function HomePage() {
