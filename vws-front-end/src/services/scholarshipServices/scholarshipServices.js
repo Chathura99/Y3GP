@@ -37,3 +37,15 @@ export const editScholarship = (sch) => {
       },
     });
   };
+
+  export const ApplyScholar = (sch) => {
+    console.log(sch)
+    return axios({
+      method: "POST",
+      url: `${USER_URL}/sendMeeting`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data : sch
+    });
+  };

@@ -79,6 +79,7 @@ public class EventService {
 
     public long makeGuestRequest(GuestUserRequest guestUserRequest) {
         return eventJdbcRepository.makeGuestRequest(guestUserRequest);
+    }
     public  List<EventDetail> getMyNewUpcomingEvents() {
         return eventJdbcRepository.getMyNewUpcomingEvents();
     }

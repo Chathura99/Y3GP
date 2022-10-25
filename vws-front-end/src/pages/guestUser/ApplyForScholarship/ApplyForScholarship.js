@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./applyforscholarship.css";
 
-import { joinRequest } from "../../../services/guestUserServices/signUpService";
+import { ApplyScholar } from "../../../services/scholarshipServices/scholarshipServices";
 import { Link } from "react-router-dom";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 
 
 export default function ApplyForScholarship() {
@@ -26,23 +29,43 @@ export default function ApplyForScholarship() {
   const handleSubmit = (evt) => {
     console.log(requestData);
     evt.preventDefault();
-    joinRequest(requestData).then((response) => {
+    ApplyScholar(requestData).then((response) => {
       if (response.status === 200) {
         console.log(response.data);
+        setPopUp("success")
+        setMessage("Event request sent!")
       } else {
         console.log("Something went wrong");
+        setPopUp("failed")
+        setMessage("Something went wrong")
       }
     });
   };
 
   const handleChange = (e) => {
     e.persist();
-    // console.log(e.target.name + "-" + e.target.value);
+    console.log(e.target.name + "-" + e.target.value);
     setRequestData((requestData) => ({
       ...requestData,
       [e.target.name]: e.target.value,
     }));
   };
+
+  
+    // open success/error pop up modals and set display message
+    const [popup, setPopUp] = useState("");
+    const [message, setMessage] = useState("");
+    // close pop up modal
+    const closePopUp = () => {
+      setPopUp("");
+    };
+    // open confirmation pop up modal
+    const confirm = (e) => {
+      e.preventDefault();
+      setMessage("Send Application for request scholarship!");
+      setPopUp("confirm");
+    };
+
 
   return (
     <div className="container-fluid calculated-bodywidth">
@@ -254,7 +277,7 @@ export default function ApplyForScholarship() {
                         id="submit"
                         name="submit"
                         class="btn btn-secondary btn-sm"
-                        onClick={handleSubmit}
+                        onClick={confirm}
                       >
                         Submit
                       </button>
@@ -266,6 +289,19 @@ export default function ApplyForScholarship() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

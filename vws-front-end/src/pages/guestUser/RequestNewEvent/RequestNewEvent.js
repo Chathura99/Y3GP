@@ -37,6 +37,8 @@ export default function RequestNewEvent() {
         setMessage("Event request sent!")
       } else {
         console.log("Something went wrong");
+        setPopUp("failed")
+        setMessage("Something went wrong")
       }
     });
   };

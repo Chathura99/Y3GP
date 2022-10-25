@@ -108,8 +108,9 @@ public class EventController {
 //    }
 
     @PostMapping("/makeGuestRequest")
-    public long makeGuestRequest(@RequestBody GuestUserRequest guestUserRequest){
+    public long makeGuestRequest(@RequestBody GuestUserRequest guestUserRequest) {
         return eventService.makeGuestRequest(guestUserRequest);
+    }
     @GetMapping("/getMyNewUpcomingEvents")
     public List<EventDetail> getMyNewUpcomingEvents() {
         return eventService.getMyNewUpcomingEvents();
