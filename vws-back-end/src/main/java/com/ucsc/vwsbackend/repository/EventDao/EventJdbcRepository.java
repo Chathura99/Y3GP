@@ -42,7 +42,8 @@ public class EventJdbcRepository {
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.start_date< CURDATE() and e.end_date< CURDATE()";
+                "where e.start_date< CURDATE() and e.end_date< CURDATE() ";
+
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
 
@@ -142,29 +143,32 @@ public class EventJdbcRepository {
 
         String query ="SELECT e.*,p.name as category,concat(v.first_name,\" \",v.last_name) as name,v.volunteer_id,u.phone_number from event as e " +
                 "INNER JOIN project as p ON e.project_id=p.project_id " +
-                "INNER JOIN participate_event as pe ON pe.volunteer_id=e.volunteer_id AND pe.event_id=e.event_id" +
+                "INNER JOIN participate_event as pe ON pe.volunteer_id=e.volunteer_id AND pe.event_id=e.event_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.status=2";
+                "where e.status=1";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
     }
 
     //update my coordinated events(volunteer's)
-    public long editMyCoordinatedEvents(Event event) {
+    public long editMyCoordinatedEvents(EventDetail eventDetail) {
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
-        String update = "UPDATE event " +
-                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count  WHERE event_id = :id;";
 
-        namedParameters.addValue("description", event.getDescription());
-        namedParameters.addValue("participated_volunteers_Count", event.getParticipatedVolunteersCount());
+
+        String query ="INSERT INTO event " +
+                "(description, participated_volunteers_Count) " +
+                "values (:description,  :participated_volunteers_Count)";
+
+        namedParameters.addValue("description", eventDetail.getDescription());
+        namedParameters.addValue("participated_volunteers_Count", eventDetail.getParticipatedVolunteersCount());
 //        namedParameters.addValue("category", announcement.getCategory());
 //        namedParameters.addValue("date", announcement.getDate());
 //        namedParameters.addValue("id", announcement.getAnnId());
 
-        int rowsAffected = jdbc.update(update, namedParameters);
+        int rowsAffected = jdbc.update(query, namedParameters);
         return rowsAffected;
 
     }

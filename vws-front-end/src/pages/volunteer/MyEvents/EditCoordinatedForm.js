@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import { Link } from "react-router-dom";
+import { editMyCoordinatedEvents } from "../../../services/eventServices/eventService";
 
 import ImageUploadComponent from "./ImageUploadComponent";
 
@@ -7,8 +11,56 @@ import ImageUploadComponent from "./ImageUploadComponent";
 export default function EditCoordinatedForm(props) {
 
   const [eventData, setEventData] = useState(props.eventData);
-  console.log(eventData);
+  // console.log(eventData);
 
+  const [newEvent, setNewEvent] = useState({
+    description: "",
+    participatedVolunteersCount: "",
+    
+
+  });
+
+  
+
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+   
+    setNewEvent((newEvent) => ({
+      ...newEvent,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+
+  const closePopUp = () => {
+    setPopUp("");
+  };
+
+  const confirm = (e) => {
+    e.preventDefault();
+    // setMessage("Update and Saved Details");
+    setPopUp("confirm");
+  };
+  
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    editMyCoordinatedEvents(newEvent)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage("Saved Details");
+          setPopUp("success");
+
+        }
+      })
+      
+  };
 
   return (
     <div>
@@ -50,6 +102,7 @@ export default function EditCoordinatedForm(props) {
               </button>
             </div>
             <div class="modal-body">
+            
                 <div className="row gutters ">
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <small>Coordinator : {eventData.name}</small>
@@ -63,60 +116,11 @@ export default function EditCoordinatedForm(props) {
                   <small>End Date : {eventData.endDate} </small>
                   <br />
                 </div>
+              </div>
+              <form onSubmit={confirm}>
+                <div className="row gutters ">
 
-                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group ">
-                      <label for="fullName">Coordinated By</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="fullName"
-                        placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
-                        name="firstName"
-                        // onChange={handleChange}
-                      />
-                    </div>
-                  </div> */}
-
-                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="eMail">Phone</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="phone"
-                        placeholder="Enter phone number"
-                        // value={profile.email}
-                        name="email"
-                        // onChange={handleChange}
-                      />
-                    </div>
-                  </div> */}
-
-                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="phone">Starts On</label>
-                      <input
-                        type="date"
-                        className="form-control"
-                        id="startDate"
-                        // placeholder="Enter phone number"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group">
-                      <label for="phone">Ends On</label>
-                      <input
-                        type="date"
-                        className="form-control"
-                        id="endDate"
-                        // placeholder="Enter phone number"
-                      />
-                    </div>
-                  </div> */}
+                  
 
 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group ">
@@ -170,13 +174,17 @@ export default function EditCoordinatedForm(props) {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Description</label>
+                      <label for="description">Description</label>
                       <input
                         type="text"
                         style={{height:80}}
                         className="form-control"
+                        value={newEvent.description}
                         id="description"
+                        name="description"
                         placeholder="Enter description"
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div>
@@ -201,15 +209,15 @@ export default function EditCoordinatedForm(props) {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="eMail">No.of Participated Volunteers</label>
+                      <label for="participatedVolunteersCount">No.of Participated Volunteers</label>
                       <input
                         type="number"
                         className="form-control"
-                        id="volunteercount"
+                        id="participatedVolunteersCount"
                         placeholder="Enter volunteer count"
-                        // value={profile.email}
-                        name="volunteercount"
-                        // onChange={handleChange}
+                        value={newEvent.participatedVolunteersCount}
+                        name="participatedVolunteersCount"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -287,15 +295,18 @@ export default function EditCoordinatedForm(props) {
                       <div class="modal-footer justify-content-center ">
                         <button
                           type="button"
-                          id="submit"
-                          name="submit"
+                          
+                        
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
+                          onClick={()=>{
+                            props.setSelected(false)
+                          }}
                         >
                           Back
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
@@ -307,10 +318,25 @@ export default function EditCoordinatedForm(props) {
                     </div>
                   </div>
                 </div>
+                </form>
             </div>
           </div>
         </div>
       </div>
+      <div class="modal-backdrop fade show"></div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

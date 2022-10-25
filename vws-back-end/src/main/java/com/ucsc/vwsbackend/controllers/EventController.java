@@ -63,16 +63,11 @@ public class EventController {
         return eventService.getApprovedCoordinatedEvents();
     }
 
-    @PutMapping("/editMyCoordinatedEvents")
-//    {
-//            "annId": 6,
-//            "title": "Update Announcement 1",
-//            "content": "content",
-//            "category": "guest",
-//            "date": "2022-07-09T06:40:00.000+00:00"
-//    }
-    public long editMyCoordinatedEvents(@RequestBody Event event){
-        return eventService.editMyCoordinatedEvents(event);
+
+
+    @PostMapping("/editMyCoordinatedEvents")
+    public long editMyCoordinatedEvents(@RequestBody EventDetail eventDetail){
+        return eventService.editMyCoordinatedEvents(eventDetail);
     }
 
     @PutMapping("/updateCoordinatedEventStatus")
