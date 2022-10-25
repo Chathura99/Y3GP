@@ -25,3 +25,13 @@ export const getProjectSummary = () => {
     });
   };
 
+  export const getUserSummary = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getUserSummary`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+

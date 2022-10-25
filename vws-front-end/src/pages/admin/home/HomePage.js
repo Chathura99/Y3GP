@@ -127,7 +127,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -149,7 +149,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -166,12 +166,12 @@ export default function HomePage() {
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
                     <span className="rate">
-                      +5 <ArrowUpward className="featuredIcon" />
+                      +3 <ArrowUpward className="featuredIcon" />
                     </span>
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -193,7 +193,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>

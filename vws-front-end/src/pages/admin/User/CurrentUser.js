@@ -12,18 +12,38 @@ import {deactivateUser} from "../../../services/userService";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+// chart data
+import { getUserSummary } from "../../../services/adminServices/ChartServices";
 
 export default function CurrentUser() {
   useEffect(() => {
     checkValidate();
     getCurrentUsers();
+    getRoleSummary();
   }, []);
+
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
     if (!y) {
       window.location.href = "/";
     }
+  };
+
+  const getRoleSummary = async () => {
+    const res = await getUserSummary();
+    // setadminHomeSummaryData(res.data);
+    console.log(res.data);
+    Object.values(res.data).map(
+      (value) => (
+        pieChartData.push(
+          [
+            value.name,
+            value.count
+          ]
+        )
+      )
+    )
   };
 
   const getCurrentUsers = async () => {
@@ -90,7 +110,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <PieChart data={pieChartData} />
-                  This chat shows . . .
+                  This chat shows current user count of the organization
                 </div>
               </div>
             </div>
@@ -104,7 +124,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
-                  This chat shows . . .
+                  This chat shows user groeth of the latest month
                 </div>
               </div>
             </div>
