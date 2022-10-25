@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.services;
 
 import com.ucsc.vwsbackend.dto.AdminHomeSummary;
 import com.ucsc.vwsbackend.dto.AdminProjectSummary;
+import com.ucsc.vwsbackend.dto.UserSummary;
 import com.ucsc.vwsbackend.dto.VolunteerHomeSummary;
 import com.ucsc.vwsbackend.repository.ChartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,7 @@ public class ChartService {
     }
 
 
+    public UserSummary GetUserSummary() {
+        return chartRepository.GetUserSummary();
+    }
 }

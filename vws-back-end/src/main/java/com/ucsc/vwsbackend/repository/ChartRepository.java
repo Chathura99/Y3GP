@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.repository;
 
 import com.ucsc.vwsbackend.dto.AdminHomeSummary;
 import com.ucsc.vwsbackend.dto.AdminProjectSummary;
+import com.ucsc.vwsbackend.dto.UserSummary;
 import com.ucsc.vwsbackend.dto.VolunteerHomeSummary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -70,5 +71,19 @@ public class ChartRepository {
 
 //        ToDO : query for compared to last month
         return volunteerHomeSummary;
+    }
+
+    public UserSummary GetUserSummary() {
+        UserSummary userSummary = new UserSummary();
+        String sql1 = "SELECT count(*) FROM `authority` where role_code='VOLUNTEER'";
+        String sql2 = "SELECT count(*) FROM `authority` where role_code='PROJECT_COORDINATOR'";
+        String sql3 = "SELECT count(*) FROM `authority` where role_code='ADMIN'";
+
+
+        userSummary.setVolunteerCount(jdbcTemplate.queryForObject(sql1, Integer.class));
+        userSummary.setAdminCount(jdbcTemplate.queryForObject(sql3, Integer.class));
+        userSummary.setPcCount(jdbcTemplate.queryForObject(sql2, Integer.class));
+
+        return  userSummary;
     }
 }
