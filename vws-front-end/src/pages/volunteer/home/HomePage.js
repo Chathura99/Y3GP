@@ -26,7 +26,6 @@ export default function HomePage() {
     ["name", "Count"],
 
   ];
-  const DonutData =
 
   useEffect(() => {
     checkValidate();
@@ -310,29 +309,29 @@ const [announcement, setAnnouncement] = useState([]);
                       { field: "place", title: "LOCATION" },
                     ]}
                     data={upComingEventData}
-                    actions={[
-                      {
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              className="btn mt-0"
-                              style={{
-                                backgroundColor: "#96BE25",
-                                border: "none",
-                              }}
-                            >
-                              View
-                            </button>
-                          );
-                        },
-                        onClick: (event, rowData) => {
-                          // setSelectedJoinRequestsData(rowData);
-                          // setSelected(true);
-                        },
-                         tooltip: "View Location",
-                      },
-                    ]}
+                    // actions={[
+                    //   {
+                    //     icon: () => {
+                    //       return (
+                    //         <button
+                    //           type="button"
+                    //           className="btn mt-0"
+                    //           style={{
+                    //             backgroundColor: "#96BE25",
+                    //             border: "none",
+                    //           }}
+                    //         >
+                    //           View
+                    //         </button>
+                    //       );
+                    //     },
+                    //     onClick: (event, rowData) => {
+                    //       // setSelectedJoinRequestsData(rowData);
+                    //       // setSelected(true);
+                    //     },
+                    //      tooltip: "View Location",
+                    //   },
+                    // ]}
                   />
               </div>
             </div>

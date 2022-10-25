@@ -114,30 +114,30 @@ export default function Projects() {
                         tooltip: "Coordinate Event",
                       },
 
-                      {
+                      // {
                         
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              class="btn"
-                              style={{
-                                backgroundColor: "#96BE25",
-                                width: "6rem",
-                                border: "none",
-                                marginRight: 0,
-                              }}
-                            >
-                              Details
-                            </button>
-                          );
-                        },
-                        // onClick: (event, rowData) => {
-                        //   setSelectedProject(rowData);
-                        //   setSelected(true);
-                        // },
-                        tooltip: "Project Details",
-                      },
+                      //   icon: () => {
+                      //     return (
+                      //       <button
+                      //         type="button"
+                      //         class="btn"
+                      //         style={{
+                      //           backgroundColor: "#96BE25",
+                      //           width: "6rem",
+                      //           border: "none",
+                      //           marginRight: 0,
+                      //         }}
+                      //       >
+                      //         Details
+                      //       </button>
+                      //     );
+                      //   },
+                      //   // onClick: (event, rowData) => {
+                      //   //   setSelectedProject(rowData);
+                      //   //   setSelected(true);
+                      //   // },
+                      //   tooltip: "Project Details",
+                      // },
                       
                     ]}
                   />

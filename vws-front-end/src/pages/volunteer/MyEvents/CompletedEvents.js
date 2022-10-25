@@ -10,10 +10,10 @@ import { getVolunteerCompletedEventSummary } from '../../../services/volunteerSe
 
 export default function CompletedEvents() {
 
-  const [donutChartData, setDonutChartData] = useState([
+  const donutChartData = [
     ["place", "Count"],
 
-  ]);
+  ];
 
   useEffect(() => {
     checkValidate();
@@ -27,15 +27,17 @@ export default function CompletedEvents() {
 
   const getComEventSummaryData = async () => {
     const res = await getVolunteerCompletedEventSummary();
-    setVolunteerCompletedEventSummaryData(res.data);
+    setDonuttChartData([...res.data]);
     console.log(...res.data);
-    Donut(res.data);
+    // Donut(res.data);
      
 
   };
 
-  const Donut = (data)=>{
-    Object.values(data).map(
+  const [donuttChartData, setDonuttChartData] = useState({});
+
+
+  const Donut =  Object.values(donuttChartData).map(
       (value) => (
         donutChartData.push(
           [
@@ -45,7 +47,7 @@ export default function CompletedEvents() {
         )
       )
     )
-  }
+  
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -133,29 +135,29 @@ export default function CompletedEvents() {
                       { field: "place", title: "LOCATION" },
                     ]}
                     data={completedEventData}
-                    actions={[
-                      {
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              className="btn mt-0"
-                              style={{
-                                backgroundColor: "#96BE25",
-                                border: "none",
-                              }}
-                            >
-                              Details
-                            </button>
-                          );
-                        },
-                        onClick: (event, rowData) => {
-                          // setSelectedJoinRequestsData(rowData);
-                          setSelected(true);
-                        },
-                         tooltip: "Event Details",
-                      },
-                    ]}
+                    // actions={[
+                    //   {
+                    //     icon: () => {
+                    //       return (
+                    //         <button
+                    //           type="button"
+                    //           className="btn mt-0"
+                    //           style={{
+                    //             backgroundColor: "#96BE25",
+                    //             border: "none",
+                    //           }}
+                    //         >
+                    //           Details
+                    //         </button>
+                    //       );
+                    //     },
+                    //     onClick: (event, rowData) => {
+                    //       // setSelectedJoinRequestsData(rowData);
+                    //       setSelected(true);
+                    //     },
+                    //      tooltip: "Event Details",
+                    //   },
+                    // ]}
                     />
               
               </div>
@@ -165,4 +167,8 @@ export default function CompletedEvents() {
       </div>
     </>
   );
-}
+}                             
+  
+                  
+
+                  
