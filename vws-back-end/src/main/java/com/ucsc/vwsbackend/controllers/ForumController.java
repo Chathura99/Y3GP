@@ -36,4 +36,9 @@ public class ForumController {
         return forumService.addNewForum(forumInfo);
     }
 
+    @PostMapping("/addNewDiscussionTopic")
+    public long addNewDiscussionTopic(@RequestBody ForumWithDiscussionTopic forumWithDiscussionTopic){
+        return forumService.addNewDiscussionTopic(forumWithDiscussionTopic);
+    }
+
 }

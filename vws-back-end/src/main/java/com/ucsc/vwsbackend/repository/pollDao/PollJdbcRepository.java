@@ -43,7 +43,7 @@ public class PollJdbcRepository {
                 new MapSqlParameterSource();
         String query = "INSERT INTO poll " +
                 "(start_date,end_date,description,option1,option2,title) " +
-                "values (:CURDATE(), :end_date, :description, :option1,:option2, :title)";
+                "values (CURDATE(), :end_date, :description, :option1,:option2, :title)";
 
         namedParameters.addValue("title", pollInfo.getTitle());
         namedParameters.addValue("description", pollInfo.getDescription());

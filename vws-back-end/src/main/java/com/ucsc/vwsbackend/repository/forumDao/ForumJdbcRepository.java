@@ -87,4 +87,26 @@ public class ForumJdbcRepository {
         List<DiscssionTopicWithReply> discssionTopicWithReply = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<DiscssionTopicWithReply>(DiscssionTopicWithReply.class));
         return discssionTopicWithReply;
     }
+
+    public long addNewDiscussionTopic(ForumWithDiscussionTopic forumWithDiscussionTopic) {
+//        LocalDate edate = LocalDate.parse(forumWithDiscussionTopic.getEndDate());
+
+//        System.out.println(":ID" + newProjectDetail.getProjectId());
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String query = "INSERT INTO discussion_topic " +
+                "(topic,topic_description) " +
+                "values (:topic, :topic_description)";
+
+        namedParameters.addValue("topic", forumWithDiscussionTopic.getName());
+        namedParameters.addValue("topic_description", forumWithDiscussionTopic.getDescription());
+//        namedParameters.addValue("start_date",sdate);
+//        namedParameters.addValue("end_date", edate);
+//        namedParameters.addValue("user_id", forumInfo.getUserId());
+
+
+        int rowsAffected = jdbc.update(query , namedParameters);
+        return rowsAffected;
+
+    }
 }
