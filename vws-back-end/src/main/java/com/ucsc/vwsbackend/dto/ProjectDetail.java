@@ -117,4 +117,16 @@ public class ProjectDetail {
     public void setCoordinatorId(long coordinatorId) {
         this.coordinatorId = coordinatorId;
     }
+
+    //    Ravindu - PC Homepage
+    private String fullName;
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
 }

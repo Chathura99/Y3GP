@@ -142,11 +142,7 @@ export default function Forum() {
                       },
                       { field: "startDate", title: "Started Date", minWidth: "150px" },
                       
-                      {
-                        field: "replies",
-                        title: "Replies",
-                        
-                      },
+                      
                       
                       
                     ]}

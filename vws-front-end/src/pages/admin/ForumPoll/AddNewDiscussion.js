@@ -8,10 +8,10 @@ import { addNewDiscussionTopic } from './../../../services/forumServices/forumSe
 export default function AddNewDiscussion() {
 
   const [discussion, setDiscussion] = useState({
-    title: "",
-    description: "",
+    topic: "",
+    topicDescription: "",
    
-    
+    userId:1,
     
   });
 
@@ -128,10 +128,10 @@ export default function AddNewDiscussion() {
                       <input
                         type="text"
                         className="form-control"
-                        id="title"
+                        id="topic"
                         placeholder="Enter discussion topic title"
-                        value={discussion.title}
-                        name="title"
+                        value={discussion.topic}
+                        name="topic"
                         onChange={handleChange}
                       />
                     </div>
@@ -156,9 +156,9 @@ export default function AddNewDiscussion() {
                         type="text"
                         style={{height:80, width:460}}
                         className="form-control"
-                        id="description"
-                        value={discussion.description}
-                        name="description"
+                        id="topicDescription"
+                        value={discussion.topicDescription}
+                        name="topicDescription"
                         placeholder="Enter description"
                         onChange={handleChange}
 

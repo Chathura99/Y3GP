@@ -27,9 +27,8 @@ public class ForumJdbcRepository {
 //                "INNER JOIN project_coordinator as pc ON p.coordinator_id = pc.coordinator_id " +
 //                "INNER JOIN user as u ON u.id = pc.id " +
 //                "and p.status=1";
-        String query = "SELECT COUNT(*) as replies,concat(u.first_name,\" \",u.last_name) as name, f.* FROM reply as r " +
-                " INNER JOIN forum as f ON f.reply_id = r.reply_id " +
-                "Inner join user as u ON f.user_id = u.id";
+        String query = "SELECT concat(u.first_name,\" \",u.last_name) as name, f.* FROM forum as f " +
+                "INNER join user as u ON f.user_id = u.id";
 
 
         List<ForumInfo> forumInfo = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<ForumInfo>(ForumInfo.class));
@@ -64,7 +63,7 @@ public class ForumJdbcRepository {
 //                "INNER JOIN project_coordinator as pc ON p.coordinator_id = pc.coordinator_id " +
 //                "INNER JOIN user as u ON u.id = pc.id " +
 //                "and p.status=1";
-        String query = "SELECT COUNT(*) as replies,concat(u.first_name,\" \",u.last_name) as name, d.* FROM reply as r  INNER JOIN discussion_topic as d ON d.reply_id = r.reply_id " +
+        String query = "SELECT concat(u.first_name,\" \",u.last_name) as name, d.* FROM discussion_topic as d " +
                 "Inner join user as u ON d.user_id = u.id";
 
 
@@ -95,11 +94,13 @@ public class ForumJdbcRepository {
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
         String query = "INSERT INTO discussion_topic " +
-                "(topic,topic_description) " +
-                "values (:topic, :topic_description)";
+                "(topic,topic_description,user_id) " +
+                "values (:topic, :topic_description, :user_id)";
 
-        namedParameters.addValue("topic", forumWithDiscussionTopic.getName());
-        namedParameters.addValue("topic_description", forumWithDiscussionTopic.getDescription());
+        namedParameters.addValue("topic", forumWithDiscussionTopic.getTopic());
+        namedParameters.addValue("topic_description", forumWithDiscussionTopic.getTopicDescription());
+        namedParameters.addValue("user_id", forumWithDiscussionTopic.getUserId());
+
 //        namedParameters.addValue("start_date",sdate);
 //        namedParameters.addValue("end_date", edate);
 //        namedParameters.addValue("user_id", forumInfo.getUserId());

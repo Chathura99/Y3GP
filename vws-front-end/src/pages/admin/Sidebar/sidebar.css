@@ -91,6 +91,10 @@ h5,
   width: calc(100% - 300px);
 }
 
+#nav{
+  margin-bottom: 50px;
+}
+
 .navbar-btn {
   -webkit-box-shadow: none;
   box-shadow: none;

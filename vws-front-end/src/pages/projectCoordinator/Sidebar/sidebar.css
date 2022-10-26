@@ -123,6 +123,9 @@ h5,
   position: fixed;
 }
 
+#nav{
+  margin-bottom: 50px;
+}
 /* #sidebar.active {
   margin-left: -300px;
 } */

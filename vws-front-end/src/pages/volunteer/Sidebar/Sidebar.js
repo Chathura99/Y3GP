@@ -223,7 +223,7 @@ export default function Sidebar(page) {
           </div>
         </nav>
 
-        <div className="navwidth">
+        <div className="navwidth" id="nav">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
               <button

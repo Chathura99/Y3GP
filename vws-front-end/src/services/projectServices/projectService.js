@@ -79,3 +79,15 @@ export const getMyProjectsData = () => {
     },
   });
 };
+
+// Project Coordinator - Ravindu
+export const getCurrentProjects = () => {
+  console.log("das")
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getCurrentProjects`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};

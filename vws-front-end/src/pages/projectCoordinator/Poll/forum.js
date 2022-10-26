@@ -75,11 +75,7 @@ const [ForumData, setForumData] = useState([]);
                       },
                       { field: "startDate", title: "Started Date", minWidth: "150px" },
                       
-                      {
-                        field: "replies",
-                        title: "Replies",
-                        
-                      },
+                     
                       
                       
                     ]}
