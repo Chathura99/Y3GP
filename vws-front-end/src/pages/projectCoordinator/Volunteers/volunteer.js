@@ -61,7 +61,7 @@ return (
                                   Container: (props) => <Paper {...props} elevation={0} />,
                                 }}
                                 options={{ actionsColumnIndex: -1 }}
-                                title="Previous Events"
+                                title="Volunteer Details"
                                 columns={[
                                   { field: "eventId", title: "EVENT ID" },
                                   { field: "category", title: "CATEGORY" },
