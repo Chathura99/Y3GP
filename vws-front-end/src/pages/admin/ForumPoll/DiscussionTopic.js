@@ -143,7 +143,7 @@ const [selected, setSelected] = useState(false);
                     <p className="card-text" style={{ marginTop: "-10px" }}>
                       <div className="pdfFiles">
                         
-                      <h6 style={{textAlign: "right",fontSize: 15,color:"#2596BE"}}><a href="../../uploads/announcement/variable">Reply</a></h6>
+                      {/* <h6 style={{textAlign: "right",fontSize: 15,color:"#2596BE"}}><a href="../../uploads/announcement/variable">Reply</a></h6> */}
                       </div>
                     </p>
                     
