@@ -149,7 +149,7 @@ public class EventService {
         return eventJdbcRepository.getUpcomingEventsLimit();
     }
 
-    public EventProgress getvolunteerAvailability() {
+    public List<EventDetail> getvolunteerAvailability() {
         return eventJdbcRepository.getvolunteerAvailability();
     }
 
