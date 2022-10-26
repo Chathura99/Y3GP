@@ -267,4 +267,20 @@ public class ProjectJdbcRepository {
         return currentprojects;
     }
 
+    public List<ProjectDetail> getMyProjectsData() {
+//        System.out.println("vgfgh");
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        String query =  "select p.project_id, p.name, concat(pc.first_name,\" \",pc.last_name) as fullname, u.phone_number, p.start_date " +
+                "FROM project as p " +
+                "INNER JOIN project_coordinator as pc ON pc.coordinator_id = p.coordinator_id " +
+                "INNER JOIN user as u ON u.id = pc.id " +
+                "WHERE p.project_id = 2";
+
+        List<ProjectDetail> ongoingprojects = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<ProjectDetail>(ProjectDetail.class));
+//        System.out.println("vgfgh"+currentprojects.get(0).getName());
+        return ongoingprojects;
+    }
+
+
 }
