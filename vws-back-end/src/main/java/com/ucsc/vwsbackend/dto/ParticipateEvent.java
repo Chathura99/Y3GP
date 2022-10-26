@@ -1,5 +1,7 @@
 package com.ucsc.vwsbackend.dto;
 
+import java.util.Date;
+
 public class ParticipateEvent {
 
     private long eventId;
@@ -31,4 +33,23 @@ public class ParticipateEvent {
     private long volunteerId;
 
     private String status;
+
+    private String startDate;
+    private String endDate;
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 }

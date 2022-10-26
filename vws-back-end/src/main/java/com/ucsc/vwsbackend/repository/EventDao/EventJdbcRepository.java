@@ -220,6 +220,7 @@ System.out.println("vjbfjbj"+event.getEventId());
     }
 
     public long participateToEvent(ParticipateEvent participateEvent) {
+        System.out.println("--->"+participateEvent.getStartDate());
 
         String sql = "SELECT count(*) from participate_event where volunteer_id = ? and event_id=?";
 
@@ -240,6 +241,13 @@ System.out.println("vjbfjbj"+event.getEventId());
 //        if(counts==1){
 //            return 2;
 //        }
+//chech another event
+        String sql3 = "SELECT count(*) from participate_event as p inner join event as e on p.event_id=e.event_id  where e.volunteer_id =? and start_date<? and end_date>?";
+        int count3 = jdbcTemplate.queryForObject(sql3, new Object[]{participateEvent.getVolunteerId(), participateEvent.getStartDate(),participateEvent.getEndDate()}, Integer.class);
+
+        if (count3 == 1) {
+            return 3;
+        }
 
 
        

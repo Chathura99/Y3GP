@@ -17,9 +17,13 @@ export default function OngoingEvents() {
   const [joinEvent, setJoinEvent] = useState({
     eventId: "",
     volunteerId: 1,
-    status: 0
+    status: 0,
+    startDate:"",
+    endDate:"",
 
 });
+console.log("----->")
+console.log(joinEvent)
   
 const [popup, setPopUp] = useState("");
 const [message, setMessage] = useState("");
@@ -47,12 +51,15 @@ const handleSubmit = (e) => {
               setMessage("Joined Successfully");
               if (response.data === 1) {     //check this
                   setPopUp("success");
-              } else if(response.data=2) {
+              } else if(response.data===2) {
 
                   setPopUp("failed");
                   setMessage("Already joined");
               }
-              else{
+              else if(response.data===3){
+                setPopUp("failed");
+                setMessage("You have another event on that day!");
+              }else{
                 setPopUp("Failed");
               }
           }
@@ -127,6 +134,7 @@ const handleChange = (e) => {
 
     const [selected, setSelected] = useState(false);
     const [selectedEvent, setSelectedEvent] = useState({});
+    // console.log(selectedEvent);
 
     return (
         <>
@@ -231,7 +239,9 @@ const handleChange = (e) => {
                           setJoinEvent({
                             eventId: rowData.eventId,
                             volunteerId: 1,
-                            status: 0
+                            status: 0,
+                            startDate:rowData.startDate,
+                            endDate:rowData.endDate
                         
                         });
                           setEventData(rowData);

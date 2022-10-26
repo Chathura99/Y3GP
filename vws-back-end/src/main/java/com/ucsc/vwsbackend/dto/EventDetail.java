@@ -38,6 +38,16 @@ public class EventDetail {
 
     private String description;
 
+    private Integer actualDays;
+
+    public Integer getActualDays() {
+        return actualDays;
+    }
+
+    public void setActualDays(Integer actualDays) {
+        this.actualDays = actualDays;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -51,6 +61,36 @@ public class EventDetail {
     private String name;
 
     private String phoneNumber;
+
+    private String criteria1;
+
+    private String criteria2;
+
+    private String criteria3;
+
+    public String getCriteria1() {
+        return criteria1;
+    }
+
+    public void setCriteria1(String criteria1) {
+        this.criteria1 = criteria1;
+    }
+
+    public String getCriteria2() {
+        return criteria2;
+    }
+
+    public void setCriteria2(String criteria2) {
+        this.criteria2 = criteria2;
+    }
+
+    public String getCriteria3() {
+        return criteria3;
+    }
+
+    public void setCriteria3(String criteria3) {
+        this.criteria3 = criteria3;
+    }
 
     public Long getEventId() {
         return eventId;
