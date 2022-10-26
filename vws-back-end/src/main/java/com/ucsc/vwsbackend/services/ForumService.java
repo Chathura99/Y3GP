@@ -31,4 +31,8 @@ public class ForumService {
     public long addNewForum(ForumInfo forumInfo){
         return forumJdbcRepository.addNewForum(forumInfo);
     }
+
+    public long addNewDiscussionTopic(ForumWithDiscussionTopic forumWithDiscussionTopic){
+        return forumJdbcRepository.addNewDiscussionTopic(forumWithDiscussionTopic);
+    }
 }

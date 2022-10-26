@@ -6,14 +6,48 @@ import { LineChart } from '../../../utilities/Charts/LineChart';
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 import { getCompletedEvents } from '../../../services/eventServices/eventService';
+import { getVolunteerCompletedEventSummary } from '../../../services/volunteerServices/ChartServices';
 
 export default function CompletedEvents() {
+
+  const donutChartData = [
+    ["place", "Count"],
+
+  ];
 
   useEffect(() => {
     checkValidate();
     getCompletedEventDetails();
+    getComEventSummaryData();
 
   }, []);
+
+  const [volunteerCompletedEventSummaryData, setVolunteerCompletedEventSummaryData] = useState({});
+
+
+  const getComEventSummaryData = async () => {
+    const res = await getVolunteerCompletedEventSummary();
+    setDonuttChartData([...res.data]);
+    console.log(...res.data);
+    // Donut(res.data);
+     
+
+  };
+
+  const [donuttChartData, setDonuttChartData] = useState({});
+
+
+  const Donut =  Object.values(donuttChartData).map(
+      (value) => (
+        donutChartData.push(
+          [
+            value.place,
+            value.count
+          ]
+        )
+      )
+    )
+  
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -47,12 +81,7 @@ export default function CompletedEvents() {
     ["Jun", 200, 150],
   ]);
 
-  const [donutChartData, setDonutChartData] = useState([
-    ["Project", "Count"],
-    ["Ganitha Saviya", 11],
-    ["Re-Green Earth", 2],
-    
-  ]);
+ 
 
   return (
     <>
@@ -106,29 +135,29 @@ export default function CompletedEvents() {
                       { field: "place", title: "LOCATION" },
                     ]}
                     data={completedEventData}
-                    actions={[
-                      {
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              className="btn mt-0"
-                              style={{
-                                backgroundColor: "#96BE25",
-                                border: "none",
-                              }}
-                            >
-                              Details
-                            </button>
-                          );
-                        },
-                        onClick: (event, rowData) => {
-                          // setSelectedJoinRequestsData(rowData);
-                          setSelected(true);
-                        },
-                         tooltip: "Event Details",
-                      },
-                    ]}
+                    // actions={[
+                    //   {
+                    //     icon: () => {
+                    //       return (
+                    //         <button
+                    //           type="button"
+                    //           className="btn mt-0"
+                    //           style={{
+                    //             backgroundColor: "#96BE25",
+                    //             border: "none",
+                    //           }}
+                    //         >
+                    //           Details
+                    //         </button>
+                    //       );
+                    //     },
+                    //     onClick: (event, rowData) => {
+                    //       // setSelectedJoinRequestsData(rowData);
+                    //       setSelected(true);
+                    //     },
+                    //      tooltip: "Event Details",
+                    //   },
+                    // ]}
                     />
               
               </div>
@@ -138,4 +167,8 @@ export default function CompletedEvents() {
       </div>
     </>
   );
-}
+}                             
+  
+                  
+
+                  

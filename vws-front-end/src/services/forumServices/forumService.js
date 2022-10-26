@@ -47,3 +47,16 @@ const getToken = () => {
     
     });
   }
+
+  export const addNewDiscussionTopic = (discussion) =>{
+    console.log(discussion);
+    return axios({
+      method: "POST",
+      url: `${USER_URL}/addNewDiscussionTopic`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data: discussion
+    
+    });
+  }

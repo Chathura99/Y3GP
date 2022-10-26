@@ -160,6 +160,70 @@ export default function UpcomingEvents() {
                       </Card.Text>
                     </Card.Body>
                   </Card>
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Upcoming Events"
+                    columns={[
+                      { field: "eventId", title: "EVENT ID" },
+                      { field: "category", title: "CATEGORY" },
+                      { field: "name", title: "COORDINATOR" },
+                      { field: "startDate", title: "STARTS ON" },
+                      { field: "endDate", title: "ENDS ON" },
+                      { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      { field: "place", title: "LOCATION" },
+                    ]}
+                    data={upComingEventData}
+                    actions={[
+                      // {
+                      //   icon: () => {
+                      //     return (
+                      //       <button
+                      //         type="button"
+                      //         className="btn mt-0"
+                      //         style={{
+                      //           backgroundColor: "#96BE25",
+                      //           border: "none",
+                      //         }}
+                      //       >
+                      //         View
+                      //       </button>
+                      //     );
+                      //   },
+                      //   onClick: (event, rowData) => {
+                      //     // setSelectedJoinRequestsData(rowData);
+                      //     // setSelected(true);
+                      //   },
+                      //    tooltip: "View Location",
+                      // },
+                      {
+                          icon: () => {
+                            return (
+                              <button
+                                type="button"
+                                className="btn mt-0"
+                                style={{
+                                  backgroundColor: "#BE4D25",
+                                  border: "none",
+                                  // marginRight: "2px",
+                                }}
+                              >
+                                Leave
+                              </button>
+                            );
+                          },
+                          //  tooltip: "Leave from event",
+                          onClick: (event, rowData) => {
+                            setPopUp("confirmDelete");
+                            setSelectedJoinEventData({
+                              eventId: rowData.eventId,
+                              volunteerId: 1,
+                              status: 0
+                          });
+                        },
+                        },
+                    ]}
+                  />
+                                
+                                <MapFormPopUp />
 
                   <Card
                     style={{
