@@ -44,7 +44,7 @@ const [selected, setSelected] = useState(false);
                   
                   <div className="card-body" id="topicbody">
                     <p className="card-text" style={{ marginTop: "0" }}><b>
-                    This dicussion topic is to finalize the location for blood donation.
+                    This dicussion topic is to finalize the location for blood donation. Loaction shouldn't be to far from the colombo. Because we have to bring the equipments from the blood bank. Thank you.
                       
                       </b></p>   
                       {/* Lorem Ipsum is simply dummy text of the printing and
