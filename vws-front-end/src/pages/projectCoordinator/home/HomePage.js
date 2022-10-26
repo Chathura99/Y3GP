@@ -15,7 +15,7 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 
 // service
-import { getUpcomingEvents } from "../../../services/eventServices/eventService";
+import { getCurrentProjects } from "../../../services/projectServices/projectService";
 import { getEventRequest } from "../../../services/eventServices/eventService";
 
 
@@ -23,7 +23,7 @@ import { getEventRequest } from "../../../services/eventServices/eventService";
 export default function PcHomePage() {
     useEffect(() => {
         checkValidate();
-        upcomingEvent();
+        CurrentProjects();
         getRequest();
     }, []);
 
@@ -34,10 +34,10 @@ export default function PcHomePage() {
         }
     };
 
-    const upcomingEvent = async () => {
-        const res = await getUpcomingEvents();
+    const CurrentProjects = async () => {
+        const res = await getCurrentProjects();
         console.log(res.data);
-        setUpComingEventsData(res.data);
+        setCurrentProjectsData(res.data);
     };
 
     const getRequest = async () => {
@@ -46,8 +46,8 @@ export default function PcHomePage() {
         setJoinRequestsData(res.data);
       };
 
-    const [upComingEventsData, setUpComingEventsData] = useState([]);
-    const [selectedupComingEvents, setSelectedupComingEvents] = useState({});
+    const [CurrentProjectsData, setCurrentProjectsData] = useState([]);
+    const [selectedCurrentProjects, setSelectedCurrentProjects] = useState({});
 
     const [selected, setSelected] = useState(false);
 
@@ -182,13 +182,13 @@ const [pieChartData, setPieChartData] = useState([
                                           columns={[
                                             { field: "project_id", title: "ID" ,hidden:true},
                                             { field: "name", title: "PROJECT" },
-                                            { field: "name", title: "COORDINATOR" },
+                                            { field: "fullName", title: "COORDINATOR" },
                                             { field: "phoneNumber", title: "PHONE" },
-//                                            { field: "startDate", title: "STARTS ON" },
-//                                            { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                                          //  { field: "startDate", title: "STARTS ON" },
+                                          //  { field: "noOfVolunteers", title: "NO OF MEMBERS" },
 //                                            { field: "place", title: "LOCATION" },
                                           ]}
-                                          data={upComingEventsData}
+                                          data={CurrentProjectsData}
                                           actions={[
                                             {
                                               icon: () => {

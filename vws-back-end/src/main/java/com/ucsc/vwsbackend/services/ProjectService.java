@@ -1,13 +1,8 @@
 package com.ucsc.vwsbackend.services;
 
 
-import com.ucsc.vwsbackend.dto.AnnouncementInfo;
-import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
-import com.ucsc.vwsbackend.dto.NewProjectDetail;
+import com.ucsc.vwsbackend.dto.*;
 
-import com.ucsc.vwsbackend.dto.ProjectDetail;
-import com.ucsc.vwsbackend.dto.ProposedProjectdetails;
-import com.ucsc.vwsbackend.dto.VolunteerUpgrade;
 import com.ucsc.vwsbackend.entities.Project;
 import com.ucsc.vwsbackend.entities.ProjectCoordinator;
 import com.ucsc.vwsbackend.entities.Volunteer;
@@ -119,6 +114,11 @@ public class ProjectService {
     //Volunteer-Malik
     public long addProposedProjects(NewProjectDetail newProjectDetail) {
         return projectJdbcRepository.addProposedProjects(newProjectDetail);
+    }
+
+//    Project Coordinator - Ravindu
+    public  List<ProjectDetail> getCurrentProjects() {
+        return projectJdbcRepository.getCurrentProjects();
     }
 
 }
