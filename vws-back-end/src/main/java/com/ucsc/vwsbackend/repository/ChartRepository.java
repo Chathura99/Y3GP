@@ -87,8 +87,17 @@ public class ChartRepository {
     }
 
     public List<VolunteerProjectSummary> getVolunteerCompletedEventSummary(){
-        String sql ="SELECT count(*) as count,e.place FROM event as e INNER JOIN participate_event as pe ON e.volunteer_id=pe.volunteer_id " +
-                "WHERE e.volunteer_id=1 AND e.end_date<curdate() AND e.status=1 GROUP BY e.event_id;";
+        String sql ="SELECT count(*) as count,p.name FROM event as e INNER JOIN project as p ON p.project_id=e.project_id INNER JOIN participate_event as pe ON e.volunteer_id=pe.volunteer_id " +
+                "WHERE e.volunteer_id=1 AND e.end_date<curdate() AND e.status=1 GROUP BY e.event_id";
+        List<VolunteerProjectSummary> summary = jdbc.query(sql, new BeanPropertyRowMapper<VolunteerProjectSummary>(VolunteerProjectSummary.class));
+        return summary;
+    }
+
+
+    public List<VolunteerProjectSummary> getVolunteerCoordinatedEventSummary(){
+        String sql ="SELECT count(*) as count,p.name from event as e INNER JOIN project as p ON e.project_id=p.project_id " +
+                "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
+                "INNER JOIN user as u ON u.id=v.id where e.status=0 and v.volunteer_id=1 GROUP BY e.project_id";
         List<VolunteerProjectSummary> summary = jdbc.query(sql, new BeanPropertyRowMapper<VolunteerProjectSummary>(VolunteerProjectSummary.class));
         return summary;
     }
