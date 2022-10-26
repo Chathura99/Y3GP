@@ -123,7 +123,7 @@ export default function Event() {
                       { field: "endDate", title: "ENDS ON" },
                       { field: "noOfVolunteers", title: "NO OF MEMBERS" },
                       { field: "place", title: "LOCATION" },
-                      { field: "status", title: "STATUS" },
+                      { field: "status", title: "STATUS" ,hidden:true},
                     ]}
                     data={previousEventData}
                     actions={[
