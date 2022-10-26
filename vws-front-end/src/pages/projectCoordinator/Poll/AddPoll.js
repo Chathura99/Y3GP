@@ -78,7 +78,7 @@ export default function AddNewPoll() {
                         type="text"
                         className="form-control"
                         id="ProjectName"
-                        placeholder="Enter project name"
+                        placeholder="Enter Poll Title"
                       />
                     </div>
                   </div>

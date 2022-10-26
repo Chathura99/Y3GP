@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.repository.pollDao;
 
 import com.ucsc.vwsbackend.dto.ForumInfo;
 import com.ucsc.vwsbackend.dto.PollInfo;
+import com.ucsc.vwsbackend.entities.ReactToPoll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -51,6 +52,30 @@ public class PollJdbcRepository {
         namedParameters.addValue("end_date", edate);
         namedParameters.addValue("option1", pollInfo.getOption1());
         namedParameters.addValue("option2", pollInfo.getOption2());
+
+
+        int rowsAffected = jdbc.update(query , namedParameters);
+        return rowsAffected;
+
+    }
+
+
+    public long addReactToPoll(ReactToPoll reactToPoll) {
+//        LocalDate edate = LocalDate.parse(pollInfo.getEndDate());
+
+//        System.out.println(":ID" + newProjectDetail.getProjectId());
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String query = "INSERT INTO react_to_poll " +
+                "(id,option1,option2,volunteer_id) " +
+                "values (:poll_id, :option1, :option2,1)";
+
+        namedParameters.addValue("poll_id", reactToPoll.getId());
+//        namedParameters.addValue("description", pollInfo.getDescription());
+//        namedParameters.addValue("start_date",sdate);
+//        namedParameters.addValue("end_date", edate);
+        namedParameters.addValue("option1", reactToPoll.getOption1());
+        namedParameters.addValue("option2", reactToPoll.getOption2());
 
 
         int rowsAffected = jdbc.update(query , namedParameters);
