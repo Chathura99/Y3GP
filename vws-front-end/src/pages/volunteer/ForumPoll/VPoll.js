@@ -5,15 +5,62 @@ import NewTable from "../../../utilities/Table/NewTable.js";
 // import AddForumTopic from "./AddForumTopic";
 import { Link } from "react-router-dom";
 // import AddNewPoll from "./AddNewPoll";
-import { getPollInfo } from "../../../services/pollServices/pollService";
+import {  getPollInfo } from "../../../services/pollServices/pollService";
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { addReactToPoll } from './../../../services/pollServices/pollService';
+
 export default function VPoll() {
   
+  const [pollVote, setPollVote] = useState({
+    id: "",
+    option1: "",
+    option2: "",
+    
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setPollVote((pollVote) => ({
+      ...pollVote,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Vote Added !");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addReactToPoll(pollVote)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     checkValidate();
     getPollDetails();
+    getReplyToPollDetails();
+
 
   }, []);
   const getPollDetails = async () => {
@@ -22,6 +69,11 @@ export default function VPoll() {
     setPollData(res.data);
   };
 
+  const getReplyToPollDetails = async () => {
+    const res = await addReactToPoll();
+    console.log(res.data);
+    setPollData(res.data);
+  };
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -52,7 +104,7 @@ export default function VPoll() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                                <h5>Poll</h5>
+                                <h5>{PollData.title}</h5>
                                     
                             
                                 <div id="pollquestion">
@@ -60,7 +112,7 @@ export default function VPoll() {
                                             We are planning to organize either blood donation campaign or school equipments donation campaign
                                             on August 2022. So we decided to get your vote for ideal event for August month 2022
                                         </h6>
-                                        <form onSubmit={""} style={{marginTop:0}}>
+                                        <form onSubmit={confirm}>
                 <div className="row gutters " id="pollradio" >
                   
 
@@ -69,24 +121,25 @@ export default function VPoll() {
                       
                       <input
                         type="radio"
+                        name="option1"
+                        id="option1"
+                        // placeholder="Ravindu Medagama"
+                        value={pollVote.option1}
                         
-                        id="proposedBy"
-                        placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
-                        name="firstName"
-                        // onChange={handleChange}
+                        onChange={handleChange}
                       />
-                      <label for="fullName"  style={{ marginLeft:5 , fontSize: 12 }}> Blood Donation</label> <br/>
+                      <label for="option1"  style={{ marginLeft:5 , fontSize: 12 }}> {pollVote.option1}</label> <br/>
                       <input
                         type="radio"
                         
-                        id="proposedBy"
-                        placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
-                        name="firstName"
-                        // onChange={handleChange}
+                        name="option2"
+                        id="option2"
+                        // placeholder="Ravindu Medagama"
+                        value={pollVote.option2}
+                        // name="firstName"
+                        onChange={handleChange}
                       />
-                      <label for="fullName"  style={{ marginLeft:5 , fontSize: 12 }}> School Equipments Donation</label>
+                      <label for="option2"  style={{ marginLeft:5 , fontSize: 12 }}> {pollVote.option1}</label>
                     </div>
                   </div>
 
@@ -98,7 +151,7 @@ export default function VPoll() {
                       <div class="modal-footer justify-content-center " >
                         
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                       
                           name="submit"
@@ -155,13 +208,7 @@ export default function VPoll() {
                         field: "startDate",
                         title: "Started Date",
                       },
-                      { field: "updatedDate", title: "Updated Date", minWidth: "150px" },
-                      
-                      {
-                        field: "votes",
-                        title: "Votes",
-                        
-                      },
+                     
                       {
                         field: "endDate",
                         title: "End Date",
@@ -219,6 +266,19 @@ export default function VPoll() {
                 </div>
             </div>
             </div>
+            {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
             </div>
           </>
   );

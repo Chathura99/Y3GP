@@ -2,6 +2,7 @@ package com.ucsc.vwsbackend.controllers;
 
 import com.ucsc.vwsbackend.dto.ForumInfo;
 import com.ucsc.vwsbackend.dto.PollInfo;
+import com.ucsc.vwsbackend.entities.ReactToPoll;
 import com.ucsc.vwsbackend.services.ForumService;
 import com.ucsc.vwsbackend.services.PollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class PollController {
     @PostMapping("/addNewPoll")
     public long addNewPoll(@RequestBody PollInfo pollInfo){
         return pollService.addNewPoll(pollInfo);
+    }
+
+    @PostMapping("/addReactToPoll")
+    public long addReactToPoll(@RequestBody ReactToPoll reactToPoll){
+        return pollService.addReactToPoll(reactToPoll);
     }
 }
