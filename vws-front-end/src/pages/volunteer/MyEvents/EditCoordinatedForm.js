@@ -266,7 +266,7 @@ export default function EditCoordinatedForm(props) {
                           for="flexCheckChecked"
                           style={{ color: "black" }}
                         >
-                          criteria 2
+                          is their any difficulties found when doing event ?
                         </label>
                       </div>
                       <div class="form-check">
@@ -283,7 +283,7 @@ export default function EditCoordinatedForm(props) {
                           for="flexCheckChecked"
                           style={{ color: "black" }}
                         >
-                          criteria 3{" "}
+                          is this event completed over 75% ?
                         </label>
                       </div>
                     </div>
