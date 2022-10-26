@@ -151,4 +151,10 @@ public class EventController {
     public long deleteCoordinatedEvents(@PathVariable Long id) {
         return eventService.deleteCoordinatedEvents(id);
     }
+
+    @GetMapping("/getvolunteerAvailability")
+    public List<EventDetail> getvolunteerAvailability() {
+        return eventService.getvolunteerAvailability();
+    }
+
 }
