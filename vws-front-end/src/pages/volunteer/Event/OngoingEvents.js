@@ -149,6 +149,7 @@ const handleChange = (e) => {
                       {
                         field: "eventId",
                         title: "EVENT ID",
+                        hidden:true
                         
                       },
                       {
@@ -170,7 +171,10 @@ const handleChange = (e) => {
                       {
                         field: "noOfVolunteers",
                         title: "NO OF MEMBERS",
-                      },
+                      },{
+                        field: "place",
+                        title: "Place",
+                      }
                       
                     ]}
                     data={onGoingEventData}

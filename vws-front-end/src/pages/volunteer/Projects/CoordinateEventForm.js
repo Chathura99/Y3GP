@@ -34,6 +34,7 @@ export default function CoordinateEventForm(props) {
   // close pop up modal
   const closePopUp = () => {
     setPopUp("");
+    window.location.href="/volunteerProjects"
   };
    // open confirmation pop up modal
    const confirm = (e) => {
