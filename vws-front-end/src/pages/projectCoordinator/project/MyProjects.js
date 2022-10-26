@@ -4,6 +4,7 @@ import NewTable from '../../../utilities/Table/NewTable';
 import "./Project.css"
 import { useMemo } from 'react';
 import EditProject from "./EditProject";
+import PcERApprove from "./Approve";
 
 // for remove box shadow
 import { Paper } from "@material-ui/core";
@@ -199,10 +200,9 @@ export default function PcMyProject() {
         </div>
       </div>
     </div>
-    {selected && (
-              <EditProject setSelected={setSelected} data={selectedProject} />
-            )}
-
+    {selected1 && (
+                  <PcERApprove setSelected={setSelected1} data={selectedJoinRequestsData} />
+                )}
             <br></br>
     </div>
   </>
