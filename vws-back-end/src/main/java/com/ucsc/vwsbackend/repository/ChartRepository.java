@@ -54,13 +54,15 @@ public class ChartRepository {
                 new MapSqlParameterSource();
         VolunteerHomeSummary volunteerHomeSummary= new VolunteerHomeSummary();
 
-        String sql1 = "SELECT count(*) from event where (start_date > curdate()) ";
+        String sql1 = "SELECT count(*) from event where (start_date > curdate() and  status!=0)";
         volunteerHomeSummary.setUpcomingEventsCount(jdbcTemplate.queryForObject(sql1, Integer.class));
 
-        String sql2 = "SELECT count(*) from event where (end_date < curdate())";
+        String sql2 = "SELECT count(*) from event as e INNER JOIN participate_event as pe ON pe.volunteer_id=e.volunteer_id AND pe.event_id=e.event_id " +
+                "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
+                "where e.status=1 and v.volunteer_id=1 and e.end_date<curdate()";
         volunteerHomeSummary.setCompletedEventsCount(jdbcTemplate.queryForObject(sql2, Integer.class));
 
-        String sql3 = "SELECT count(*) from event where start_date > curdate()";
+        String sql3 = "SELECT COUNT(*) FROM poll ";
         volunteerHomeSummary.setNewPollsCount(jdbcTemplate.queryForObject(sql3, Integer.class));
 
         String sql4 = "SELECT count(*) from project where (status=1)";
@@ -85,8 +87,17 @@ public class ChartRepository {
     }
 
     public List<VolunteerProjectSummary> getVolunteerCompletedEventSummary(){
-        String sql ="SELECT count(*) as count,e.place FROM event as e INNER JOIN participate_event as pe ON e.volunteer_id=pe.volunteer_id " +
-                "WHERE e.volunteer_id=1 AND e.end_date<curdate() AND e.status=1 GROUP BY e.event_id;";
+        String sql ="SELECT count(*) as count,p.name FROM event as e INNER JOIN project as p ON p.project_id=e.project_id INNER JOIN participate_event as pe ON e.volunteer_id=pe.volunteer_id " +
+                "WHERE e.volunteer_id=1 AND e.end_date<curdate() AND e.status=1 GROUP BY e.event_id";
+        List<VolunteerProjectSummary> summary = jdbc.query(sql, new BeanPropertyRowMapper<VolunteerProjectSummary>(VolunteerProjectSummary.class));
+        return summary;
+    }
+
+
+    public List<VolunteerProjectSummary> getVolunteerCoordinatedEventSummary(){
+        String sql ="SELECT count(*) as count,p.name from event as e INNER JOIN project as p ON e.project_id=p.project_id " +
+                "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
+                "INNER JOIN user as u ON u.id=v.id where e.status=0 and v.volunteer_id=1 GROUP BY e.project_id";
         List<VolunteerProjectSummary> summary = jdbc.query(sql, new BeanPropertyRowMapper<VolunteerProjectSummary>(VolunteerProjectSummary.class));
         return summary;
     }

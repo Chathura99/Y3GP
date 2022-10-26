@@ -226,7 +226,7 @@ export default function ViewForum(props) {
                     columns={[
                       // { field: "projectId", title: "PROJECT ID" },
                       {
-                        field: "title",
+                        field: "topic",
                         title: "DISCUSSION",
                         minWidth: "150px",
                       },
@@ -240,6 +240,7 @@ export default function ViewForum(props) {
                         field: "replies",
                         title: "REPLIES",
                         minWidth: "150px",
+                        hidden:true
                       },
                       
                       
