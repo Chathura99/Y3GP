@@ -8,7 +8,7 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 //import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 import PcApprove from "./MakeApprove";
-import PcPopupDetails from "./PopupDetails";
+// import PcPopupDetails from "./PopupDetails";
 
 
 // for remove box shadow
@@ -182,37 +182,37 @@ const [pieChartData, setPieChartData] = useState([
                       title="Project Details"
                                           columns={[
                                             { field: "project_id", title: "ID" ,hidden:true},
-                                            { field: "name", title: "PROJECT" },
-                                            { field: "fullName", title: "COORDINATOR" },
+                                            { field: "name", title: "PROJECT",  minWidth: "150px" },
+                                            { field: "fullName", title: "COORDINATOR",  minWidth: "150px" },
                                             { field: "phoneNumber", title: "PHONE" },
                                           //  { field: "startDate", title: "STARTS ON" },
                                           //  { field: "noOfVolunteers", title: "NO OF MEMBERS" },
 //                                            { field: "place", title: "LOCATION" },
                                           ]}
                                           data={CurrentProjectsData}
-                                          actions={[
-                                            {
-                                              icon: () => {
-                                                return (
-                                                  <button
-                                                    type="button"
-                                                    className="btn mt-0"
-                                                    style={{
-                                                      backgroundColor: "#96BE25",
-                                                      border: "none",
-                                                    }}
-                                                  >
-                                                    Details
-                                                  </button>
-                                                );
-                                              },
-                                              onClick: (event, rowData) => {
-                                                setSelectedJoinRequestsData(rowData);
-                                                setSelected(true);
-                                              },
-                                              // tooltip: "Register User",
-                                            },
-                                          ]}
+                                          // actions={[
+                                          //   {
+                                          //     icon: () => {
+                                          //       return (
+                                          //         <button
+                                          //           type="button"
+                                          //           className="btn mt-0"
+                                          //           style={{
+                                          //             backgroundColor: "#96BE25",
+                                          //             border: "none",
+                                          //           }}
+                                          //         >
+                                          //           Details
+                                          //         </button>
+                                          //       );
+                                          //     },
+                                          //     onClick: (event, rowData) => {
+                                          //       setSelectedJoinRequestsData(rowData);
+                                          //       setSelected(true);
+                                          //     },
+                                          //     // tooltip: "Register User",
+                                          //   },
+                                          // ]}
                                         />
                 </div>
               </div>
@@ -220,9 +220,9 @@ const [pieChartData, setPieChartData] = useState([
           </div>
         
 
-          {selected && (
+         {/* {selected && (
                   <PcPopupDetails setSelected={setSelected} data={selectedJoinRequestsData} />
-                )}
+                )} */}
 
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">

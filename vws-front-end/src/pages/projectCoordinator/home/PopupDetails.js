@@ -1,98 +1,80 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-// services
-import { getVolunteer } from "../../../services/projectServices/projectService";
-import { editProject } from "../../../services/projectServices/projectService";
-import { updateCoordinatedEventStatus } from "../../../services/eventServices/eventService";
-import { updateCoordinatedEventStatusReject } from "../../../services/eventServices/eventService";
-
-// popups
+import React, { useState } from "react";
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
-import Loading from "../../../utilities/Loading/Loading";
+import { addCoordinatedEvents } from './../../../services/eventServices/eventService';
 
+export default function CoordinateEventForm(props) {
 
-export default function EditProject(props) {
-  useEffect(() => {
-    getVolunteerData();
-  }, []);
+  const [projectData, setProjectData] = useState(props.data);
 
+  const [newEvent, setNewEvent] = useState({
+    startDate: "",
+    endDate: "",
+    place: "",
+    volunteerId:1,
+    projectId:2,
+    noOfVolunteers: "",
+
+  });
+
+  
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setNewEvent((newEvent) => ({
+      ...newEvent,
+
+      [e.target.name]: e.target.value,
+    }));
+  };
   // open success/error pop up modals and set display message
   const [popup, setPopUp] = useState("");
   const [message, setMessage] = useState("");
   // close pop up modal
   const closePopUp = () => {
     setPopUp("");
-    window.location.href="/pchome"
   };
-  // open confirmation pop up modal
-  const confirm = (e) => {
+   // open confirmation pop up modal
+   const confirm = (e) => {
     e.preventDefault();
-    setMessage("Edit project details");
+    // setMessage("Coordinated New Event !");
     setPopUp("confirm");
   };
 
-const [selectedEventId, setSelectedEventId] = useState("");
   const handleSubmit = (e) => {
     // evt.preventDefault();
-    console.log("reached!");
-    updateCoordinatedEventStatus(selectedEventId).then((response) => {
-      if (response.status === 200) {
-        console.log(response.data);
-        setMessage("edit success");
-        setPopUp("success");
-      }
-    });
-  };
-
-    const handleSubmit1 = (e) => {
-      // evt.preventDefault();
-      console.log("reached!");
-      updateCoordinatedEventStatusReject(selectedEventId).then((response) => {
+    console.log("reached!")
+    addCoordinatedEvents(newEvent)
+      .then((response) => {
         if (response.status === 200) {
           console.log(response.data);
-          setMessage("reject success");
+          setMessage("Coordinated New Event !");
           setPopUp("success");
         }
-      });
-    };
-
-  const handleChange = (e) => {
-    e.persist();
-    console.log(e.target.name + "-" + e.target.value);
-    setSelectedProject((project) => ({
-      ...selectedProject,
-      [e.target.name]: e.target.value,
-    }));
+      })
+      
   };
-
-  const [selectedProject, setSelectedProject] = useState(props.data);
-
-  const [volunteertData, setvolunteertData] = useState([]);
-
-  const getVolunteerData = async () => {
-    const res = await getVolunteer();
-    console.log(res.data);
-    setvolunteertData(res.data);
-  };
-
   return (
     <div>
+     
+
       <div
         class="modal fade show"
-        id="editproject"
+        id="addCoordinatedEvents"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="exampleModalLabel"
+        aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true"
         style={{ display: "block" }}
       >
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                More Details
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Coordinate New Event
               </h5>
               <button
                 type="button"
@@ -107,136 +89,150 @@ const [selectedEventId, setSelectedEventId] = useState("");
               </button>
             </div>
             <div class="modal-body">
-              <div className="row gutters ">
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+            <div className="row gutters ">
+            <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <small>
-                    Name : {selectedProject.firstName}{" "}
-                    {selectedProject.lastName}
+                    Project Name : {projectData.name}
+                   
                   </small>
                   <br></br>
-                  <small>Phone : {selectedProject.phoneNumber}</small>
+                  <small>Project Coordinator : {projectData.firstName}</small>
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <small>Start Date : {selectedProject.startDate}</small>
+                  <small>Start Date : {projectData.startDate}</small>
+                </div>
+            </div>
+
+            
+            <form onSubmit={confirm}>
+                <div className="row gutters ">
+                
+                  {/* <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h4 className="mb-2" style={{textAlign:"center",fontSize:15,marginTop:-10,color:"#808080"}}>{projectData.name}</h4>
+                  </div> */}
+{/* {console.log(props.projectData)} */}
+                 <h1></h1>
+
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group ">
+                      <label for="fullName">Proposed By </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="proposedBy"
+                        // value={coordinateEventToProject.firstName}
+                        
+                        
+                        name="firstName"
+                        // onChange={handleChange}
+                      />
+                    </div>
+                  </div> */}
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="place">Place</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="place"
+                        name="place"
+                        value={newEvent.place}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="startDate">Starts On</label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        id="startDate"
+                        value={newEvent.startDate}
+                        name="startDate"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="endDate">Ends On</label>
+                      <input
+                        type="date"
+                        className="form-control"
+                        id="endDate"
+                        value={newEvent.endDate}
+                        name="endDate"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+
+
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="noOfVolunteers">No.of volunteers need</label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="noOfVolunteers"
+                        name="noOfVolunteers"
+                        value={newEvent.noOfVolunteers}
+                        onChange={handleChange}
+
+                      />
+                    </div>
+                  </div>
+
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="website">Other</label>
+                      <input
+                        type="url"
+                        className="form-control"
+                        id="other"
+                        placeholder="Content"
+                      />
+                    </div>
+                  </div> */}
+
+                 
                 </div>
 
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group ">
-                    <label for="projectname" id="formLabel">
-                      Event Name
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="name"
-                      name="name"
-                      value={selectedProject.name}
-                      onChange={handleChange}
-                    />
+                <div className="row gutters">
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="text-center mt-3 ">
+                      <div class="modal-footer justify-content-center ">
+                        <button
+                          type="button"
+                          className="btn btn-secondary m-2"
+                          data-dismiss="modal"
+                          onClick={()=>{
+                            props.setSelected(false)
+                          }}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          id="submit"
+                          name="submit"
+                          className="btn btn-primary"
+                          
+                        >
+                          Save
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group">
-                    <label for="projectCoordinator" id="formLabel">
-                      Available Volunteers
-                    </label>
-
-                    <select
-                      type="text"
-                      className="form-control"
-                      id="coordinatorId"
-                      name="coordinatorId"
-                      // value={
-                      //   selectedProject.firstName
-                      // }
-                      onChange={handleChange}
-                    >
-                      <option>{selectedProject.first_Name}</option>
-                      {volunteertData.map((vol, index) => (
-                        <option value={vol.volunteerId}>
-                          {vol.volunteerId +
-                            " :" +
-                            vol.firstName +
-                            " " +
-                            vol.lastName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group">
-                    <label for="description" id="formLabel">
-                      Description
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="description"
-                      name="description"
-                      value={selectedProject.description}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                  <div className="form-group">
-                    <label for="eventPerYear" id="formLabel">
-                      Place
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="eventPerYear"
-                      name="eventPerYear"
-                      value={selectedProject.place}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="row gutters">
-                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                  <div className="text-center mt-3 ">
-
-                      <button
-                        type="button"
-                        id="submit"
-                        name="submit"
-                        class="btn btn-secondary btn-sm"
-                        title="Approve Request"
-                        onClick={() => {
-                        setSelectedEventId(selectedProject.eventId)
-                        console.log(selectedProject.eventId);
-                        setPopUp("confirm");
-                        setMessage("Approve Request")
-                        }}
-                      >
-                        Approve
-                      </button>
-
-
-                    <button
-                      type="submit"
-                      name="submit"
-                      class="btn btn-primary btn-sm"
-                      title="Reject Request"
-                      onClick={()=>{
-                      setSelectedEventId(selectedProject.eventId)
-                      setPopUp("confirmReject");
-                                              setMessage("Reject Request")
-
-                      }}
-                    >
-                      Reject
-                    </button>
-                  </div>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -255,13 +251,6 @@ const [selectedEventId, setSelectedEventId] = useState("");
           handleSubmit={handleSubmit}
         />
       )}
-      {popup === "confirmReject" && (
-              <ConfirmPopUp
-                message={message}
-                closePopUp={closePopUp}
-                handleSubmit={handleSubmit1}
-              />
-            )}
     </div>
   );
 }
