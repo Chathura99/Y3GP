@@ -22,7 +22,7 @@ export default function RequestNewEvent() {
       noOfVolunteers: "",
       startDate: "",
       status: 0,
-      projectId:0
+      projectId: 0
     },
     []
   );
@@ -52,36 +52,40 @@ export default function RequestNewEvent() {
     }));
   };
 
-    // open success/error pop up modals and set display message
-    const [popup, setPopUp] = useState("");
-    const [message, setMessage] = useState("");
-    // close pop up modal
-    const closePopUp = () => {
-      setPopUp("");
-    };
-    // open confirmation pop up modal
-    const confirm = (e) => {
-      e.preventDefault();
-      setMessage("Request new event!");
-      setPopUp("confirm");
-    };
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Request new event!");
+    setPopUp("confirm");
+  };
 
   return (
-    <div className="container-fluid calculated-bodywidth">
+    <div className="container-fluid" id="new-event-form">
       <div className="row gutters mt-4">
-        <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
-          <div className="card h-100" id="contentcard">
+        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <div className="card h-100" id="contentcard-new-event"
+            style={{ backgroundColor: "rgba(255,255,255,0.2)" }}>
             <div className="card-body">
               <form onSubmit={confirm}>
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h3 className="mb-4">Request New Event</h3>
-                    <h6 className="subTopic">Requester's Details:</h6>
+
+                    <h3 className="mb-4" style={{ color: "white" }}>
+                      <center>
+                        <b>Request New Event </b> </center></h3>
+                    <h6 className="subTopic" style={{ color: "white" }}>Requester's Details:</h6>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group ">
-                      <label for="firstName">First Name</label>
+                      <label for="firstName" style={{ color: "white" }}>First Name</label>
                       <input
                         type="text"
                         className="form-control"
@@ -96,7 +100,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="lastName">Last Name</label>
+                      <label for="lastName" style={{ color: "white" }}>Last Name</label>
                       <input
                         type="text"
                         className="form-control"
@@ -111,7 +115,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="email">Email</label>
+                      <label for="email" style={{ color: "white" }}>Email</label>
                       <input
                         type="email"
                         className="form-control"
@@ -126,7 +130,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phoneNumber">Phone</label>
+                      <label for="phoneNumber" style={{ color: "white" }}>Phone</label>
                       <input
                         type="text"
                         className="form-control"
@@ -141,7 +145,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="district">District</label>
+                      <label for="district" style={{ color: "white" }}>District</label>
                       <input
                         type="text"
                         className="form-control"
@@ -156,7 +160,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="address">Address</label>
+                      <label for="address"style={{ color: "white" }}>Address</label>
                       <input
                         type="text"
                         className="form-control"
@@ -171,7 +175,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="profession">Profession</label>
+                      <label for="profession" style={{ color: "white" }}>Profession</label>
                       <input
                         type="text"
                         className="form-control"
@@ -186,7 +190,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="nic">NIC/Passport</label>
+                      <label for="nic" style={{ color: "white" }}>NIC/Passport</label>
                       <input
                         type="text"
                         className="form-control"
@@ -200,12 +204,12 @@ export default function RequestNewEvent() {
                   </div>
                 </div>
                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 className="subTopic">Event Details:</h6>
-                  </div>
+                  <h6 className="subTopic" style={{ color: "white" }}>Event Details:</h6>
+                </div>
                 <div className="row gutters">
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="projectId" id="formLabel">
+                      <label for="projectId" style={{ color: "white" }}>
                         Event{" "}
                       </label>
 
@@ -231,8 +235,8 @@ export default function RequestNewEvent() {
                     </div>
                   </div>
 
-                 
-{/* 
+
+                  {/* 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="projectId">Event</label>
@@ -250,7 +254,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="date">Date</label>
+                      <label for="date" style={{ color: "white" }}>Date</label>
                       <input
                         type="date"
                         className="form-control"
@@ -265,7 +269,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="place">Place</label>
+                      <label for="place" style={{ color: "white" }}>Place</label>
                       <input
                         type="text"
                         className="form-control"
@@ -280,7 +284,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="noOfVolunteers">Volunteer Count</label>
+                      <label for="noOfVolunteers" style={{ color: "white" }}>Volunteer Count</label>
                       <input
                         type="text"
                         className="form-control"
@@ -295,7 +299,7 @@ export default function RequestNewEvent() {
 
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="form-group">
-                      <label for="other">Other information?</label>
+                      <label for="other" style={{ color: "white" }}>Other information?</label>
                       <input
                         type="text"
                         className="form-control"
