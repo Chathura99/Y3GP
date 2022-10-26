@@ -109,8 +109,7 @@ export default function VPoll() {
                             
                                 <div id="pollquestion">
                                         <h6>
-                                            We are planning to organize either blood donation campaign or school equipments donation campaign
-                                            on August 2022. So we decided to get your vote for ideal event for August month 2022
+                                        Which project is more recently used
                                         </h6>
                                         <form onSubmit={confirm}>
                 <div className="row gutters " id="pollradio" >
@@ -124,22 +123,22 @@ export default function VPoll() {
                         name="option1"
                         id="option1"
                         // placeholder="Ravindu Medagama"
-                        value={pollVote.option1}
+                        // value={pollVote.option1}
                         
-                        onChange={handleChange}
+                        // onChange={handleChange}
                       />
-                      <label for="option1"  style={{ marginLeft:5 , fontSize: 12 }}> {pollVote.option1}</label> <br/>
+                      <label for="option1"  style={{ marginLeft:5 , fontSize: 12 }}>Lohitha uthpaadana</label> <br/>
                       <input
                         type="radio"
                         
                         name="option2"
                         id="option2"
                         // placeholder="Ravindu Medagama"
-                        value={pollVote.option2}
+                        // value={pollVote.option2}
                         // name="firstName"
-                        onChange={handleChange}
+                        // onChange={handleChange}
                       />
-                      <label for="option2"  style={{ marginLeft:5 , fontSize: 12 }}> {pollVote.option1}</label>
+                      <label for="option2"  style={{ marginLeft:5 , fontSize: 12 }}> Ganitha Saviya</label>
                     </div>
                   </div>
 
