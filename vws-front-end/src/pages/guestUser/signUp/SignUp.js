@@ -31,6 +31,7 @@ export default function SignUp() {
       nic: "",
       info: "",
       other: "",
+      qa1:"",
     },
     []
   );
@@ -40,6 +41,7 @@ export default function SignUp() {
   // close pop up modal
   const closePopUp = () => {
     setPopUp("");
+    window.location.href="/signUp"
   };
   // open confirmation pop up modal
   const confirm = (e) => {
@@ -75,7 +77,7 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     e.persist();
-    // console.log(e.target.name + "-" + e.target.value);
+    console.log(e.target.name + "-" + e.target.value);
     setRequestData((requestData) => ({
       ...requestData,
       [e.target.name]: e.target.value,
@@ -336,31 +338,47 @@ export default function SignUp() {
                             Select your qualifications
                           </label>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked />
+                            <input class="form-check-input" type="checkbox"  id="flexCheckDefault" 
+                            name="qa1"
+                            value="interpersonal skills"
+                            onChange={handleChange}
+                            />
                             <label class="form-check-label" id="qualifications" for="flexCheckDefault">
                               interpersonal skills
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <input class="form-check-input" type="checkbox" id="flexCheckChecked" 
+                            name="qa2"
+                            value="Leadership"
+                            onChange={handleChange}/>
                             <label class="form-check-label" id="qualifications" for="flexCheckChecked">
                               Leadership
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <input class="form-check-input" type="checkbox"  id="flexCheckChecked" 
+                            name="qa3"
+                            value="Teamwork and collaboration"
+                            onChange={handleChange}/>
                             <label class="form-check-label" id="qualifications" for="flexCheckChecked">
                               Teamwork and collaboration
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <input class="form-check-input" type="checkbox"  id="flexCheckChecked" 
+                            name="qa4"
+                            value="Physical abilities"
+                            onChange={handleChange}/>
                             <label class="form-check-label" id="qualifications" for="flexCheckChecked">
                               Physical abilities
                             </label>
                           </div>
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" />
+                            <input class="form-check-input" type="checkbox" id="flexCheckChecked" 
+                            name="qa5"
+                            value="Oral and written communications skills"
+                            onChange={handleChange}/>
                             <label class="form-check-label" id="qualifications" for="flexCheckChecked">
                               Oral and written communications skills
                             </label>

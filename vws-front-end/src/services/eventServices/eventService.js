@@ -177,6 +177,16 @@ export const editMyCoordinatedEvents = (newEvent) => {
       },
     });
   };
+
+  export const getUpcomingEventsLimit = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getUpcomingEventsLimit`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
     
 
   export const deleteCoordinatedEvents = (deleteevent) => {

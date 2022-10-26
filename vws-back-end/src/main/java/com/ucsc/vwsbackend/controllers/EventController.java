@@ -22,6 +22,11 @@ public class EventController {
         return eventService.getUpcomingEvents();
     }
 
+    @GetMapping("/getUpcomingEventsLimit")
+    public List<EventDetail> getUpcomingEventsLimit() {
+        return eventService.getUpcomingEventsLimit();
+    }
+
     @GetMapping("/getPreviousEvents")
     public List<EventDetail> getPreviousEvents() {
         return eventService.getPreviousEvents();

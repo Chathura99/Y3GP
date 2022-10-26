@@ -38,7 +38,7 @@ const [selectedEventId, setSelectedEventId] = useState("");
     updateCoordinatedEventStatus(selectedEventId).then((response) => {
       if (response.status === 200) {
         console.log(response.data);
-        setMessage("edit success");
+        setMessage("Approved success");
         setPopUp("success");
       }
     });
@@ -66,7 +66,7 @@ const [selectedEventId, setSelectedEventId] = useState("");
   };
 
   const [selectedProject, setSelectedProject] = useState(props.data);
-
+console.log(selectedProject)
   const [volunteertData, setvolunteertData] = useState([]);
 
   const getVolunteerData = async () => {
@@ -108,17 +108,17 @@ const [selectedEventId, setSelectedEventId] = useState("");
               <div className="row gutters ">
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <small>
-                    Name : {selectedProject.firstName}{" "}
-                    {selectedProject.lastName}
+                    Name : {selectedProject.first_Name}{" "}
+                    {selectedProject.last_Name}
                   </small>
                   <br></br>
-                  <small>Phone : {selectedProject.phoneNumber}</small>
+                  {/* <small>Phone : {selectedProject.phoneNumber}</small> */}
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <small>Start Date : {selectedProject.startDate}</small>
                 </div>
 
-                <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group ">
                     <label for="projectname" id="formLabel">
                       Event Name
@@ -132,7 +132,7 @@ const [selectedEventId, setSelectedEventId] = useState("");
                       onChange={handleChange}
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group">
