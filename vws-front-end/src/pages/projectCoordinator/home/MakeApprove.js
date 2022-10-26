@@ -207,6 +207,11 @@ const [selectedEventId, setSelectedEventId] = useState("");
                         type="button"
                         id="submit"
                         name="submit"
+                        style={{
+                          width: "6rem",
+                          border: "none",
+                          marginRight: "10px",
+                        }}
                         class="btn btn-secondary btn-sm"
                         title="Approve Request"
                         onClick={() => {
