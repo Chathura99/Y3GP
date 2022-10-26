@@ -22,7 +22,7 @@ export default function ApplyForScholarship() {
       nic: "",
       info: "",
       other: "",
-      scholarshipType:"1"
+      scholarshipType: "1"
     },
     []
   );
@@ -52,38 +52,42 @@ export default function ApplyForScholarship() {
     }));
   };
 
-  
-    // open success/error pop up modals and set display message
-    const [popup, setPopUp] = useState("");
-    const [message, setMessage] = useState("");
-    // close pop up modal
-    const closePopUp = () => {
-      setPopUp("");
-    };
-    // open confirmation pop up modal
-    const confirm = (e) => {
-      e.preventDefault();
-      setMessage("Send Application for request scholarship!");
-      setPopUp("confirm");
-    };
+
+  // open success/error pop up modals and set display message
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  // close pop up modal
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  // open confirmation pop up modal
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Send Application for request scholarship!");
+    setPopUp("confirm");
+  };
 
 
   return (
-    <div className="container-fluid calculated-bodywidth">
+    <div className="container-fluid" id="scholar-cont">
       <div className="row gutters mt-4">
-        <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 ">
-          <div className="card h-100" id="contentcard">
-            <div className="card-body">
+        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+          <div className="card h-100" id="contentcard-scholar"
+            style={{ backgroundColor: "rgba(255,255,255,0.2)" }}>
+            <div className="card-body" id="scholar-card">
               <form onSubmit={handleSubmit}>
                 <div className="row gutters ">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h3 className="mb-4">Apply For Scholarship</h3>
-                    <h6 className="subTopic">Candidate's Details:</h6>
+                    <h3 className="mb-4" style={{ color: "white" }}>
+                      <center>
+                        <b>Apply For Scholarship</b>
+                      </center></h3>
+                    <h6 className="subTopic" style={{ color: "white" }}>Candidate's Details:</h6>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div className="form-group ">
-                      <label for="fullName">Full Name</label>
+                    <div className="form-group">
+                      <label for="fullName" style={{ color: "white" }}>Full Name</label>
                       <input
                         type="text"
                         className="form-control"
@@ -99,7 +103,7 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="nic">NIC/Passport</label>
+                      <label for="nic" style={{ color: "white" }}>NIC/Passport</label>
                       <input
                         type="text"
                         className="form-control"
@@ -115,7 +119,7 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phoneNumber">Phone</label>
+                      <label for="phoneNumber" style={{ color: "white" }}>Phone</label>
                       <input
                         type="text"
                         className="form-control"
@@ -131,7 +135,7 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="email">Email</label>
+                      <label for="email" style={{ color: "white" }}>Email</label>
                       <input
                         type="email"
                         className="form-control"
@@ -146,7 +150,7 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="district">District</label>
+                      <label for="district" style={{ color: "white" }}>District</label>
                       <input
                         type="text"
                         className="form-control"
@@ -161,7 +165,7 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="address">Address</label>
+                      <label for="address" style={{ color: "white" }}>Address</label>
                       <input
                         type="text"
                         className="form-control"
@@ -177,7 +181,7 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="school">School/University:</label>
+                      <label for="school" style={{ color: "white" }}>School/University:</label>
                       <input
                         type="text"
                         className="form-control"
@@ -192,16 +196,16 @@ export default function ApplyForScholarship() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="nic">Select the scholarship type</label>
+                      <label for="nic" style={{ color: "white" }}>Select the scholarship type</label>
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="scholarshipType" id="flexRadioDefault1" onChange={handleChange} value={requestData.scholarshipType} />
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1" style={{ color: "white" }}>
                           O/L Passed (A/L Students)
                         </label>
                       </div>
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="scholarshipType" id="flexRadioDefault2" onChange={handleChange} value={requestData.scholarshipType} />
-                        <label class="form-check-label" for="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2" style={{ color: "white" }}>
                           A/L Passed (Undergraduates)
                         </label>
                       </div>
@@ -209,43 +213,43 @@ export default function ApplyForScholarship() {
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div className="form-group">
-                          <label for="formFile1" class="form-label" id="formLbl1">
-                            Result sheet
-                          </label>
-                          <input
-                            class="form-control browse"
-                            type="file"
-                            id="formFile1"
-                          // name="copy"
-                          // value={requestData.copy}
-                          // onChange={handleChange}
-                          />
-                        </div>
-                      </div>
+                    <div className="form-group">
+                      <label for="formFile1" class="form-label" id="formLbl1" style={{ color: "white" }}>
+                        Result sheet
+                      </label>
+                      <input
+                        class="form-control browse"
+                        type="file"
+                        id="formFile1"
+                      // name="copy"
+                      // value={requestData.copy}
+                      // onChange={handleChange}
+                      />
+                    </div>
+                  </div>
 
-                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                        <div className="form-group">
-                          <label for="formFile2" class="form-label" id="formLbl2">
-                            Income Certificate
-                          </label>
-                          <input
-                            class="form-control browse"
-                            type="file"
-                            id="formFile2"
-                          // name="copy"
-                          // value={requestData.copy}
-                          // onChange={handleChange}
-                          />
-                        </div>
-                      </div>
+                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div className="form-group">
+                      <label for="formFile2" class="form-label" id="formLbl2" style={{ color: "white" }}>
+                        Income Certificate
+                      </label>
+                      <input
+                        class="form-control browse"
+                        type="file"
+                        id="formFile2"
+                      // name="copy"
+                      // value={requestData.copy}
+                      // onChange={handleChange}
+                      />
+                    </div>
+                  </div>
 
                 </div>
 
                 <div className="row gutters">
                   <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div className="form-group">
-                      <label for="other">Other information?</label>
+                      <label for="other" style={{ color: "white" }}>Other information?</label>
                       <input
                         type="text"
                         className="form-control"
