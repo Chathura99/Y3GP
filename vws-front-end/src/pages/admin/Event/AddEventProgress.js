@@ -97,7 +97,7 @@ export default function AddEventProgress(props) {
                           for="flexCheckDefault"
                           style={{ color: "black" }}
                         >
-                          Criteria 1
+                          Is the contribution satisfied ?
                         </label>
                       </div>
                       <div class="form-check">
@@ -114,7 +114,7 @@ export default function AddEventProgress(props) {
                           for="flexCheckChecked"
                           style={{ color: "black" }}
                         >
-                          Criteria 2
+                          is their any difficulties found when doing event ?
                         </label>
                       </div>
                       <div class="form-check">
@@ -132,7 +132,7 @@ export default function AddEventProgress(props) {
                           for="flexCheckChecked"
                           style={{ color: "black" }}
                         >
-                          Criteria 3{" "}
+                          is this event completed over 75% ?{" "}
                         </label>
                       </div>
                       
