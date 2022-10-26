@@ -249,7 +249,7 @@ export default function EditCoordinatedForm(props) {
                           for="flexCheckDefault"
                           style={{ color: "black" }}
                         >
-                          criteria 1
+                          Is the contribution satisfied ?
                         </label>
                       </div>
                       <div class="form-check">

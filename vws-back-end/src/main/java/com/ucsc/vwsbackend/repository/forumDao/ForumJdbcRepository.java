@@ -27,7 +27,7 @@ public class ForumJdbcRepository {
 //                "INNER JOIN project_coordinator as pc ON p.coordinator_id = pc.coordinator_id " +
 //                "INNER JOIN user as u ON u.id = pc.id " +
 //                "and p.status=1";
-        String query = "SELECT concat(u.first_name,\" \",u.last_name) as name, f.* FROM forum as f " +
+        String query = "SELECT concat(u.first_name,\"  \",u.last_name) as name, f.* FROM forum as f " +
                 "INNER join user as u ON f.user_id = u.id";
 
 
