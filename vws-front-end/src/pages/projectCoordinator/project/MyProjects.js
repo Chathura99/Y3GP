@@ -111,7 +111,7 @@ export default function PcMyProject() {
                                             marginRight: 0,
                                         }}
                                     >
-                                        Edit
+                                        Details
                                     </button>
                                 );
                             },
