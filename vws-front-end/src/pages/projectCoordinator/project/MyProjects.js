@@ -12,6 +12,7 @@ import MaterialTable from "material-table";
 // services
 import { getOngoingProjects } from "../../../services/projectServices/projectService";
 import { getMyProjectsData } from "../../../services/projectServices/projectService";
+import { getEventRequest } from "../../../services/eventServices/eventService";
 
 export default function PcMyProject() {
 
@@ -19,6 +20,7 @@ export default function PcMyProject() {
         checkValidate();
         myProject();
         getOngoingProjectDetails();
+        getRequest();
     }, []);
 
 
@@ -44,8 +46,20 @@ export default function PcMyProject() {
         setOnGoingProjectData(res.data);
       };
 
+      const getRequest = async () => {
+        const res = await getEventRequest();
+         console.log(res.data);
+        setJoinRequestsData(res.data);
+      };
+
     const [onGoingProjectData, setOnGoingProjectData] = useState([]);
     const [selectedProject, setSelectedProject] = useState({});
+
+    const [selected1, setSelected1] = useState(false);
+
+
+    const [joinRequestsData, setJoinRequestsData] = useState([]);
+    const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
 
 
 
@@ -69,13 +83,13 @@ export default function PcMyProject() {
                     options={{ actionsColumnIndex: -1 }}
                     title="My Project"
                     columns={[
-                        { field: "projectId", title: "PROJECT ID" },
+                        { field: "projectId", title: "PROJECT ID", hidden:true },
                         {
                             field: "name",
                             title: "PROJECT NAME",
                             minWidth: "150px",
                         },
-                        { field: "firstName", title: "COORDINATOR" },
+                        { field: "fullName", title: "COORDINATOR" },
                         { field: "phoneNumber", title: "PHONE" },
                         {
                             field: "startDate",
@@ -83,7 +97,7 @@ export default function PcMyProject() {
                             minWidth: "150px",
                         },
                     ]}
-                    data={onGoingProjectData}
+                    data={myProjectsData}
                     actions={[
                         {
                             icon: () => {
@@ -140,52 +154,46 @@ export default function PcMyProject() {
                   style={{ justifyContent: "center" }}
                 >
                   <MaterialTable
-                    components={{
-                      Container: (props) => <Paper {...props} elevation={0} />,
-                    }}
-                    options={{ actionsColumnIndex: -1 }}
-                    title="Event Requests"
-                    columns={[
-                      { field: "projectId", title: "PROJECT ID" },
-                      {
-                        field: "name",
-                        title: "PROJECT NAME",
-                        minWidth: "150px",
-                      },
-                      { field: "firstName", title: "COORDINATOR" },
-                      { field: "phoneNumber", title: "PHONE" },
-                      {
-                        field: "startDate",
-                        title: "STARTED ON",
-                        minWidth: "150px",
-                      },
-                    ]}
-                    data={onGoingProjectData}
-                    actions={[
-                      {
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              class="btn"
-                              style={{
-                                backgroundColor: "#96BE25",
-                                border: "none",
-                                marginRight: 0,
-                              }}
-                            >
-                              Edit
-                            </button>
-                          );
-                        },
-                        onClick: (event, rowData) => {
-                          setSelectedProject(rowData);
-                          setSelected(true);
-                        },
-                        // tooltip: "Register User",
-                      },
-                    ]}
-                  />
+                                components={{
+                                  Container: (props) => <Paper {...props} elevation={0} />,
+                                }}
+                                options={{ actionsColumnIndex: -1 }}
+                                title="Event Requests"
+                                columns={[
+//                                  { title: "REQUEST ID", field: "id" },
+                                  { title: "EVENT", field: "name" ,hidden:true},
+                                  { title: "DATE", field: "startDate" },
+                                  { title: "PLACE", field: "place" },
+                                  { title: "NO OF VOLUNTEERS", field: "noOfVolunteers" },
+                                  { title: "STATUS", field: "status" ,hidden:true},
+//                                  { title: "DISTRICT", field: "district" },
+
+                                ]}
+                                data={joinRequestsData}
+                                actions={[
+                                  {
+                                    icon: () => {
+                                      return (
+                                        <button
+                                          type="button"
+                                          className="btn mt-0"
+                                          style={{
+                                            backgroundColor: "#96BE25",
+                                            border: "none",
+                                          }}
+                                        >
+                                          DETAILS
+                                        </button>
+                                      );
+                                    },
+                                    onClick: (event, rowData) => {
+                                      setSelectedJoinRequestsData(rowData);
+                                      setSelected1(true);
+                                    },
+                                    // tooltip: "Register User",
+                                  },
+                                ]}
+                              />
             </div>
           </div>
         </div>
