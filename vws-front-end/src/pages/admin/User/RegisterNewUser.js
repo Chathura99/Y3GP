@@ -254,7 +254,7 @@ export default function AddAnnouncement(props) {
                       <label for="info" id="formLabel">
                         Qualifications :
                       </label>
-                      <p>{requestData.qualification}</p>
+                      <p>{requestData.qa1},{requestData.qa2},{requestData.qa3},{requestData.qa4},{requestData.qa1}</p>
                     </div>
                   </div>
 
