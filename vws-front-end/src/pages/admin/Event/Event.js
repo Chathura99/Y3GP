@@ -27,6 +27,7 @@ export default function Event() {
   const previousEvent = async () => {
     const res = await getPreviousEvents();
     setPreviousEventData(res.data);
+    console.log(res.data)
   };
 
   const upcomingEvent = async () => {
@@ -124,6 +125,7 @@ export default function Event() {
                       { field: "noOfVolunteers", title: "NO OF MEMBERS" },
                       { field: "place", title: "LOCATION" },
                       { field: "status", title: "STATUS" ,hidden:true},
+                      { field: "actual_days", title: "Actual Days" ,hidden:true},
                     ]}
                     data={previousEventData}
                     actions={[

@@ -11,6 +11,8 @@ import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
+
+// function Starts
 export default function EditProject(props) {
   useEffect(() => {
     getVolunteerData();
@@ -205,6 +207,11 @@ console.log(selectedProject)
                         type="button"
                         id="submit"
                         name="submit"
+                        style={{
+                          width: "6rem",
+                          border: "none",
+                          marginRight: "10px",
+                        }}
                         class="btn btn-secondary btn-sm"
                         title="Approve Request"
                         onClick={() => {

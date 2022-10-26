@@ -165,15 +165,19 @@ public class EventJdbcRepository {
     public long editMyCoordinatedEvents(Event event) {
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
-System.out.println("vjbfjbj"+event.getEventId());
+//System.out.println("vjbfjbj"+event.getEventId());
 
         String query = "Update event " +
-                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count,actual_days = :actual_days  WHERE event_id = :id;";
+                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count,actual_days = :actual_days, criteria1 = :criteria1, criteria2 = :criteria2, " +
+                "criteria3 = :criteria3 WHERE event_id = :id;";
 
         namedParameters.addValue("id", event.getEventId());
         namedParameters.addValue("description", event.getDescription());
         namedParameters.addValue("participated_volunteers_Count", event.getParticipatedVolunteersCount());
         namedParameters.addValue("actual_days", event.getActualDays());
+        namedParameters.addValue("criteria1", event.getCriteria1());
+        namedParameters.addValue("criteria2", event.getCriteria2());
+        namedParameters.addValue("criteria3", event.getCriteria3());
 //        namedParameters.addValue("category", announcement.getCategory());
 //        namedParameters.addValue("date", announcement.getDate());
 //        namedParameters.addValue("id", announcement.getAnnId());
@@ -220,6 +224,7 @@ System.out.println("vjbfjbj"+event.getEventId());
     }
 
     public long participateToEvent(ParticipateEvent participateEvent) {
+        System.out.println("--->"+participateEvent.getStartDate());
 
         String sql = "SELECT count(*) from participate_event where volunteer_id = ? and event_id=?";
 
@@ -240,6 +245,13 @@ System.out.println("vjbfjbj"+event.getEventId());
 //        if(counts==1){
 //            return 2;
 //        }
+//chech another event
+        String sql3 = "SELECT count(*) from participate_event as p inner join event as e on p.event_id=e.event_id  where e.volunteer_id =? and start_date<? and end_date>?";
+        int count3 = jdbcTemplate.queryForObject(sql3, new Object[]{participateEvent.getVolunteerId(), participateEvent.getStartDate(),participateEvent.getEndDate()}, Integer.class);
+
+        if (count3 == 1) {
+            return 3;
+        }
 
 
        

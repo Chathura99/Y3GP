@@ -1,10 +1,6 @@
 package com.ucsc.vwsbackend.controllers;
 
-import com.ucsc.vwsbackend.dto.AnnouncementInfo;
-import com.ucsc.vwsbackend.dto.AnnouncementWithAuthor;
-import com.ucsc.vwsbackend.dto.NewProjectDetail;
-import com.ucsc.vwsbackend.dto.ProjectDetail;
-import com.ucsc.vwsbackend.dto.ProposedProjectdetails;
+import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.entities.Announcement;
 import com.ucsc.vwsbackend.entities.Project;
 import com.ucsc.vwsbackend.entities.Volunteer;
@@ -61,5 +57,18 @@ public class ProjectController {
 //        String to java Date()
         return projectService.addProposedProjects(newProjectDetail);
     }
+
+//    Project Controller - Ravindu
+    @GetMapping("/getCurrentProjects")
+    public List<ProjectDetail> getCurrentProjects() {
+        System.out.println("vgfgh");
+        return projectService.getCurrentProjects();}
+
+    @GetMapping("/getMyProjectsData")
+    public List<ProjectDetail> getMyProjectsData() {
+        System.out.println("vgfgh");
+        return projectService.getMyProjectsData();}
+
+
 }
 

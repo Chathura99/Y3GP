@@ -8,6 +8,8 @@ import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import Loading from "../../../utilities/Loading/Loading";
+
+
 export default function EditProject(props) {
   useEffect(() => {
     getVolunteerData();
@@ -107,6 +109,7 @@ export default function EditProject(props) {
                       Project Name
                     </label>
                     <input
+                    disabled
                       type="text"
                       className="form-control"
                       id="name"
@@ -153,6 +156,7 @@ export default function EditProject(props) {
                       Description
                     </label>
                     <input
+                    disabled
                       type="text"
                       className="form-control"
                       id="description"
