@@ -20,54 +20,97 @@ import { getCurrentProjects } from "../../../services/projectServices/projectSer
 import { getEventRequest } from "../../../services/eventServices/eventService";
 
 
+//card
+import { getUpcomingEvents } from "../../../services/eventServices/eventService";
+import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import { getAdminHomeSummary } from "../../../services/adminServices/ChartServices";
+import { getProjectSummary } from "../../../services/adminServices/ChartServices";
+
 
 export default function PcHomePage() {
-    useEffect(() => {
-        checkValidate();
-        CurrentProjects();
-        getRequest();
-    }, []);
 
-    const checkValidate = async () => {
-        const y = localStorage.getItem("USER_KEY");
-        if (!y) {
-            window.location.href = "/";
-        }
-    };
+  const [upComingEventsData, setUpComingEventsData] = useState([]);
 
-    const CurrentProjects = async () => {
-        const res = await getCurrentProjects();
-        console.log(res.data);
-        setCurrentProjectsData(res.data);
-    };
+  useEffect(() => {
+    checkValidate();
+    CurrentProjects();
+    getRequest();
 
-    const getRequest = async () => {
-        const res = await getEventRequest();
-         console.log(res.data);
-        setJoinRequestsData(res.data);
-      };
+    getRequest();
+    upcomingEvent();
+    getCardSummary();
+    getProjectSummaryData();
 
-    const [CurrentProjectsData, setCurrentProjectsData] = useState([]);
-    const [selectedCurrentProjects, setSelectedCurrentProjects] = useState({});
+  }, []);
 
-    const [selected, setSelected] = useState(false);
-    const [selected1, setSelected1] = useState(false);
+  const checkValidate = async () => {
+    const y = localStorage.getItem("USER_KEY");
+    if (!y) {
+      window.location.href = "/";
+    }
+  };
+
+  const CurrentProjects = async () => {
+    const res = await getCurrentProjects();
+    console.log(res.data);
+    setCurrentProjectsData(res.data);
+  };
 
 
-    const [joinRequestsData, setJoinRequestsData] = useState([]);
-    const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
+  const getRequest = async () => {
+    const res = await getJoinRequest();
+    // console.log(res.data);
+    setJoinRequestsData([...res.data]);
+  };
+
+  const upcomingEvent = async () => {
+    const res = await getUpcomingEvents();
+    setUpComingEventsData(res.data);
+  };
+
+  const [adminHomeSummaryData, setadminHomeSummaryData] = useState({});
+
+  const getCardSummary = async () => {
+    const res = await getAdminHomeSummary();
+    setadminHomeSummaryData(res.data);
+    console.log(res.data);
+  };
+
+  const [projectSummaryData, setProjectSummaryData] = useState({});
+
+  const getProjectSummaryData = async () => {
+    const res = await getProjectSummary();
+    setProjectSummaryData([...res.data]);
+    console.log(res.data);
+    // Donut(res.data);
+
+  };
+
+
+
+  const [CurrentProjectsData, setCurrentProjectsData] = useState([]);
+  const [selectedCurrentProjects, setSelectedCurrentProjects] = useState({});
+
+  const [selected, setSelected] = useState(false);
+  const [selected1, setSelected1] = useState(false);
+
+
+  const [joinRequestsData, setJoinRequestsData] = useState([]);
+  const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
 
 
 
 
-const [donutChartData, setDonutChartData] = useState([
+  const [donutChartData, setDonutChartData] = useState([
     ["Project", "Count"],
     ["Ganitha Saviya", 15],
-    ["Re-Green Earth", 4],
+    ["Re-Green Earth", 60],
+    ["Pahe Hapan", 30],
+    ["Hisata Sewanak", 15]
 
   ]);
 
-const [pieChartData, setPieChartData] = useState([
+  const [pieChartData, setPieChartData] = useState([
     ["Task", "votes"],
     ["Ganitha Saviya", 60],
     ["Re-green Earth", 40],
@@ -84,7 +127,7 @@ const [pieChartData, setPieChartData] = useState([
                 <div className="row gutters">Volunteers</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">750</span>
+                    <span className="featured">{adminHomeSummaryData.volunteerCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -94,7 +137,7 @@ const [pieChartData, setPieChartData] = useState([
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -106,17 +149,17 @@ const [pieChartData, setPieChartData] = useState([
                 <div className="row gutters">Events Completed</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">119</span>
+                    <span className="featured">{adminHomeSummaryData.eventCount}</span>
                     <span className="rate">
-                      -3 <ArrowDownward className="featuredIcon negative" />
+                      0 <ArrowDownward className="featuredIcon negative" />
                     </span>
                     <span className="rate">
-                      0 <ArrowUpward className="featuredIcon" />
+                      3 <ArrowUpward className="featuredIcon" />
                     </span>
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -128,7 +171,7 @@ const [pieChartData, setPieChartData] = useState([
                 <div className="row gutters">New Requests</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">8</span>
+                    <span className="featured">{adminHomeSummaryData.newRequestCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -138,7 +181,7 @@ const [pieChartData, setPieChartData] = useState([
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -150,24 +193,24 @@ const [pieChartData, setPieChartData] = useState([
                 <div className="row gutters">Total Projects</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">19</span>
+                    <span className="featured">{adminHomeSummaryData.projectCount}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
                     <span className="rate">
-                      +25 <ArrowUpward className="featuredIcon" />
+                      +1 <ArrowUpward className="featuredIcon" />
                     </span>
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="row gutters mt-3">
+      <div className="row gutters mt-3">
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
@@ -176,55 +219,55 @@ const [pieChartData, setPieChartData] = useState([
                 <div className="row gutters ">
 
 
-                <MaterialTable
-                      components={{
-                        Container: (props) => <Paper {...props} elevation={0} />,
-                        }}
-                      options={{ actionsColumnIndex: -1 }}
-                      title="Project Details"
-                                          columns={[
-                                            { field: "project_id", title: "ID" ,hidden:true},
-                                            { field: "name", title: "PROJECT",  minWidth: "150px" },
-                                            { field: "fullName", title: "COORDINATOR",  minWidth: "150px" },
-                                            { field: "phoneNumber", title: "PHONE" },
-                                          //  { field: "startDate", title: "STARTS ON" },
-                                          //  { field: "noOfVolunteers", title: "NO OF MEMBERS" },
-//                                            { field: "place", title: "LOCATION" },
-                                          ]}
-                                          data={CurrentProjectsData}
-                                          actions={[
-                                            {
-                                              icon: () => {
-                                                return (
-                                                  <button
-                                                    type="button"
-                                                    className="btn mt-0"
-                                                    style={{
-                                                      backgroundColor: "#96BE25",
-                                                      border: "none",
-                                                    }}
-                                                  >
-                                                    Details
-                                                  </button>
-                                                );
-                                              },
-                                              onClick: (event, rowData) => {
-                                                setSelectedJoinRequestsData(rowData);
-                                                setSelected(true);
-                                              },
-                                              // tooltip: "Register User",
-                                            },
-                                          ]}
-                                        />
+                  <MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="Project Details"
+                    columns={[
+                      { field: "project_id", title: "ID", hidden: true },
+                      { field: "name", title: "PROJECT", minWidth: "150px" },
+                      { field: "fullName", title: "COORDINATOR", minWidth: "150px" },
+                      { field: "phoneNumber", title: "PHONE" },
+                      //  { field: "startDate", title: "STARTS ON" },
+                      //  { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                      //                                            { field: "place", title: "LOCATION" },
+                    ]}
+                    data={CurrentProjectsData}
+                    actions={[
+                      {
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              className="btn mt-0"
+                              style={{
+                                backgroundColor: "#96BE25",
+                                border: "none",
+                              }}
+                            >
+                              Details
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          setSelectedJoinRequestsData(rowData);
+                          setSelected(true);
+                        },
+                        // tooltip: "Register User",
+                      },
+                    ]}
+                  />
                 </div>
               </div>
             </div>
           </div>
-        
 
-         {selected && (
-                  <PcPopupDetails setSelected={setSelected} data={selectedJoinRequestsData} />
-                )}
+
+          {selected && (
+            <PcPopupDetails setSelected={setSelected} data={selectedJoinRequestsData} />
+          )}
 
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
@@ -235,7 +278,7 @@ const [pieChartData, setPieChartData] = useState([
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <DonutChart data={donutChartData}/>
+                  <DonutChart data={donutChartData} />
                 </div>
               </div>
             </div>
@@ -253,7 +296,7 @@ const [pieChartData, setPieChartData] = useState([
                   </h3>
                 </div>
                 <div className="row gutters ">
-                  <PieChart data={pieChartData}/>
+                  <PieChart data={pieChartData} />
                 </div>
               </div>
             </div>
@@ -263,59 +306,59 @@ const [pieChartData, setPieChartData] = useState([
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
 
-              <MaterialTable
-                                components={{
-                                  Container: (props) => <Paper {...props} elevation={0} />,
-                                }}
-                                options={{ actionsColumnIndex: -1 }}
-                                title="Event Requests"
-                                columns={[
-//                                  { title: "REQUEST ID", field: "id" },
-                                  { title: "EVENT", field: "name" ,hidden:true},
-                                  { title: "DATE", field: "startDate" },
-                                  { title: "PLACE", field: "place" },
-                                  { title: "NO OF VOLUNTEERS", field: "noOfVolunteers" },
-                                  { title: "STATUS", field: "status" ,hidden:true},
-//                                  { title: "DISTRICT", field: "district" },
+                <MaterialTable
+                  components={{
+                    Container: (props) => <Paper {...props} elevation={0} />,
+                  }}
+                  options={{ actionsColumnIndex: -1 }}
+                  title="Event Requests"
+                  columns={[
+                    //                                  { title: "REQUEST ID", field: "id" },
+                    { title: "EVENT", field: "name", hidden: true },
+                    { title: "DATE", field: "startDate" },
+                    { title: "PLACE", field: "place" },
+                    { title: "NO OF VOLUNTEERS", field: "noOfVolunteers" },
+                    { title: "STATUS", field: "status", hidden: true },
+                    //                                  { title: "DISTRICT", field: "district" },
 
-                                ]}
-                                data={joinRequestsData}
-                                actions={[
-                                  {
-                                    icon: () => {
-                                      return (
-                                        <button
-                                          type="button"
-                                          className="btn mt-0"
-                                          style={{
-                                            backgroundColor: "#96BE25",
-                                            border: "none",
-                                          }}
-                                        >
-                                          DETAILS
-                                        </button>
-                                      );
-                                    },
-                                    onClick: (event, rowData) => {
-                                      setSelectedJoinRequestsData(rowData);
-                                      setSelected1(true);
-                                    },
-                                    // tooltip: "Register User",
-                                  },
-                                ]}
-                              />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  ]}
+                  data={joinRequestsData}
+                  actions={[
+                    {
+                      icon: () => {
+                        return (
+                          <button
+                            type="button"
+                            className="btn mt-0"
+                            style={{
+                              backgroundColor: "#96BE25",
+                              border: "none",
+                            }}
+                          >
+                            DETAILS
+                          </button>
+                        );
+                      },
+                      onClick: (event, rowData) => {
+                        setSelectedJoinRequestsData(rowData);
+                        setSelected1(true);
+                      },
+                      // tooltip: "Register User",
+                    },
+                  ]}
+                />
               </div>
-    {selected1 && (
-                  <PcApprove setSelected={setSelected1} data={selectedJoinRequestsData} />
-                )}
+            </div>
+          </div>
+        </div>
+      </div>
+      {selected1 && (
+        <PcApprove setSelected={setSelected1} data={selectedJoinRequestsData} />
+      )}
 
-                <br></br>
+      <br></br>
 
-      </>
+    </>
   );
 }
 
