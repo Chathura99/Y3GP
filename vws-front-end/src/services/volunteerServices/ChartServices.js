@@ -35,5 +35,15 @@ export const getVolunteerCompletedEventSummary = () => {
   });
 };
 
+export const getVolunteerCoordinatedEventSummary = () => {
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getVolunteerCoordinatedEventSummary`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
 
 

@@ -11,7 +11,7 @@ import { getVolunteerCompletedEventSummary } from '../../../services/volunteerSe
 export default function CompletedEvents() {
 
   const donutChartData = [
-    ["place", "Count"],
+    ["name", "Count"],
 
   ];
 
@@ -41,7 +41,7 @@ export default function CompletedEvents() {
       (value) => (
         donutChartData.push(
           [
-            value.place,
+            value.name,
             value.count
           ]
         )
@@ -73,12 +73,12 @@ export default function CompletedEvents() {
       "Regreen Earth",
       
     ],
-    ["Jan", 100, 40],
-    ["Feb", 150, 100],
-    ["Mar", 120, 60],
-    ["Apr", 250, 20],
-    ["May", 300, 80],
-    ["Jun", 200, 150],
+    ["Sep", 3, 2],
+    ["Octomber", 3, 1],
+    // ["Mar", 120, 60],
+    // ["Apr", 250, 20],
+    // ["May", 300, 80],
+    // ["Jun", 200, 150],
   ]);
 
  
@@ -97,6 +97,7 @@ export default function CompletedEvents() {
                 </div>
                 <div className="row gutters ">
                 <DonutChart data={donutChartData}/>
+                What are the events that i have complete so far
                 </div>
               </div>
             </div>
@@ -106,6 +107,7 @@ export default function CompletedEvents() {
               <div className="card-body">
                 <div className="row gutters"><h5 className="ml-3">My Participations</h5>
                 <LineChart data={lineChartData}/>
+                Event progress i have completed monthly
                  </div>
                 
                 
