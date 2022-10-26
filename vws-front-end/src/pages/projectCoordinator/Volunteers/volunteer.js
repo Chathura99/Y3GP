@@ -14,7 +14,7 @@ import {
 } from "../../../services/eventServices/eventService";
 
 import {
-  getPreviousEvents,
+  getvolunteerAvailability,
 } from "../../../services/eventServices/eventService";
 
 
@@ -48,6 +48,7 @@ export default function PcVolunteers() {
         const [previousEventData, setPreviousEventData] = useState([]);
         const [eventProgressData, setEventProgressData] = useState({});
 
+        const [volunteerAvailabilityData, setvolunteerAvailability] = useState([]);
 
 
 

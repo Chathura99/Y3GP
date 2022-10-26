@@ -201,3 +201,16 @@ export const editMyCoordinatedEvents = (newEvent) => {
     
   };
 
+
+// Project Coordinator - Volunteer details / Ravindu
+
+  export const getvolunteerAvailability = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getvolunteerAvailability`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+
+    });
+  };
