@@ -49,9 +49,9 @@ export default function OurProjects() {
                         aria-hidden="true"
                         id="icon-left"
                         onClick={() => {
-                            console.log(pro.projectId);
-                            setShow(show - 1);
-                          }}
+                          console.log(pro.projectId);
+                          setShow(show - 1);
+                        }}
                       ></i>
                     </Link>
 
@@ -75,11 +75,11 @@ export default function OurProjects() {
                   id="project-right"
                 >
                   <h4 id="project-right-H2">
-                    <p>The {pro.name} project</p>
-                    <p>Phone:{pro.phoneNumber}</p>
-                    <p>Description:{pro.description}</p>
-                    <p>Event Per Year:{pro.eventPerYear}</p>
+                    <p>{pro.name} project</p>
+                    <p>{pro.description}</p>
+                    <p>Events Per Year:{pro.eventPerYear}</p>
                     <p>Contact Person:{pro.firstName + " " + pro.lastName}</p>
+                    <p>Phone:{pro.phoneNumber}</p>
                   </h4>
 
                   <div className="btn-group">
