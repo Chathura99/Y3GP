@@ -121,4 +121,8 @@ public class ProjectService {
         return projectJdbcRepository.getCurrentProjects();
     }
 
+    public  List<ProjectDetail> getMyProjectsData() {
+        return projectJdbcRepository.getMyProjectsData();
+    }
+
 }
