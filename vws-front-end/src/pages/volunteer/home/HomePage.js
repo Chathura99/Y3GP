@@ -9,18 +9,18 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 import { getAnnouncement } from '../../../services/announcementServices/announcementServices';
 import { getUpcomingEvents } from '../../../services/eventServices/eventService';
-import { getVolunteerHomeSummary, getVolunteerProjectSummary } from '../../../services/volunteerServices/ChartServices';
+import { getVolunteerCoordinatedEventSummary, getVolunteerHomeSummary, getVolunteerProjectSummary } from '../../../services/volunteerServices/ChartServices';
 
 
 export default function HomePage() {
   
   
 
-  const [pieChartData, setPieChartData] = useState([
-    ["Task", "votes"],
-    ["Ganitha Saviya", 60],
-    ["Re-green Earth", 40],
-  ]);
+
+  const pieChartData = [
+    ["name", "Count"],
+
+  ];
 
   const donutChartData = [
     ["name", "Count"],
@@ -33,9 +33,13 @@ export default function HomePage() {
     upcomingEvent();
     getCardSummary();
     getProjectSummaryData();
+    getCorEventSummaryData();
+
 }, []);
 
 const [volunteerProjectSummaryData, setVolunteerProjectSummaryData] = useState({});
+const [volunteerCorEventSummaryData, setvolunteerCorEventSummaryData] = useState({});
+
 
   const getProjectSummaryData = async () => {
     const res = await getVolunteerProjectSummary();
@@ -46,8 +50,17 @@ const [volunteerProjectSummaryData, setVolunteerProjectSummaryData] = useState({
 
   };
 
-  const [donuttChartData, setDonuttChartData] = useState({});
+  const getCorEventSummaryData = async () => {
+    const res = await getVolunteerCoordinatedEventSummary();
+    pieeChartData([...res.data]);
+    console.log(...res.data);
+    // Donut(res.data);
+     
 
+  };
+
+  const [donuttChartData, setDonuttChartData] = useState({});
+  const [pieeChartData, setPieeChartData] = useState({});
 
   const Donut = 
     Object.values(donuttChartData).map(
@@ -60,6 +73,30 @@ const [volunteerProjectSummaryData, setVolunteerProjectSummaryData] = useState({
         )
       )
     )
+
+    const donutData = 
+    Object.values(donuttChartData).map(
+      (value) => (
+        pieChartData.push(
+          [
+            value.name,
+            value.count
+          ]
+        )
+      )
+    )
+
+    // const Pie = 
+    // Object.values(pieeChartData).map(
+    //   (value) => (
+    //     pieChartData.push(
+    //       [
+    //         value.name,
+    //         value.count
+    //       ]
+    //     )
+    //   )
+    // )
   
 
 const checkValidate = async () => {
@@ -264,7 +301,7 @@ const [announcement, setAnnouncement] = useState([]);
                 </div>
                 <div className="row gutters ">
                   <DonutChart data={donutChartData}/>
-                  Contributing Projects . . .
+                  Projects I participate in
                 </div>
               </div>
             </div>
@@ -283,7 +320,7 @@ const [announcement, setAnnouncement] = useState([]);
                 </div>
                 <div className="row gutters ">
                   <PieChart data={pieChartData}/>
-                  My Coordinated Events progress summary . . .
+                  What projects have i Coordinated events 
                 </div>
               </div>
             </div>

@@ -47,4 +47,9 @@ public class ChartController {
     public List<VolunteerProjectSummary> getVolunteerCompletedEventSummary(){
         return chartService.getVolunteerCompletedEventSummary();
     }
+
+    @GetMapping("/getVolunteerCoordinatedEventSummary")
+    public List<VolunteerProjectSummary> getVolunteerCoordinatedEventSummary(){
+        return chartService.getVolunteerCoordinatedEventSummary();
+    }
 }
