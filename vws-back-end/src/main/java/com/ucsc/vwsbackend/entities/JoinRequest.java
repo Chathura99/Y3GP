@@ -47,6 +47,17 @@ public class JoinRequest {
     @Column(name = " qualification")
     private String  qualification;
 
+    @Column(name = " qa1")
+    private String  qa1;
+    @Column(name = " qa2")
+    private String  qa2;
+    @Column(name = " qa3")
+    private String  qa3;
+    @Column(name = " qa4")
+    private String  qa4;
+    @Column(name = " qa5")
+    private String  qa5;
+
 
     @Column(name = "requested_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -162,5 +173,45 @@ public class JoinRequest {
 
     public void setQualification(String qualification) {
         this.qualification = qualification;
+    }
+
+    public String getQa1() {
+        return qa1;
+    }
+
+    public void setQa1(String qa1) {
+        this.qa1 = qa1;
+    }
+
+    public String getQa2() {
+        return qa2;
+    }
+
+    public void setQa2(String qa2) {
+        this.qa2 = qa2;
+    }
+
+    public String getQa3() {
+        return qa3;
+    }
+
+    public void setQa3(String qa3) {
+        this.qa3 = qa3;
+    }
+
+    public String getQa4() {
+        return qa4;
+    }
+
+    public void setQa4(String qa4) {
+        this.qa4 = qa4;
+    }
+
+    public String getQa5() {
+        return qa5;
+    }
+
+    public void setQa5(String qa5) {
+        this.qa5 = qa5;
     }
 }
