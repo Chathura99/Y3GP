@@ -54,13 +54,15 @@ public class ChartRepository {
                 new MapSqlParameterSource();
         VolunteerHomeSummary volunteerHomeSummary= new VolunteerHomeSummary();
 
-        String sql1 = "SELECT count(*) from event where (start_date > curdate()) ";
+        String sql1 = "SELECT count(*) from event where (start_date > curdate() and  status!=0)";
         volunteerHomeSummary.setUpcomingEventsCount(jdbcTemplate.queryForObject(sql1, Integer.class));
 
-        String sql2 = "SELECT count(*) from event where (end_date < curdate())";
+        String sql2 = "SELECT count(*) from event as e INNER JOIN participate_event as pe ON pe.volunteer_id=e.volunteer_id AND pe.event_id=e.event_id " +
+                "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
+                "where e.status=1 and v.volunteer_id=1 and e.end_date<curdate()";
         volunteerHomeSummary.setCompletedEventsCount(jdbcTemplate.queryForObject(sql2, Integer.class));
 
-        String sql3 = "SELECT count(*) from event where start_date > curdate()";
+        String sql3 = "SELECT COUNT(*) FROM poll ";
         volunteerHomeSummary.setNewPollsCount(jdbcTemplate.queryForObject(sql3, Integer.class));
 
         String sql4 = "SELECT count(*) from project where (status=1)";
