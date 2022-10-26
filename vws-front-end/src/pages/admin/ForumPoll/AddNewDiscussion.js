@@ -12,6 +12,7 @@ export default function AddNewDiscussion() {
     topicDescription: "",
    
     userId:1,
+    // forumId:1
     
   });
 
