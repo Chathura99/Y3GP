@@ -8,6 +8,7 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 //import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 import PcApprove from "./MakeApprove";
+import PcPopupDetails from "./PopupDetails";
 
 
 // for remove box shadow
@@ -206,18 +207,22 @@ const [pieChartData, setPieChartData] = useState([
                                                 );
                                               },
                                               onClick: (event, rowData) => {
-                                                // setSelectedJoinRequestsData(rowData);
-                                                // setSelected(true);
+                                                setSelectedJoinRequestsData(rowData);
+                                                setSelected(true);
                                               },
                                               // tooltip: "Register User",
                                             },
                                           ]}
                                         />
-
                 </div>
               </div>
             </div>
           </div>
+        
+
+          {selected && (
+                  <PcPopupDetails setSelected={setSelected} data={selectedJoinRequestsData} />
+                )}
 
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">

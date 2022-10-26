@@ -47,119 +47,7 @@ export default function PcMyProject() {
     const [onGoingProjectData, setOnGoingProjectData] = useState([]);
     const [selectedProject, setSelectedProject] = useState({});
 
-//  const [myProjectsData, setMyProjectsData] = useState([
-//    {
-//      project_id: "E001",
-//      project_name: "Ganitha Saviya",
-//      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-//      coordinator: "Ravindu",
-//      startdate: "2022 09 14",
-//      // no_of_members: "13",
-//      // location: "Nikawaratiya",
-//
-//      action: (
-//        <button
-//          type="button"
-//          id="submit"
-//          name="submit"
-//          className="btn p-1"
-//          style={{backgroundColor:"#96BE25",border:"none"}}
-//          // #96BE25,#BE4D25
-//          // onClick={handleSubmit}
-//        >
-//          Ongoing
-//        </button>
-//      ),
-//    }
-//  ]);
-//  const [upcomingProjectsData, setUpComingProjectsData] = useState([
-//    {
-//      project_id: "E001",
-//      project_name: "Ganitha Saviya",
-//      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-//      coordinator: "Ravindu",
-//      startdate: "2022 09 14",
-//      // no_of_members: "13",
-//      // location: "Nikawaratiya",
-//
-//      action: (
-//        <button
-//          type="button"
-//          id="submit"
-//          name="submit"
-//          className="btn btn-primary p-1"
-//          data-toggle="modal"
-//          data-target="#CoordinateEventForm"
-//          style={{backgroundColor:"#96BE25",border:"none"}}
-//          // #96BE25,#BE4D25
-//          // onClick={handleSubmit}
-//        >
-//          Accept
-//        </button>
-//      ),
-//    },
-//    {
-//      project_id: "E002",
-//      project_name: "Widyawa Mulasita",
-//      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-//      coordinator: "Tharindu",
-//      startdate: "2022 09 14",
-//      // no_of_members: "8",
-//      // location: "Horana",
-//
-//      action: (
-//        <button
-//          type="button"
-//          id="submit"
-//          name="submit"
-//          className="btn btn-primary p-1"
-//          data-toggle="modal"
-//          data-target="#CoordinateEventForm"
-//          style={{backgroundColor:"#96BE25",border:"none"}}
-//          // #96BE25,#BE4D25
-//          // onClick={handleSubmit}
-//        >
-//          Accept
-//        </button>
-//      ),
-//    },
-//  ]);
-//
-//  const [MyProjectsHeadings, setMyProjectsTableHead] = useState([
-//    { accessor: "project_id", Header: "Project ID" },
-//    { accessor: "project_name", Header: "Project Name" },
-//    { accessor: "description", Header: "Description" },
-//    { accessor: "coordinator", Header: "Coordinator" },
-//    { accessor: "startdate", Header: "Start Date" },
-//    // { id: "no_of_members", label: "Coordinate Events" },
-//    // { id: "location", label: "Location" },
-//    { accessor: "action", Header: "Status" },
-//
-//  ]);
-//
-//
-//  const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
-//    { accessor: "project_id", Header: "Project ID" },
-//    { accessor: "project_name", Header: "Project Name" },
-//    { accessor: "description", Header: "Description" },
-//    { accessor: "coordinator", Header: "Coordinator" },
-//    { accessor: "startdate", Header: "Start Date" },
-//    // { id: "no_of_members", label: "Coordinate Events" },
-//    // { id: "location", label: "Location" },
-//    { accessor: "action", Header: "Action" },
-//
-//  ]);
-//
-//useEffect(() => {
-//    checkValidate();
-//}, []);
-//
-//const checkValidate = async () => {
-//    const y = localStorage.getItem("USER_KEY");
-//    if (!y) {
-//        window.location.href = "/";
-//    }
-//};
+
 
     const [selected, setSelected] = useState(false);
 
@@ -312,3 +200,118 @@ export default function PcMyProject() {
   </>
   )
 }
+
+
+//  const [myProjectsData, setMyProjectsData] = useState([
+//    {
+//      project_id: "E001",
+//      project_name: "Ganitha Saviya",
+//      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+//      coordinator: "Ravindu",
+//      startdate: "2022 09 14",
+//      // no_of_members: "13",
+//      // location: "Nikawaratiya",
+//
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn p-1"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Ongoing
+//        </button>
+//      ),
+//    }
+//  ]);
+//  const [upcomingProjectsData, setUpComingProjectsData] = useState([
+//    {
+//      project_id: "E001",
+//      project_name: "Ganitha Saviya",
+//      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+//      coordinator: "Ravindu",
+//      startdate: "2022 09 14",
+//      // no_of_members: "13",
+//      // location: "Nikawaratiya",
+//
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1"
+//          data-toggle="modal"
+//          data-target="#CoordinateEventForm"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Accept
+//        </button>
+//      ),
+//    },
+//    {
+//      project_id: "E002",
+//      project_name: "Widyawa Mulasita",
+//      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+//      coordinator: "Tharindu",
+//      startdate: "2022 09 14",
+//      // no_of_members: "8",
+//      // location: "Horana",
+//
+//      action: (
+//        <button
+//          type="button"
+//          id="submit"
+//          name="submit"
+//          className="btn btn-primary p-1"
+//          data-toggle="modal"
+//          data-target="#CoordinateEventForm"
+//          style={{backgroundColor:"#96BE25",border:"none"}}
+//          // #96BE25,#BE4D25
+//          // onClick={handleSubmit}
+//        >
+//          Accept
+//        </button>
+//      ),
+//    },
+//  ]);
+//
+//  const [MyProjectsHeadings, setMyProjectsTableHead] = useState([
+//    { accessor: "project_id", Header: "Project ID" },
+//    { accessor: "project_name", Header: "Project Name" },
+//    { accessor: "description", Header: "Description" },
+//    { accessor: "coordinator", Header: "Coordinator" },
+//    { accessor: "startdate", Header: "Start Date" },
+//    // { id: "no_of_members", label: "Coordinate Events" },
+//    // { id: "location", label: "Location" },
+//    { accessor: "action", Header: "Status" },
+//
+//  ]);
+//
+//
+//  const [UpcomingProjectsHeadings, setUpComingProjectsTableHead] = useState([
+//    { accessor: "project_id", Header: "Project ID" },
+//    { accessor: "project_name", Header: "Project Name" },
+//    { accessor: "description", Header: "Description" },
+//    { accessor: "coordinator", Header: "Coordinator" },
+//    { accessor: "startdate", Header: "Start Date" },
+//    // { id: "no_of_members", label: "Coordinate Events" },
+//    // { id: "location", label: "Location" },
+//    { accessor: "action", Header: "Action" },
+//
+//  ]);
+//
+//useEffect(() => {
+//    checkValidate();
+//}, []);
+//
+//const checkValidate = async () => {
+//    const y = localStorage.getItem("USER_KEY");
+//    if (!y) {
+//        window.location.href = "/";
+//    }
+//};

@@ -65,6 +65,7 @@ import PcEventSummary from "./pages/projectCoordinator/Summary/EventSummary";
 import PcProjectSummary from "./pages/projectCoordinator/Summary/ProjectSummary";
 import PcPoll from "./pages/projectCoordinator/Poll/poll";
 import PcApprove from "./pages/projectCoordinator/Home/MakeApprove";
+import PcPopupDetails from "./pages/projectCoordinator/Home/PopupDetails";
 
 
 import Loading from "./utilities/Loading/Loading";
@@ -225,6 +226,7 @@ function App() {
             <Route path="/pcpoll" element={<PcPoll />}></Route>
             <Route path="/pceventsummary" element={<PcEventSummary />}></Route>
             <Route path="/pcprojectsummary" element={<PcProjectSummary />}></Route>
+            <Route path="/pcpopupdetails" element={<PcPopupDetails />}></Route>
 
 
             {/* volunteer part */}
