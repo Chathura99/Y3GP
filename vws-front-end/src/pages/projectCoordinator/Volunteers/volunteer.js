@@ -13,6 +13,10 @@ import {
   getPreviousEvents,
 } from "../../../services/eventServices/eventService";
 
+import {
+  getPreviousEvents,
+} from "../../../services/eventServices/eventService";
+
 
 
 export default function PcVolunteers() {
@@ -20,6 +24,7 @@ export default function PcVolunteers() {
     useEffect(() => {
             checkValidate();
             previousEvent();
+            volunteerAvailability();
         }, []);
 
         const checkValidate = async () => {
@@ -33,6 +38,11 @@ export default function PcVolunteers() {
             const res = await getPreviousEvents();
             setPreviousEventData(res.data);
         };
+
+        const volunteerAvailability = async () => {
+          const res = await getvolunteerAvailability();
+          setvolunteerAvailability(res.data);
+      };
 
         const [selected, setSelected] = useState(false);
         const [previousEventData, setPreviousEventData] = useState([]);
@@ -63,15 +73,15 @@ return (
                                 options={{ actionsColumnIndex: -1 }}
                                 title="Volunteer Details"
                                 columns={[
-                                  { field: "eventId", title: "EVENT ID" },
-                                  { field: "category", title: "CATEGORY" },
-                                  { field: "name", title: "COORDINATOR" },
+                                  { field: "eventId", title: "VOLUNTEER ID" },
+                                  { field: "category", title: "NAME" },
+                                  { field: "name", title: "ADDRESS" },
                                   { field: "phoneNumber", title: "PHONE" },
-                                  { field: "startDate", title: "STARTED ON" },
-                                  { field: "endDate", title: "ENDS ON" },
-                                  { field: "noOfVolunteers", title: "NO OF MEMBERS" },
-                                  { field: "place", title: "LOCATION" },
-                                  { field: "status", title: "STATUS" },
+                                  { field: "startDate", title: "EMAIL" },
+                                  { field: "endDate", title: "UNIVERSITY" },
+                                  { field: "noOfVolunteers", title: "JOINED ON" },
+                                  // { field: "place", title: "LOCATION" },
+                                  // { field: "status", title: "STATUS" },
                                 ]}
                                 data={previousEventData}
                                 actions={[
