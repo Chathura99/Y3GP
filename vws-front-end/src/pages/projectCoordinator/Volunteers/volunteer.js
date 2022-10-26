@@ -84,7 +84,7 @@ return (
                                   // { field: "place", title: "LOCATION" },
                                   // { field: "status", title: "STATUS" },
                                 ]}
-                                data={previousEventData}
+                                data={volunteerAvailabilityData}
                                 actions={[
                                   {
                                     icon: () => {
