@@ -67,7 +67,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/v1/getAllAnnouncement/{category}",
                         "/api/v1/getUpcomingEvents",
                         "/api/v1/getPreviousEvents",
-                        "/api/v1/getOngoingProjects"
+                        "/api/v1/getOngoingProjects",
+                        "/api/v1/getUpcomingEventsLimit"
 
                         )
                         .permitAll()
