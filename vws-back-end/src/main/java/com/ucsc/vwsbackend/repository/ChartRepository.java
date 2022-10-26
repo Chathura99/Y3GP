@@ -35,7 +35,9 @@ public class ChartRepository {
 
         String sql4 = "SELECT count(*) from project where status=1 AND MONTH(start_date) = MONTH(CURRENT_DATE()) " +
                 "AND YEAR(start_date) = YEAR(CURRENT_DATE())";
-        adminHomeSummary.setProjectCount(jdbcTemplate.queryForObject(sql4, Integer.class));
+
+        String sql5 = "SELECT count(*) from project where status=1 ";
+        adminHomeSummary.setCurrentProjectCount(jdbcTemplate.queryForObject(sql5, Integer.class));
 
 //        ToDO : query for compared to last month
         return adminHomeSummary;
