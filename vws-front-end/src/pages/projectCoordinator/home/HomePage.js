@@ -8,6 +8,7 @@ import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 //import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
 import Loading from "../../../utilities/Loading/Loading";
 import PcApprove from "./MakeApprove";
+import PcPopupDetails from "./PopupDetails";
 
 
 // for remove box shadow
@@ -15,7 +16,7 @@ import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
 
 // service
-import { getUpcomingEvents } from "../../../services/eventServices/eventService";
+import { getCurrentProjects } from "../../../services/projectServices/projectService";
 import { getEventRequest } from "../../../services/eventServices/eventService";
 
 
@@ -23,7 +24,7 @@ import { getEventRequest } from "../../../services/eventServices/eventService";
 export default function PcHomePage() {
     useEffect(() => {
         checkValidate();
-        upcomingEvent();
+        CurrentProjects();
         getRequest();
     }, []);
 
@@ -34,10 +35,10 @@ export default function PcHomePage() {
         }
     };
 
-    const upcomingEvent = async () => {
-        const res = await getUpcomingEvents();
+    const CurrentProjects = async () => {
+        const res = await getCurrentProjects();
         console.log(res.data);
-        setUpComingEventsData(res.data);
+        setCurrentProjectsData(res.data);
     };
 
     const getRequest = async () => {
@@ -46,10 +47,12 @@ export default function PcHomePage() {
         setJoinRequestsData(res.data);
       };
 
-    const [upComingEventsData, setUpComingEventsData] = useState([]);
-    const [selectedupComingEvents, setSelectedupComingEvents] = useState({});
+    const [CurrentProjectsData, setCurrentProjectsData] = useState([]);
+    const [selectedCurrentProjects, setSelectedCurrentProjects] = useState({});
 
     const [selected, setSelected] = useState(false);
+    const [selected1, setSelected1] = useState(false);
+
 
     const [joinRequestsData, setJoinRequestsData] = useState([]);
     const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
@@ -181,14 +184,14 @@ const [pieChartData, setPieChartData] = useState([
                       title="Project Details"
                                           columns={[
                                             { field: "project_id", title: "ID" ,hidden:true},
-                                            { field: "name", title: "PROJECT" },
-                                            { field: "name", title: "COORDINATOR" },
+                                            { field: "name", title: "PROJECT",  minWidth: "150px" },
+                                            { field: "fullName", title: "COORDINATOR",  minWidth: "150px" },
                                             { field: "phoneNumber", title: "PHONE" },
-//                                            { field: "startDate", title: "STARTS ON" },
-//                                            { field: "noOfVolunteers", title: "NO OF MEMBERS" },
+                                          //  { field: "startDate", title: "STARTS ON" },
+                                          //  { field: "noOfVolunteers", title: "NO OF MEMBERS" },
 //                                            { field: "place", title: "LOCATION" },
                                           ]}
-                                          data={upComingEventsData}
+                                          data={CurrentProjectsData}
                                           actions={[
                                             {
                                               icon: () => {
@@ -206,18 +209,22 @@ const [pieChartData, setPieChartData] = useState([
                                                 );
                                               },
                                               onClick: (event, rowData) => {
-                                                // setSelectedJoinRequestsData(rowData);
-                                                // setSelected(true);
+                                                setSelectedJoinRequestsData(rowData);
+                                                setSelected(true);
                                               },
                                               // tooltip: "Register User",
                                             },
                                           ]}
                                         />
-
                 </div>
               </div>
             </div>
           </div>
+        
+
+         {selected && (
+                  <PcPopupDetails setSelected={setSelected} data={selectedJoinRequestsData} />
+                )}
 
           <div className="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
             <div className="card h-100" id="contentcard">
@@ -261,7 +268,7 @@ const [pieChartData, setPieChartData] = useState([
                                   Container: (props) => <Paper {...props} elevation={0} />,
                                 }}
                                 options={{ actionsColumnIndex: -1 }}
-                                title="Join Requests"
+                                title="Event Requests"
                                 columns={[
 //                                  { title: "REQUEST ID", field: "id" },
                                   { title: "EVENT", field: "name" ,hidden:true},
@@ -291,7 +298,7 @@ const [pieChartData, setPieChartData] = useState([
                                     },
                                     onClick: (event, rowData) => {
                                       setSelectedJoinRequestsData(rowData);
-                                      setSelected(true);
+                                      setSelected1(true);
                                     },
                                     // tooltip: "Register User",
                                   },
@@ -302,8 +309,8 @@ const [pieChartData, setPieChartData] = useState([
                   </div>
                 </div>
               </div>
-    {selected && (
-                  <PcApprove setSelected={setSelected} data={selectedJoinRequestsData} />
+    {selected1 && (
+                  <PcApprove setSelected={setSelected1} data={selectedJoinRequestsData} />
                 )}
 
                 <br></br>
