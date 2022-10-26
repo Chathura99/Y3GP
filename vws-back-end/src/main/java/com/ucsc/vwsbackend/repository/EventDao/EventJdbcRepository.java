@@ -165,15 +165,19 @@ public class EventJdbcRepository {
     public long editMyCoordinatedEvents(Event event) {
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
-System.out.println("vjbfjbj"+event.getEventId());
+//System.out.println("vjbfjbj"+event.getEventId());
 
         String query = "Update event " +
-                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count,actual_days = :actual_days  WHERE event_id = :id;";
+                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count,actual_days = :actual_days, criteria1 = :criteria1, criteria2 = :criteria2, " +
+                "criteria3 = :criteria3 WHERE event_id = :id;";
 
         namedParameters.addValue("id", event.getEventId());
         namedParameters.addValue("description", event.getDescription());
         namedParameters.addValue("participated_volunteers_Count", event.getParticipatedVolunteersCount());
         namedParameters.addValue("actual_days", event.getActualDays());
+        namedParameters.addValue("criteria1", event.getCriteria1());
+        namedParameters.addValue("criteria2", event.getCriteria2());
+        namedParameters.addValue("criteria3", event.getCriteria3());
 //        namedParameters.addValue("category", announcement.getCategory());
 //        namedParameters.addValue("date", announcement.getDate());
 //        namedParameters.addValue("id", announcement.getAnnId());
