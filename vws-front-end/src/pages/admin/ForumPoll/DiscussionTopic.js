@@ -129,17 +129,21 @@ const [selected, setSelected] = useState(false);
                 
                     </h6>
                     <p className="card-text" style={{ marginTop: "-25px" }}>
+                      If we get the weekend date for the blood donation, Anula college also good for the blood donation. Easy to transport quipments.
+                      And can be gaththered more people for the donation easily.
+                    </p>
+                    {/* <p className="card-text" style={{ marginTop: "-25px" }}>
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the industry's
                       standard dummy text ever since the 1500s, when an unknown
                       printer took a galley of type and scrambled it to make a
                       type specimen book. It has survived not only five
                       centuries, but also the leap into electronic
-                    </p>
+                    </p> */}
                     <p className="card-text" style={{ marginTop: "-10px" }}>
                       <div className="pdfFiles">
                         
-                      <h6 style={{textAlign: "right",fontSize: 15,color:"#2596BE"}}><a href="../../uploads/announcement/variable">Reply</a></h6>
+                      {/* <h6 style={{textAlign: "right",fontSize: 15,color:"#2596BE"}}><a href="../../uploads/announcement/variable">Reply</a></h6> */}
                       </div>
                     </p>
                     
