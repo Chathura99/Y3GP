@@ -199,7 +199,7 @@ export default function Sidebar(page) {
                 }}
               >
                 <Link to="/pcvolunteers">
-                  <i className="fa fa-users ml-3 mr-4"></i>Volunteers
+                  <i className="fa fa-user-circle-o ml-3 mr-4" aria-hidden="true"></i>Volunteers
                 </Link>
               </li>
 
@@ -216,7 +216,7 @@ export default function Sidebar(page) {
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
-                  <i className="fa fa-calendar-plus-o ml-3 mr-4"></i>Forum | Poll
+                  <i className="fa fa-users ml-3 mr-4"></i>Forum | Poll
                 </a>
                 <ul className="collapse list-unstyled" id="forumSubmenu">
                   <li className="ml-5">
@@ -259,7 +259,7 @@ export default function Sidebar(page) {
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
-                  <i className="fa fa-calendar-plus-o ml-3 mr-4"></i>Summary
+                  <i className="fa fa-bar-chart ml-3 mr-4"></i>Summary
                 </a>
                 <ul className="collapse list-unstyled" id="summarySubmenu">
                   <li className="ml-5">
@@ -346,11 +346,8 @@ export default function Sidebar(page) {
                       </div>
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={logOut}>
-                      Log Out
-                    </a>
-                  </li>
+                  
+                  
                   <li
                     className="nav-item"
                   >
@@ -364,6 +361,15 @@ export default function Sidebar(page) {
                       >{userdata && `${userdata.firstName} ${userdata.lastName}`}</div>
                     </Link>
                   </li>
+
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={logOut}>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
+                  </li>
+
+
+                  
                 </ul>
               </div>
             </div>
