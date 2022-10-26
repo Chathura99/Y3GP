@@ -266,7 +266,7 @@ const [pieChartData, setPieChartData] = useState([
                                   Container: (props) => <Paper {...props} elevation={0} />,
                                 }}
                                 options={{ actionsColumnIndex: -1 }}
-                                title="Join Requests"
+                                title="Event Requests"
                                 columns={[
 //                                  { title: "REQUEST ID", field: "id" },
                                   { title: "EVENT", field: "name" ,hidden:true},
