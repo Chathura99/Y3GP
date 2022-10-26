@@ -64,5 +64,11 @@ public class ProjectController {
         System.out.println("vgfgh");
         return projectService.getCurrentProjects();}
 
+    @GetMapping("/getMyProjectsData")
+    public List<ProjectDetail> getMyProjectsData() {
+        System.out.println("vgfgh");
+        return projectService.getMyProjectsData();}
+
+
 }
 
