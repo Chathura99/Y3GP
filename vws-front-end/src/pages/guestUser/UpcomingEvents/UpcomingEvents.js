@@ -3,6 +3,8 @@ import "./upcomingevents.css";
 import { Link } from "react-router-dom";
 import { getAnnouncement } from "../../../services/announcementServices/announcementServices";
 import { getUpcomingEvents } from "../../../services/eventServices/eventService";
+import { getUpcomingEventsLimit } from "../../../services/eventServices/eventService";
+
 
 export default function UpcomingEvents() {
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function UpcomingEvents() {
   const [upComingEventData, setUpComingEventData] = useState([]);
 
   const upcomingEvent = async () => {
-    const res = await getUpcomingEvents();
+    const res = await getUpcomingEventsLimit();
     setUpComingEventData(res.data);
   };
   return (
