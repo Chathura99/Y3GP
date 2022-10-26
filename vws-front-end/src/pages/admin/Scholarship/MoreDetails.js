@@ -211,7 +211,7 @@ export default function MoreDetails(props) {
                         name="submit"
                         class="btn btn-primary btn-sm"
                         title="Start meeting now!"
-                        onClick={""}
+                        onClick={confirm}
                       >
                         Meeting
                       </button>
