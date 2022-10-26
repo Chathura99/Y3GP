@@ -155,7 +155,7 @@ public class EventJdbcRepository {
                 "INNER JOIN participate_event as pe ON pe.volunteer_id=e.volunteer_id AND pe.event_id=e.event_id " +
                 "INNER JOIN volunteer as v ON v.volunteer_id=e.volunteer_id " +
                 "INNER JOIN user as u ON u.id=v.id " +
-                "where e.status=1 and v.volunteer_id=1";
+                "where e.status=1 and v.volunteer_id=1 and e.end_date<curdate()";
 
         List<EventDetail> events = jdbc.query(query, new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
         return events;
@@ -165,14 +165,15 @@ public class EventJdbcRepository {
     public long editMyCoordinatedEvents(Event event) {
         MapSqlParameterSource namedParameters =
                 new MapSqlParameterSource();
-
+System.out.println("vjbfjbj"+event.getEventId());
 
         String query = "Update event " +
-                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count WHERE event_id = :id;";
+                "SET description = :description, participated_volunteers_Count = :participated_volunteers_Count,actual_days = :actual_days  WHERE event_id = :id;";
 
-
+        namedParameters.addValue("id", event.getEventId());
         namedParameters.addValue("description", event.getDescription());
         namedParameters.addValue("participated_volunteers_Count", event.getParticipatedVolunteersCount());
+        namedParameters.addValue("actual_days", event.getActualDays());
 //        namedParameters.addValue("category", announcement.getCategory());
 //        namedParameters.addValue("date", announcement.getDate());
 //        namedParameters.addValue("id", announcement.getAnnId());

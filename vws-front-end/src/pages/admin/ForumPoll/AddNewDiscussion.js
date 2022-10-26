@@ -1,7 +1,57 @@
 import { red } from "@material-ui/core/colors";
-import React from "react";
+import React, { useState } from "react";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { addNewDiscussionTopic } from './../../../services/forumServices/forumService';
 
 export default function AddNewDiscussion() {
+
+  const [discussion, setDiscussion] = useState({
+    title: "",
+    description: "",
+   
+    
+    
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setDiscussion((discussion) => ({
+      ...discussion,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+
+  const closePopUp = () => {
+    setPopUp("");
+  };
+
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Add New Discussion Topic !");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addNewDiscussionTopic(discussion)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
+
+
   return (
     <div>
       {/* <button
@@ -37,7 +87,7 @@ export default function AddNewDiscussion() {
               </button>
             </div>
             <div class="modal-body">
-              <form onSubmit={""} style={{marginTop:0}}>
+              <form onSubmit={confirm}>
                 <div className="row gutters ">
                   
 
@@ -74,12 +124,15 @@ export default function AddNewDiscussion() {
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
-                      <label for="phone">Title</label>
+                      <label for="title">Title</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="ProjectName"
-                        placeholder="Enter new topic"
+                        id="title"
+                        placeholder="Enter discussion topic title"
+                        value={discussion.title}
+                        name="title"
+                        onChange={handleChange}
                       />
                     </div>
                   </div>
@@ -104,7 +157,11 @@ export default function AddNewDiscussion() {
                         style={{height:80, width:460}}
                         className="form-control"
                         id="description"
+                        value={discussion.description}
+                        name="description"
                         placeholder="Enter description"
+                        onChange={handleChange}
+
                       />
                     </div>
                   </div>
@@ -141,9 +198,7 @@ export default function AddNewDiscussion() {
                       <div class="modal-footer justify-content-center " >
                         <button
                           type="button"
-                          id="submit"
                           
-                          name="submit"
                           className="btn btn-secondary m-2"
                           data-dismiss="modal"
                           
@@ -151,7 +206,7 @@ export default function AddNewDiscussion() {
                           Cancel
                         </button>
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                       
                           name="submit"
@@ -169,6 +224,19 @@ export default function AddNewDiscussion() {
           </div>
         </div>
       </div>
+      {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

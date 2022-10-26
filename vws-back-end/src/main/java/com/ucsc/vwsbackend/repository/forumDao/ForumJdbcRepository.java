@@ -27,7 +27,8 @@ public class ForumJdbcRepository {
 //                "INNER JOIN project_coordinator as pc ON p.coordinator_id = pc.coordinator_id " +
 //                "INNER JOIN user as u ON u.id = pc.id " +
 //                "and p.status=1";
-        String query = "SELECT COUNT(*) as replies,concat(u.first_name,\" \",u.last_name) as name, f.* FROM reply as r  INNER JOIN forum as f ON f.reply_id = r.reply_id " +
+        String query = "SELECT COUNT(*) as replies,concat(u.first_name,\" \",u.last_name) as name, f.* FROM reply as r " +
+                " INNER JOIN forum as f ON f.reply_id = r.reply_id " +
                 "Inner join user as u ON f.user_id = u.id";
 
 
@@ -42,7 +43,7 @@ public class ForumJdbcRepository {
                 new MapSqlParameterSource();
         String query = "INSERT INTO forum " +
                 "(title,description,start_date,end_date,user_id) " +
-                "values (:title, :description, :CURDATE(), :end_date,:user_id)";
+                "values (:title, :description, CURDATE(), :end_date,:user_id)";
 
         namedParameters.addValue("title", forumInfo.getName());
         namedParameters.addValue("description", forumInfo.getDescription());
@@ -85,5 +86,27 @@ public class ForumJdbcRepository {
 
         List<DiscssionTopicWithReply> discssionTopicWithReply = jdbc.query(query,namedParameters, new BeanPropertyRowMapper<DiscssionTopicWithReply>(DiscssionTopicWithReply.class));
         return discssionTopicWithReply;
+    }
+
+    public long addNewDiscussionTopic(ForumWithDiscussionTopic forumWithDiscussionTopic) {
+//        LocalDate edate = LocalDate.parse(forumWithDiscussionTopic.getEndDate());
+
+//        System.out.println(":ID" + newProjectDetail.getProjectId());
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String query = "INSERT INTO discussion_topic " +
+                "(topic,topic_description) " +
+                "values (:topic, :topic_description)";
+
+        namedParameters.addValue("topic", forumWithDiscussionTopic.getName());
+        namedParameters.addValue("topic_description", forumWithDiscussionTopic.getDescription());
+//        namedParameters.addValue("start_date",sdate);
+//        namedParameters.addValue("end_date", edate);
+//        namedParameters.addValue("user_id", forumInfo.getUserId());
+
+
+        int rowsAffected = jdbc.update(query , namedParameters);
+        return rowsAffected;
+
     }
 }
