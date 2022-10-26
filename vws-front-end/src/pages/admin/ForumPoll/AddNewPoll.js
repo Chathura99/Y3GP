@@ -159,7 +159,7 @@ export default function AddNewPoll() {
                     </div>
                   </div>
 
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" >
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
                     <div className="form-group" style={{ width:460}}>
                       <label for="description">Description</label>
                       <input
