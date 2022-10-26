@@ -107,6 +107,7 @@ export default function EditProject(props) {
                       Project Name
                     </label>
                     <input
+                    disabled
                       type="text"
                       className="form-control"
                       id="name"
@@ -153,6 +154,7 @@ export default function EditProject(props) {
                       Description
                     </label>
                     <input
+                    disabled
                       type="text"
                       className="form-control"
                       id="description"
