@@ -17,7 +17,13 @@ export default function EditCoordinatedForm(props) {
     description: "",
     participatedVolunteersCount: "",
     eventId:eventData.eventId,
-    actualDays: ""
+    actualDays: "",
+    criteria1: 1,
+    criteria2: 1,
+    criteria3: 1
+
+
+    
     
 
   });
@@ -232,9 +238,10 @@ export default function EditCoordinatedForm(props) {
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          value=""
+                          value={newEvent.criteria1}
                           id="flexCheckDefault"
-                          checked
+                          name="criteria1"
+                          // checked
                         />
                         <label
                           class="form-check-label"
@@ -249,8 +256,9 @@ export default function EditCoordinatedForm(props) {
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          value=""
+                          value={newEvent.criteria2}
                           id="flexCheckChecked"
+                          name="criteria2"
                         />
                         <label
                           class="form-check-label"
@@ -265,7 +273,8 @@ export default function EditCoordinatedForm(props) {
                         <input
                           class="form-check-input"
                           type="checkbox"
-                          value=""
+                          value={newEvent.criteria3}
+                          name="criteria3"
                           id="flexCheckChecked"
                         />
                         <label
