@@ -292,7 +292,7 @@ const [pieChartData, setPieChartData] = useState([
                                             border: "none",
                                           }}
                                         >
-                                          DETAILS
+                                          Approve
                                         </button>
                                       );
                                     },
