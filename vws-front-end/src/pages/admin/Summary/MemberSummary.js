@@ -61,6 +61,8 @@ export default function MemberSummary() {
     // ["May", 300, 4, 18, 1, 1],
     // ["Jun", 200, 5, 20, 1, 1],
   ]);
+
+  console.log(currentUserTableData)
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -179,7 +181,7 @@ export default function MemberSummary() {
                     },
                     { field: "phoneNumber", title: "PHONE" },
                     {
-                      field: "createdAt",
+                      field: "createdOn",
                       title: "JOIN DATE",
                       minWidth: "120px",
                     },
