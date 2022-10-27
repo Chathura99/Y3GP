@@ -472,5 +472,19 @@ public List<EventDetail> getJoinRequest() {
             return events;
 
     }
+
+    public List<EventDetail> getvolunteerAvailability() {
+//        System.out.println("vgfgh");
+        MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+
+        String query =  "select v.address, concat(v.first_name, \" \" , v.last_name) as fullname, u.phone_number, u.email, v.university_college, v.requested_date " +
+                "FROM volunteer as v " +
+                "INNER JOIN user as u ON u.id = v.id " +
+                "WHERE v.volunteer_id != '0'";
+        List<EventDetail> availability = jdbc.query(query,namedParameters,new BeanPropertyRowMapper<EventDetail>(EventDetail.class));
+        System.out.println("vgfgh"+availability.get(0).getName());
+        return availability;
+    }
+
 }
 
