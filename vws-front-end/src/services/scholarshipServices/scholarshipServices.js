@@ -28,10 +28,10 @@ export const editScholarship = (sch) => {
   };
 
   
-  export const RemoveScholarship = () => {
+  export const RemoveScholarship = (id) => {
     return axios({
-      method: "GET",
-      url: `${USER_URL}/RemoveScholarship`,
+      method: "PUT",
+      url: `${USER_URL}/RemoveScholarship/${id}`,
       headers: {
         Authorization: "Bearer " + getToken(),
       },

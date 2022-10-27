@@ -70,6 +70,8 @@ export default function CurrentUser() {
 
   const closePopUp = () => {
     setPopUp("");
+    window.location.href="/admincurrentuser"
+
   };
 
   const deactivate = () => {

@@ -96,7 +96,7 @@ export default function ProjectSummary() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="outertablebox2" >
             <div className="card h-100" id="contentcard2">
               <div className="card-body ">
-                <div id="selectionrow">
+                {/* <div id="selectionrow">
                   
                     <form onSubmit={""}>
                       <div id="q1" >
@@ -108,7 +108,7 @@ export default function ProjectSummary() {
                           
                         </select>
                       </div>
-                      {/* <div id="q2">
+                       <div id="q2">
                         <label for="event" id="q2label" ><b>District</b> </label>
                         <select id="Disctrictlist" name="event" size="1" className="form-control" >
                           <option value="Colombo">Colombo</option>
@@ -116,7 +116,7 @@ export default function ProjectSummary() {
                           <option value="Gampaha">Gampaha</option>
                           
                         </select>
-                      </div> */}
+                      </div> 
                       <div id="q3">
                         <label for="datefrom" id="q3label" ><b>Date From</b> </label>
                         <input type="date"
@@ -141,7 +141,7 @@ export default function ProjectSummary() {
 
                     </form>
                   
-                </div>
+                </div> */}
                 <div id="eventleftside">
                     <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
                 

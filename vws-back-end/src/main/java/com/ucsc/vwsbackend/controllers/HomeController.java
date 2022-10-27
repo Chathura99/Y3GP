@@ -62,4 +62,11 @@ public class HomeController  {
         return scholarshipService.ApplyScholar(scholarship);
     }
 
+    @PutMapping("/RemoveScholarship/{id}")
+    public long RemoveScholarship(@PathVariable(value = "id") long id){
+        return scholarshipService.RemoveScholarship(id);
+    }
+
+
+
 }

@@ -134,6 +134,8 @@ const [announcement, setAnnouncement] = useState([]);
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
+
+        {/*}
         <div className="row gutters mt-10">
           <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 ">
             <div className="card h-8" id="contentcard">
@@ -224,6 +226,7 @@ const [announcement, setAnnouncement] = useState([]);
           </div>
         </div>
 
+  */}
         <div className="row gutters mt-3">
           <div className="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">

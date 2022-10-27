@@ -19,7 +19,7 @@ public class ScholarshipJdbcRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
     public List<Scholarship> getScholarship() {
-        String query ="SELECT * from scholarship";
+        String query ="SELECT * from scholarship where status=0";
 
         List<Scholarship> scholarships = jdbc.query(query, new BeanPropertyRowMapper<Scholarship>(Scholarship.class));
         return scholarships;
@@ -62,5 +62,17 @@ public class ScholarshipJdbcRepository {
 
         int rowsAffected1 = jdbc.update(query1, namedParameters);
         return rowsAffected1;
+    }
+
+    public int RemoveScholarship(long id) {
+        MapSqlParameterSource namedParameters =
+                new MapSqlParameterSource();
+        String update = "UPDATE scholarship " +
+                "SET status = 2 WHERE id = :id;";
+
+        namedParameters.addValue("id", id);
+
+        int rowsAffected = jdbc.update(update, namedParameters);
+        return rowsAffected;
     }
 }

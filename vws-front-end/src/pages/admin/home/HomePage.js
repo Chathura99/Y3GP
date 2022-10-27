@@ -182,7 +182,7 @@ export default function HomePage() {
                 <div className="row gutters">Total Projects</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">{adminHomeSummaryData.projectCount}</span>
+                    <span className="featured">{adminHomeSummaryData.currentProjectCount-3}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>

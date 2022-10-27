@@ -42,6 +42,7 @@ export default function RegisterNewUser(props) {
         }
       });
   };
+  console.log(requestData)
 
   return (
     <div>
@@ -82,7 +83,7 @@ export default function RegisterNewUser(props) {
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <small>Email : {requestData.email}</small>
                     <br />
-                    <small>Date : {requestData.date}</small>
+                    <small>Date : {requestData.requestedDate}</small>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
