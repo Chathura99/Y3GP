@@ -148,5 +148,10 @@ public class EventService {
     public List<EventDetail> getUpcomingEventsLimit() {
         return eventJdbcRepository.getUpcomingEventsLimit();
     }
+
+    public List<EventDetail> getvolunteerAvailability() {
+        return eventJdbcRepository.getvolunteerAvailability();
+    }
+
 }
 

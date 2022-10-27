@@ -306,47 +306,53 @@ export default function PcHomePage() {
             <div className="card h-100" id="contentcard">
               <div className="card-body ">
 
-                <MaterialTable
-                  components={{
-                    Container: (props) => <Paper {...props} elevation={0} />,
-                  }}
-                  options={{ actionsColumnIndex: -1 }}
-                  title="Event Requests"
-                  columns={[
-                    //                                  { title: "REQUEST ID", field: "id" },
-                    { title: "EVENT", field: "name", hidden: true },
-                    { title: "DATE", field: "startDate" },
-                    { title: "PLACE", field: "place" },
-                    { title: "NO OF VOLUNTEERS", field: "noOfVolunteers" },
-                    { title: "STATUS", field: "status", hidden: true },
-                    //                                  { title: "DISTRICT", field: "district" },
 
-                  ]}
-                  data={joinRequestsData}
-                  actions={[
-                    {
-                      icon: () => {
-                        return (
-                          <button
-                            type="button"
-                            className="btn mt-0"
-                            style={{
-                              backgroundColor: "#96BE25",
-                              border: "none",
-                            }}
-                          >
-                            DETAILS
-                          </button>
-                        );
-                      },
-                      onClick: (event, rowData) => {
-                        setSelectedJoinRequestsData(rowData);
-                        setSelected1(true);
-                      },
-                      // tooltip: "Register User",
-                    },
-                  ]}
-                />
+              <MaterialTable
+                                components={{
+                                  Container: (props) => <Paper {...props} elevation={0} />,
+                                }}
+                                options={{ actionsColumnIndex: -1 }}
+                                title="Event Requests"
+                                columns={[
+//                                  { title: "REQUEST ID", field: "id" },
+                                  { title: "EVENT", field: "name" ,hidden:true},
+                                  { title: "DATE", field: "startDate" },
+                                  { title: "PLACE", field: "place" },
+                                  { title: "NO OF VOLUNTEERS", field: "noOfVolunteers" },
+                                  { title: "STATUS", field: "status" ,hidden:true},
+//                                  { title: "DISTRICT", field: "district" },
+
+                                ]}
+                                data={joinRequestsData}
+                                actions={[
+                                  {
+                                    icon: () => {
+                                      return (
+                                        <button
+                                          type="button"
+                                          className="btn mt-0"
+                                          style={{
+                                            backgroundColor: "#96BE25",
+                                            border: "none",
+                                          }}
+                                        >
+                                          Approve
+                                        </button>
+                                      );
+                                    },
+                                    onClick: (event, rowData) => {
+                                      setSelectedJoinRequestsData(rowData);
+                                      setSelected1(true);
+                                    },
+                                    // tooltip: "Register User",
+                                  },
+                                ]}
+                              />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
