@@ -22,7 +22,7 @@ import { getEventRequest } from "../../../services/eventServices/eventService";
 
 //card
 import { getUpcomingEvents } from "../../../services/eventServices/eventService";
-import { getJoinRequest } from "../../../services/adminServices/JoinRequestService";
+import { getJoinRequest } from "../../../services/eventServices/eventService";
 import { getAdminHomeSummary } from "../../../services/adminServices/ChartServices";
 import { getProjectSummary } from "../../../services/adminServices/ChartServices";
 
@@ -58,7 +58,7 @@ export default function PcHomePage() {
 
 
   const getRequest = async () => {
-    const res = await getJoinRequest();
+    const res = await getEventRequest();
     // console.log(res.data);
     setJoinRequestsData([...res.data]);
   };
