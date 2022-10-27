@@ -18,6 +18,7 @@ export default function EditProject(props) {
   const [message, setMessage] = useState("");
   // close pop up modal
   const closePopUp = () => {
+    window.location.href="/adminongoingproject"
     setPopUp("");
   };
   // open confirmation pop up modal
