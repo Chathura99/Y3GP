@@ -354,10 +354,8 @@ export default function PcHomePage() {
                 </div>
 
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+          
+          
       {selected1 && (
         <PcApprove setSelected={setSelected1} data={selectedJoinRequestsData} />
       )}
