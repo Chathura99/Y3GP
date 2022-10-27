@@ -179,4 +179,66 @@ public class EventDetail {
     public void setLast_Name(String last_Name) {
         this.last_Name = last_Name;
     }
+
+
+    private String fullname;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUniversity_collage() {
+        return university_collage;
+    }
+
+    public void setUniversity_collage(String university_collage) {
+        this.university_collage = university_collage;
+    }
+
+    public Date getRequested_date() {
+        return requested_date;
+    }
+
+    public void setRequested_date(Date requested_date) {
+        this.requested_date = requested_date;
+    }
+
+    private String address;
+
+    private String phone_number;
+
+    private String email;
+
+    private String university_collage;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date requested_date;
+
 }
