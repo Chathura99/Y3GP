@@ -49,7 +49,7 @@ export default function PcVolunteers() {
         const [eventProgressData, setEventProgressData] = useState({});
 
         const [volunteerAvailabilityData, setvolunteerAvailability] = useState([]);
-
+console.log(volunteerAvailabilityData)
 
 
 return (
@@ -74,13 +74,13 @@ return (
                                 options={{ actionsColumnIndex: -1 }}
                                 title="Volunteer Details"
                                 columns={[
-                                  { field: "eventId", title: "VOLUNTEER ID" },
-                                  { field: "category", title: "NAME" },
-                                  { field: "name", title: "ADDRESS" },
-                                  { field: "phoneNumber", title: "PHONE" },
-                                  { field: "startDate", title: "EMAIL" },
-                                  { field: "endDate", title: "UNIVERSITY" },
-                                  { field: "noOfVolunteers", title: "JOINED ON" },
+                                  // { field: "eventId", title: "VOLUNTEER ID" },
+                                  { field: "fullname", title: "NAME" },
+                                  { field: "address", title: "ADDRESS" },
+                                  { field: "phone_number", title: "PHONE" },
+                                  { field: "email", title: "EMAIL" },
+                                  // { field: "endDate", title: "UNIVERSITY" },
+                                  // { field: "requested_date", title: "JOINED ON" },
                                   // { field: "place", title: "LOCATION" },
                                   // { field: "status", title: "STATUS" },
                                 ]}
