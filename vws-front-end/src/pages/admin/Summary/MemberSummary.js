@@ -104,7 +104,7 @@ export default function MemberSummary() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="outertablebox2" >
             <div className="card h-100" id="contentcard2">
               <div className="card-body ">
-                <div id="selectionrow">
+                {/* <div id="selectionrow">
                   
                     <form onSubmit={""}>
                       <div id="q1" >
@@ -149,7 +149,7 @@ export default function MemberSummary() {
 
                     </form>
                   
-                </div>
+                </div> */}
                 <div id="eventleftside">
                     <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
                 
