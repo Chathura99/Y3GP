@@ -1,6 +1,7 @@
 package com.ucsc.vwsbackend.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -54,6 +55,7 @@ public class Scholarship {
 
     @Column(name = "requested_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @CreationTimestamp
     private LocalDateTime requestedDate;
 
     @Column(name="scholarship_type")

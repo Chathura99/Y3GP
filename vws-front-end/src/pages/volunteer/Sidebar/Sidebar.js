@@ -189,7 +189,7 @@ export default function Sidebar(page) {
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
-                  <i className="fa fa-calendar-check-o ml-3 mr-4"></i>Forum | Poll
+                  <i className="fa fa-users ml-3 mr-4"></i>Forum | Poll
                 </a>
                 <ul className="collapse list-unstyled" id="forumpollsubmenu">
                   <li className="ml-5">
@@ -223,7 +223,7 @@ export default function Sidebar(page) {
           </div>
         </nav>
 
-        <div className="navwidth">
+        <div className="navwidth" id="nav">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
               <button
@@ -279,11 +279,7 @@ export default function Sidebar(page) {
                       </div>
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <a className="nav-link" onClick={logOut}>
-                      Log Out
-                    </a>
-                  </li>
+                 
                   <li
                     className="nav-item"
                   >
@@ -297,6 +293,14 @@ export default function Sidebar(page) {
                       >{userdata && `${userdata.firstName} ${userdata.lastName}`}</div>
                     </Link>
                   </li>
+
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={logOut}>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </a>
+                  </li>
+
+                  
                 </ul>
               </div>
             </div>

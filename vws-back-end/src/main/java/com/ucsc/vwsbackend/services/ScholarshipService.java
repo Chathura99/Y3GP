@@ -34,4 +34,12 @@ public class ScholarshipService {
         scholarshipJdbcRepository.updateStatus(scholarship.getId(),scholarship);
         return  1;
     }
+
+    public long ApplyScholar(Scholarship scholarship) {
+        return scholarshipJdbcRepository.ApplyScholar(scholarship);
+    }
+
+    public long RemoveScholarship(long id) {
+        return scholarshipJdbcRepository.RemoveScholarship(id);
+    }
 }

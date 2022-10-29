@@ -5,13 +5,75 @@ import NewTable from "../../../utilities/Table/NewTable.js";
 // import AddForumTopic from "./AddForumTopic";
 import { Link } from "react-router-dom";
 // import AddNewPoll from "./AddNewPoll";
+import {  getPollInfo } from "../../../services/pollServices/pollService";
+import { Paper } from "@material-ui/core";
+import MaterialTable from "material-table";
+import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { addReactToPoll } from './../../../services/pollServices/pollService';
 
 export default function VPoll() {
   
+  const [pollVote, setPollVote] = useState({
+    id: "",
+    option1: "",
+    option2: "",
+    
+  });
+
+  const handleChange = (e) => {
+    e.persist();
+    console.log(e.target.name + "-" + e.target.value);
+    setPollVote((pollVote) => ({
+      ...pollVote,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const confirm = (e) => {
+    e.preventDefault();
+    setMessage("Vote Added !");
+    setPopUp("confirm");
+  };
+
+  const handleSubmit = (e) => {
+    // evt.preventDefault();
+    console.log("reached!")
+    addReactToPoll(pollVote)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+          setMessage(response.data);
+          setPopUp("success");
+        }
+      })
+      
+  };
+  const closePopUp = () => {
+    setPopUp("");
+  };
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     checkValidate();
+    getPollDetails();
+    getReplyToPollDetails();
+
+
   }, []);
+  const getPollDetails = async () => {
+    const res = await getPollInfo();
+    console.log(res.data);
+    setPollData(res.data);
+  };
+
+  const getReplyToPollDetails = async () => {
+    const res = await addReactToPoll();
+    console.log(res.data);
+    setPollData(res.data);
+  };
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -19,78 +81,16 @@ export default function VPoll() {
       window.location.href = "/";
     }
   };
-  const [ProjectsData, setProjectsData] = useState([
-    {
-      topic: "Blood Donation",
-      starteddate:"2022 07 11",
-      last_update: "2022 07 12",
-      votes: "25",
-      enddate:"2022 07 13",     
-            
-            
-      read: (
-        <Link to="/adminviewpoll" className="sign-up">
-              <button
-                type="button"
-                id="submit"
-                name="submit"
-                className="btn p-1"
-                data-toggle="modal"
-                data-target="#CoordinateEventForm"
-                style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-                // #96BE25,#BE4D25
-                // onClick={handleSubmit}
-              >
-                
-                    <b>Read</b>
-                  
-              </button>
-              </Link>
-            ),
-            
-          },
-    //       {
-    //         project_name: "Re-green Earth",
-    //         description: "Re-green Earth is a ...",
-    //         idea_by: "Sadaru Avishka",
-    //         date: "2022 09 02",
-            
-            
-    //         read: (
-    //           <button
-    //             type="button"
-    //             id="submit"
-    //             name="submit"
-    //             data-toggle="modal"
-    //             data-target="#CoordinateEventForm"
-    //             className="btn p-1"
-    //             style={{backgroundColor:"#2596BE",border:"none",marginTop: 10,marginBottom: 10}}
-    //             // #96BE25-green,#BE4D25-red
-    //             // onClick={handleSubmit}
-    //           >
-    //             Read
-    //           </button>
-    //         ),
-            
-    // }
-  ]);
+  const [PollData, setPollData] = useState([]);
+  const [viewPollData, setViewPollData] = useState({});
 
-const data = useMemo(
-() => ProjectsData  )
+  const [selected, setSelected] = useState(false);
+  const [selectedPoll, setSelectedPoll] = useState({});
 
-  const ProjectsHeadings=useMemo(
-    () => [
-     
-      { accessor: "topic", Header: "TOPIC" },
-      { accessor: "starteddate", Header: "STARTED DATE" },
-      { accessor: "last_update", Header: "LAST UPDATE" },
-      { accessor: "votes", Header: "VOTES" },
-      { accessor: "enddate", Header: "END DATE" },
-      { accessor: "read", Header: "ACTION" },
-      
-    ],
-    []
-  )
+  
+  
+
+
 // poll data
 
   return (
@@ -104,15 +104,14 @@ const data = useMemo(
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div className="card h-100" id="contentcard">
                             <div className="card-body ">
-                                <h5>Poll</h5>
+                                <h5>{PollData.title}</h5>
                                     
                             
                                 <div id="pollquestion">
                                         <h6>
-                                            We are planning to organize either blood donation campaign or school equipments donation campaign
-                                            on August 2022. So we decided to get your vote for ideal event for August month 2022
+                                        Which project is more recently used
                                         </h6>
-                                        <form onSubmit={""} style={{marginTop:0}}>
+                                        <form onSubmit={confirm}>
                 <div className="row gutters " id="pollradio" >
                   
 
@@ -121,24 +120,25 @@ const data = useMemo(
                       
                       <input
                         type="radio"
+                        name="option1"
+                        id="option1"
+                        // placeholder="Ravindu Medagama"
+                        // value={pollVote.option1}
                         
-                        id="proposedBy"
-                        placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
-                        name="firstName"
                         // onChange={handleChange}
                       />
-                      <label for="fullName"  style={{ marginLeft:5 , fontSize: 12 }}> Blood Donation</label> <br/>
+                      <label for="option1"  style={{ marginLeft:5 , fontSize: 12 }}>Lohitha uthpaadana</label> <br/>
                       <input
                         type="radio"
                         
-                        id="proposedBy"
-                        placeholder="Ravindu Medagama"
-                        // value={profile.firstName}
-                        name="firstName"
+                        name="option2"
+                        id="option2"
+                        // placeholder="Ravindu Medagama"
+                        // value={pollVote.option2}
+                        // name="firstName"
                         // onChange={handleChange}
                       />
-                      <label for="fullName"  style={{ marginLeft:5 , fontSize: 12 }}> School Equipments Donation</label>
+                      <label for="option2"  style={{ marginLeft:5 , fontSize: 12 }}> Ganitha Saviya</label>
                     </div>
                   </div>
 
@@ -150,7 +150,7 @@ const data = useMemo(
                       <div class="modal-footer justify-content-center " >
                         
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                       
                           name="submit"
@@ -191,8 +191,71 @@ const data = useMemo(
                                 
                                   {/* <button id='forumbtn' data-toggle="modal" data-target="#AddNewPoll">Add New Poll </button>
                                   <AddNewPoll/> */}
-                                
-                                  <br></br><NewTable columns={ProjectsHeadings} data={ProjectsData}/>
+                                <br></br><MaterialTable
+                    components={{
+                      Container: (props) => <Paper {...props} elevation={0} />,
+                    }}
+                    options={{ actionsColumnIndex: -1 }}
+                    title="All Polls"
+                    columns={[
+                      {
+                        field: "title",
+                        title: "Topic",
+                        
+                      },
+                      {
+                        field: "startDate",
+                        title: "Started Date",
+                      },
+                     
+                      {
+                        field: "endDate",
+                        title: "End Date",
+                      },
+                      
+                      
+                    ]}
+                    data={PollData}
+                    actions={[
+                      {
+                        
+                        icon: () => {
+                          return (
+                            <button
+                              type="button"
+                              class="btn"
+                              data-toggle="modal"
+                              // data-target="#CoordinateEventForm"
+                              style={{
+                                backgroundColor: "#2596BE",
+                                width: "6rem",
+                                border: "none",
+                                marginRight: 0,
+                              }}
+                            >
+                              Read
+                            </button>
+                          );
+                        },
+                        onClick: (event, rowData) => {
+                          setViewPollData(rowData);
+                          setSelected(true);
+                          window.location.href = "/adminviewpoll";
+                          console.log("selected!");
+                        },
+                        // tooltip: "View Location",
+                      },
+
+                      
+                      
+                    ]}
+
+                    
+
+                    
+
+                    
+                  />
                                 
                                 
                                 
@@ -202,6 +265,19 @@ const data = useMemo(
                 </div>
             </div>
             </div>
+            {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+        />
+      )}
             </div>
           </>
   );

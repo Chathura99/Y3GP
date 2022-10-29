@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useMemo } from "react";
-import { LineChart } from "./../../../utilities/Charts/LineChart";
+import { LineChart } from "../../../utilities/Charts/LineChart";
 // import Table from "../../../utilities/Table/Table";
 import NewTable from "../../../utilities/Table/NewTable.js";
 import { red } from "@mui/material/colors";
@@ -100,7 +100,7 @@ export default function EventSummary() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="outertablebox2" >
             <div className="card h-100" id="contentcard2">
               <div className="card-body ">
-                <div id="selectionrow">
+                {/* <div id="selectionrow">
                   
                     <form onSubmit={""}>
                       <div id="q1" >
@@ -145,7 +145,7 @@ export default function EventSummary() {
 
                     </form>
                   
-                </div>
+                </div> */}
                 
                 <div id="eventleftside">
                     <div className="container-fluid calculated-bodywidth"  id="Eblaa" >

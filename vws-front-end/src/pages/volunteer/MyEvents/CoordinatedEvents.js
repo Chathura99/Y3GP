@@ -1,15 +1,24 @@
 import React, { useEffect,useState } from 'react';
-import PieChart from './../../../utilities/Charts/PieChart';
+import PieChart from '../../../utilities/Charts/PieChart';
 import EditCoordinatedForm from './EditCoordinatedForm';
 // for remove box shadow
 import { Paper } from "@material-ui/core";
 import MaterialTable from "material-table";
-import { getApprovedCoordinatedEvents, getCoordinatedEvents } from './../../../services/eventServices/eventService';
+import ConfirmPopUp from '../../../utilities/PopUps/ConfirmPopUp';
+import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
+import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
+import { getApprovedCoordinatedEvents, getCoordinatedEvents, deleteCoordinatedEvents } from './../../../services/eventServices/eventService';
 
 
 export default function CoordinatedEvents() {
   
 
+  const [popup, setPopUp] = useState("");
+  const [message, setMessage] = useState("");
+  
+  const closePopUp = () => {
+    setPopUp("");
+  };
       // const [pieChartData, setPieChartData] = useState([
       //   ["Event", "Completed precentage"],
       //   ["Ganitha Saviya", 60],
@@ -40,9 +49,26 @@ export default function CoordinatedEvents() {
       setNotApprovedCoordinatedEventData(res.data);
     };
 
+    const deleteSelectedJoin = () => {
+      // console.log("deleted " + selectedJoinEventData.volunteer_id);
+      deleteCoordinatedEvents(selectedJoinEventData)
+        .then((response) => {
+          if (response.status === 200 && response.data == 1) {
+            setMessage("Delete successfully!");
+            setPopUp("success");
+          }
+
+           else {
+            setPopUp("failed");
+          }
+        })
+        
+      setPopUp("");
+    };
+
     const [approvedCoordinatedEventData, setApprovedCoordinatedEventData] = useState([]);
     const [notApprovedCoordinatedEventData, setNotApprovedCoordinatedEventData] = useState([]);
-
+    const [selectedJoinEventData, setSelectedJoinEventData] = useState({});
     const [eventData, setEventData] = useState({});
     const [selected, setSelected] = useState(false);
 
@@ -185,36 +211,40 @@ export default function CoordinatedEvents() {
                       
                     ]}
                     data={notApprovedCoordinatedEventData}
-                    actions={[
-                      {
+                    // actions={[
+                    //   {
                         
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              class="btn"
-                              data-toggle="modal"
-                              style={{
-                                backgroundColor: "#BE4D25",
-                                width: "6rem",
-                                border: "none",
-                                marginRight: 0,
-                              }}
-                            >
-                              Cancel
-                            </button>
-                          );
-                        },
-                        onClick: (event, rowData) => {
-                          setEventData(rowData);
-                          setSelected(true);
-                        },
-                        tooltip: "Edit Details",
-                      },
+                    //     icon: () => {
+                    //       return (
+                    //         <button
+                    //           type="button"
+                    //           class="btn"
+                    //           data-toggle="modal"
+                    //           style={{
+                    //             backgroundColor: "#BE4D25",
+                    //             width: "6rem",
+                    //             border: "none",
+                    //             marginRight: 0,
+                    //           }}
+                    //         >
+                    //           Cancel
+                    //         </button>
+                    //       );
+                    //     },
+                    //     onClick: (event, rowData) => {
+                    //       setEventData(rowData);
+                    //       setSelected(true);
+                    //       setPopUp("confirmDelete");
+                    //         setSelectedJoinEventData({
+                    //           eventId: rowData.eventId
+                    //         });
+                    //     },
+                    //     // tooltip: "Edit Details",
+                    //   },
 
                      
                       
-                    ]}
+                    // ]}
                     
                     />
 
@@ -226,6 +256,27 @@ export default function CoordinatedEvents() {
                 {selected && <EditCoordinatedForm setSelected={setSelected} eventData={eventData}/>}
 
             </div>
+            {popup === "success" && (
+        <SuccessPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {popup === "failed" && (
+        <FailedPopUp message={message} closePopUp={closePopUp} />
+      )}
+      {/* {popup === "confirm" && (
+        <ConfirmPopUp
+          message={message}
+          closePopUp={closePopUp}
+          handleSubmit={handleSubmit}
+          data={eventData}
+        />
+      )} */}
+       {popup === "confirmDelete" && (
+        <ConfirmPopUp
+          message={"Want to delete requested event ?"}
+          closePopUp={closePopUp}
+          handleSubmit={deleteSelectedJoin}
+        />
+      )}
         </>
     );
 }

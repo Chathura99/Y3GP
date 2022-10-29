@@ -13,6 +13,9 @@ public class EventDetail {
 
     private Integer noOfVolunteers;
 
+    private String first_Name;
+
+    private String last_Name;
     public Integer getParticipatedVolunteersCount() {
         return participatedVolunteersCount;
     }
@@ -35,6 +38,16 @@ public class EventDetail {
 
     private String description;
 
+    private Integer actualDays;
+
+    public Integer getActualDays() {
+        return actualDays;
+    }
+
+    public void setActualDays(Integer actualDays) {
+        this.actualDays = actualDays;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -48,6 +61,36 @@ public class EventDetail {
     private String name;
 
     private String phoneNumber;
+
+    private String criteria1;
+
+    private String criteria2;
+
+    private String criteria3;
+
+    public String getCriteria1() {
+        return criteria1;
+    }
+
+    public void setCriteria1(String criteria1) {
+        this.criteria1 = criteria1;
+    }
+
+    public String getCriteria2() {
+        return criteria2;
+    }
+
+    public void setCriteria2(String criteria2) {
+        this.criteria2 = criteria2;
+    }
+
+    public String getCriteria3() {
+        return criteria3;
+    }
+
+    public void setCriteria3(String criteria3) {
+        this.criteria3 = criteria3;
+    }
 
     public Long getEventId() {
         return eventId;
@@ -120,4 +163,82 @@ public class EventDetail {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getFirst_Name() {
+        return first_Name;
+    }
+
+    public void setFirst_Name(String first_Name) {
+        this.first_Name = first_Name;
+    }
+
+    public String getLast_Name() {
+        return last_Name;
+    }
+
+    public void setLast_Name(String last_Name) {
+        this.last_Name = last_Name;
+    }
+
+
+    private String fullname;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUniversity_collage() {
+        return university_collage;
+    }
+
+    public void setUniversity_collage(String university_collage) {
+        this.university_collage = university_collage;
+    }
+
+    public Date getRequested_date() {
+        return requested_date;
+    }
+
+    public void setRequested_date(Date requested_date) {
+        this.requested_date = requested_date;
+    }
+
+    private String address;
+
+    private String phone_number;
+
+    private String email;
+
+    private String university_collage;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date requested_date;
+
 }

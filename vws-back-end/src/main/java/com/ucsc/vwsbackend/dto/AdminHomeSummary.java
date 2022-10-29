@@ -6,6 +6,16 @@ public class AdminHomeSummary {
     private long projectCount;
     private long newRequestCount;
 
+    private  long currentProjectCount;
+
+    public long getCurrentProjectCount() {
+        return currentProjectCount;
+    }
+
+    public void setCurrentProjectCount(long currentProjectCount) {
+        this.currentProjectCount = currentProjectCount;
+    }
+
     public long getEventCount() {
         return eventCount;
     }

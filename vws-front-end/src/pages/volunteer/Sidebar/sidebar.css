@@ -72,6 +72,10 @@ h5,
   font-size: 18px;
 }
 
+#nav{
+  margin-bottom: 50px;
+}
+
 .img {
   background-size: cover;
   background-repeat: no-repeat;

@@ -19,6 +19,7 @@ export default function Initializeproject(props) {
   const [message, setMessage] = useState("");
   // close pop up modal
   const closePopUp = () => {
+    window.location.href="/adminproposedproject"
     setPopUp("");
   };
   // open confirmation pop up modal

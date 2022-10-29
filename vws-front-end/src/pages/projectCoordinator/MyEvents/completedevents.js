@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react';
 import NewTable from '../../../utilities/Table/NewTable';
 import DonutChart from "../../../utilities/Charts/DonutChart";
-import { LineChart } from './../../../utilities/Charts/LineChart';
+import { LineChart } from '../../../utilities/Charts/LineChart';
 import { useMemo } from 'react';
 import AddEventProgress from "../Event/AddEventProgress";
 

@@ -170,8 +170,8 @@ export default function Feedback() {
                                   name="userId"
                                   onChange={handleChange}
                                 >
-                                  <option value="4">Kalana wishwajith | Re-Green Earth</option>
-                                  <option value="5">Ravindu Medagama | 	Sarasavi Piyageta</option>
+                                  <option value="4">Ravindu Medagama | Re-Green Earth</option>
+                                  <option value="5">Kalana wishwajith | 	Sarasavi Piyageta</option>
                                   <option value="6">Kasun Wishwajith |	Sisu Mediya</option>
                                   <option value="7">Sadun Silva | Hisata Sewanak</option>
                                 </select>

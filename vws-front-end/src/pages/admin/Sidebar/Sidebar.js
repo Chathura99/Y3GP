@@ -172,7 +172,7 @@ export default function Sidebar(page) {
                 }}
               >
                 <Link to="/adminscholarship">
-                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Scholarships
+                  <i className="fa fa-heartbeat ml-3 mr-4" aria-hidden="true"></i>Scholarships
                 </Link>
               </li>
 
@@ -287,7 +287,7 @@ export default function Sidebar(page) {
                 }}
               >
                 <Link to="/adminfeedback">
-                  <i className="fa fa-bullhorn ml-3 mr-4"></i>Feedback
+                  <i className="fa fa-commenting-o ml-3 mr-4" aria-hidden="true" ></i>Feedback
                 </Link>
               </li>
             </ul>
@@ -296,7 +296,7 @@ export default function Sidebar(page) {
           </div>
         </nav>
 
-        <div className="navwidth">
+        <div className="navwidth" id="nav">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
               <button

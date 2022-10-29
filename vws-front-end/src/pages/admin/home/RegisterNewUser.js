@@ -14,6 +14,7 @@ export default function RegisterNewUser(props) {
   // close pop up modal
   const closePopUp = () => {
     setPopUp("");
+    window.location.href="/adminhome"
   };
 
   // open confirmation pop up modal
@@ -41,6 +42,7 @@ export default function RegisterNewUser(props) {
         }
       });
   };
+  console.log(requestData)
 
   return (
     <div>
@@ -81,7 +83,7 @@ export default function RegisterNewUser(props) {
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <small>Email : {requestData.email}</small>
                     <br />
-                    <small>Date : {requestData.date}</small>
+                    <small>Date : {requestData.requestedDate}</small>
                   </div>
 
                   <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -239,7 +241,7 @@ export default function RegisterNewUser(props) {
                 </div>
 
                 <div className="row gutters">
-                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
                       <label for="info" id="formLabel">
                         Potentials
@@ -249,12 +251,12 @@ export default function RegisterNewUser(props) {
                         className="form-control"
                         id="info"
                         name="info"
-                        value={requestData.info}
+                        value={requestData.protential}
                         //   onChange={handleChange}
                         disabled
                       />
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div className="form-group">
@@ -272,6 +274,14 @@ export default function RegisterNewUser(props) {
                       />
                     </div>
                   </div> */}
+                  <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div className="form-group">
+                      <label for="info" id="formLabel">
+                        Qualifications :
+                      </label>
+                      <p>{requestData.qa1},{requestData.qa2},{requestData.qa3},{requestData.qa4},{requestData.qa5}</p>
+                    </div>
+                  </div>
                   </div>
 
                   <div className="row gutters">

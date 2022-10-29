@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PieChart from "../../../utilities/Charts/PieChart";
-import { LineChart } from "./../../../utilities/Charts/LineChart";
+import { LineChart } from "../../../utilities/Charts/LineChart";
 import NewTable from "../../../utilities/Table/NewTable";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
@@ -12,12 +12,16 @@ import {deactivateUser} from "../../../services/userService";
 import FailedPopUp from "../../../utilities/PopUps/FailedPopUp";
 import SuccessPopUp from "../../../utilities/PopUps/SuccessPopUp";
 import ConfirmPopUp from "../../../utilities/PopUps/ConfirmPopUp";
+// chart data
+import { getUserSummary } from "../../../services/adminServices/ChartServices";
 
 export default function CurrentUser() {
   useEffect(() => {
     checkValidate();
     getCurrentUsers();
+    getRoleSummary();
   }, []);
+
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -25,6 +29,34 @@ export default function CurrentUser() {
       window.location.href = "/";
     }
   };
+
+  const getRoleSummary = async () => {
+    const res = await getUserSummary();
+    setDonutChartData([...res.data]);
+    // get data from backend correctly
+    console.log(res.data.admin);
+  };
+
+  const [donutChartData, setDonutChartData] = useState({});
+
+  const pieChartData = [
+    ["User", "Count"],
+    // ["Volunteer", 750],
+    // ["Project Coordinator", 21],
+    // ["Admin", 2],
+  ]
+
+  const donutData = Object.values(donutChartData).map(
+      (value) => (
+        pieChartData.push(
+          [
+            value.name,
+            value.count
+          ]
+        )
+      )
+    )
+
 
   const getCurrentUsers = async () => {
     const res = await getUsers();
@@ -38,6 +70,8 @@ export default function CurrentUser() {
 
   const closePopUp = () => {
     setPopUp("");
+    window.location.href="/admincurrentuser"
+
   };
 
   const deactivate = () => {
@@ -62,12 +96,7 @@ export default function CurrentUser() {
 
   const [currentUserTableData, setCurrentUserTableData] = useState([]);
 
-  const [pieChartData, setPieChartData] = useState([
-    ["User", "Count"],
-    ["Volunteer", 750],
-    ["Project Coordinator", 21],
-    ["Admin", 2],
-  ]);
+  
 
   const [lineChartData, setLineChartData] = useState([
     ["Month", "ADMIN", "Volunteer", "Project Coordinator"],
@@ -90,7 +119,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <PieChart data={pieChartData} />
-                  This chat shows . . .
+                  This chat shows current user count of the organization
                 </div>
               </div>
             </div>
@@ -104,7 +133,7 @@ export default function CurrentUser() {
                 </div>
                 <div className="row gutters ">
                   <LineChart data={lineChartData} />
-                  This chat shows . . .
+                  This chat shows user groeth of the latest month
                 </div>
               </div>
             </div>

@@ -76,7 +76,57 @@ export const getPreviousEvents = () => {
       data: newEvent
     
     });
-  }
+    };
+
+ //ProjectCoordinator-Ravindu
+
+    export const getEventRequest = () => {
+        console.log("das")
+        return axios({
+          method: "GET",
+          url: `${USER_URL}/getJoinRequest`,
+          headers: {
+            Authorization: "Bearer " + getToken(),
+          },
+        });
+      };
+
+
+export const updateCoordinatedEventStatus = (id) => {
+        console.log("das")
+        return axios({
+          method: "PUT",
+          url: `${USER_URL}/updateCoordinatedEventStatus/${id}`,
+          headers: {
+            Authorization: "Bearer " + getToken(),
+          },
+        });
+      };
+
+      export const updateCoordinatedEventStatusReject = (id) => {
+              console.log("das")
+              return axios({
+                method: "PUT",
+                url: `${USER_URL}/updateCoordinatedEventStatusReject/${id}`,
+                headers: {
+                  Authorization: "Bearer " + getToken(),
+                },
+              });
+            };
+
+export const editEvent = (pro) => {
+  return axios({
+    method: "PUT",
+    url: `${USER_URL}/editEvent`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data : pro
+  });
+};
+
+
+  
 
   
   export const getProgressData = (id) => {
@@ -86,5 +136,81 @@ export const getPreviousEvents = () => {
       headers: {
         Authorization: "Bearer " + getToken(),
       },
+
+    });
+  };
+
+export const editMyCoordinatedEvents = (newEvent) => {
+    return axios({
+      method: "PUT",
+      url: `${USER_URL}/editMyCoordinatedEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data : newEvent
+      });
+  }; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  export const getMyNewUpcomingEvents = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getMyNewUpcomingEvents`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+
+  export const getUpcomingEventsLimit = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getUpcomingEventsLimit`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+    });
+  };
+    
+
+  export const deleteCoordinatedEvents = (deleteevent) => {
+    return axios({
+      method: "DELETE",
+      url: `${USER_URL}/deleteCoordinatedEvents`,
+      headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+    data: deleteevent
+    });
+    
+  };
+
+
+// Project Coordinator - Volunteer details / Ravindu
+
+  export const getvolunteerAvailability = () => {
+    return axios({
+      method: "GET",
+      url: `${USER_URL}/getvolunteerAvailability`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+
     });
   };

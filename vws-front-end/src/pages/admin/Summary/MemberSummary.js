@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useMemo } from "react";
-import { LineChart } from "./../../../utilities/Charts/LineChart";
+import { LineChart } from "../../../utilities/Charts/LineChart";
 import NewTable from "../../../utilities/Table/NewTable.js";
 import Table from "../../../utilities/Table/Table";
 import { red } from "@mui/material/colors";
@@ -61,6 +61,8 @@ export default function MemberSummary() {
     // ["May", 300, 4, 18, 1, 1],
     // ["Jun", 200, 5, 20, 1, 1],
   ]);
+
+  console.log(currentUserTableData)
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
@@ -104,7 +106,7 @@ export default function MemberSummary() {
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="outertablebox2" >
             <div className="card h-100" id="contentcard2">
               <div className="card-body ">
-                <div id="selectionrow">
+                {/* <div id="selectionrow">
                   
                     <form onSubmit={""}>
                       <div id="q1" >
@@ -149,7 +151,7 @@ export default function MemberSummary() {
 
                     </form>
                   
-                </div>
+                </div> */}
                 <div id="eventleftside">
                     <div className="container-fluid calculated-bodywidth"  id="Eblaa" >
                 
@@ -179,7 +181,7 @@ export default function MemberSummary() {
                     },
                     { field: "phoneNumber", title: "PHONE" },
                     {
-                      field: "createdAt",
+                      field: "createdOn",
                       title: "JOIN DATE",
                       minWidth: "120px",
                     },

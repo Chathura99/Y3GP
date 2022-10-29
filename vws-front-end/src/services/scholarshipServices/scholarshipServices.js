@@ -28,12 +28,24 @@ export const editScholarship = (sch) => {
   };
 
   
-  export const RemoveScholarship = () => {
+  export const RemoveScholarship = (id) => {
     return axios({
-      method: "GET",
-      url: `${USER_URL}/RemoveScholarship`,
+      method: "PUT",
+      url: `${USER_URL}/RemoveScholarship/${id}`,
       headers: {
         Authorization: "Bearer " + getToken(),
       },
+    });
+  };
+
+  export const ApplyScholar = (sch) => {
+    console.log(sch)
+    return axios({
+      method: "POST",
+      url: `${USER_URL}/ApplyScholar`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data : sch
     });
   };

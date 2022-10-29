@@ -57,29 +57,29 @@ export default function PreviousEvents() {
                       { field: "place", title: "LOCATION" },
                     ]}
                     data={previousEventData}
-                    actions={[
-                      {
-                        icon: () => {
-                          return (
-                            <button
-                              type="button"
-                              className="btn mt-0"
-                              style={{
-                                backgroundColor: "#96BE25",
-                                border: "none",
-                              }}
-                            >
-                              Details
-                            </button>
-                          );
-                        },
-                        onClick: (event, rowData) => {
-                          // setSelectedJoinRequestsData(rowData);
-                          setSelected(true);
-                        },
-                         tooltip: "Event Details",
-                      },
-                    ]}
+                    // actions={[
+                    //   {
+                    //     icon: () => {
+                    //       return (
+                    //         <button
+                    //           type="button"
+                    //           className="btn mt-0"
+                    //           style={{
+                    //             backgroundColor: "#96BE25",
+                    //             border: "none",
+                    //           }}
+                    //         >
+                    //           Details
+                    //         </button>
+                    //       );
+                    //     },
+                    //     onClick: (event, rowData) => {
+                    //       // setSelectedJoinRequestsData(rowData);
+                    //       setSelected(true);
+                    //     },
+                    //      tooltip: "Event Details",
+                    //   },
+                    // ]}
                     />
                                 
                             </div>

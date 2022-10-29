@@ -88,6 +88,7 @@ export default function AddEventProgress(props) {
                           type="checkbox"
                           value=""
                           id="flexCheckDefault"
+                          {...eventProgressData.criteria1===1 && ("checked")}
                           checked
                         />
                         <label
@@ -96,7 +97,7 @@ export default function AddEventProgress(props) {
                           for="flexCheckDefault"
                           style={{ color: "black" }}
                         >
-                          criteria 1
+                          Is the contribution satisfied ?
                         </label>
                       </div>
                       <div class="form-check">
@@ -105,6 +106,7 @@ export default function AddEventProgress(props) {
                           type="checkbox"
                           value=""
                           id="flexCheckChecked"
+                          {...eventProgressData.criteria1 && ("checked")}
                         />
                         <label
                           class="form-check-label"
@@ -112,7 +114,7 @@ export default function AddEventProgress(props) {
                           for="flexCheckChecked"
                           style={{ color: "black" }}
                         >
-                          criteria 2
+                          is their any difficulties found when doing event ?
                         </label>
                       </div>
                       <div class="form-check">
@@ -121,6 +123,8 @@ export default function AddEventProgress(props) {
                           type="checkbox"
                           value=""
                           id="flexCheckChecked"
+                          {...eventProgressData.criteria3 && ("checked")}
+                          checked
                         />
                         <label
                           class="form-check-label"
@@ -128,41 +132,11 @@ export default function AddEventProgress(props) {
                           for="flexCheckChecked"
                           style={{ color: "black" }}
                         >
-                          criteria 3{" "}
+                          is this event completed over 75% ?{" "}
                         </label>
                       </div>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                        />
-                        <label
-                          class="form-check-label"
-                          id="qualifications"
-                          for="flexCheckChecked"
-                          style={{ color: "black" }}
-                        >
-                          criteria 4{" "}
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          value=""
-                          id="flexCheckChecked"
-                        />
-                        <label
-                          class="form-check-label"
-                          id="qualifications"
-                          for="flexCheckChecked"
-                          style={{ color: "black" }}
-                        >
-                          criteria 5{" "}
-                        </label>
-                      </div>
+                      
+                     
                     </div>
                   </div>
                 </div>
@@ -228,7 +202,7 @@ export default function AddEventProgress(props) {
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group">
                     <label for="district" id="formLabel">
-                      Description :<p>{progress.description}</p>
+                      Description :<p>{eventProgressData.description}</p>
                     </label>
                   </div>
                 </div>
@@ -238,8 +212,8 @@ export default function AddEventProgress(props) {
                     <label for="district" id="formLabel">
                       Summary :
                     </label>
-                    <p>Actual participations : 50%</p>
-                    <p>Actual date : 100%</p>
+                    <p>Actual participations : {eventProgressData.participatedVolunteersCount} ({eventProgressData.participatedVolunteersCount/eventProgressData.noOfVolunteers*100}%)</p>
+                    <p>No of Days(held on) : {eventProgressData.actualDays} </p>
                   </div>
                 </div>
               </div>

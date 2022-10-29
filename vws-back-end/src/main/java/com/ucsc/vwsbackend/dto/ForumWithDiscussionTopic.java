@@ -5,6 +5,16 @@ import java.util.Date;
 public class ForumWithDiscussionTopic {
     private long topicId;
     private String topic;
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    private long userId;
     private String topicDescription;
     private String createdBy;
     private Date startedDate;

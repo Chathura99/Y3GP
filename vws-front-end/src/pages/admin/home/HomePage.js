@@ -35,10 +35,10 @@ export default function HomePage() {
   const [joinRequestsData, setJoinRequestsData] = useState([]);
   const [selectedJoinRequestsData, setSelectedJoinRequestsData] = useState({});
 
-  const [donutChartData, setDonutChartData] = useState([
+  const donutChartData= [
     ["name", "Count"],
 
-  ]);
+  ];
 
   useEffect(() => {
     checkValidate();
@@ -68,18 +68,17 @@ export default function HomePage() {
     console.log(res.data);
   };
 
-  const [adminProjectSummaryData, setProjectSummaryData] = useState({});
+  const [projectSummaryData, setProjectSummaryData] = useState({});
 
   const getProjectSummaryData = async () => {
     const res = await getProjectSummary();
-    setProjectSummaryData(res.data);
-    console.log(...res.data);
-    Donut(res.data);
+    setProjectSummaryData([...res.data]);
+    console.log(res.data);
+    // Donut(res.data);
      
   };
   // check push
-  const Donut = (data)=>{
-    Object.values(data).map(
+  const Donut = Object.values(projectSummaryData).map(
       (value) => (
         donutChartData.push(
           [
@@ -89,7 +88,7 @@ export default function HomePage() {
         )
       )
     )
-  }
+  
 
   const checkValidate = async () => {
     const y = localStorage.getItem("USER_KEY");
@@ -127,7 +126,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -149,7 +148,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -166,12 +165,12 @@ export default function HomePage() {
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
                     <span className="rate">
-                      +5 <ArrowUpward className="featuredIcon" />
+                      +3 <ArrowUpward className="featuredIcon" />
                     </span>
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>
@@ -183,7 +182,7 @@ export default function HomePage() {
                 <div className="row gutters">Total Projects</div>
                 <div className="row gutters ">
                   <div className="featuredContainer">
-                    <span className="featured">{adminHomeSummaryData.projectCount}</span>
+                    <span className="featured">{adminHomeSummaryData.currentProjectCount-3}</span>
                     <span className="rate">
                       0 <ArrowDownward className="featuredIcon negative" />
                     </span>
@@ -193,7 +192,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="row gutters">
-                  <small>Compared to last month</small>
+                  <small>Compared to latest month</small>
                 </div>
               </div>
             </div>

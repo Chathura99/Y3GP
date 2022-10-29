@@ -1,8 +1,6 @@
 package com.ucsc.vwsbackend.services;
 
-import com.ucsc.vwsbackend.dto.AdminHomeSummary;
-import com.ucsc.vwsbackend.dto.AdminProjectSummary;
-import com.ucsc.vwsbackend.dto.VolunteerHomeSummary;
+import com.ucsc.vwsbackend.dto.*;
 import com.ucsc.vwsbackend.repository.ChartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +28,19 @@ public class ChartService {
     }
 
 
+    public List<UserSummary>  GetUserSummary() {
+        return chartRepository.GetUserSummary();
+    }
+
+    public List<VolunteerProjectSummary> getVolunteerProjectSummary(){
+        return  chartRepository.getVolunteerProjectSummary();
+    }
+
+    public List<VolunteerProjectSummary> getVolunteerCompletedEventSummary(){
+        return  chartRepository.getVolunteerCompletedEventSummary();
+    }
+
+    public List<VolunteerProjectSummary> getVolunteerCoordinatedEventSummary(){
+        return  chartRepository.getVolunteerCoordinatedEventSummary();
+    }
 }

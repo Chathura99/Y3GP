@@ -15,5 +15,35 @@ export const getVolunteerHomeSummary = () => {
   });
 };
 
+export const getVolunteerProjectSummary = () => {
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getVolunteerProjectSummary`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
+export const getVolunteerCompletedEventSummary = () => {
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getVolunteerCompletedEventSummary`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
+export const getVolunteerCoordinatedEventSummary = () => {
+  return axios({
+    method: "GET",
+    url: `${USER_URL}/getVolunteerCoordinatedEventSummary`,
+    headers: {
+      Authorization: "Bearer " + getToken(),
+    },
+  });
+};
+
 
 

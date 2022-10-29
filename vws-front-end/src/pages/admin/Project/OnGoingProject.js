@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LineChart } from "./../../../utilities/Charts/LineChart";
+import { LineChart } from "../../../utilities/Charts/LineChart";
 import EditProject from "./EditProject";
 // for remove box shadow
 import { Paper } from "@material-ui/core";
@@ -60,7 +60,7 @@ export default function OnGoingProject() {
   return (
     <>
       <div className="container-fluid calculated-bodywidth" style={{}} id="bla">
-        <div className="row gutters mt-10">
+        {/* <div className="row gutters mt-10">
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div className="card h-100" id="contentcard">
               <div className="card-body">
@@ -75,7 +75,7 @@ export default function OnGoingProject() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="row gutters mt-3">
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">

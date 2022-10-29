@@ -36,11 +36,13 @@ export default function Scholarship() {
     // close pop up modal
     const closePopUp = () => {
       setPopUp("");
+      window.location.href="/adminscholarship"
+      
     };
 
     const handleSubmit = (e) => {
       // evt.preventDefault();
-      console.log("reached!"+selectedScholarshipData.id);
+      console.log(selectedScholarshipData);
       RemoveScholarship(selectedScholarshipData.id).then((response) => {
         if (response.status === 200) {
           console.log(response.data);
@@ -121,7 +123,7 @@ export default function Scholarship() {
                         );
                       },
                       onClick: (event, rowData) => {
-                        // setSelectedJoinRequestsData(rowData);
+                        setSelectedScholarshipData(rowData);
                         console.log("reject")
                         setPopUp("confirm");
                         setMessage("Remove application from applicant's list")

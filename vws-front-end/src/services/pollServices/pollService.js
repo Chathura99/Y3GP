@@ -27,3 +27,16 @@ const getToken = () => {
     
     });
   }
+
+  export const addReactToPoll = (poll) =>{
+    console.log(poll);
+    return axios({
+      method: "POST",
+      url: `${USER_URL}/addReactToPoll`,
+      headers: {
+        Authorization: "Bearer " + getToken(),
+      },
+      data: poll
+    
+    });
+  }
